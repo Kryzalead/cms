@@ -38,6 +38,7 @@
 			<th><?php echo $this->Paginator->sort('User.email','E-mail'); ?></th>
 			<th>Rôle</th>
 			<th>Pages</th>
+			<th>Articles</th>
 		</tr>
 	</thead>
 	<tbody style="color: gray;">
@@ -54,13 +55,18 @@
 					
 					<div class="action_admin">
 						<?php echo $this->Html->link('Modifier',array('action'=>'edit',$v['User']['id']),array('class'=>'upd')) ?> |
-						<?php echo $this->Html->link('Supprimer définitivement',array('action'=>'delete',$v['User']['id'],$this->Session->read('Security.token')),array('class'=>'del'),'Voulez vous vraiment supprimer cet utilisateur') ?>			
+						<?php echo $this->Form->postLink('Supprimer définitivement',array('action'=>'delete',$v['User']['id']),array('class'=>'del'),'Voulez vous vraiment supprimer cet utilisateur ?') ?>			
 					</div>
 				</td>
-				<td><?php echo !empty($v['Meta']) ? ucfirst($v['Meta']['first_name']).' '.strtoupper($v['Meta']['last_name']) : '' ?></td>
+				<td><?php echo (!empty($v['User_meta'])) ? $v['User_meta']['first_name'].' '.$v['User_meta']['last_name'] : '' ?></td>
 				<td><?php echo $v['User']['email']; ?></td>
 				<td><?php echo ucfirst($v['User']['role']); ?></td>
-				<td><?php echo $v['Post']['total'] ?></td>
+				<td>
+					<?php echo ($v['User']['page_count'] != 0) ? $this->Html->link($v['User']['page_count'],array('action'=>'author','controller'=>'pages',$v['User']['username'])) : 0; ?>
+				</td>
+				<td>
+					<?php echo ($v['User']['post_count'] != 0) ? $this->Html->link($v['User']['post_count'],array('action'=>'author','controller'=>'posts',$v['User']['username'])) : 0; ?>
+				</td>
 			</tr>
 		<?php endforeach ?>
 		<?php else: ?>
@@ -80,13 +86,15 @@
 			<th><?php echo $this->Paginator->sort('User.email','E-mail'); ?></th>
 			<th>Rôle</th>
 			<th>Pages</th>
+			<th>Articles</th>
 		</tr>
 	</tfoot>
 </table>
 <div>
 	<p style="text-align: right">
-		<span class="totalElement">0</span> Element
+		<?php $terminaison = ($totalElement > 1) ? 's' : '';?>
+		<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>	
 	</p>
 </div>
 
-<?php //echo $this->Paginator->numbers(); ?>
+<?php echo $this->Paginator->numbers(); ?>

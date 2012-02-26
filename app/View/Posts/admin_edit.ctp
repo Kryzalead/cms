@@ -8,7 +8,7 @@
 	<?php echo $this->Form->input('slug',array('label'=>'Url : ','style'=>'width:100%')) ?>
 	<br />
 	<?php echo $this->Form->input('id'); ?>
-        <?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'hidden')) ?>
+        <?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
 	<?php echo $this->Form->input('type',array('type'=>'hidden','value'=>'post')) ?>
 	<?php echo $this->Form->input('content',array('label'=>'Contenu : ','style'=>'width:100%','rows'=>15)) ?>
 </div>
@@ -20,8 +20,6 @@
                 <p>
                 	<?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
                 <p>
-                <p><input type="submit" name="preview" value="Aperçu" class="submit"><p>
-                <p><input type="submit" value="Publier" class="submit"></p>
             </div>
     </div>
 

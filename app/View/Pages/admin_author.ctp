@@ -1,11 +1,11 @@
-<h1><?php echo $this->Html->image('icone-pages.png',array('width'=>62,'height'=>62)); ?> Pages</h1>
+<h1><?php echo $this->Html->image('icone-pages.png',array('width'=>32,'height'=>32)); ?> Pages</h1>
 <?php echo $this->Html->link('Ajouter une page',array('action'=>'edit'),array('class'=>'button button-add')) ?>
 	<?php if (!empty($this->request->query['search'])): ?>
 		<span>Résultats de recherche pour "<?php echo $this->request->query['search'] ?>"
 	<?php endif ?>
 
 <div class="search-box">
-	<?php echo $this->Form->create('Post',array('type'=>'get')); ?>
+	<?php echo $this->Form->create('Post',array('type'=>'get','url' => array('controller' => 'pages', 'action' => 'index'))); ?>
 	<?php echo $this->Form->input('search',array('label'=>'')) ?>
 	<?php echo $this->Form->end('Rechercher dans les pages'); ?>
 </div>
@@ -37,9 +37,9 @@
 			<thead>
 				<tr>
 					<th><input type="checkbox" class="checkall"></th>
-					<th><?php echo $this->Paginator->sort('name','Titre'); ?></th>
-					<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
-					<th><?php echo $this->Paginator->sort('created','Date'); ?></th>
+					<th>Titre</th>
+					<th>Auteur</th>
+					<th>Date</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,12 +49,12 @@
 						<td><?php echo $this->Form->input($v['Post']['id'],array('label'=>false,'type'=>'checkbox')); ?></td>
 						<td>
 							<?php if ($v['Post']['status'] == 'trash'): ?>
-								<span><?php echo $v['Post']['name'] ?></span>
+								<span style="color: #333"><?php echo $v['Post']['name'] ?></span>
 							<?php elseif($v['Post']['status'] == 'draft' && $status != 'draft'): ?>
-								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit',$v['Post']['id'])) ?>
+								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit',$v['Post']['id']),array('class'=>'upd')) ?>
 								<span> -- Brouillon</span>
 							<?php else: ?>
-								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit',$v['Post']['id'])) ?>
+								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit',$v['Post']['id']),array('class'=>'upd')) ?>
 							<?php endif ?>
 							<div class="action_admin">
 								<?php if ($v['Post']['status'] == 'trash'): ?>
@@ -74,7 +74,7 @@
 								<?php endif ?>
 							</div>
 						</td>
-						<td><?php echo $this->Html->link($v['User']['username'],array('action'=>'author',$v['User']['username'])); ?></td>
+						<td><?php echo $v['User']['username']; ?></td>
 						<td><?php echo $this->date->format($v['Post']['created'],'FR'); ?></td>
 					</tr>
 				<?php endforeach ?>
@@ -94,5 +94,4 @@
 		<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>
 	</p>
 </div>
-<?php echo $this->Paginator->numbers(); ?>
 

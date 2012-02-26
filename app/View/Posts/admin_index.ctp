@@ -12,7 +12,7 @@
 
 <div>
 	<p style="display: inline-block;float: left">
-		<?php echo $this->Html->link("Tous",array('action'=>'index','all')); ?>
+		<?php echo $this->Html->link("Tous",array('action'=>'index')); ?>
 		(<span class="total"><?php echo $total ?></span>)
 		<?php if ($totalPublish != 0): ?>
 			| <?php echo $this->Html->link("Publié",array('action'=>'index','publish')); ?>
@@ -61,20 +61,23 @@
 							<?php endif ?>
 							<div class="action_admin">
 								<?php if ($v['Post']['status'] == 'trash'): ?>
-									<?php echo $this->Html->link("Restaurer",array('action'=>'untrash',$v['Post']['id'],$this->Session->read('Security.token')),array('class'=>'upd')); ?> | 
-									<?php echo $this->Html->link("Supprimer définitivement",array('action'=>'delete',$v['Post']['id'],$this->Session->read('Security.token')),array('class'=>'del'),'Voulez vous vraiment supprimer ce contenu ?'); ?>
+									<?php echo $this->Form->postLink('Restaurer',array('action'=>'untrash',$v['Post']['id']),array('class'=>'del')) ?>
+									<span>|</span>
+									<?php echo $this->Form->postLink('Supprimer définitivement',array('action'=>'delete',$v['Post']['id']),array('class'=>'del'),'Voulez vous vraiment supprimer ce contenu ?') ?>
 								<?php else: ?>
-									<?php echo $this->Html->link('Modifier',array('action'=>'edit',$v['Post']['id']),array('class'=>'upd')) ?> |
-									<?php echo $this->Html->link('Mettre à la corbeille',array('action'=>'trash',$v['Post']['id'],$this->Session->read('Security.token')),array('class'=>'del')) ?> |
+									<?php echo $this->Html->link('Modifier',array('action'=>'edit',$v['Post']['id']),array('class'=>'upd')) ?> 
+									<span>|</span>
+									<?php echo $this->Form->postLink('Mettre à la corbeille',array('action'=>'trash',$v['Post']['id']),array('class'=>'del')) ?>
+									<span>|</span>
 									<?php if ($v['Post']['status'] == 'draft'): ?>
 										<?php echo $this->Html->link('Aperçu',array('action'=>'preview',$v['Post']['id']),array('class'=>'upd','target'=>'_blank')) ?>
 									<?php else: ?>
-										<?php echo $this->Html->link('Afficher',array('controller'=>'posts','action'=>'view','admin'=>false,'id'=>$v['Post']['id'],'slug'=>$v['Post']['slug']),array('class'=>'upd','target'=>'_blank')) ?>
+										<?php echo $this->Html->link('Afficher',array_merge($v['Post']['link'],array('admin'=>false)),array('class'=>'upd','target'=>'_blank')) ?>
 									<?php endif ?>
 								<?php endif ?>
 							</div>
 						</td>
-						<td><?php echo $v['User']['username']; ?></td>
+						<td><?php echo $this->Html->link($v['User']['username'],array('action'=>'author',$v['User']['username'])); ?></td>
 						<td><?php echo $this->date->format($v['Post']['created'],'FR'); ?></td>
 					</tr>
 				<?php endforeach ?>

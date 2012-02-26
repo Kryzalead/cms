@@ -7,21 +7,19 @@
 	<?php echo $this->Form->input('slug',array('label'=>'Url : ','style'=>'width:100%')) ?>
 	   <br />
 	<?php echo $this->Form->input('id'); ?>
-            <?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'hidden')) ?>
+    <?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
 	<?php echo $this->Form->input('type',array('type'=>'hidden','value'=>'page')) ?>
 	<?php echo $this->Form->input('content',array('label'=>'Contenu : ','rows'=>15,'style'=>'width:100%')) ?>
 </div>
 
 <div id="blocsAjoutCote">
     <div class="bloc_publier_image"><!-- Publier -->
-            <h3>Publier :</h3>
-                <div>
-                    <p>
-                        <?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$status),$selected) ?>
-                    <p>
-                    <p><input type="submit" name="preview" value="aperçu" class="submit"><p>
-                    <p><input type="submit" value="publier" class="submit"></p>
-                </div>
+        <h3>Publier :</h3>
+            <div>
+                <p>
+                    <?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
+                <p>
+            </div>
     </div>
 
     <div class="bloc_publier_image" id="bloc_img_une"><!-- image à la une -->
