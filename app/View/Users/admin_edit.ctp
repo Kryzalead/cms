@@ -1,6 +1,6 @@
 <div class="page-header">
 	<h1>
-		<?php echo $this->Html->image('icone-users.png',array('width'=>50,'height'=>50)); ?>
+		<?php echo $this->Html->image('icone-users-add.png',array('width'=>62,'height'=>62)); ?>
 		Ajouter un utilisateur
 	</h1>
 </div>

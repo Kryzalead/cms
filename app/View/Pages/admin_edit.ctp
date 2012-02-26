@@ -1,30 +1,38 @@
-<div class="page-header">
-	<h1><?php echo $this->Html->image('icone-pages.png',array('width'=>50,'height'=>50)); ?>
-Ajouter une page</h1>
-</div>
+<h1><?php echo $this->Html->image('icone-pages-add.png',array('width'=>62,'height'=>62)); ?>Ajouter une page</h1>
 <?php echo $this->Form->create('Post') ?>
-<div style="width: 65%;display: inline-block">
+
+<div class="blocsCentral">
 	<?php echo $this->Form->input('name',array('label'=>'Titre : ','style'=>'width:100%')) ?>
-	<br />
+	   <br />
 	<?php echo $this->Form->input('slug',array('label'=>'Url : ','style'=>'width:100%')) ?>
-	<br />
+	   <br />
 	<?php echo $this->Form->input('id'); ?>
-    <?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
+            <?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'hidden')) ?>
 	<?php echo $this->Form->input('type',array('type'=>'hidden','value'=>'page')) ?>
-	<?php echo $this->Form->input('content',array('label'=>'Contenu : ','style'=>'width:100%','rows'=>15)) ?>
-</div>	
-<div style="width: 30%;float:right">
-    <div style="padding-left: 5px;background-color: whiteSmoke;border-color: #DFDFDF;-moz-box-shadow: inset 0 1px 0 #fff;-webkit-box-shadow: inset 0 1px 0 #fff;box-shadow: inset 0 1px 0 #fff;-webkit-border-radius: 3px;border-radius: 3px;">
-        <h3 style="color: #464646;">Publier</h3>
-        <div>
-            <p>
-                <?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
-            <p>
-        </div>
+	<?php echo $this->Form->input('content',array('label'=>'Contenu : ','rows'=>15,'style'=>'width:100%')) ?>
+</div>
+
+<div id="blocsAjoutCote">
+    <div class="bloc_publier_image"><!-- Publier -->
+            <h3>Publier :</h3>
+                <div>
+                    <p>
+                        <?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$status),$selected) ?>
+                    <p>
+                    <p><input type="submit" name="preview" value="aperçu" class="submit"><p>
+                    <p><input type="submit" value="publier" class="submit"></p>
+                </div>
+    </div>
+
+    <div class="bloc_publier_image" id="bloc_img_une"><!-- image à la une -->
+        <h3>Image à la une :</h3>
+                <div>
+                    <p><a href="">Ajouter une image à la une</a></p>
+                </div>
     </div>
 </div>
-<?php echo $this->Form->end('Publier') ?>
-
+  
+<?php echo $this->Form->end('Envoyer') ?>
 <?php echo $this->Html->script('tiny_mce/tiny_mce.js',array('inline'=>false)); ?>
 <?php 
 // tout ce qui sera compris entre ces deux balises, sera envoyé au niveau du body grâce à inline=>false
@@ -60,7 +68,7 @@ Ajouter une page</h1>
         theme_advanced_buttons4  : '',
         theme_advanced_toolbar_location : 'top',
         theme_advanced_statusbar_location : 'bottom',
-        theme_advanced_resizing: true,
+        theme_advanced_resizing: false,
         paste_remove_styles: true,
         paste_remove_spans: true,
         paste_strip_class_attributes: 'all',

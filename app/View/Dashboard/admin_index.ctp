@@ -1,4 +1,4 @@
-<h1><?php echo $this->Html->image('icone-home.png',array('width'=>'32px','height'=>'32px')) ?> Tableau de bord </h1>
+<h1><?php echo $this->Html->image('icone-home.png',array('width'=>'62px','height'=>'62px')) ?> Tableau de bord </h1>
 <div class="bloc left">
     <div class="title">
         Aujourd'hui

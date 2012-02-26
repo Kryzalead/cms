@@ -1,18 +1,55 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<!--[if IE 7]> <html class="ie7 oldie" lang="fr"><![endif]-->
+<!--[if lte IE 9]> <html class="ie9 oldie" lang="fr"><![endif]-->
+<!--[if IE 9]> <html class="ie9 oldie" lang="fr"><![endif]-->
+<!--[if gt IE 9]><!--><html lang="fr"><!--<![endif]-->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
         <title><?php echo $title_for_layout; ?></title>
         <?php echo $this->Html->css('graf.css'); ?>
         <?php echo $this->Html->css('admin.css') ?>
         <?php echo $this->Html->css('ui-lightness/jquery-ui.css') ?>
+        <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> 
+
     </head>
     <body>
+
+    <!-- config button -->
+    <div class="settings" id="settings">
+        <div class="wrapper">
+            <div class="grid3">
+                <div class="titre">Fonds</div>
+                    <a href="url(<?php echo Router::url('/css/images/setting_button/bg/eau.jpg') ?>)" class="backgroundChanger active" title="Eau"></a>
+                    <a href="url(<?php echo Router::url('/css/images/setting_button/bg/taches_peinture.jpg') ?>)" class="backgroundChanger dark" title="Taches peinture"></a>
+                    <a href="url(<?php echo Router::url('/css/images/setting_button/bg/gouttelettes.jpg') ?>)" class="backgroundChanger dark" title="Gouttelettes"></a>
+                    <a href="url(<?php echo Router::url('/css/images/setting_button/bg/dark-bg.png') ?>)" class="backgroundChanger dark" title="Noir"></a>
+                    <a href="url(<?php echo Router::url('/css/images/setting_button/bg/bg.png') ?>)" class="backgroundChanger dark" title="Cadrillage"></a>
+                    <a href="url(<?php echo Router::url('/css/images/setting_button/bg/carbon.gif') ?>)" class="backgroundChanger dark" title="Carbon"></a>
+                <div class="clear"></div>
+            </div>
+            <div class="grid3">
+                <div class="titre">Style des blocs</div>
+                    <a href="black" class="blocChanger active" title="Noir" style="background:url(<?php echo Router::url('/css/images/setting_button/blocs_titles/bloctitle.png') ?>)"></a>
+                    <a href="white" class="blocChanger" title="Blanc" style="background:url(<?php echo Router::url('/css/images/setting_button/blocs_titles/white-title.png') ?>)"></a>
+                <div class="clear"></div>
+            </div>
+            <div class="grid3">
+                <div class="titre">Style du menu</div>
+                <a href="grey" class="sidebarChanger active" title="Gris" style="background:#494949"></a>
+                <a href="black" class="sidebarChanger" title="Noir" style="background:#262626"></a>
+                <a href="white" class="sidebarChanger" title="Blanc" style="background:#EEE"></a>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+            <a class="settingbutton" href="#"></a>
+    </div>
+
         <div id="head">
             <div class="left">
                 <?php
                     $gravatar = md5( strtolower( trim($this->Session->read('Auth.User.email'))));
-                    echo $this->Html->image('http://www.gravatar.com/avatar/'.$gravatar.'?s=20'); ?>
+                    echo $this->Html->image('http://www.gravatar.com/avatar/'.$gravatar.'?s=20', array('class'=>"gravatar")); ?>
                 <span>Bonjour,</span>
                 <?php echo $this->Html->link($this->Session->read('Auth.User.username'),array('action'=>'edit','controller'=>'users',$this->Session->read('Auth.User.id'))); ?>
                 <span>|</span>
@@ -58,7 +95,7 @@
                     <?php echo $this->Html->link($this->Html->image('icone-comments.png',array('height'=>16,'width'=>16)) . 'Commentaires',array('action'=>'index','controller'=>'comments'),array('escape'=>false)); ?>
                 </li>
             </ul>
-            <div style="height: 5px;border-top : 1px solid #2D2C2C;border-bottom: 1px solid #2D2C2C"></div>
+           <!--<div style="height: 5px;border-top : 1px solid #2D2C2C;border-bottom: 1px solid #2D2C2C"></div>-->
             <ul>
                 <li class="nosubmenu <?php echo ($currentController == 'menus')  ? 'current' : '' ?>">
                     <?php echo $this->Html->link($this->Html->image('icone-menus.png',array('height'=>16,'width'=>16)) . 'Menus',array('action'=>'index','controller'=>'menus'),array('escape'=>false)); ?>
@@ -86,4 +123,3 @@
     <?php echo $this->Html->script('main'); ?>
     <?php echo $scripts_for_layout; ?>
 </html>
-<?php echo $this->element('sql_dump'); ?>

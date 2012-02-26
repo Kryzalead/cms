@@ -13,14 +13,14 @@
 </div>
 <div>
 	<p style="display: inline-block;float: left">
-		<?php echo $this->Html->link("Tous",array('action'=>'index')); ?>
+		<?php echo $this->Html->link("Tous",array('action'=>'index','all')); ?>
 		(<span class="total"><?php echo $total ?></span>)
 		<?php if ($totalAdmin != 0): ?>
-			| <?php echo $this->Html->link("Administateur",array('admin')); ?>
+			| <?php echo $this->Html->link("Administateur",array('action'=>'index','admin')); ?>
 			(<span class="total"><?php echo $totalAdmin ?></span>)
 		<?php endif ?>
 		<?php if ($totalUser != 0): ?>
-			| <?php echo $this->Html->link("Utilisateurs",array('user')); ?>
+			| <?php echo $this->Html->link("Utilisateurs",array('action'=>'index','user')); ?>
 			(<span class="total"><?php echo $totalUser ?></span>)
 		<?php endif ?>
 	</p>
@@ -38,7 +38,6 @@
 			<th><?php echo $this->Paginator->sort('User.email','E-mail'); ?></th>
 			<th>Rôle</th>
 			<th>Pages</th>
-			<th>Articles</th>
 		</tr>
 	</thead>
 	<tbody style="color: gray;">
@@ -50,23 +49,18 @@
 					<?php 
 					$gravatar = md5( strtolower( trim($v['User']['email'])));
 					?>
-					<?php echo $this->Html->image('http://www.gravatar.com/avatar/'.$gravatar.'?s=60') ?>	
+					<?php echo $this->Html->image('http://www.gravatar.com/avatar/'.$gravatar.'?s=40') ?>	
 					<?php echo $this->Html->link(ucfirst($v['User']['username']),array('action'=>'edit',$v['User']['id']),array('class'=>'upd')) ?>
 					
 					<div class="action_admin">
 						<?php echo $this->Html->link('Modifier',array('action'=>'edit',$v['User']['id']),array('class'=>'upd')) ?> |
-						<?php echo $this->Form->postLink('Supprimer définitivement',array('action'=>'delete',$v['User']['id']),array('class'=>'del'),'Voulez vous vraiment supprimer cet utilisateur ?') ?>	
+						<?php echo $this->Html->link('Supprimer définitivement',array('action'=>'delete',$v['User']['id'],$this->Session->read('Security.token')),array('class'=>'del'),'Voulez vous vraiment supprimer cet utilisateur') ?>			
 					</div>
 				</td>
-				<td><?php echo (!empty($v['User_meta'])) ? $v['User_meta']['first_name'].' '.$v['User_meta']['last_name'] : '' ?></td>
+				<td><?php echo !empty($v['Meta']) ? ucfirst($v['Meta']['first_name']).' '.strtoupper($v['Meta']['last_name']) : '' ?></td>
 				<td><?php echo $v['User']['email']; ?></td>
 				<td><?php echo ucfirst($v['User']['role']); ?></td>
-				<td>
-					<?php echo ($v['User']['page_count'] != 0) ? $this->Html->link($v['User']['page_count'],array('action'=>'author','controller'=>'pages',$v['User']['username'])) : 0; ?>
-				</td>
-				<td>
-					<?php echo ($v['User']['post_count'] != 0) ? $this->Html->link($v['User']['post_count'],array('action'=>'author','controller'=>'posts',$v['User']['username'])) : 0; ?>
-				</td>
+				<td><?php echo $v['Post']['total'] ?></td>
 			</tr>
 		<?php endforeach ?>
 		<?php else: ?>
@@ -91,9 +85,8 @@
 </table>
 <div>
 	<p style="text-align: right">
-		<?php $terminaison = ($totalElement > 1) ? 's' : '';?>
-		<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>	
+		<span class="totalElement">0</span> Element
 	</p>
 </div>
 
-<?php echo $this->Paginator->numbers(); ?>
+<?php //echo $this->Paginator->numbers(); ?>
