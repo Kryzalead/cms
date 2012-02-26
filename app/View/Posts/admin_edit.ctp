@@ -18,7 +18,7 @@
         <h3>Publier</h3>
             <div>
                 <p>
-                	<?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$status),$selected) ?>
+                	<?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
                 <p>
                 <p><input type="submit" name="preview" value="Aperçu" class="submit"><p>
                 <p><input type="submit" value="Publier" class="submit"></p>
