@@ -1,0 +1,19 @@
+#content .search-box{text-align: right}
+
+#content .button-add{margin-top: 10px}
+
+#content .list-type-posts{}
+#content .list-type-posts .list{float: left}
+#content .list-type-posts .totalElement{text-align: right}
+#content .classicTable {color: #333}
+#content .classicTable th a:hover{color: #464646}
+#content .classicTable td{height: 50px}
+#content .classicTable td a:hover{color: #D74E21}	
+#content .classicTable .action_admin{text-align: left;visibility: hidden;margin-top: 10px}
+#content .classicTable .action_admin a{font-size: 0.9em}
+#content .classicTable .action_admin a.upd{color: #257EA8}
+#content .classicTable .action_admin a.upd:hover{color: #D74E21;}
+#content .classicTable .action_admin a.del{color: #BC0B0B}
+#content .classicTable .action_admin a.del:hover{color: #FF0000}
+
+#content .classicTable tr:hover .action_admin{visibility: visible}

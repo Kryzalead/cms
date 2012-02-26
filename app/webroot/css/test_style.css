@@ -1,0 +1,309 @@
+html,body{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,cite,code,del,dfn,em,img,q,s,samp,small,strike,strong,sub,sup,tt,var,dd,dl,dt,li,ol,ul,fieldset,form,label,legend,button,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;font-weight:normal;font-style:normal;font-size:100%;line-height:1;font-family:inherit;}
+
+h1, h2, h3, h4, h5, h6 {
+clear: both;
+font-weight: normal;
+}
+
+
+
+/* SQL log */
+.cake-sql-log {
+	background: #fff;
+}
+.cake-sql-log td {
+	padding: 4px 8px;
+	text-align: left;
+	font-family: Monaco, Consolas, "Courier New", monospaced;
+}
+.cake-sql-log caption {
+	color:#fff;
+}
+
+a:hover {
+	color: #ff4b33;
+}
+
+body {
+background: #F1F1F1;
+}
+
+#wrapper{background: white;
+padding: 0 20px;margin: 0 auto;
+width: 940px;margin-top: 20px;}
+
+#site-title {
+float: left;
+font-size: 30px;
+line-height: 36px;
+margin: 0 0 18px 0;
+width: 700px;
+}
+
+#site-title a {
+color: black;
+font-weight: bold;
+text-decoration: none;
+}
+
+#site-description {
+clear: right;
+float: right;
+font-style: italic;
+margin: 15px 0 18px 0;
+width: 220px;
+}
+
+#header-navigation {
+background: black;
+display: block;
+float: left;
+margin: 0 auto;
+width: 940px;
+}
+
+div.menu {
+font-size: 13px;
+margin-left: 12px;
+width: 928px;
+}
+
+div.menu ul {
+list-style: none;
+margin: 0;
+}
+
+div.menu li {
+float: left;
+position: relative;
+}
+
+#header-navigation a {
+color: #AAA;
+display: block;
+line-height: 38px;
+padding: 0 10px;
+text-decoration: none;
+}
+
+#header-navigation li:hover > a{
+	background: #333;
+	color: #fff;
+}
+
+#main {
+clear: both;
+overflow: hidden;
+padding: 40px 0 0 0;
+}
+
+#container {
+margin: 0 -240px 0 0;
+width: 100%;
+}
+
+#content{
+color: #333;
+font-size: 16px;
+line-height: 24px;
+margin: 0 20px 0 20px;
+margin-bottom: 36px;
+}
+
+.hentry {
+margin: 0 0 48px 0;
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+color: black;
+line-height: 1.5em;
+margin: 0 0 20px 0;
+}
+
+#content .entry-title {
+color: black;
+font-size: 21px;
+font-weight: bold;
+line-height: 1.3em;
+margin-bottom: 0;
+}
+
+#content p, #content ul, #content ol, #content dd, #content pre, #content hr {
+margin: 0 0 18px 1.5em;
+margin-bottom: 24px;
+}
+
+#content ul{list-style: square;}
+#content ul li{margin-left: 10px}
+
+.entry-title a{text-decoration: none;color: #000}
+.entry-title a:hover{color: #ff4b33;}
+.entry-meta {
+color: #888;
+font-size: 12px;
+}
+
+.entry-content{
+clear: both;
+padding: 12px 0 0 0;
+}
+
+.entry-utility {
+clear: both;
+color: #888;
+font-size: 12px;
+line-height: 18px;
+}
+
+#footer {
+margin-bottom: 20px;
+clear: both;
+width: 100%;
+}
+
+#colophon {
+border-top: 4px solid black;
+margin-top: -4px;
+overflow: hidden;
+padding: 18px 0;
+}
+
+#site-info {
+float: left;
+font-size: 14px;
+font-weight: bold;
+width: 700px;
+}
+
+#site-info a {
+color: black;
+text-decoration: none;
+}
+
+#site-generator {
+font-style: italic;
+position: relative;
+float: right;
+width: 220px;
+}
+
+#site-generator a {
+background: url(images/wordpress.png) center left no-repeat;
+color: #666;
+display: inline-block;
+line-height: 16px;
+padding-left: 20px;
+text-decoration: none;
+}
+
+/***************************/
+/ Login
+/***************************/
+body.login {
+	background: #FBFBFB;
+	min-width: 0;
+}
+
+#login {
+width: 320px;
+padding: 114px 0 0;
+margin: auto;
+}
+.login h1{font-size: 25px;margin-left: 50px}
+.login h1 a {
+background: url(logoKryzalead.png) no-repeat top center;
+width: 450px;
+height: 217px;
+text-indent: -9999px;
+display: block;
+}
+
+.login form {
+margin-left: 8px;
+padding: 26px 24px 46px;
+font-weight: normal;
+background: white;
+border: 1px solid #E5E5E5;
+-moz-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+-webkit-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+}
+
+.login label {
+color: #777;
+font-size: 14px;
+}
+.login form .input-text {
+font-weight: 200;
+font-size: 24px;
+line-height: 1;
+width: 100%;
+padding: 3px;
+margin-top: 2px;
+margin-right: 6px;
+margin-bottom: 16px;
+border: 1px solid #E5E5E5;
+background: #FBFBFB;
+outline: none;
+-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+}
+
+#login form p.submit {
+padding: 0;
+}
+
+#login form p {
+margin-bottom: 0;
+}
+
+.submit {
+border-color: #DFDFDF;
+}
+
+.login .button-primary {
+font-size: 13px!important;
+line-height: 16px;
+padding: 3px 10px;
+float: right;
+}
+
+input.button-primary, button.button-primary, a.button-primary {
+border-color: #298CBA;
+font-weight: bold;
+color: white;
+background: #21759B url(button-grad.png) repeat-x scroll left top;
+text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+}
+
+.submit input, .button, input.button, .button-primary, input.button-primary{
+text-decoration: none;
+font-size: 12px!important;
+line-height: 13px;
+padding: 3px 8px;
+cursor: pointer;
+border-width: 1px;
+border-style: solid;
+-webkit-border-radius: 11px;
+border-radius: 11px;
+-moz-box-sizing: content-box;
+-webkit-box-sizing: content-box;
+box-sizing: content-box;
+}
+
+input.button-primary:hover,button.button-primary:hover,a.button-primary:hover{
+border-color:#13455b;color:#eaf2fa;}
+
+.login #nav, .login #backtoblog {
+text-shadow: white 0 1px 0;
+margin: 0 0 0 16px;
+padding: 16px 16px 0;
+}
+#backtoblog a {
+color: #21759B!important;
+}
+#backtoblog a:hover {
+color: #ff4b33!important;
+}
