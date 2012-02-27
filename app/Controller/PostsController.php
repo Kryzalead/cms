@@ -93,6 +93,24 @@ class PostsController extends AppController{
 
 		$d['status'] = $status;
 
+		$d['list_action'] = array(
+			'0'=>'Action groupées'
+		);
+		switch ($status) {
+			case '':
+			case 'publish':
+				$d['list_action'] = array_merge($d['list_action'],array('draft'=>'Déplacer dans les brouillons','trash'=>'Déplacer dans la corbeille'));
+				break;
+			case 'draft':
+				$d['list_action'] = array_merge($d['list_action'],array('publish'=>'Déplacer dans les publications','trash'=>'Déplacer dans la corbeille'));
+				break;	
+			case 'trash':
+				$d['list_action'] = array_merge($d['list_action'],array('draft'=>'Restaurer','delete'=>'Supprimer définitivement'));
+				break;			default:
+				# code...
+				break;
+		}
+
 		$this->set($d);
 	}
 
@@ -139,10 +157,12 @@ class PostsController extends AppController{
 	*	Fonction qui met un article à la corbeille
 	*/
 
-	function admin_trash($id){
+	function admin_trash($id,$token = null){
 		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
+		if(empty($token))
+			$this->redirect('/');
+		elseif($this->Session->read('Security.token') != $token)
+			$this->redirect('/');
 
     	$this->Post->id = $id;
     	$this->Post->saveField('status','trash');
@@ -155,9 +175,6 @@ class PostsController extends AppController{
 	*/
 
 	function admin_untrash($id){
-		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
 
     	$this->Post->id = $id;
     	$this->Post->saveField('status','draft');
@@ -169,15 +186,57 @@ class PostsController extends AppController{
 	*	Fonction qui supprime un article
 	*/
 
-	function admin_delete($id){
+	function admin_delete($id,$token = null){
 		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
+		if(empty($token))
+			$this->redirect('/');
+		elseif($this->Session->read('Security.token') != $token)
+			$this->redirect('/');
 
     	$this->Post->id = $id;
     	$this->Post->delete($id);
     	$this->Session->setFlash("L'article a bien été supprimé","notif");
     	$this->redirect($this->referer());
+	}
+
+	function admin_doaction(){
+		
+		$action = $this->request->data['Post']['action'];
+		$count = 0;
+		$message = '';
+		unset($this->request->data['Post']['action']);
+		foreach ($this->request->data['Post'] as $k => $v) {
+			if(!empty($v)){
+				$this->Post->id = $k;
+				if($action != 'delete'){
+					$this->Post->saveField('status',$action);
+				}
+				else
+					$this->Post->delete($id);
+				
+				$count ++;
+			}
+			if($count > 0){
+				$terminaison = ($count > 1 ) ? 's' : '';
+				switch ($action) {
+					case 'publish':
+						$this->Session->setFlash($count." article".$terminaison." publié".$terminaison,"notif");
+						break;
+					case 'draft':
+						$this->Session->setFlash($count." article".$terminaison." déplacé".$terminaison." dans les brouillons","notif");
+						break;	
+					case 'trash':
+						$this->Session->setFlash($count." article".$terminaison." déplacé".$terminaison." dans la corbeille","notif");
+						break;
+					case 'delete':
+						$this->Session->setFlash($count." article".$terminaison." supprimé".$terminaison,"notif");
+						break;
+					default:
+						break;
+				}
+			}
+		}
+		$this->redirect($this->referer());
 	}
 
 	/*
