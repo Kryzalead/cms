@@ -1,5 +1,5 @@
 <h1><?php echo $this->Html->image('icone-medias-add.png',array('width'=>72,'height'=>72)); ?>
-	<?php echo (!empty($action) && $action == 'add') ? 'Ajouter un média' : 'Editer un média'?>
+	<?php echo $title_for_layout?>
 </h1>
 
 <div class="blocsCentral">

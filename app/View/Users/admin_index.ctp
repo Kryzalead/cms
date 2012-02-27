@@ -1,11 +1,12 @@
-<div class="page-header">
-	<?php echo $this->Html->image('icone-users.png',array('width'=>50,'height'=>50)); ?>
-	<h1 style="display: inline-block;margin-right: 30px">Utilisateurs</h1>
+<h1>
+	<?php echo $this->Html->image('icone-users.png',array('width'=>72,'height'=>72)); ?>
+	<?php echo $title_for_layout ?>
+</h1>
 	<?php echo $this->Html->link('Ajouter un utilisateur',array('action'=>'edit'),array('class'=>'btn primary')) ?>
 	<?php if (!empty($this->request->query['search'])): ?>
 		<span style="color: #777">Résultats de recherche pour "<?php echo $this->request->query['search'] ?>"
 	<?php endif ?>
-</div>
+
 <div class="search-box" style="text-align: right">
 	<?php echo $this->Form->create('User',array('type'=>'get')); ?>
 	<?php echo $this->Form->input('search',array('label'=>'')) ?>

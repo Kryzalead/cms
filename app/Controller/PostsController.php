@@ -53,6 +53,8 @@ class PostsController extends AppController{
 
 	function admin_index($status = ''){
 		
+		$d['title_for_layout'] = 'Articles';
+		
 		$this->Post->contain('User');
 
 		$conditions = array('Post.type'=>'post');
@@ -178,6 +180,9 @@ class PostsController extends AppController{
 	* Fonction qui permet d'editer un article
 	*/
 	function admin_edit($id = null){
+
+		$d['title_for_layout'] = 'Ajouter un nouvel article';
+		$d['texte_submit'] = 'Publier';
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 
@@ -195,6 +200,9 @@ class PostsController extends AppController{
 			
 		}
 		elseif($id){
+			$d['title_for_layout'] = "Modifier l'article";
+			$d['texte_submit'] = 'Mettre à jour';
+
 			$this->Post->id = $id;
 			$this->request->data = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status'));
 		}

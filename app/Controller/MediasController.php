@@ -14,6 +14,9 @@ class MediasController extends AppController{
 	*	Affiche les médias pour l'administration
 	*/
 	public function admin_index($type = ''){
+
+		$d['title_for_layout'] = 'Bibliothèque';
+		
 		$conditions = array('Media.type'=>'attachment');
 
 		// si une recherche a été demandée
@@ -99,8 +102,9 @@ class MediasController extends AppController{
 	* 	Permet d'ajouter et de modifier un media
 	*/
 	public function admin_edit($id = null){
-		// ajout d'un média
 		
+		// ajout d'un média
+		$d['title_for_layout'] = "Envoi d'un nouveau média";
 		if(empty($id)){
 			$d['action'] = 'add';
 			if(!empty($this->request->data['Media']['file'])){
@@ -234,6 +238,7 @@ class MediasController extends AppController{
 
 		}
 		else{
+			$d['title_for_layout'] = 'Modifier un média';
 			$d['action'] = 'upd';
 			// modification d'un média
 			if($this->request->is('put')){

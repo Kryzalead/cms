@@ -2,6 +2,7 @@
 class DashboardController extends AppController{
 
 	public function admin_index(){
+		$d['title_for_layout'] = 'Tableau de bord';
 		
 		// on récupère le nombre de pages et d'articles
 		$this->loadModel('Post');

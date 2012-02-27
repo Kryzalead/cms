@@ -8,6 +8,8 @@ class UsersController extends AppController{
 	*	Fonction de connexion
 	*/
 	function login(){
+		$this->set('title_for_layout','Connexion');
+		
 		$this->layout = 'login';
 		// si des datas ont été postées
 		if($this->request->is('post')){
@@ -34,6 +36,8 @@ class UsersController extends AppController{
 	}
 
 	function admin_index($role = ''){
+
+		$d['title_for_layout'] = 'Utilisateurs';
 
 		$this->User->contain(array(
 			'User_meta'=>array(
@@ -127,11 +131,12 @@ class UsersController extends AppController{
 		}
 		elseif($id){
 			
-			$d['texte_submit'] = 'Mettre à jour le profil';
 			if($id == $this->Session->read('Auth.User.id'))
-				$d['title_for_layout'] = 'Modifier votre profil';
+				$d['title_for_layout'] = 'Profil';
 			else
-				$d['title_for_layout'] = 'Modifier un utilisateur';
+				$d['title_for_layout'] = "Modifier l'utilisateur";
+
+			$d['texte_submit'] = 'Mettre à jour le profil';
 				
 			$this->User->contain(array(
 				'User_meta'=>array(
