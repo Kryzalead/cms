@@ -90,8 +90,9 @@ class User extends AppModel{
 			
 			if(!empty($this->data['User']['id']))
 				$this->User_meta->deleteAll(array('user_id'=>$user_id));
-
-			$this->User_meta->saveAll($data,array('validate'=>'false'));	
+			
+			if(!empty($data))	
+				$this->User_meta->saveAll($data,array('validate'=>'false'));	
 		}
 
 		return true;

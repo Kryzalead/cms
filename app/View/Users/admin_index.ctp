@@ -58,7 +58,11 @@
 						<?php echo $this->Form->postLink('Supprimer définitivement',array('action'=>'delete',$v['User']['id']),array('class'=>'del'),'Voulez vous vraiment supprimer cet utilisateur ?') ?>			
 					</div>
 				</td>
-				<td><?php echo (!empty($v['User_meta'])) ? $v['User_meta']['first_name'].' '.$v['User_meta']['last_name'] : '' ?></td>
+				<td>
+					<?php echo (!empty($v['User_meta']['first_name'])) ? $v['User_meta']['first_name'] : ' '?>
+					<?php echo (!empty($v['User_meta']['last_name'])) ? $v['User_meta']['last_name'] : ' '?>
+
+				</td>
 				<td><?php echo $v['User']['email']; ?></td>
 				<td><?php echo ucfirst($v['User']['role']); ?></td>
 				<td>
