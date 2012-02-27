@@ -146,6 +146,7 @@ class PostsController extends AppController{
 
     	$this->Post->id = $id;
     	$this->Post->saveField('status','trash');
+    	$this->Session->setFlash("Article déplacé dans la corbeille","notif");
     	$this->redirect($this->referer());
 	}
 
@@ -160,6 +161,7 @@ class PostsController extends AppController{
 
     	$this->Post->id = $id;
     	$this->Post->saveField('status','draft');
+    	$this->Session->setFlash("Article retiré de la corbeille","notif");
     	$this->redirect($this->referer());
 	}
 
@@ -191,9 +193,9 @@ class PostsController extends AppController{
 			if($this->Post->save($this->request->data)){
 			
 			if($id)
-				$this->Session->setFlash('Le contenu a bien été modifié','notif');
+				$this->Session->setFlash("L'article a bien été modifié",'notif');
 			else
-				$this->Session->setFlash('Le contenu a bien été ajouté','notif');
+				$this->Session->setFlash("L'article a bien été publié",'notif');
 
 			$this->redirect(array('action'=>'index'));
 			}

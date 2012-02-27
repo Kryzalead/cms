@@ -18,11 +18,11 @@
 		<?php echo $this->Html->link("Tous",array('action'=>'index')); ?>
 		(<span class="total"><?php echo $total ?></span>)
 		<?php if ($totalPublish != 0): ?>
-			| <?php echo $this->Html->link("Publié",array('action'=>'index','publish')); ?>
+			| <?php echo $this->Html->link("Publiés",array('action'=>'index','publish')); ?>
 			(<span class="totalPublished"><?php echo $totalPublish ?></span>) 	
 		<?php endif ?> 
 		<?php if ($totalDraft != 0): ?>
-			| <?php echo $this->Html->link("Brouillon",array('action'=>'index','draft')); ?>
+			| <?php echo $this->Html->link("Brouillons",array('action'=>'index','draft')); ?>
 			(<span class="totalDraft"><?php echo $totalDraft ?></span>)	
 		<?php endif ?>
 		<?php if ($totalTrash != 0): ?>
