@@ -101,6 +101,8 @@ class PostsController extends AppController{
 	*/
 	function admin_author($author = null){
 		
+		$d['title_for_layout'] = 'Articles';
+
 		$author = (!empty($author)) ? $author : 'admin';
 
 		$this->Post->contain('User');

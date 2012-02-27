@@ -92,6 +92,8 @@ class PagesController extends AppController{
 	*	Fonction qui affiche les pages par auteur
 	*/
 	function admin_author($author = null){
+
+		$d['title_for_layout'] = 'Pages';
 		
 		$author = (!empty($author)) ? $author : 'admin';
 
