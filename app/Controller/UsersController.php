@@ -96,6 +96,7 @@ class UsersController extends AppController{
 	function admin_edit($id = null){
 		
 		$d['texte_submit'] = 'Ajouter un utilisateur';
+		$d['title_for_layout'] = 'Ajouter un utilisateur';
 
 		if($this->request->is('post') || $this->request->is('put')){
 			
@@ -127,6 +128,11 @@ class UsersController extends AppController{
 		elseif($id){
 			
 			$d['texte_submit'] = 'Mettre à jour le profil';
+			if($id == $this->Session->read('Auth.User.id'))
+				$d['title_for_layout'] = 'Modifier votre profil';
+			else
+				$d['title_for_layout'] = 'Modifier un utilisateur';
+				
 			$this->User->contain(array(
 				'User_meta'=>array(
 					'conditions'=>array(

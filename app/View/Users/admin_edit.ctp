@@ -1,7 +1,7 @@
 <div class="page-header">
 	<h1>
 		<?php echo $this->Html->image('icone-users-add.png',array('width'=>62,'height'=>62)); ?>
-		Ajouter un utilisateur
+		<?php echo $title_for_layout ?>
 	</h1>
 </div>
 <?php echo $this->Form->create('User') ?>
