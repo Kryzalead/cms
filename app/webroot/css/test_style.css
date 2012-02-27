@@ -6,7 +6,7 @@ clear: both;
 font-weight: normal;
 }
 
-.cake-sql-log{font-size: 15px}
+.cake-sql-log{font-size: 15px;background-color: red}
 
 a:hover {
 	color: #ff4b33;

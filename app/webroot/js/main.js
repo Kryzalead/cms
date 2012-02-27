@@ -60,7 +60,8 @@ jQuery(function($){
         return false
     });
 
-	/** 
+	
+    /** 
      * Sidebar menus
      * Slidetoggle for menu list
      * */
@@ -75,9 +76,28 @@ jQuery(function($){
        e = $(this).parent();
        if(e.hasClass('current')){ e.removeClass('current').find('ul:first').slideUp(); return false;  }
        $('#sidebar>ul>li.current').removeClass('current').find('ul:first').slideUp();
-       e.addClass('current').find('ul:first').slideDown();  
-       return false;
+       e.addClass('current').find('ul:first').slideDown(); 
+       return false; 
     });
+
+    var htmlCollapse = $('#menucollapse').html(); 
+    if($.cookie('isCollapsed') === 'true'){
+      $('body').addClass('collapsed'); 
+      $('#menucollapse').html('&#9654;');
+    } 
+    $('#menucollapse').click(function(){
+      var body = $('body'); 
+      body.toggleClass('collapsed');
+      isCollapsed = body.hasClass('collapsed');
+      if(isCollapsed){
+        $(this).html('&#9654;');
+      }else{
+        $(this).html(htmlCollapse); 
+      }
+      $.cookie('isCollapsed',isCollapsed); 
+      return false; 
+    });
+
 
        /**
      * Slide toggle for blocs

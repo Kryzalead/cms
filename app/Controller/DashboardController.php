@@ -20,7 +20,6 @@ class DashboardController extends AppController{
 				),
 				'Post.status'=>'publish'
 			),
-			'recursive'	=>	-1,
 			'group'		=>	'Post.type'
 		));
 		

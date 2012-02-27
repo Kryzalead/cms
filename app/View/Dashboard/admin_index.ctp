@@ -18,11 +18,17 @@
                     <tbody>
                         <tr>
                             <td><h4><?php echo $totalPages ?></h4></td>
-                            <td>Pages</td>
+                            <td>
+                                <?php $terminaison = ($totalPages > 1) ? 's' : '' ?>
+                                Page<?php echo $terminaison ?>
+                            </td>
                         </tr>
                         <tr>
                             <td><h4><?php echo $totalPosts ?></h4></td>
-                            <td>Articles</td>
+                            <td>
+                                <?php $terminaison = ($totalPosts > 1) ? 's' : '' ?>
+                                Article<?php echo $terminaison ?>
+                            </td>
                         </tr>
                         <tr>
                             <td><h4>5</h4></td>

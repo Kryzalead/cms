@@ -112,6 +112,7 @@
                     <?php echo $this->Html->link($this->Html->image('icone-config.png',array('height'=>16,'width'=>16)) . 'Réglage',array('action'=>'index','controller'=>'options'),array('escape'=>false)); ?>
                 </li>
             </ul>
+            <a href="#collapse" id="menucollapse">◀ Réduire la sidebar</a>
         </div>
         <div id="content">
             <?php echo $this->Session->flash() ?>
@@ -121,5 +122,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
     <?php echo $this->Html->script('main'); ?>
+    <?php echo $this->Html->script('cookie/jquery.cookie') ?>
     <?php echo $scripts_for_layout; ?>
 </html>
+<?php echo $this->element('sql_dump'); ?>
