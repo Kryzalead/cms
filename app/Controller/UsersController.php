@@ -95,6 +95,8 @@ class UsersController extends AppController{
 	
 	function admin_edit($id = null){
 		
+		$d['action'] = 'Ajouter un utilisateur';
+
 		if($this->request->is('post') || $this->request->is('put')){
 			
 			if($this->request->data['User']['password'] != $this->request->data['User']['passwordconfirm']){
@@ -124,6 +126,7 @@ class UsersController extends AppController{
 		}
 		elseif($id){
 			
+			$d['action'] = 'Mettre à jour le profil';
 			$this->User->contain(array(
 				'User_meta'=>array(
 					'conditions'=>array(

@@ -22,5 +22,5 @@
 	</div>
 	<?php echo $this->Form->input('User.role',array('label'=>"Role : ")); ?>
 	<?php echo $this->Form->input('User.id'); ?>
-<?php echo $this->Form->end('Ajouter'); ?>
+<?php echo $this->Form->end($action); ?>
 <?php echo $this->Html->script('verif_mdp.js',array('inline'=>false)) ?>
