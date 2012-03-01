@@ -82,8 +82,17 @@ class UsersController extends AppController{
 		$d['total'] = $d['totalAdmin'] + $d['totalUser'];
 
 		$d['totalElement'] = (empty($role)) ? $d['total'] : $d['total'.ucfirst($role)];
+
+		$d['list_action'] = array(
+			'0'=>'Actions groupées',
+			'delete'=>'Supprimer'
+		);
 		
 		$this->set($d);
+	}
+
+	function admin_doaction(){
+		parent::doaction('utilisateur');
 	}
 	
 	function admin_delete($id){
@@ -144,7 +153,10 @@ class UsersController extends AppController{
 			$this->User->contain(array(
 				'User_meta'=>array(
 					'conditions'=>array(
-						'OR'=>array(array('meta_key'=>'first_name'),array('meta_key'=>'last_name'))
+						'OR'=>array(
+							array('meta_key'=>'first_name'),
+							array('meta_key'=>'last_name')
+						)
 					)
 				)
 			));

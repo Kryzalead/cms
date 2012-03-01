@@ -183,8 +183,8 @@ class PagesController extends AppController{
 			$this->redirect('/');
 
     	$this->Post->id = $id;
-    	$this->Post->delete($id);
-    	$this->Session->setFlash("L'article a bien été supprimé","notif");
+    	$this->Post->delete();
+    	$this->Session->setFlash("La page a bien été supprimé","notif");
     	$this->redirect($this->referer());
 	}
 
