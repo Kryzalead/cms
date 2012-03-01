@@ -2,7 +2,6 @@
 class Post extends AppModel{
 	
 	public $actsAs = array('Containable');
-
 	
 	public $belongsTo = array(
         'User',
@@ -19,6 +18,8 @@ class Post extends AppModel{
             'counterScope' => array('Post.type'=>'page','Post.status'=>'publish')
         )    
     );
+
+    public $hasMany = array('Menu_post'=>array('dependent'=>true));
 
 	public $recursive = -1;
 	

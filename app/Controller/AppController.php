@@ -25,8 +25,6 @@ class AppController extends Controller{
 		// si on a pas de prefixe de défini, on autorise tout
 		if(!isset($this->request->params['prefix'])){
 			$this->Auth->allow();
-			// on envois le menu du site
-			$this->set('menu', ClassRegistry::init('Menu')->getMenu('principal'));
 		}
 			
 

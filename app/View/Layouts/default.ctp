@@ -25,7 +25,7 @@
                     <?php echo $this->Html->image('http://demo.wordpress-fr.net/wp-content/themes/twentyeleven/images/headers/willow.jpg',array('height'=>198,'width'=>940)) ?>
                 </div>
                 <div id="header-navigation" role="navigation">
-                    <?php echo $this->element('menu'); ?>   
+                    <?php echo $this->element('menu',array(),array('cache' => true)); ?>   
                 </div>
             </div>
             <div id="main">
