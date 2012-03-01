@@ -89,7 +89,7 @@ class PostsController extends AppController{
 		
 		$d['total'] = $d['totalPublish'] + $d['totalDraft'];
 
-		$d['totalElement'] = $d['totalElement'] = (empty($status)) ? $d['total'] : $d['total'.ucfirst($status)];;
+		$d['totalElement'] = $d['totalElement'] = (empty($status)) ? $d['total'] : $d['total'.ucfirst($status)];
 
 		$d['status'] = $status;
 
