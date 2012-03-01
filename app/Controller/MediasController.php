@@ -153,6 +153,35 @@ class MediasController extends AppController{
 	}
 
 	/*
+	*	Fonction qui permet d'éffectuer des actions groupées
+	*/
+	function admin_doaction(){
+		
+		$action = $this->request->data['Media']['action'];
+		$count = 0;
+		$message = '';
+		unset($this->request->data['Media']['action']);
+		foreach ($this->request->data['Media'] as $k => $v) {
+			if(!empty($v)){
+				$this->Media->id = $k;
+				$this->Media->delete();
+				$count ++;
+			}
+			if($count > 0){
+				$terminaison = ($count > 1 ) ? 's' : '';
+				switch ($action) {
+					case 'delete':
+						$this->Session->setFlash($count." médias supprimé".$terminaison,"notif");
+						break;
+					default:
+						break;
+				}
+			}
+		}
+		$this->redirect($this->referer());
+	}
+
+	/*
 	*	Fonction qui supprime un média
 	*/
 	function admin_delete($id,$token = null){

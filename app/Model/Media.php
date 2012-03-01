@@ -122,6 +122,29 @@ class Media extends AppModel{
 		}
 	}
 
+	function beforeDelete($data){
+		$meta = current($this->Post_meta->find('first',array(
+			'fields'=>array('meta_value'),
+			'conditions'=>array(
+				'post_id'=>$this->id,
+				'meta_key'=>'attachment_metadata'
+			)
+		)));
+		$files = unserialize($meta['meta_value']);
+		$path['origin'] = $files['origins']['file'];
+
+		$origin_name = end(explode('/',$path['origin']));
+
+		$path['thumbnail'] = str_replace($origin_name, $files['thumbnail']['file'], $path['origin']);
+		$path['medium'] = str_replace($origin_name, $files['medium']['file'], $path['origin']);
+		$path['large'] = str_replace($origin_name, $files['large']['file'], $path['origin']);
+
+		foreach ($path as $v) {
+			unlink(IMAGES.$v);
+		}
+		return true;
+	}
+
 	function isValidUpload($data){
 		if($data['size'] == 0)
 			return false;
