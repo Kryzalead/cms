@@ -102,17 +102,51 @@ class MediasController extends AppController{
 			}
 			elseif($this->request->is('put')){
 				
+				if ($this->Media->save($this->request->data)) {
+					
+					$meta = current($this->Media->Post_meta->find('first',array(
+						'fields'=>'id',
+						'conditions'=>array('post_id'=>$this->Media->id,'meta_key'=>'attachment_image_alt')
+					)));
+
+					if(!empty($this->request->data['Media']['alt'])){
+						if(!empty($meta)){
+							$this->Media->Post_meta->id = $meta['id'];
+							$this->Media->Post_meta->save(array(
+								'meta_value'	=>	$this->request->data['Media']['alt']
+							));
+						}
+						else{
+							$this->Media->Post_meta->save(array(
+								'post_id'	=>	$this->Media->id,
+								'meta_key'	=>	'attachment_image_alt',
+								'meta_value'=>	$this->request->data['Media']['alt']	
+							));	
+						}
+					}
+					else{
+						if(!empty($meta)){
+							$this->Media->Post_meta->delete($meta['id']);
+						}
+					}
+					
+					$this->Session->setFlash("Le média a bien été modifié","notif");
+					$this->redirect(array('action'=>'index'));
+				}
+				else
+					$this->Session->setFlash("Merci de corriger vos erreurs","notif",array('type'=>'error'));
 			}
 			else
 				$this->redirect('/');
 		}
 		elseif($id){
+			$d['title_for_layout'] = 'Modifier un média';
 			$d['action'] = 'upd';
 			$this->Media->id = $id;
 			$d['media'] = $this->Media->read(
-				array('Media.id','Media.name','Media.mime_type','Media.created')
+				array('Media.id','Media.name','Media.created','Media.mime_type','Media.guid','Media.content')
 			);
-			$this->request->data = $d;
+			$this->request->data = $d['media'];
 		}
 
 		$this->set($d);

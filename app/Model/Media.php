@@ -31,8 +31,11 @@ class Media extends AppModel{
 						$origin_file = $tab['origins']['file'];
 						$origin_filename = end(explode('/',$origin_file));
 						$data[$k]['Media']['thumbnail'] = str_replace($origin_filename, $tab['thumbnail']['file'], $origin_file);
+						$data[$k]['Media']['size'] = $tab['origins']['width'].'*'.$tab['origins']['height'];
 					}
 
+					$data[$k]['Media']['alt'] = '';
+					
 					if($v1['meta_key'] == 'attachment_image_alt'){
 						$data[$k]['Media']['alt'] = $v1['meta_value'];
 					}
@@ -47,7 +50,7 @@ class Media extends AppModel{
 			$file = $this->data['Media']['file'];
 			$file_extension = pathinfo($file['name'], PATHINFO_EXTENSION);
 			$this->data['Media']['slug'] = strtolower(Inflector::slug($this->data['Media']['name'],'-'));
-			$this->data['Media']['type_mime'] = $file['type'];
+			$this->data['Media']['mime_type'] = $file['type'];
 			$this->data['Media']['guid'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/'.date('Y').'/'.date('m').'/'.$this->data['Media']['slug'].'.'.$file_extension;	
 		}
 		return true;

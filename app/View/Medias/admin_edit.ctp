@@ -16,8 +16,7 @@
 <?php else: ?>
 	<div>
 		<div style="float:left;margin-right: 20px">
-			<?php $alt  = (!empty($media['Media']['alt'])) ? $media['Media']['alt'] : ''?>
-			<?php echo $this->Html->image($media['Media']['file'],array('width'=>128,'height'=>128,'alt'=>$media,'title'=>$media['Media']['name'])); ?>
+			<?php echo $this->Html->image($media['Media']['thumbnail'],array('width'=>128,'height'=>128,'alt'=>$media['Media']['alt'],'title'=>$media['Media']['name'])); ?>
 		</div>
 		<div style="float: left">
 			<p><span style="color: #000">Nom du fichier :</span><?php echo $media['Media']['name']; ?></p>
@@ -29,12 +28,12 @@
 	<div style="clear: both"></div>
 		<div style="margin-top: 20px;">
 			<?php echo $this->Form->create('Media') ?>
-				<?php echo $this->Form->input('name',array('label'=>'Titre : <span style="color:red">*</span>')); ?> <br>
-				<?php echo $this->Form->input('alt',array('label'=>'Texte alternatif : ')); ?> <br>
-				<?php echo $this->Form->input('content',array('label'=>'Description : ','rows'=>3)); ?> <br>
-				<?php echo $this->Form->input('guid',array('label'=>'Emplacement web du fichier','readonly'=>'readonly','style'=>'width:300px')); ?>
-				<?php echo $this->Form->input('id'); ?>
-				<?php echo $this->Form->input('user_id',array('type'=>'hidden')); ?>
+				<?php echo $this->Form->input('Media.name',array('label'=>'Titre : <span style="color:red">*</span>')); ?> <br>
+				<?php echo $this->Form->input('Media.alt',array('label'=>'Texte alternatif : ')); ?> <br>
+				<?php echo $this->Form->input('Media.content',array('label'=>'Description : ','rows'=>3)); ?> <br>
+				<?php echo $this->Form->input('Media.guid',array('label'=>'Emplacement web du fichier','readonly'=>'readonly','style'=>'width:300px')); ?>
+				<?php echo $this->Form->input('Media.id'); ?>
+				<?php echo $this->Form->input('Media.user_id',array('type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))); ?>
 			<?php echo $this->Form->end('Mettre à jour'); ?>
 		</div>	
 <?php endif ?>
