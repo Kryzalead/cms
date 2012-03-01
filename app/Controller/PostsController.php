@@ -194,7 +194,7 @@ class PostsController extends AppController{
 			$this->redirect('/');
 
     	$this->Post->id = $id;
-    	$this->Post->delete($id);
+    	$this->Post->delete();
     	$this->Session->setFlash("L'article a bien été supprimé","notif");
     	$this->redirect($this->referer());
 	}

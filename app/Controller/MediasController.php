@@ -153,6 +153,21 @@ class MediasController extends AppController{
 	}
 
 	/*
+	*	Fonction qui supprime un média
+	*/
+	function admin_delete($id,$token = null){
+		if(empty($token))
+			$this->redirect('/');
+		elseif($this->Session->read('Security.token') != $token)
+			$this->redirect('/');
+
+		$this->Media->id = $id;
+		$this->Media->delete();
+		$this->Session->setFlash("Le média a bien été supprimé","notif");
+		$this->redirect($this->referer());
+	}
+
+	/*
 	*	Permet l'affichage des médias pour tinymce
 	*/
 	function admin_tinymce($tabs = 'upload',$type = ''){
