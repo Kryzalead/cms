@@ -200,43 +200,7 @@ class PostsController extends AppController{
 	}
 
 	function admin_doaction(){
-		
-		$action = $this->request->data['Post']['action'];
-		$count = 0;
-		$message = '';
-		unset($this->request->data['Post']['action']);
-		foreach ($this->request->data['Post'] as $k => $v) {
-			if(!empty($v)){
-				$this->Post->id = $k;
-				if($action != 'delete'){
-					$this->Post->saveField('status',$action);
-				}
-				else
-					$this->Post->delete($id);
-				
-				$count ++;
-			}
-			if($count > 0){
-				$terminaison = ($count > 1 ) ? 's' : '';
-				switch ($action) {
-					case 'publish':
-						$this->Session->setFlash($count." article".$terminaison." publié".$terminaison,"notif");
-						break;
-					case 'draft':
-						$this->Session->setFlash($count." article".$terminaison." déplacé".$terminaison." dans les brouillons","notif");
-						break;	
-					case 'trash':
-						$this->Session->setFlash($count." article".$terminaison." déplacé".$terminaison." dans la corbeille","notif");
-						break;
-					case 'delete':
-						$this->Session->setFlash($count." article".$terminaison." supprimé".$terminaison,"notif");
-						break;
-					default:
-						break;
-				}
-			}
-		}
-		$this->redirect($this->referer());
+		parent::doaction('article');
 	}
 
 	/*

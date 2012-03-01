@@ -35,7 +35,7 @@
 		<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>
 	</p>
 </div>
-<?php echo $this->Form->create('Post',array('url'=>array('controller'=>'pages','action'=>'doaction'))) ?>
+<?php echo $this->Form->create('Post',array('url'=>array('controller'=>'posts','action'=>'doaction'))) ?>
 	<div style="margin-top: 10px">
 		<?php echo $this->Form->input('action',array('label'=>false,'type'=>'select','options'=>$list_action)); ?>
 		<?php echo $this->Form->submit('Appliquer') ?>

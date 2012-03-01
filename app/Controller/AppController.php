@@ -66,5 +66,43 @@ class AppController extends Controller{
 		}
 		return false;
 	}
+
+	function doaction($texte = null){
+		$action = $this->request->data[$this->modelClass]['action'];
+		$count = 0;
+		unset($this->request->data[$this->modelClass]['action']);
+		foreach ($this->request->data[$this->modelClass] as $k => $v) {
+			if(!empty($v)){
+				$this->{$this->modelClass}->id = $k;
+				if($action != 'delete'){
+					$this->{$this->modelClass}->saveField('status',$action);
+				}
+				else{
+					$this->{$this->modelClass}->delete();
+				}
+				$count ++;
+			}	
+		}
+		if($count > 0){
+			$terminaison = ($count > 1 ) ? 's' : '';
+			switch ($action) {
+				case 'publish':
+					$this->Session->setFlash($count." ".$texte.$terminaison." publié".$terminaison,"notif");
+					break;
+				case 'draft':
+					$this->Session->setFlash($count." ".$texte.$terminaison." déplacé".$terminaison." dans les brouillons","notif");
+					break;	
+				case 'trash':
+					$this->Session->setFlash($count." ".$texte.$terminaison." déplacé".$terminaison." dans la corbeille","notif");
+					break;
+				case 'delete':
+					$this->Session->setFlash($count." ".$texte.$terminaison." supprimé".$terminaison,"notif");
+					break;
+				default:
+					break;
+			}
+		}
+		$this->redirect(array('controller'=>strtolower($this->name),'action'=>'index'));
+	}
 }
  ?>
