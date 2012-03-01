@@ -3,6 +3,8 @@ App::uses('Sanitize', 'Utility');
 
 class MediasController extends AppController{
 	
+	public $components = array('Img');
+
 	/*
 	*	Fonction index de l'administration
 	*/
@@ -55,6 +57,63 @@ class MediasController extends AppController{
 		$d['total'] = $d['totalImages'] + $d['totalVideos'];
 
 		$d['totalElement'] = (empty($mime)) ? $d['total'] : $d['total'.ucfirst($mime)];
+
+		$d['list_action'] = array(
+			'0'=>'Actions groupées',
+			'delete'=>'Supprimer définitivement'
+		);
+
+		$this->set($d);
+	}
+
+	/*
+	*	Fonction qui permet d'éditer un média
+	*/
+	function admin_edit($id = null){
+		
+		$d['title_for_layout'] = 'Ajouter un média';
+		$d['action'] = 'add';
+		if($this->request->is('post') || $this->request->is('put')){
+			if($this->request->is('post')){
+				$this->Media->set($this->request->data);
+				if($this->Media->validates()){
+					$file = $this->request->data['Media']['file'];
+					if($this->Media->isValidUpload($file) && $this->Media->isValidImage($file)){
+						$this->Media->save($this->request->data,array('validate'=>false));
+						$file_extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+						$file_slug = strtolower(Inflector::slug($this->request->data['Media']['name'],'-'));
+						$dir = IMAGES.date('Y'). DS.date('m');
+						
+						move_uploaded_file($file['tmp_name'], $dir.DS.$file_slug.'.'.$file_extension);
+						$format = array('thumbnail','medium','large'); 
+						foreach ($format as $v) {
+							$height = Configure::read($v.'_size_h');
+							$width = Configure::read($v.'_size_w');
+							$this->Img->crop($dir.DS.$file_slug.'.'.$file_extension,$dir.DS.$file_slug.'_'.substr($v, 0,1).'.'.$file_extension,$width,$height);
+						}
+						$this->Session->setFlash("Votre média a bien été ajouté","notif");
+						$this->redirect(array('action'=>'edit',$this->Media->id));
+					}
+					else
+						$this->Session->setFlash("Une erreur interne s'est produite lors de l'upload du média","notif",array('type'=>'error'));
+				}
+				else
+					$this->Session->setFlash("Merci de corriger vos erreurs","notif",array('type'=>'error'));
+			}
+			elseif($this->request->is('put')){
+				
+			}
+			else
+				$this->redirect('/');
+		}
+		elseif($id){
+			$d['action'] = 'upd';
+			$this->Media->id = $id;
+			$d['media'] = $this->Media->read(
+				array('Media.id','Media.name','Media.mime_type','Media.created')
+			);
+			$this->request->data = $d;
+		}
 
 		$this->set($d);
 	}

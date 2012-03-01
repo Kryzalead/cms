@@ -30,11 +30,15 @@
 		<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>
 	</p>
 </div>
-
+<?php echo $this->Form->create('Media',array('url'=>array('controller'=>'pages','action'=>'doaction'))) ?>
+	<div style="margin-top: 10px">
+		<?php echo $this->Form->input('action',array('label'=>false,'type'=>'select','options'=>$list_action)); ?>
+		<?php echo $this->Form->submit('Appliquer') ?>
+	</div>
 <table class="classicTable posts" style="-webkit-border-radius: 3px;border-radius: 3px;border-width: 1px;border-style: solid;display: table;border-spacing: 2px;border-color: gray;margin-top: 10px">
 	<thead style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
 		<tr style="color: #21759B">
-			<th><input type="checkbox"></th>
+			<th><input type="checkbox" class="checkall"></th>
 			<th>Fichier</th>
 			<th>Auteur</th>
 			<th>Date</th>
@@ -82,6 +86,7 @@
 		</tr>
 	</tfoot>
 </table>
+<?php echo $this->Form->end(); ?>
 <div style="margin-top: 5px">
 	<p style="text-align: right">
 		<?php $terminaison = ($totalElement > 1) ? 's' : '';?>

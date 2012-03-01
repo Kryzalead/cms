@@ -127,6 +127,9 @@ class UsersController extends AppController{
 
 					$this->redirect(array('action'=>'index'));
 				}
+				else{
+					$this->Session->setFlash("Merci de corriger vos erreurs","notif",array('type'=>'error'));
+				}
 			}
 		}
 		elseif($id){
