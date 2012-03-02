@@ -106,7 +106,7 @@ jQuery(function($){
     $('.bloc .title').append('<a href="#" class="toggle"></a>');
     $('.bloc .title .tabs').parent().find('.toggle').remove(); 
     $('.bloc .title .toggle').click(function(){
-        $(this).toggleClass('hide').parent().parent().find('.content').slideToggle(300);
+        $(this).toggleClass('hide').parent().parent().children('.content').slideToggle(300);
         return false; 
     });
     $('.bloc.hidden').each(function(){
