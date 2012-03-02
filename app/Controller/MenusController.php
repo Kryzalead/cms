@@ -41,10 +41,24 @@ class MenusController extends AppController{
 
 		$d['listMenus'] = $this->Menu->find('list');
 
-		$d['menu_id'] = $id;
-		
-		if(empty($d['listMenus']))
+		if(empty($d['listMenus'])){
 			$d['menu_id'] = 0;
+		}
+		else{
+			if(empty($id)){
+				if($id != '0'){
+					$temp = current($this->Menu->find('first',array(
+						'fields'=>array('id'),
+						'order'=>'id ASC'
+					)));
+					$d['menu_id'] = $temp['id'];	
+				}
+				else
+					$d['menu_id'] = 0;
+			}
+			else
+				$d['menu_id'] = $id;	
+		}
 
 		if($d['menu_id'] == 0){
 			$this->request->data = array(
@@ -52,7 +66,7 @@ class MenusController extends AppController{
 					'id'=>0
 				)
 			);
-		}
+		}		
 		else{
 			$d['texte_for_submit'] = 'Enregistrer le menu';
 			$this->Menu->id = $d['menu_id'];
@@ -68,7 +82,7 @@ class MenusController extends AppController{
 						'conditions'	=>	array('Menu_post.post_id=Post.id')
 					)
 				),
-				'conditions'	=>	array('Menu_post.menu_id'=>$id),
+				'conditions'	=>	array('Menu_post.menu_id'=>$d['menu_id']),
 				'order'			=>	array('Menu_post.position'=>'ASC')	
 			));
 		}

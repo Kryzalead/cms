@@ -10,19 +10,17 @@
 			</div>
 			<div class="inside" style="padding: 5px">
 				<?php echo $this->Form->create('Menu',array('action'=>'addItem')); ?>
+				<?php $disabled = ($menu_id == 0) ? 'disabled' : ''; ?>
 				<?php foreach ($listPages as $k => $v):?>
 					<div>
-						<?php if ($menu_id != 0): ?>
-							<?php echo $this->Form->checkbox('Post.'.$k,array('style'=>'height: 20px')); ?> 
-						<?php else: ?>
-							<?php echo $this->Form->checkbox('Post.'.$k,array('style'=>'height: 20px','disabled'=>'disabled')); ?> 
-						<?php endif ?>
+						<?php echo $this->Form->checkbox('Post.'.$k,array('style'=>'height: 20px',$disabled)); ?> 
 						<?php echo $this->Form->label('Post.'.$k,$v,array('style'=>'width: 200px')) ?>
 					</div>
 				<?php endforeach?>
 				<div style="clear:both"></div>
 				<?php echo $this->Form->input('Menu.id',array('type'=>'hidden','value'=>$menu_id)); ?>
-				<?php echo $this->Form->end('Ajouter au menu') ?>
+				<?php echo $this->Form->submit('Ajouter au menu',array($disabled));?>
+				<?php echo $this->Form->end() ?>
 			</div>
 		</div>
 	</div>

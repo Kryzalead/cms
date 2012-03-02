@@ -134,6 +134,56 @@ jQuery(function($){
         $("#maskContainer").fadeTo(500,0);
     });
     animateGlow($("#logmask"));
+
+    /*
+    * Check le nom du menu avant validation
+    */
+    $('#MenuEditForm').submit(function(){
+      var menu_id = $(this).find('#MenuId').val();
+      if(menu_id == 0){
+        var menu_name = $(this).find('#MenuName');
+        if(menu_name.val() == ''){
+          $(menu_name).css('border','1px solid red');
+          return false;
+        }
+      }
+    });
+
+    /**
+     * Fake Placeholder
+     * User labels as placeholder for the next input
+     * */
+     
+    $('.placeholder,#content.login .input').each(function(){
+        var label = $(this).find('label:first');
+        var input = $(this).find('input:first,textarea:first'); 
+         if(input.val() != ''){
+             label.stop().hide(); 
+         }
+         input.focus(function(){
+             if($(this).val() == ''){
+                  label.stop().fadeTo(500,0.5);  
+             }
+             $(this).parent().removeClass('error').find('.error-message').fadeOut(); 
+         });
+         input.blur(function(){
+             if($(this).val() == ''){
+                  label.stop().fadeTo(500,1);  
+             }
+         });
+         input.keypress(function(){
+            label.stop().hide(); 
+         });
+         input.keyup(function(){
+             if($(this).val() == ''){
+                  label.stop().fadeTo(500,0.5); 
+             }
+         });
+       input.bind('cut copy paste', function(e) {
+        label.stop().hide(); 
+       });
+    });
+    
   });
 
 
