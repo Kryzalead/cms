@@ -1,4 +1,7 @@
-<h1><?php echo $this->Html->image('icone-posts.png',array('width'=>32,'height'=>32)); ?> Articles</h1>
+<h1>
+	<?php echo $this->Html->image('icone-posts.png',array('width'=>72,'height'=>72)); ?>
+	<?php echo $title_for_layout ?>
+</h1>
 <?php echo $this->Html->link('Ajouter un article',array('action'=>'edit'),array('class'=>'btn primary')) ?>
 <?php if (!empty($this->request->query['search'])): ?>
 	<span>Résultats de recherche pour "<?php echo $this->request->query['search'] ?>"

@@ -25,8 +25,6 @@ class AppController extends Controller{
 		// si on a pas de prefixe de défini, on autorise tout
 		if(!isset($this->request->params['prefix'])){
 			$this->Auth->allow();
-			// on envois le menu du site
-			$this->set('menu', ClassRegistry::init('Menu')->getMenu('principal'));
 		}
 			
 
@@ -65,6 +63,44 @@ class AppController extends Controller{
 			}
 		}
 		return false;
+	}
+
+	function doaction($texte = null){
+		$action = $this->request->data[$this->modelClass]['action'];
+		$count = 0;
+		unset($this->request->data[$this->modelClass]['action']);
+		foreach ($this->request->data[$this->modelClass] as $k => $v) {
+			if(!empty($v)){
+				$this->{$this->modelClass}->id = $k;
+				if($action != 'delete'){
+					$this->{$this->modelClass}->saveField('status',$action);
+				}
+				else{
+					$this->{$this->modelClass}->delete();
+				}
+				$count ++;
+			}	
+		}
+		if($count > 0){
+			$terminaison = ($count > 1 ) ? 's' : '';
+			switch ($action) {
+				case 'publish':
+					$this->Session->setFlash($count." ".$texte.$terminaison." publié".$terminaison,"notif");
+					break;
+				case 'draft':
+					$this->Session->setFlash($count." ".$texte.$terminaison." déplacé".$terminaison." dans les brouillons","notif");
+					break;	
+				case 'trash':
+					$this->Session->setFlash($count." ".$texte.$terminaison." déplacé".$terminaison." dans la corbeille","notif");
+					break;
+				case 'delete':
+					$this->Session->setFlash($count." ".$texte.$terminaison." supprimé".$terminaison,"notif");
+					break;
+				default:
+					break;
+			}
+		}
+		$this->redirect(array('controller'=>strtolower($this->name),'action'=>'index'));
 	}
 }
  ?>

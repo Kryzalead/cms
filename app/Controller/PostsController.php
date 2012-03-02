@@ -53,6 +53,8 @@ class PostsController extends AppController{
 
 	function admin_index($status = ''){
 		
+		$d['title_for_layout'] = 'Articles';
+		
 		$this->Post->contain('User');
 
 		$conditions = array('Post.type'=>'post');
@@ -87,9 +89,27 @@ class PostsController extends AppController{
 		
 		$d['total'] = $d['totalPublish'] + $d['totalDraft'];
 
-		$d['totalElement'] = $d['totalElement'] = (empty($status)) ? $d['total'] : $d['total'.ucfirst($status)];;
+		$d['totalElement'] = $d['totalElement'] = (empty($status)) ? $d['total'] : $d['total'.ucfirst($status)];
 
 		$d['status'] = $status;
+
+		$d['list_action'] = array(
+			'0'=>'Action groupées'
+		);
+		switch ($status) {
+			case '':
+			case 'publish':
+				$d['list_action'] = array_merge($d['list_action'],array('draft'=>'Déplacer dans les brouillons','trash'=>'Déplacer dans la corbeille'));
+				break;
+			case 'draft':
+				$d['list_action'] = array_merge($d['list_action'],array('publish'=>'Déplacer dans les publications','trash'=>'Déplacer dans la corbeille'));
+				break;	
+			case 'trash':
+				$d['list_action'] = array_merge($d['list_action'],array('draft'=>'Restaurer','delete'=>'Supprimer définitivement'));
+				break;			default:
+				# code...
+				break;
+		}
 
 		$this->set($d);
 	}
@@ -99,6 +119,8 @@ class PostsController extends AppController{
 	*/
 	function admin_author($author = null){
 		
+		$d['title_for_layout'] = 'Articles';
+
 		$author = (!empty($author)) ? $author : 'admin';
 
 		$this->Post->contain('User');
@@ -135,13 +157,16 @@ class PostsController extends AppController{
 	*	Fonction qui met un article à la corbeille
 	*/
 
-	function admin_trash($id){
+	function admin_trash($id,$token = null){
 		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
+		if(empty($token))
+			$this->redirect('/');
+		elseif($this->Session->read('Security.token') != $token)
+			$this->redirect('/');
 
     	$this->Post->id = $id;
     	$this->Post->saveField('status','trash');
+    	$this->Session->setFlash("Article déplacé dans la corbeille","notif");
     	$this->redirect($this->referer());
 	}
 
@@ -150,12 +175,10 @@ class PostsController extends AppController{
 	*/
 
 	function admin_untrash($id){
-		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
 
     	$this->Post->id = $id;
     	$this->Post->saveField('status','draft');
+    	$this->Session->setFlash("Article retiré de la corbeille","notif");
     	$this->redirect($this->referer());
 	}
 
@@ -163,30 +186,39 @@ class PostsController extends AppController{
 	*	Fonction qui supprime un article
 	*/
 
-	function admin_delete($id){
+	function admin_delete($id,$token = null){
 		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
+		if(empty($token))
+			$this->redirect('/');
+		elseif($this->Session->read('Security.token') != $token)
+			$this->redirect('/');
 
     	$this->Post->id = $id;
-    	$this->Post->delete($id);
+    	$this->Post->delete();
     	$this->Session->setFlash("L'article a bien été supprimé","notif");
     	$this->redirect($this->referer());
+	}
+
+	function admin_doaction(){
+		parent::doaction('article');
 	}
 
 	/*
 	* Fonction qui permet d'editer un article
 	*/
 	function admin_edit($id = null){
+
+		$d['title_for_layout'] = 'Ajouter un nouvel article';
+		$d['texte_submit'] = 'Publier';
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 			if($this->Post->save($this->request->data)){
 			
 			if($id)
-				$this->Session->setFlash('Le contenu a bien été modifié','notif');
+				$this->Session->setFlash("L'article a bien été modifié",'notif');
 			else
-				$this->Session->setFlash('Le contenu a bien été ajouté','notif');
+				$this->Session->setFlash("L'article a bien été publié",'notif');
 
 			$this->redirect(array('action'=>'index'));
 			}
@@ -195,6 +227,9 @@ class PostsController extends AppController{
 			
 		}
 		elseif($id){
+			$d['title_for_layout'] = "Modifier l'article";
+			$d['texte_submit'] = 'Mettre à jour';
+
 			$this->Post->id = $id;
 			$this->request->data = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status'));
 		}

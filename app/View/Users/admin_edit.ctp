@@ -1,7 +1,7 @@
 <div class="page-header">
 	<h1>
 		<?php echo $this->Html->image('icone-users-add.png',array('width'=>62,'height'=>62)); ?>
-		Ajouter un utilisateur
+		<?php echo $title_for_layout ?>
 	</h1>
 </div>
 <?php echo $this->Form->create('User') ?>
@@ -22,5 +22,5 @@
 	</div>
 	<?php echo $this->Form->input('User.role',array('label'=>"Role : ")); ?>
 	<?php echo $this->Form->input('User.id'); ?>
-<?php echo $this->Form->end('Ajouter'); ?>
+<?php echo $this->Form->end($texte_submit); ?>
 <?php echo $this->Html->script('verif_mdp.js',array('inline'=>false)) ?>

@@ -44,6 +44,8 @@ class PagesController extends AppController{
 	/************ ADMINISTRATION ******************/
 
 	function admin_index($status = ''){
+
+		$d['title_for_layout'] = 'Pages';
 		
 		$this->Post->contain('User');
 
@@ -83,6 +85,24 @@ class PagesController extends AppController{
 
 		$d['status'] = $status;
 
+		$d['list_action'] = array(
+			'0'=>'Action groupées'
+		);
+		switch ($status) {
+			case '':
+			case 'publish':
+				$d['list_action'] = array_merge($d['list_action'],array('draft'=>'Déplacer dans les brouillons','trash'=>'Déplacer dans la corbeille'));
+				break;
+			case 'draft':
+				$d['list_action'] = array_merge($d['list_action'],array('publish'=>'Déplacer dans les publications','trash'=>'Déplacer dans la corbeille'));
+				break;	
+			case 'trash':
+				$d['list_action'] = array_merge($d['list_action'],array('draft'=>'Restaurer','delete'=>'Supprimer définitivement'));
+				break;			default:
+				# code...
+				break;
+		}
+
 		$this->set($d);
 	}
 
@@ -90,6 +110,8 @@ class PagesController extends AppController{
 	*	Fonction qui affiche les pages par auteur
 	*/
 	function admin_author($author = null){
+
+		$d['title_for_layout'] = 'Pages';
 		
 		$author = (!empty($author)) ? $author : 'admin';
 
@@ -127,10 +149,12 @@ class PagesController extends AppController{
 	*	Fonction qui met une page à la corbeille
 	*/
 
-	function admin_trash($id){
+	function admin_trash($id,$token = null){
 		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
+		if(empty($token))
+			$this->redirect('/');
+		elseif($this->Session->read('Security.token') != $token)
+			$this->redirect('/');
 
     	$this->Post->id = $id;
     	$this->Post->saveField('status','trash');
@@ -142,10 +166,6 @@ class PagesController extends AppController{
 	*/
 
 	function admin_untrash($id){
-		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
-
     	$this->Post->id = $id;
     	$this->Post->saveField('status','draft');
     	$this->redirect($this->referer());
@@ -155,30 +175,39 @@ class PagesController extends AppController{
 	*	Fonction qui supprime une page
 	*/
 
-	function admin_delete($id){
+	function admin_delete($id,$token = null){
 		
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
+		if(empty($token))
+			$this->redirect('/');
+		elseif($this->Session->read('Security.token') != $token)
+			$this->redirect('/');
 
     	$this->Post->id = $id;
-    	$this->Post->delete($id);
-    	$this->Session->setFlash("L'article a bien été supprimé","notif");
+    	$this->Post->delete();
+    	$this->Session->setFlash("La page a bien été supprimé","notif");
     	$this->redirect($this->referer());
+	}
+
+	function admin_doaction(){
+		parent::doaction('page');
 	}
 
 	/*
 	* Fonction qui permet d'editer une page
 	*/
 	function admin_edit($id = null){
+
+		$d['title_for_layout'] = 'Ajouter une nouvelle page';
+		$d['texte_submit'] = 'Publier';
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 			if($this->Post->save($this->request->data)){
 			
 			if($id)
-				$this->Session->setFlash('Le contenu a bien été modifié','notif');
+				$this->Session->setFlash('La page a bien été modifiée','notif');
 			else
-				$this->Session->setFlash('Le contenu a bien été ajouté','notif');
+				$this->Session->setFlash('La page a bien été ajoutée','notif');
 
 			$this->redirect(array('action'=>'index'));
 			}
@@ -187,6 +216,10 @@ class PagesController extends AppController{
 			
 		}
 		elseif($id){
+
+		$d['title_for_layout'] = 'Modifier la page';
+		$d['texte_submit'] = 'Mettre à jour';
+
 			$this->Post->id = $id;
 			$this->request->data = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status'));
 		}

@@ -1,4 +1,3 @@
-<?php $this->set('title_for_layout','Administration'); ?>
 <div id="pancarte"></div>
 
 <section id="formConnexion">

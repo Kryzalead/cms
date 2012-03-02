@@ -1,7 +1,7 @@
-<div class="page-header">
-	<?php echo $this->Html->image('icone-menus.png',array('width'=>50,'height'=>50)); ?>
-	<h1 style="display: inline-block;margin-right: 30px">Menus</h1>
-</div>
+<h1>
+	<?php echo $this->Html->image('icone-menus.png',array('width'=>62,'height'=>62)); ?>
+	<?php echo $title_for_layout ?>
+</h1>
 <div id="contain">
 	<div id="contain-left" style="width: 25%;float: left">
 		<div id="block-post" style="border: 1px solid #DFDFDF;background-color: whiteSmoke">
@@ -10,15 +10,17 @@
 			</div>
 			<div class="inside" style="padding: 5px">
 				<?php echo $this->Form->create('Menu',array('action'=>'addItem')); ?>
+				<?php $disabled = ($menu_id == 0) ? 'disabled' : ''; ?>
 				<?php foreach ($listPages as $k => $v):?>
 					<div>
-						<?php echo $this->Form->checkbox('Post.'.$k,array('style'=>'height: 20px')); ?> 
+						<?php echo $this->Form->checkbox('Post.'.$k,array('style'=>'height: 20px',$disabled)); ?> 
 						<?php echo $this->Form->label('Post.'.$k,$v,array('style'=>'width: 200px')) ?>
 					</div>
 				<?php endforeach?>
 				<div style="clear:both"></div>
 				<?php echo $this->Form->input('Menu.id',array('type'=>'hidden','value'=>$menu_id)); ?>
-				<?php echo $this->Form->end('Ajouter au menu') ?>
+				<?php echo $this->Form->submit('Ajouter au menu',array($disabled));?>
+				<?php echo $this->Form->end() ?>
 			</div>
 		</div>
 	</div>
@@ -41,24 +43,18 @@
 					<div id="block-menu-title" style="margin: 5px">
 						<div style="margin-left: 0px">
 							<?php echo $this->Form->create('Menu',array('action'=>'edit')); ?>
-							<?php echo $this->Form->label('Menu.name',"Nom du menu",array('style'=>'width: 100px;')) ?>
-							<?php echo $this->Form->input('Menu.name',array('label'=>false)); ?>
-							<?php if (!empty($menu)): ?>
-								<?php echo $this->Form->input('Menu.id'); ?>
-								<?php echo $this->Form->end('Enregistrer le menu') ?>
-							<?php else: ?>
-								<?php echo $this->Form->input('Menu.id',array('value'=>0)); ?>
-								<?php echo $this->Form->end('Créer le menu') ?>
-							<?php endif ?>
+							<?php echo $this->Form->input('Menu.name',array('label'=>"Nom du menu : ")); ?>
+							<?php echo $this->Form->input('Menu.id'); ?>
+							<?php echo $this->Form->end($texte_for_submit) ?>
 						</div>
 					</div>
-					<?php if (!empty($menu)): ?>
+					<?php if ($menu_id != 0): ?>
 						<div id="menu-action" style="margin: 5px">
-							<?php echo $this->Html->link("Supprimer le menu",array('action'=>'delete',$menu['Menu']['id'],$this->Session->read('Security.token')),array('style'=>'color: red')); ?>
+							<?php echo $this->Html->link("Supprimer le menu",array('action'=>'delete',$menu_id,$this->Session->read('Security.token')),array('style'=>'color: red')); ?>
 						</div>	
 					<?php endif ?>
 					<div id="block-menu-items" style="background-color: #fff;margin-top: 20px;border-top: 1px solid #DFDFDF;border-bottom: 1px solid #DFDFDF">
-					<?php if(!empty($menu)): ?>
+					<?php if($menu_id != 0): ?>
 						<?php if (!empty($menu_posts)): ?>
 							<ul style="list-style-type: none; padding-top: 20px;padding-bottom: 20px" id="sortable">
 								<?php foreach ($menu_posts as $k => $v): ?>

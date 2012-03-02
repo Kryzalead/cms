@@ -1,95 +1,133 @@
 <?php 
 class MenusController extends AppController{
 
-	public function admin_index($id = null){
-
-		// si id n'est pas défini on initialise l'id 1
-		if($id == null)
-			$id = 1;
-
-		$d['menu_id'] = $id;
-		
-		// on charge le model des posts
-		$this->loadModel('Post');
-		
-		// on récupère la liste des pages
-		$d['listPages'] = $this->Post->find('list',array(
-			'conditions'=>	array('Post.type'=>'page','Post.status'=>'publish')
-		));
-
-		
-		// on récupère la liste des menus
-		$d['listMenus'] = $this->Menu->find('list');
-		
-		$d['menu'] = $this->Menu->find('first',array(
-			'fields'=>array('Menu.id','Menu.name'),
-			'conditions'=>array('Menu.id'=>$id),
-			'recursive'=>-1
-		));
-
-		// on envois le menu au formulaire
-		$this->request->data = $d['menu'];
-
-		// on passe la recursivité à -1
-		$this->Menu->recursive = -1;		
-
-		// on crée nos jointures
-		$d['menu_posts'] = $this->Menu->Menu_post->find('all',array(
-			'fields'=>	array('Menu_post.id','Menu_post.position','Post.id','Post.name','Post.slug','Post.type'),
+	/*
+	*	Fonction qui récupère un menu selon son nom
+	*/
+	function getMenu($name){
+		$menu = $this->Menu->find('all',array(
+			'fields'=>	array('Menu.id','Post.id','Post.name','Post.slug','Post.type'),
 			'joins'	=>	array(
+				array(
+					'table'	=>	'menu_posts',
+					'alias'	=>	'Menu_posts',
+					'type'	=>	'INNER',
+					'conditions'=>array('Menu_posts.menu_id=Menu.id')
+				),
 				array(
 					'table'	=>	'posts',
 					'alias'	=>	'Post',
 					'type'	=>	'INNER',
-					'conditions'	=>	array('Menu_post.post_id=Post.id')
+					'conditions'	=>	array('Menu_posts.post_id=Post.id')
 				)
 			),
-			'conditions'	=>	array('Menu_post.menu_id'=>$id),
-			'order'			=>	array('Menu_post.position'=>'ASC')	
+			'conditions'	=>	array('Menu.name'=>$name,'Post.status'=>'publish','Post.type'=>'page'),
+			'order'			=>	array('Menu_posts.position')	
 		));
-
-		// on set les datas à la vue
-		$this->set($d);
-
-	}
-
-	public function admin_edit(){
-		
-		 if($this->request->is('post')){
-		 	$this->request->data['Menu']['slug'] = strtolower(Inflector::slug($this->data['Menu']['name'],'-'));
-		 	$this->request->data['Menu']['count'] = 0;
-		 	$this->Menu->save($this->request->data);
-		 	if($this->request->data['Menu']['id'] == 0)
-		 		$this->Session->setFlash("Le menu a bien été créé","notif");
-		 	else
-		 		$this->Session->setFlash("Le menu a bien été modifié","notif");	
-		 	$this->redirect(array('action'=>'index',$this->Menu->id));		
-		 }
-		 else $this->redirect($this->referer());
+		return $menu;
 	}
 
 	/*
-	*	Fonction permettant de supprimer un menu
-	*/	
-	public function admin_delete($id,$token = null){
+	*	Fonction qui permet d'administrer les menus
+	*/
+	function admin_index($id = null){
+		$d['title_for_layout'] = 'Menus';
+		$d['texte_for_submit'] = 'Créer le menu';
+		
+		$this->loadModel('Post');
+		$d['listPages'] = $this->Post->find('list',array(
+			'conditions'=>array('Post.type'=>'page','Post.status'=>'publish')
+		));
+
+		$d['listMenus'] = $this->Menu->find('list');
+
+		if(empty($d['listMenus'])){
+			$d['menu_id'] = 0;
+		}
+		else{
+			if(empty($id)){
+				if($id != '0'){
+					$temp = current($this->Menu->find('first',array(
+						'fields'=>array('id'),
+						'order'=>'id ASC'
+					)));
+					$d['menu_id'] = $temp['id'];	
+				}
+				else
+					$d['menu_id'] = 0;
+			}
+			else
+				$d['menu_id'] = $id;	
+		}
+
+		if($d['menu_id'] == 0){
+			$this->request->data = array(
+				'Menu'=>array(
+					'id'=>0
+				)
+			);
+		}		
+		else{
+			$d['texte_for_submit'] = 'Enregistrer le menu';
+			$this->Menu->id = $d['menu_id'];
+			$this->request->data = $this->Menu->read();
+
+			$d['menu_posts'] = $this->Menu->Menu_post->find('all',array(
+				'fields'=>	array('Menu_post.id','Menu_post.position','Post.id','Post.name','Post.slug','Post.type'),
+				'joins'	=>	array(
+					array(
+						'table'	=>	'posts',
+						'alias'	=>	'Post',
+						'type'	=>	'INNER',
+						'conditions'	=>	array('Menu_post.post_id=Post.id')
+					)
+				),
+				'conditions'	=>	array('Menu_post.menu_id'=>$d['menu_id']),
+				'order'			=>	array('Menu_post.position'=>'ASC')	
+			));
+		}
+			
+		$this->set($d);
+	}
+
+	/*
+	*	Fonction qui permet d'éditer un menu
+	*/
+	function admin_edit(){
+		
+		if($this->request->is('post') || $this->request->is('put')){
+
+			if($this->Menu->save($this->request->data)){
+				if($this->request->data['Menu']['id'] == 0)
+					$this->Session->setFlash("Le menu a bien été créé","notif");
+				else
+					$this->Session->setFlash("Le menu a bien été modifié","notif");		
+			}
+			else
+				$this->Session->setFlash("Une erreur s'est produite lors de la création du menu","notif",array('type'=>'error'));
+		}
+		$this->redirect(array('action'=>'index',$this->Menu->id));
+	}
+
+	/*
+	*	Fonction qui permet de supprimer un menu
+	*/
+	function admin_delete($id,$token = null){
 		if(empty($token))
 			$this->redirect('/');
 		elseif($this->Session->read('Security.token') != $token)
 			$this->redirect('/');
 
-		// on supprime d'abord les associations
-		$this->Menu->Menu_post->deleteAll(
-			array('Menu_post.menu_id'=>$id)
-		);
-
-		// on supprime ensuite le menu
-		$this->Menu->delete($id);
-
+		$this->Menu->id = $id;
+		$this->Menu->delete();
 		$this->Session->setFlash("Le menu a bien été supprimé","notif");
 		$this->redirect(array('action'=>'index'));
 	}
 
-	public function admin_addItem(){
+	/*
+	*	Fonction qui ajoute un item à un menu
+	*/
+	function admin_addItem(){
 		
 		if($this->request->is('Post')){
 			
@@ -127,7 +165,10 @@ class MenusController extends AppController{
 			$this->redirect('/');
 	}
 
-	public function admin_deleteItem($id){
+	/*
+	*	Fonction qui supprime un item
+	*/
+	function admin_deleteItem($id){
 		
 		// on récupère la position
 		$this->Menu->Menu_post->id = $id;

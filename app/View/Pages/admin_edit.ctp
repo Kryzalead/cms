@@ -1,4 +1,7 @@
-<h1><?php echo $this->Html->image('icone-pages-add.png',array('width'=>62,'height'=>62)); ?>Ajouter une page</h1>
+<h1>
+    <?php echo $this->Html->image('icone-pages-add.png',array('width'=>62,'height'=>62)); ?>
+    <?php echo $title_for_layout; ?>
+</h1>
 <?php echo $this->Form->create('Post') ?>
 
 <div class="blocsCentral">
@@ -29,8 +32,7 @@
                 </div>
     </div>
 </div>
-  
-<?php echo $this->Form->end('Envoyer') ?>
+<?php echo $this->Form->end($texte_submit) ?>
 <?php echo $this->Html->script('tiny_mce/tiny_mce.js',array('inline'=>false)); ?>
 <?php 
 // tout ce qui sera compris entre ces deux balises, sera envoyé au niveau du body grâce à inline=>false

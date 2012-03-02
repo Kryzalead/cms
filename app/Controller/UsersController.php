@@ -8,6 +8,8 @@ class UsersController extends AppController{
 	*	Fonction de connexion
 	*/
 	function login(){
+		$this->set('title_for_layout','Connexion');
+		
 		$this->layout = 'login';
 		// si des datas ont été postées
 		if($this->request->is('post')){
@@ -34,6 +36,8 @@ class UsersController extends AppController{
 	}
 
 	function admin_index($role = ''){
+
+		$d['title_for_layout'] = 'Utilisateurs';
 
 		$this->User->contain(array(
 			'User_meta'=>array(
@@ -78,8 +82,17 @@ class UsersController extends AppController{
 		$d['total'] = $d['totalAdmin'] + $d['totalUser'];
 
 		$d['totalElement'] = (empty($role)) ? $d['total'] : $d['total'.ucfirst($role)];
+
+		$d['list_action'] = array(
+			'0'=>'Actions groupées',
+			'delete'=>'Supprimer'
+		);
 		
 		$this->set($d);
+	}
+
+	function admin_doaction(){
+		parent::doaction('utilisateur');
 	}
 	
 	function admin_delete($id){
@@ -95,6 +108,9 @@ class UsersController extends AppController{
 	
 	function admin_edit($id = null){
 		
+		$d['texte_submit'] = 'Ajouter un utilisateur';
+		$d['title_for_layout'] = 'Ajouter un utilisateur';
+
 		if($this->request->is('post') || $this->request->is('put')){
 			
 			if($this->request->data['User']['password'] != $this->request->data['User']['passwordconfirm']){
@@ -120,14 +136,27 @@ class UsersController extends AppController{
 
 					$this->redirect(array('action'=>'index'));
 				}
+				else{
+					$this->Session->setFlash("Merci de corriger vos erreurs","notif",array('type'=>'error'));
+				}
 			}
 		}
 		elseif($id){
 			
+			if($id == $this->Session->read('Auth.User.id'))
+				$d['title_for_layout'] = 'Profil';
+			else
+				$d['title_for_layout'] = "Modifier l'utilisateur";
+
+			$d['texte_submit'] = 'Mettre à jour le profil';
+				
 			$this->User->contain(array(
 				'User_meta'=>array(
 					'conditions'=>array(
-						'OR'=>array(array('meta_key'=>'first_name'),array('meta_key'=>'last_name'))
+						'OR'=>array(
+							array('meta_key'=>'first_name'),
+							array('meta_key'=>'last_name')
+						)
 					)
 				)
 			));

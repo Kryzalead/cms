@@ -1,4 +1,7 @@
-<h1><?php echo $this->Html->image('icone-posts-add.png',array('width'=>72,'height'=>72)); ?>Ajouter un article</h1>
+<h1>
+    <?php echo $this->Html->image('icone-posts-add.png',array('width'=>72,'height'=>72)); ?>
+    <?php echo $title_for_layout ?>
+</h1>
 
 <?php echo $this->Form->create('Post') ?>
 
@@ -31,7 +34,7 @@
     </div>
 </div>
 
-<?php echo $this->Form->end('Envoyer') ?>
+<?php echo $this->Form->end($texte_submit) ?>
 
 <?php echo $this->Html->script('tiny_mce/tiny_mce.js',array('inline'=>false)); ?>
 <?php 

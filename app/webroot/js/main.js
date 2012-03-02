@@ -60,7 +60,8 @@ jQuery(function($){
         return false
     });
 
-	/** 
+	
+    /** 
      * Sidebar menus
      * Slidetoggle for menu list
      * */
@@ -75,9 +76,28 @@ jQuery(function($){
        e = $(this).parent();
        if(e.hasClass('current')){ e.removeClass('current').find('ul:first').slideUp(); return false;  }
        $('#sidebar>ul>li.current').removeClass('current').find('ul:first').slideUp();
-       e.addClass('current').find('ul:first').slideDown();  
-       return false;
+       e.addClass('current').find('ul:first').slideDown(); 
+       return false; 
     });
+
+    var htmlCollapse = $('#menucollapse').html(); 
+    if($.cookie('isCollapsed') === 'true'){
+      $('body').addClass('collapsed'); 
+      $('#menucollapse').html('&#9654;');
+    } 
+    $('#menucollapse').click(function(){
+      var body = $('body'); 
+      body.toggleClass('collapsed');
+      isCollapsed = body.hasClass('collapsed');
+      if(isCollapsed){
+        $(this).html('&#9654;');
+      }else{
+        $(this).html(htmlCollapse); 
+      }
+      $.cookie('isCollapsed',isCollapsed); 
+      return false; 
+    });
+
 
        /**
      * Slide toggle for blocs
@@ -114,6 +134,56 @@ jQuery(function($){
         $("#maskContainer").fadeTo(500,0);
     });
     animateGlow($("#logmask"));
+
+    /*
+    * Check le nom du menu avant validation
+    */
+    $('#MenuEditForm').submit(function(){
+      var menu_id = $(this).find('#MenuId').val();
+      if(menu_id == 0){
+        var menu_name = $(this).find('#MenuName');
+        if(menu_name.val() == ''){
+          $(menu_name).css('border','1px solid red');
+          return false;
+        }
+      }
+    });
+
+    /**
+     * Fake Placeholder
+     * User labels as placeholder for the next input
+     * */
+     
+    $('.placeholder,#content.login .input').each(function(){
+        var label = $(this).find('label:first');
+        var input = $(this).find('input:first,textarea:first'); 
+         if(input.val() != ''){
+             label.stop().hide(); 
+         }
+         input.focus(function(){
+             if($(this).val() == ''){
+                  label.stop().fadeTo(500,0.5);  
+             }
+             $(this).parent().removeClass('error').find('.error-message').fadeOut(); 
+         });
+         input.blur(function(){
+             if($(this).val() == ''){
+                  label.stop().fadeTo(500,1);  
+             }
+         });
+         input.keypress(function(){
+            label.stop().hide(); 
+         });
+         input.keyup(function(){
+             if($(this).val() == ''){
+                  label.stop().fadeTo(500,0.5); 
+             }
+         });
+       input.bind('cut copy paste', function(e) {
+        label.stop().hide(); 
+       });
+    });
+    
   });
 
 

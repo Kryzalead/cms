@@ -1,4 +1,7 @@
-<h1><?php echo $this->Html->image('icone-pages.png',array('width'=>32,'height'=>32)); ?> Pages</h1>
+<h1>
+	<?php echo $this->Html->image('icone-pages.png',array('width'=>62,'height'=>62)); ?>
+	<?php echo $title_for_layout ?>
+</h1>
 <?php echo $this->Html->link('Ajouter une page',array('action'=>'edit'),array('class'=>'button button-add')) ?>
 	<?php if (!empty($this->request->query['search'])): ?>
 		<span>Résultats de recherche pour "<?php echo $this->request->query['search'] ?>"
