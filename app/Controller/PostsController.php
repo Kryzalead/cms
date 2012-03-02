@@ -146,7 +146,7 @@ class PostsController extends AppController{
 		
 		$d['total'] = $d['totalPublish'] + $d['totalDraft'];
 
-		$d['totalElement'] = count($d['pages']);
+		$d['totalElement'] = count($d['posts']);
 
 		$d['status'] = '';
 
