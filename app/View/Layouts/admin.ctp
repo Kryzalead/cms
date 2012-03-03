@@ -68,17 +68,17 @@
         <div id="sidebar" class="black">
             <ul>
                 <li class="nosubmenu <?php echo ($currentController == 'dashboard')  ? 'current' : '' ?>">
-                    <?php echo $this->Html->link($this->Html->image('icone-home.png',array('height'=>16,'width'=>16)) . 'Tableau de bord',array('action'=>'index','controller'=>'dashboard'),array('escape'=>false)); ?>
+                    <?php echo $this->Html->link($this->Html->image('icone-home.png',array('height'=>25,'width'=>25)) . 'Tableau de bord',array('action'=>'index','controller'=>'dashboard'),array('escape'=>false)); ?>
                 </li>
                 <li <?php echo ($currentController == 'pages')  ? 'class="current"' : '' ?>>
-                    <?php echo $this->Html->link($this->Html->image('icone-pages.png',array('height'=>16,'width'=>16)) . 'Pages',array('action'=>'index','controller'=>'pages'),array('escape'=>false)); ?>
+                    <?php echo $this->Html->link($this->Html->image('icone-pages.png',array('height'=>25,'width'=>25)) . 'Pages',array('action'=>'index','controller'=>'pages'),array('escape'=>false)); ?>
                     <ul>
                         <li><?php echo $this->Html->link("Toutes les pages",array('action'=>'index','controller'=>'pages')); ?></li>
                         <li><?php echo $this->Html->link("Ajouter",array('action'=>'edit','controller'=>'pages')); ?></li>
                     </ul>
                 </li>
                 <li <?php echo ($currentController == 'posts')  ? 'class="current"' : '' ?>>
-                    <?php echo $this->Html->link($this->Html->image('icone-posts.png',array('height'=>16,'width'=>16)) . 'Articles',array('action'=>'index','controller'=>'posts'),array('escape'=>false)); ?>
+                    <?php echo $this->Html->link($this->Html->image('icone-posts.png',array('height'=>25,'width'=>25)) . 'Articles',array('action'=>'index','controller'=>'posts'),array('escape'=>false)); ?>
                     <ul>
                         <li><?php echo $this->Html->link("Tous les articles",array('action'=>'index','controller'=>'posts')); ?></li>
                         <li><?php echo $this->Html->link("Ajouter",array('action'=>'edit','controller'=>'posts')); ?></li>
@@ -87,23 +87,22 @@
                     </ul>
                 </li>
                 <li <?php echo ($currentController == 'medias')  ? 'class="current"' : '' ?>>
-                    <?php echo $this->Html->link($this->Html->image('icone-medias.png',array('height'=>16,'width'=>16)) . 'Medias',array('action'=>'index','controller'=>'medias'),array('escape'=>false)); ?>
+                    <?php echo $this->Html->link($this->Html->image('icone-medias.png',array('height'=>25,'width'=>25)) . 'Medias',array('action'=>'index','controller'=>'medias'),array('escape'=>false)); ?>
                     <ul>
                         <li><?php echo $this->Html->link("Bibliothèque",array('action'=>'index','controller'=>'medias')); ?></li>
                         <li><?php echo $this->Html->link("Ajouter",array('action'=>'edit','controller'=>'medias')); ?></li>
                     </ul>
                 </li>
                 <li class="nosubmenu <?php echo ($currentController == 'comments')  ? 'current' : '' ?>">
-                    <?php echo $this->Html->link($this->Html->image('icone-comments.png',array('height'=>16,'width'=>16)) . 'Commentaires',array('action'=>'index','controller'=>'comments'),array('escape'=>false)); ?>
+                    <?php echo $this->Html->link($this->Html->image('icone-comments.png',array('height'=>25,'width'=>25)) . 'Commentaires',array('action'=>'index','controller'=>'comments'),array('escape'=>false)); ?>
                 </li>
             </ul>
-           <!--<div style="height: 5px;border-top : 1px solid #2D2C2C;border-bottom: 1px solid #2D2C2C"></div>-->
             <ul>
                 <li class="nosubmenu <?php echo ($currentController == 'menus')  ? 'current' : '' ?>">
-                    <?php echo $this->Html->link($this->Html->image('icone-menus.png',array('height'=>16,'width'=>16)) . 'Menus',array('action'=>'index','controller'=>'menus'),array('escape'=>false)); ?>
+                    <?php echo $this->Html->link($this->Html->image('icone-menus.png',array('height'=>25,'width'=>25)) . 'Menus',array('action'=>'index','controller'=>'menus'),array('escape'=>false)); ?>
                 </li>
                 <li <?php echo ($currentController == 'users')  ? 'class="current"' : '' ?>>
-                    <?php echo $this->Html->link($this->Html->image('icone-users.png',array('height'=>16,'width'=>16)) . 'Utilisateurs',array('action'=>'index','controller'=>'users'),array('escape'=>false)); ?>
+                    <?php echo $this->Html->link($this->Html->image('icone-users.png',array('height'=>25,'width'=>25)) . 'Utilisateurs',array('action'=>'index','controller'=>'users'),array('escape'=>false)); ?>
                     <ul>
                         <li><?php echo $this->Html->link("Tous les utilisateurs",array('action'=>'index','controller'=>'users')); ?></li>
                         <li><?php echo $this->Html->link("Ajouter",array('action'=>'edit','controller'=>'users')); ?></li>
@@ -111,7 +110,7 @@
                     </ul>
                 </li>
                 <li class="nosubmenu <?php echo ($currentController == 'options')  ? 'current' : '' ?>">
-                    <?php echo $this->Html->link($this->Html->image('icone-config.png',array('height'=>16,'width'=>16)) . 'Réglage',array('action'=>'index','controller'=>'options'),array('escape'=>false)); ?>
+                    <?php echo $this->Html->link($this->Html->image('icone-config.png',array('height'=>25,'width'=>25)) . 'Réglage',array('action'=>'index','controller'=>'options'),array('escape'=>false)); ?>
                 </li>
             </ul>
             <a href="#collapse" id="menucollapse">◀ Réduire la sidebar</a>
