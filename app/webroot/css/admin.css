@@ -1,3 +1,4 @@
+@charset "CP850";
 /* ---------------------------------------- */
 /*	Nom : Administration		*/
 /*	Date : 22-02-2012  		*/
@@ -434,7 +435,7 @@ blockquote, q {
 
 /* line 315, admin.scss */
 #sidebar a:hover, #sidebar li.current > a {
-  padding-left: 7px;
+  padding-left: 0px;
   color: #09f !important;
 }
 
