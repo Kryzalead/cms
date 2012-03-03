@@ -23,7 +23,7 @@ class TermsController extends AppController{
 		
 		if(isset($this->request->query['id']))
 			$term_id = $this->request->query['id'];
-		elseif($this->request->query['name']){
+		else($this->request->query['name']){
 			$d = array(
 				'name'=>$this->request->query['name'],
 				'type'=>$type
@@ -64,6 +64,7 @@ class TermsController extends AppController{
 
 	function admin_search(){
 		$terms = $this->Term->find('list',array(
+			'fields'=>array('id','name'),
 			'conditions'=>array(
 				'name LIKE'=>'%'.$this->request->query['term'].'%',
 				'type'=>$this->request->query['type']
