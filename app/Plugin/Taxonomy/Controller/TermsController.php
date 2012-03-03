@@ -1,5 +1,5 @@
 <?php 
-class TermsController extends AppController{
+class TermsController extends TaxonomyAppController{
 	
 	function admin_delete($id = null){
 		$this->Term->TermR->id = $id;
@@ -17,13 +17,17 @@ class TermsController extends AppController{
 		die();
 	}
 
+	function admin_edit($term = null){
+		
+	}
+
 	function admin_add($object,$object_id){
 		
 		$type = $this->request->query['type'];
 		
 		if(isset($this->request->query['id']))
 			$term_id = $this->request->query['id'];
-		else($this->request->query['name']){
+		else{
 			$d = array(
 				'name'=>$this->request->query['name'],
 				'type'=>$type
