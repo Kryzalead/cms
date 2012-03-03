@@ -24,7 +24,8 @@ class TaxonomyHelper extends AppHelper{
 
 		$options['id'] = $type;
 		$options['class']='addTaxo';
-
+		$options['value'] = '';
+		
 		return $this->Form->input('Taxonomy.'.$type,$options).$html;
 	}
 
@@ -50,7 +51,7 @@ class TaxonomyHelper extends AppHelper{
 				var input = $(this);
 				var cache = {},lastXhr;
 				var type = input.attr('id');
-				
+
 				input.autocomplete({
 					minLength:2,
 					source: function( request, response ) {

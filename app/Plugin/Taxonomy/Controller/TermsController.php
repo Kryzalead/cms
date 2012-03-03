@@ -1,8 +1,24 @@
 <?php 
-class TermsController extends AppController{
+class TermsController extends TaxonomyAppController{
 	
 	function admin_delete($id = null){
+		$this->Term->TermR->id = $id;
+		$term_id = $this->Term->TermR->field('term_id');
+
 		$this->Term->TermR->delete($id);
+
+		$count = $this->Term->TermR->find('count',array(
+			'conditions'=>array('term_id'=>$term_id)
+		));
+
+		if($count == 0)
+			$this->Term->delete($term_id);
+
+		die();
+	}
+
+	function admin_edit($term = null){
+		
 	}
 
 	function admin_add($object,$object_id){
@@ -11,7 +27,7 @@ class TermsController extends AppController{
 		
 		if(isset($this->request->query['id']))
 			$term_id = $this->request->query['id'];
-		elseif($this->request->query['name']){
+		else{
 			$d = array(
 				'name'=>$this->request->query['name'],
 				'type'=>$type
@@ -52,6 +68,7 @@ class TermsController extends AppController{
 
 	function admin_search(){
 		$terms = $this->Term->find('list',array(
+			'fields'=>array('id','name'),
 			'conditions'=>array(
 				'name LIKE'=>'%'.$this->request->query['term'].'%',
 				'type'=>$this->request->query['type']

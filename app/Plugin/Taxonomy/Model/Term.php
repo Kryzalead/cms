@@ -9,4 +9,5 @@ class Term extends AppModel{
 	);
 
 	public $recursive = -1;
+
 }		

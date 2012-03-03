@@ -17,26 +17,28 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><h4><?php echo $totalPages ?></h4></td>
+                            <td><h4><?php echo $totalPage ?></h4></td>
                             <td>
-                                <?php $terminaison = ($totalPages > 1) ? 's' : '' ?>
+                                <?php $terminaison = ($totalPage > 1) ? 's' : '' ?>
                                 Page<?php echo $terminaison ?>
                             </td>
                         </tr>
                         <tr>
-                            <td><h4><?php echo $totalPosts ?></h4></td>
+                            <td><h4><?php echo $totalPost ?></h4></td>
                             <td>
-                                <?php $terminaison = ($totalPosts > 1) ? 's' : '' ?>
+                                <?php $terminaison = ($totalPost > 1) ? 's' : '' ?>
                                 Article<?php echo $terminaison ?>
                             </td>
                         </tr>
                         <tr>
-                            <td><h4>5</h4></td>
-                            <td>Catégories</td>
+                            <td><h4><?php echo $totalCategory ?></h4></td>
+                            <?php $terminaison = ($totalCategory > 1) ? 's' : '' ?>
+                            <td>Catégorie<?php echo $terminaison ?></td>
                         </tr>
                         <tr>
-                            <td><h4>20 000</h4></td>
-                            <td>Tags</td>
+                            <td><h4><?php echo $totalTag ?></h4></td>
+                            <?php $terminaison = ($totalTag > 1) ? 's' : '' ?>
+                            <td>Mot<?php echo $terminaison ?>-clefs</td>
                         </tr>
                     </tbody>
                 </table>
