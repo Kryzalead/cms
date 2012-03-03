@@ -184,7 +184,15 @@ jQuery(function($){
             label.stop().hide(); 
         });
     });
-  });
+
+    /**
+     * Hide notification when close button is pressed
+    **/
+    $('.notif .close').click(function(){
+        $(this).parent().fadeTo(500,0).slideUp(); 
+        return false; 
+    });
+});
 
 
 function animateGlow(div){
