@@ -32,7 +32,10 @@
                 <p><a href="">Ajouter une image à la une</a></p>
             </div>
     </div>
+    
+               
 </div>
+<?php echo $this->Form->input('terms',array('label'=>'Taxonomy','type'=>'select','multiple'=>'checkbox')); ?>
 
 <?php echo $this->Form->end($texte_submit) ?>
 

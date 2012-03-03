@@ -9,10 +9,10 @@ class PostsController extends AppController{
 
 	function index(){
 		
-		$this->Post->contain('User');
+		$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
 
 		$this->paginate = array(
-			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created','User.username'),
+			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created'),
 			'conditions'=>array(
 				'Post.type'=>'post',
 				'Post.status'=>'publish'
@@ -20,8 +20,8 @@ class PostsController extends AppController{
 			'order'=>'Post.created DESC',
 			'limit'=>Configure::read('posts_per_page')
 		);
-
-		$this->set('posts',$this->Paginate('Post'));
+		$d['posts'] = $this->Paginate('Post');
+		$this->set($d);
 	}
 
 	/*
@@ -32,10 +32,10 @@ class PostsController extends AppController{
 		if ($id == null) 
 			throw new NotFoundException("Pas d'article");
 
-		$this->Post->contain('User');
+		$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
 
 		$post = $this->Post->find('first',array(
-			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.created','Post.type','User.username'),
+			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.created','Post.type'),
 			'conditions'=>array('Post.id'=>$id)
 		));
 
@@ -44,7 +44,7 @@ class PostsController extends AppController{
 		
 		if ($slug != $post['Post']['slug']) 
 			$this->redirect($post['Post']['link'],301);
-		
+			
 		$d['post'] = $post;
 		$this->set($d);
 	}
@@ -211,6 +211,8 @@ class PostsController extends AppController{
 		$d['title_for_layout'] = 'Ajouter un nouvel article';
 		$d['texte_submit'] = 'Publier';
 		
+		$this->Post->contain('Term');
+
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 			if($this->Post->save($this->request->data)){
@@ -233,7 +235,9 @@ class PostsController extends AppController{
 			$this->Post->id = $id;
 			$this->request->data = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status'));
 		}
-		
+
+		$d['terms'] = $this->Post->getFixedTerms();
+
 		$d['list_status'] = array(
 			'publish'=>'Publié',
 			'draft'=>'Brouillon'

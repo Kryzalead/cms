@@ -11,16 +11,26 @@
 		<div class="entry-content">
 			<p><?php  echo $this->Text->truncate($v['Post']['content'],600,array('exact'=>false,'html'=>true));?></p>
 		</div>
-		<p><?php echo $this->Html->link("Voir la suite",$v['Post']['link']); ?></p>
+		<p><?php echo $this->Html->link("Voir la suite",$v['Post']['link']); ?></p>	
+		<?php if(!empty($v['Taxonomy'])): ?>
 		<div class="entry-utility">
 			<span class="cat-links">
-				<span>Categories : </span>
-				<span class="entry-category">Non classée</span>
+			<?php if (!empty($v['Taxonomy']['category'])): ?>
+				<span><strong>Categories : </strong></span>
+				<?php foreach ($v['Taxonomy']['category'] as $k1 => $v1): ?>
+					<span class="entry-category"><?php echo $this->Html->link($v1['name'],array('action'=>'','controller'=>'')); ?></span>
+				<?php endforeach ?>
+			<?php endif; ?>	
+			<?php if(!empty($v['Taxonomy']['tag'])): ?>
 				<span> | </span>
-				<span>Tags : </span>
-				<span class="entry-category">Aucun</span> 	 					
+				<span><strong>Tags : </strong></span>
+				<?php foreach ($v['Taxonomy']['tag'] as $k1 => $v1): ?>
+					<span class="entry-category"><?php echo $this->Html->link($v1['name'],array('action'=>'','controller'=>'')); ?></span>
+				<?php endforeach ?>				
+			<?php endif; ?>	 					
 			</span>
 		</div>
+		<?php endif; ?>		
 	</div>
 <?php endforeach;?>
 <?php echo $this->Paginator->numbers() ?>
