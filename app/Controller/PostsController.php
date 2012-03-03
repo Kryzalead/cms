@@ -233,7 +233,7 @@ class PostsController extends AppController{
 			$d['texte_submit'] = 'Mettre à jour';
 
 			$this->Post->id = $id;
-			$this->request->data = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status'));
+			$this->request->data = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status','Post.type'));
 		}
 
 		$d['terms'] = $this->Post->getFixedTerms();

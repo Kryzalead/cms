@@ -1,7 +1,7 @@
 <?php
 class AppController extends Controller{
 
-	public $helpers = array('date','Html','Form','Session','Text','Cache');
+	public $helpers = array('date','Html','Form','Session','Text','Cache','Taxonomy.Taxonomy');
 	public $components = array('Session','Auth');
 	
 	/*

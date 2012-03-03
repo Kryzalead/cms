@@ -36,7 +36,7 @@
                
 </div>
 <?php echo $this->Form->input('terms',array('label'=>'Taxonomy','type'=>'select','multiple'=>'checkbox')); ?>
-
+<?php echo $this->Taxonomy->input('tag',array('label'=>'Tags : ')) ?>
 <?php echo $this->Form->end($texte_submit) ?>
 
 <?php echo $this->Html->script('tiny_mce/tiny_mce.js',array('inline'=>false)); ?>
