@@ -65,7 +65,7 @@
                 </form>
             </div>
         </div>
-        <div id="sidebar" class="black">
+        <div id="sidebar" class="white">
             <ul>
                 <li class="nosubmenu <?php echo ($currentController == 'dashboard')  ? 'current' : '' ?>">
                     <?php echo $this->Html->link($this->Html->image('icone-home.png',array('height'=>25,'width'=>25)) . 'Tableau de bord',array('action'=>'index','controller'=>'dashboard'),array('escape'=>false)); ?>
@@ -113,7 +113,7 @@
                     <?php echo $this->Html->link($this->Html->image('icone-config.png',array('height'=>25,'width'=>25)) . 'Réglage',array('action'=>'index','controller'=>'options'),array('escape'=>false)); ?>
                 </li>
             </ul>
-            <a href="#collapse" id="menucollapse">◀ Réduire la sidebar</a>
+            <a href="#collapse" id="menucollapse">◀ Réduire le menu</a>
         </div>
         <div id="content">
             <?php echo $this->Session->flash() ?>

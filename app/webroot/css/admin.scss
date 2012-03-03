@@ -35,7 +35,7 @@ body{
 	background: white;
 	font-size: 0.75em;
 	font-family: Arial, Helvetica, Sans-serif;
-	background: url(images/setting_button/bg/eau.jpg);}
+	background-color:#FFF;}
 
 /* remember to define focus styles! */
 :focus {outline: 0;}
@@ -85,60 +85,52 @@ blockquote, q {quotes: "" "";}
 /* ------------------- */
 /*   FRAMEWORKS  */
 /* ---------------- */
-.textOmbre		{@include text-shadow(#555,1px,1px,5px);}
-.animer			{@include transition(all, 1s);}
-.arrondi			{@include border-radius(5px);}
-.boxOmbre		{@include box-shadow(#222,0px,1px,5px);}
-
-.textOmbreSidebar	{@include box-shadow(#0D0D0D,0px,1px,2px);}
-
-.ajoutPageTextShadow	{@include text-shadow(#2C6AA3,0px,-1px,0px);}
-.ajoutPageBorderRadius	{@include border-radius(3px);}
-.ajoutPageBoxShadow	{@include box-shadow(#B2B2B2,0px,1px,5px);}
-
-.checkerBoxOmbre		{@include box-shadow(#D2D2D2,0px,0px,10px);}
-
-/* -- Header Framework -- */
-.headerTextShadow		{@include text-shadow(#555,1px,1px,5px);}
-
+.boxOmbre		{@include box-shadow(#444,0px,2px,10px);}
+.checkerBoxOmbre	{@include box-shadow(#D2D2D2,0px,0px,10px);}
+.contentRadiusHaut 	{@include border-radius (10px 10px 0px 0px,10px 10px 0px 0px)};
 
 /* -- Default -- */
 $default-box-shadow-h-offset:0px;
 $default-box-shadow-v-offset:5px;
 $default-box-shadow-blur:10px;
 
-$default-border-radius:10px;
+/*$default-border-radius:10px;*/
 
 $default-text-shadow-h-offset:0px;
 $default-text-shadow-v-offset:1px;
-$default-text-shadow-blur:5px;
+$default-text-shadow-blur:4px;
 
 /* --  Mixin -- */
-$ombre:#888;
-$radius_textShadow:"";
-$couleurH1:#000;
+$ombreClair:#888;
+$ombreFoncee:#111;
+$none:none;
 
+@mixin ombreText($color){
+	@include text-shadow;}
 
-@mixin ombre($color){
-	$default-box-shadow-color:$color;
-	@include border-radius;
-	@include box-shadow;}
+@mixin radius{
+	@include border-radius(10px);}
 
-@mixin radius_textShadow($notif){
-	  @include text-shadow(#000,0px,-1px,0px);
-	  @include border-radius(10px 10px 0px 0px,10px 10px 0px 0px);}
+@mixin ombreRadius($ombreFoncee){
+	$default-box-shadow-color:$ombreFoncee;
+		@include box-shadow;
+		@include border-radius;}
 
-@mixin couleurH1($color){
-	  color:$color;
-	  @include text-shadow;}
+@mixin ombreSiderbar{
+	$default-box-shadow-color:$ombreFoncee;
+		@include box-shadow;
+			$default-text-shadow-color:$ombreFoncee;
+				@include text-shadow;}
+
+@mixin none($none){
+	@include box-shadow;
+	@include text-shadow;}
 
 
 /* - Content .bloc .dark - */
 .contentTextShadowDark	{@include text-shadow(#000,0px,1px,0px);}
 
 /* -- Style Basic Frameworks -- */
-.boxShadowNone	{@include box-shadow(none);}
-.textShadowNone	{@include text-shadow(none);}
 .textShadowWhite	{@include text-shadow(#FFF,0px,1px,0px);}
 
 
@@ -153,7 +145,7 @@ $couleurH1:#000;
 	border: 1px solid #000;
 	color: #AEAEAE;
 	z-index: 9999;
-	@extend .headerTextShadow;}
+	@extend .boxOmbre;}
 
 #head .left{
 	position:active absolute;
@@ -182,7 +174,7 @@ $couleurH1:#000;
 	margin: 6px 7px 0 20px;
 	line-height: 32px;
 	text-align: center;
-	 @include ombre($ombre);}
+	@include ombreRadius($ombreFoncee);}
 
 /** Search Form **/
 #head .search{
@@ -194,7 +186,7 @@ $couleurH1:#000;
 	margin: 5px 0 10px 10px;
 	border: 1px solid #505050;
 	vertical-align: middle;
-	@extend .arrondi;}
+	@include radius;}
 
 #head .search input.text{
 	position: absolute;
@@ -205,7 +197,7 @@ $couleurH1:#000;
 	line-height: 27px;
 	padding: 0 5px;
 	color: #CCC;
-	@extend .textOmbre;}
+	@include ombreText($ombreFoncee);}
 
 #head .search input.submit{
 	height: 25px;
@@ -229,7 +221,7 @@ $couleurH1:#000;
 	padding: 0 5px;}
 
 
-/*********************************************** SIDEBAR ***********************************************************/
+/* ********************************************** SIDEBAR ********************************************************** */
 #sidebar{
 	position: fixed;
 	z-index: 3;
@@ -239,8 +231,7 @@ $couleurH1:#000;
 	width: 240px;
 	background-color: #494949;
 	border-right: 1px solid #1B1B1B;
-	@extend .boxOmbre;
-	@extend .textOmbre;}
+	@include ombreSiderbar;}
 
 #sidebar>ul>li>a{
 	height: 40px;
@@ -252,9 +243,8 @@ $couleurH1:#000;
 	font-size: 1.1em;
 	color: #AAA;
 	background: #494949 url(images/arrow.png) no-repeat 96% -5px;
-	border-bottom: 1px solid #313131;
-	border-top: 1px solid #606060;
-	@extend .textOmbreSidebar;}
+	border-top: 1px solid #555;
+	border-bottom: 1px solid #333;}
 
 #sidebar>ul>li>ul>li ul{
 	margin-left: 20px;
@@ -263,8 +253,8 @@ $couleurH1:#000;
 	-webkit-box-shadow: none;
 	-o-box-shadow: none;
 	box-shadow: none;
-	border: none;
-}
+	border: none;}
+
 #sidebar ul li a img{
 	vertical-align: text-bottom;
 	padding-right: 4px;
@@ -272,22 +262,22 @@ $couleurH1:#000;
 	filter: alpha(opacity=49);
 	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=49);
 	-moz-opacity: 0.49;
-	opacity: 0.49;
-}
+	opacity: 0.49;}
+
 #sidebar ul li:hover a img, #sidebar ul li.current a img{
 	/*+opacity:100%;*/
 	filter: alpha(opacity=100);
 	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 	-moz-opacity: 1;
-	opacity: 1;
-}
+	opacity: 1;}
+
 #sidebar ul li.nosubmenu a{background-image: none !important;}
 
 #sidebar>ul>li:hover>a, #sidebar>ul>li.current>a{
 	color: #FFF;
 	background-position: 96% -53px !important;
-	background-color: #585858;
-}
+	background-color: #585858;}
+
 #sidebar ul li ul{
 	background: #404040;
 	/*+box-shadow:inset 0 0 15px #3A3A3A;*/
@@ -296,8 +286,8 @@ $couleurH1:#000;
 	-o-box-shadow: inset 0 0 15px #3A3A3A;
 	box-shadow: inset 0 0 15px #3A3A3A;
 	border-bottom: 1px solid #313131;
-	padding: 7px 0px;
-}
+	padding: 7px 0px;}
+
 #sidebar ul li li a{
 	height: 28px;
 	line-height: 28px;
@@ -312,7 +302,7 @@ $couleurH1:#000;
 #sidebar ul li li a:hover, #sidebar ul li li.current a{background-position: 37px -31px;}
 
 #sidebar a:hover, #sidebar li.current>a{padding-left:0px;color: #09f !important;}
-#sidebar a#menucollapse{color:#AAA; display: block; height:40px; line-height: 40px; text-align: right; padding-right: 10px; text-decoration: none; font-style:italic; }
+#sidebar a#menucollapse{color:#AAA; display: block; height:40px; line-height: 40px; text-align: right; padding-right: 10px; text-decoration: none; font-style:italic;}
 #sidebar a span{ color:#AAA; border: 1px solid #AAA; border-radius:20px; width: 17px; height: 17px; display: inline-block; text-align: left; text-indent: 2px; line-height: 16px;background-image: -webkit-linear-gradient(top,rgba(0,0,0,0),rgba(0,0,0,0.2)); }
 
 .collapsed #sidebar{width: 56px; }
@@ -328,8 +318,8 @@ $couleurH1:#000;
 .collapsed #content{margin-left: 90px;}
 
 
-/***********************************************  COLORS **********************************************************
-Background*/
+/***********************************************  COLORS ********************************************************** */
+/* Background */
 .dark{background: url(images/setting_button/bg/dark-bg.png);}
 
 .dark #content .bloc{
@@ -346,7 +336,7 @@ Background*/
 /*White blocks*/
 #content.white .bloc .title{
 	background: url(images/setting_button/blocs_titles/white-title.png);
-	color: #000;
+	color: #222;
 	font-weight: bold;
 	border: none;
 	@extend .textShadowWhite;}
@@ -361,12 +351,8 @@ Background*/
 #sidebar.black{
 	background-color: #262626;
 	border-right: 1px solid #1B1B1B;
-	/*+box-shadow:inset -4px 0 #3C3A3A;*/
-	-moz-box-shadow: inset -4px 0 #3C3A3A;
-	-webkit-box-shadow: inset -4px 0 #3C3A3A;
-	-o-box-shadow: inset -4px 0 #3C3A3A;
-	box-shadow: inset -4px 0 #3C3A3A;
-}
+	@include ombreSiderbar;}
+
 #sidebar.black>ul>li>a{
 	color: #F0F0F0;
 	/*+text-shadow:0px 1px #0D0D0D;*/
@@ -377,13 +363,13 @@ Background*/
 	background: #222 url(images/arrow.png) no-repeat 96% -5px;
 	border-bottom: 1px solid #191919;
 	border-top: 1px solid #2D2C2C;
-	border-right: 4px solid #303030;
-}
+	border-right: 4px solid #303030;}
+
 #sidebar.black>ul>li:hover>a, #sidebar.black ul li.current>a{
 	background-color: #262626;
 	color: #FFF;
-	border-right-color: #09F;
-}
+	border-right-color: #09F;}
+
 #sidebar.black ul li ul{
 	background: #262626;
 	/*+box-shadow:inset 0 0 15px #1B1B1B;*/
@@ -393,8 +379,8 @@ Background*/
 	box-shadow: inset 0 0 15px #1B1B1B;
 	padding: 7px 0px;
 	border-right: 4px solid #3C3A3A;
-	border-bottom: 0px solid #000;
-}
+	border-bottom: 0px solid #000;}
+
 #sidebar.black ul ul ul{
 	background: #262626;
 	/*+box-shadow:inset 0 0 15px #1B1B1B;*/
@@ -404,24 +390,20 @@ Background*/
 	box-shadow:none;
 	padding: 7px 0px;
 	border-right: none;
-	border-bottom: 0px solid #000;
-}
-.collapsed #sidebar.black ul ul{
-	border-right: none;
-}
-#sidebar.black ul li li a{
-	color: #747474;
-}
-/*White sidebar*/
+	border-bottom: 0px solid #000;}
+
+.collapsed #sidebar.black ul ul{border-right: none;}
+
+#sidebar.black ul li li a{color: #747474;}
+
+/* White sidebar */
+#sidebar.white a#menucollapse{color:#555;}
+
 #sidebar.white{
-	background-color: #EEEEEE;
+	background-color: #ECECEC;
 	border-right: none;
-	/*+box-shadow:inset -4px 0px 0 #DCDCDC;*/
-	-moz-box-shadow: inset -4px 0px 0 #DCDCDC;
-	-webkit-box-shadow: inset -4px 0px 0 #DCDCDC;
-	-o-box-shadow: inset -4px 0px 0 #DCDCDC;
-	box-shadow: inset -4px 0px 0 #DCDCDC;
-}
+	@include ombreSiderbar;}
+
 #sidebar.white>ul>li>a{
 	color: #7C7D7E;
 	/*+text-shadow:none;*/
@@ -429,16 +411,16 @@ Background*/
 	-webkit-text-shadow: none;
 	-o-text-shadow: none;
 	text-shadow: none;
-	background: transparent url(white-arrow.png) no-repeat 96% -5px;
+	background: transparent url(images/white-arrow.png) no-repeat 96% -5px;
 	border-bottom: 1px solid #D6D6D6;
 	border-top: 1px solid #FCFDFD;
-	border-right: 4px solid #D6D6D6;
-}
+	border-right: 4px solid #D6D6D6;}
+
 #sidebar.white>ul>li:hover>a, #sidebar.white>ul>li.current>a{
 	background-color: #E7E7E7;
-	color: #000000;
-	border-right-color: #808080;
-}
+	color: #09f;
+	border-right-color: #808080;}
+
 #sidebar.white ul li ul{
 	background: #F8F8F8;
 	/*+box-shadow:inset 0 0 15px #CECECE;*/
@@ -462,15 +444,15 @@ Background*/
 	-webkit-text-shadow: none;
 	-o-text-shadow: none;
 	text-shadow: none;
-	background-image: url(dark-sideli.png);}
+	background-image: url(images/dark-sideli.png);}
 
-#sidebar.white a:hover, #sidebar.white li.current>a{color: #000000 !important;}
+#sidebar.white a:hover, #sidebar.white li.current>a{color: #000 !important;}
 
 /**  White **/
 .white #content.login{color: #808080;}
 
 .white #content.login div.input{
-	background-color: #EEEEEE;
+	background-color: #EEE;
 	background-color: rgba(255, 255, 255, 0.5);
 	/*+box-shadow:inset 2px 2px 5px #CECBCB;*/
 	-moz-box-shadow: inset 2px 2px 5px #CECBCB;
@@ -523,7 +505,7 @@ Background*/
 	font:normal 3.5em 'ftusj';
 	padding-top: 50px;
 	letter-spacing: 1px;
-	@include couleurH1($couleurH1);}
+	@include ombreText($ombreFoncee);}
 
 #content h1 a{color: inherit;}
 #content h1 span{font-size: 16px;}
@@ -534,7 +516,7 @@ Background*/
 	margin: 20px 0px 0px;
 	background-color: #FFF;
 	overflow: hidden;
-	@include ombre($ombre);}
+	@include ombreRadius($ombreClair);}
 
 #content .left, #content .right{
 	width: 49%;
@@ -551,8 +533,7 @@ Background*/
 	font-size: 15px;
 	font-weight: bold;
 	color: #E6E6E6;
-	@include radius_textShadow($radius_textShadow);}
-
+	@extend .contentRadiusHaut;}
 
 #content .bloc .title .toggle{
 	display: block;
@@ -577,16 +558,15 @@ Background*/
 	margin: 0px;
 	padding: 0px;
 	/*+text-shadow:none;*/
-	@extend .textShadowNone;}
+	@include none;}
 	
 /**  Login **/
 #content.login{
 	width: 350px;
 	margin: 90px auto 0;
 }
-#content.login .notif{
-	margin: 12px 0px 16px;
-}
+#content.login .notif{margin: 12px 0px 16px;}
+
 #content.login div.input{
 	height: 33px;
 	line-height: 33px;
@@ -606,8 +586,8 @@ Background*/
 	-webkit-box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.6);
 	-o-box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.6);
 	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.6);
-	margin-top: 16px;
-}
+	margin-top: 16px;}
+
 #content.login div.input input{
 	position: absolute;
 	top: 0;
@@ -617,8 +597,8 @@ Background*/
 	background: transparent;
 	border: none;
 	color: #6A6A6A;
-	padding: 0 10px;
-}
+	padding: 0 10px;}
+
 #content.login div.input label{
 	position: absolute;
 	top: 0;
@@ -672,55 +652,54 @@ Background*/
 #content .bloc .content h1, #content .bloc .content h2, #content .bloc .content h3, #content .bloc .content h4, #content .bloc .content h5{
 	color: #000000;
 	font-weight: bold;
-	padding: 0 0px 5px;
-}
+	padding: 0 0px 5px;}
+
 #content .bloc .content h2{
 	color: #1B1B1B;
-	font-size: 25px;
-}
+	font-size: 25px;}
+
 #content .bloc .content h3{
 	color: #282828;
-	font-size: 22px;
-}
+	font-size: 22px;}
+
 #content .bloc .content h4{
 	color: #404040;
-	font-size: 20px;
-}
+	font-size: 20px;}
+
 #content .bloc .content h5{
 	color: #5A5656;
-	font-size: 18px;
-}
+	font-size: 18px;}
+
 #content .bloc .content p{
 	padding: 5px 0 10px;
-	line-height: 1.5em;
-}
+	line-height: 1.5em;}
+
 #content .bloc .content ul, #content .bloc .content ol{
 	list-style: disc;
 	margin-left: 25px;
 	line-height: 1.5em;
-	padding: 5px 0 10px;
-}
+	padding: 5px 0 10px;}
+
 #content .bloc .content ul.toolbar{
 	padding: 3px 0px 0px 3px;
 	margin: 0px;
-	border: 0;
-}
+	border: 0;}
+
 #content .bloc .content ul.toolbar li:hover{
-	border: 1 solid #FFFFFF;
-	background-color: #D9D6D6;
-}
+	border: 1 solid #FFF;
+	background-color: #D9D6D6;}
+
 #content .wysiwyg{
 	margin: 1px;
-	padding: 0px;
-}
-#content .bloc .content ol{
-	list-style: decimal;
-}
+	padding: 0px;}
+
+#content .bloc .content ol{list-style: decimal;}
+
 #content .bloc .content{
 	padding: 10px;
 	background-color: #F7F7F7;
 	position: relative;
-	@extend .arrondi;}
+	@include radius;}
 
 #content .loader{
 	position: absolute;
@@ -728,16 +707,16 @@ Background*/
 	left:0;
 	right: 0;
 	bottom:0;
-	background:url(loader.gif) center center no-repeat rgba(255,255,255,0.7);
-	z-index:9998; 
-}
+	background:url(images/loader.gif) center center no-repeat rgba(255,255,255,0.7);
+	z-index:9998;}
+
 /**  Tabs **/
 #content .title .tabs{
 	position: absolute;
 	bottom: 0;
 	right: 10px;
-	height: 31px;
-}
+	height: 31px;}
+
 #content .title .tabs a{
 	padding: 1px 21px 0;
 	/*+border-radius:6px 6px 0 0;*/
@@ -1455,7 +1434,7 @@ Background*/
 	color: #FFF;
 	text-decoration: none;
 	/*+box-shadow:none;*/
-	@extend .boxShadowNone;}
+	@include none;}
 
 #content .black, #content .submit input.black{
 	background: url(images/buttons.png);
@@ -2006,7 +1985,7 @@ plugin styles*/
 	/*+text-shadow:0px 1px #000;*/
 	margin-bottom:12px;
 	padding:0;
-	@extend .textOmbre;}
+	@include ombreText($ombreFoncee);}
 
 .settings a{
 	background:#616161;
