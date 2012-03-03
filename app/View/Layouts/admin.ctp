@@ -8,7 +8,7 @@
         <title><?php echo $title_for_layout; ?></title>
         <?php echo $this->Html->css('graf.css'); ?>
         <?php echo $this->Html->css('admin.css') ?>
-        <?php echo $this->Html->css('ui-lightness/jquery-ui.css') ?>
+        <?php echo $this->Html->css('start/jquery-ui.css') ?>
         <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> 
 
     </head>
