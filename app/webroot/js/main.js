@@ -71,7 +71,8 @@ jQuery(function($){
         if($(this).find('li').length == 0){
             $(this).addClass('nosubmenu');
         }
-    })
+    });
+
     $('#sidebar>ul>li:not([class*="current"])>ul').hide();
     $('#sidebar>ul>li:not([class*="nosubmenu"])>a').click(function(){
        e = $(this).parent();
@@ -82,10 +83,12 @@ jQuery(function($){
     });
 
     var htmlCollapse = $('#menucollapse').html(); 
+    
     if($.cookie('isCollapsed') === 'true'){
         $('body').addClass('collapsed'); 
         $('#menucollapse').html('&#9654;');
     } 
+    
     $('#menucollapse').click(function(){
         var body = $('body'); 
         body.toggleClass('collapsed');
@@ -113,7 +116,7 @@ jQuery(function($){
         var e = $(this); 
         e.find('.content').hide(); 
         e.find('.toggle').addClass('hide');
-    })
+    });
 
     /**
     * CheckAll, if the checkbox with checkall class is checked/unchecked all checkbox would be checked
