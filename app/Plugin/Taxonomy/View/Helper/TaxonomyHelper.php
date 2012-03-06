@@ -7,9 +7,7 @@ class TaxonomyHelper extends AppHelper{
 	function input($type,$options = array()){
 		
 		$data = $this->data;
-		if(empty($data))
-			return false;
-
+			
 		$object = key($data);
 
 		$this->javascript($object,$data[$object]['id']);

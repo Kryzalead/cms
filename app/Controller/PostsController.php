@@ -237,7 +237,14 @@ class PostsController extends AppController{
 			$this->Post->id = $id;
 			$this->request->data = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status','Post.type'));
 		}
+		else{
+			$last_id = current($this->Post->find('first',array(
+				'fields'=>'MAX(id) AS maxid',
+			)));
+			
+			$this->request->data['Post']['id'] = $last_id['maxid'] + 1;
 
+		}
 		$d['terms'] = $this->Post->getFixedTerms();
 
 		$d['list_status'] = array(
