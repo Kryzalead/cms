@@ -39,7 +39,7 @@
 								<?php if ($v['Term']['id'] != 1): ?>
 									<div class="action_admin">
 										<?php echo $this->Html->link('Modifier',array('action'=>'edit',$v['Term']['type'],$v['Term']['id']),array('class'=>'upd')) ?> |
-										<?php echo $this->Form->postLink('Supprimer définitivement',array('action'=>'delete',$v['Term']['type'],$v['Term']['id']),array('class'=>'del'),'Voulez vous vraiment supprimer cet élément ?') ?>			
+										<?php echo $this->Html->link('Supprimer définitivement',array('action'=>'delete',$v['Term']['type'],$v['Term']['id']),array('class'=>'del'),'Voulez vous vraiment supprimer cet élément ?') ?>			
 									</div>
 								<?php endif ?>
 							</td>

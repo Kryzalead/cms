@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
         <title><?php echo $title_for_layout; ?></title>
         <?php echo $this->Html->css('style.css'); ?>
-        <?php echo $this->Html->css('ui-lightness/jquery-ui.css') ?>
+        <?php echo $this->Html->css('start/jquery-ui.css') ?>
     </head>
     <body>
         <div class="container"  style="margin-top: 50px">

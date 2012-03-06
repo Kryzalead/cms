@@ -25,4 +25,9 @@ class Term extends AppModel{
 		return true;
 	}
 
+	function beforeDelete($data){
+		$this->TermR->updateAll(array('term_id'=>1),array('term_id'=>$this->id));
+		return true;
+	}
+
 }		

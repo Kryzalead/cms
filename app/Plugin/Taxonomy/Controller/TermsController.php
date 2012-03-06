@@ -55,7 +55,7 @@ class TermsController extends TaxonomyAppController{
 
 		if($count == 0){
 			$this->Term->TermR->save($d);
-			$url = Router::url(array('action'=>'delete',$this->Term->TermR->id));
+			$url = Router::url(array('action'=>'deleteR',$this->Term->TermR->id));
 			die('<span style="margin-right: 25px;display: block;float: left;font-size: 11px;line-height: 1.8em;white-space: nowrap;cursor: default;"><a class="delTaxo" href="'.$url.'">x </a>'.strtoupper($this->request->query['name']).'</span>');
 		}
 		else
@@ -131,6 +131,21 @@ class TermsController extends TaxonomyAppController{
 		}
 		else
 			$this->set('erreur_taxo',"La Taximonie demandée est invalide");
+	}
+
+	function admin_delete($term = null,$id = null){
+		$this->Term->id = $id;
+		$this->Term->delete();
+		switch ($term) {
+			case 'category':
+				$message = 'La catégorie a bien été supprimée';
+				break;
+			default:
+				# code...
+				break;
+		}
+		$this->Session->setFlash($message,"notif");
+		$this->redirect(array('action'=>'edit',$term));
 	}
 }
  ?>
