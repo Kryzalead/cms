@@ -78,9 +78,59 @@ class TermsController extends TaxonomyAppController{
 		die(json_encode($json));
 	}
 
-	function admin_edit($term = null){
-		$d['title_for_layout'] = 'Catégories';
-		$this->set($d);
+	function admin_edit($term = null,$id = null){
+		
+		$taxo = $this->Term->find('count',array(
+			'conditions'=>array('Term.type'=>$term)
+		));
+		
+		if($taxo){
+			switch ($term) {
+			case 'category':
+				$d['title_for_layout'] = 'Catégories';
+				if($id){
+					$d['text_form'] = 'Modifier une catégorie';
+					$d['text_for_submit'] = 'Mettre à jour';
+				}
+				else{
+					$d['text_form'] = 'Ajouter une catégorie';
+					$d['text_for_submit'] = 'Ajouter une catégorie';	
+				}
+				break;
+			default:
+				# code...
+				break;
+			}
+			if($this->request->is('post') || $this->request->is('put')){
+				$this->Term->save($this->request->data);
+				switch ($term) {
+					case 'category':
+						if($id)
+							$message = 'La catégorie a bien été modifiée';
+						else
+							$message = 'La catégorie a bien été crée';	
+						break;
+					default:
+						# code...
+						break;
+				}
+				$this->Session->setFlash($message,"notif");
+				$this->redirect(array('action'=>'edit',$term));
+			}
+			elseif($id){
+				$this->Term->id = $id;
+				$this->request->data = $this->Term->read();
+			}
+			$this->paginate = array(
+				'fields'=>array('Term.id','Term.name','Term.slug','Term.type'),
+				'conditions'=>array('Term.type'=>$term)
+			);
+			$d['list_term'] = $this->Paginate('Term');
+			$d['type_term'] = $term;
+			$this->set($d);
+		}
+		else
+			$this->set('erreur_taxo',"La Taximonie demandée est invalide");
 	}
 }
  ?>

@@ -10,4 +10,19 @@ class Term extends AppModel{
 
 	public $recursive = -1;
 
+	public $validate = array(
+		'name'=>array(
+			'rule'=>'notEmpty',
+			'message'=>'Le champ ne peut être vide'
+		)
+	);
+
+	function beforeSave($data){
+		
+		if(empty($this->data['Term']['slug'])){
+			$this->data['Term']['slug'] = strtolower(Inflector::slug($this->data['Term']['name'],'-'));
+		}
+		return true;
+	}
+
 }		

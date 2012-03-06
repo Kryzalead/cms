@@ -1,7 +1,6 @@
 <?php 
 class TermR extends AppModel{
 
-	public $useTable = 'term_relationships';
-	
+	public $useTable = 'term_relationships';	
 }
  ?>
