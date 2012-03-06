@@ -1,7 +1,7 @@
 <?php 
 class TermsController extends TaxonomyAppController{
 	
-	function admin_delete($id = null){
+	function admin_deleteR($id = null){
 		$this->Term->TermR->id = $id;
 		$term_id = $this->Term->TermR->field('term_id');
 
@@ -17,11 +17,11 @@ class TermsController extends TaxonomyAppController{
 		die();
 	}
 
-	function admin_add($object,$object_id){
+	function admin_addR($object,$object_id){
 		
 		$type = $this->request->query['type'];
 		
-		if(isset($this->request->query['id']))
+		if(isset($this->request->query['id'])) 
 			$term_id = $this->request->query['id'];
 		else{
 			$d = array(
@@ -83,7 +83,7 @@ class TermsController extends TaxonomyAppController{
 		$taxo = $this->Term->find('count',array(
 			'conditions'=>array('Term.type'=>$term)
 		));
-		
+
 		if($taxo){
 			switch ($term) {
 			case 'category':

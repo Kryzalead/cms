@@ -17,7 +17,7 @@ class TaxonomyHelper extends AppHelper{
 		$html = '';
 		if(!empty($data['Taxonomy'][$type])){
 			foreach ($data['Taxonomy'][$type] as $v) {
-				$url = Router::url(array('controller'=>'Terms','action'=>'delete','plugin'=>'taxonomy','admin'=>true,$v['TermR']['id']));
+				$url = Router::url(array('controller'=>'Terms','action'=>'deleteR','plugin'=>'taxonomy','admin'=>true,$v['TermR']['id']));
 				$html .= '<span style="margin-right: 25px;display: block;float: left;font-size: 11px;line-height: 1.8em;white-space: nowrap;cursor: default;"><a class="delTaxo" href="'.$url.'">x </a>'.strtoupper($v['name']).'</span>';
 			}	
 		}
@@ -34,7 +34,7 @@ class TaxonomyHelper extends AppHelper{
 			return false;
 		$this->javascript = true;
 			
-		$url = Router::url(array('controller'=>'Terms','action'=>'add','plugin'=>'taxonomy','admin'=>true,$object,$object_id));
+		$url = Router::url(array('controller'=>'Terms','action'=>'addR','plugin'=>'taxonomy','admin'=>true,$object,$object_id));
 		$urlList = Router::url(array('controller'=>'Terms','action'=>'search','plugin'=>'taxonomy','admin'=>true));
 
 		$this->Html->scriptStart(array('inline'=>false));
