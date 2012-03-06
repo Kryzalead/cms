@@ -196,7 +196,7 @@ class PostsController extends AppController{
     	$this->Post->id = $id;
     	$this->Post->delete();
     	$this->Session->setFlash("L'article a bien été supprimé","notif");
-    	$this->redirect($this->referer());
+    	$this->redirect(array('action'=>'index'));
 	}
 
 	function admin_doaction(){
@@ -216,6 +216,8 @@ class PostsController extends AppController{
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 			if($this->Post->save($this->request->data)){
+				if(!$id)
+					$this->Post->initCat();
 			
 			if($id)
 				$this->Session->setFlash("L'article a bien été modifié",'notif');

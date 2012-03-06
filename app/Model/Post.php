@@ -81,5 +81,14 @@ class Post extends AppModel{
 		}
 		return true;
 	}
+
+	function initCat(){
+		$this->TermR->save(array(
+			'object'=>'Post',
+			'object_id'=>$this->id,
+			'term_id'=>1
+		));
+		return true;
+	}
 }
  ?>

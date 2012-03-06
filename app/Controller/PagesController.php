@@ -185,7 +185,7 @@ class PagesController extends AppController{
     	$this->Post->id = $id;
     	$this->Post->delete();
     	$this->Session->setFlash("La page a bien été supprimé","notif");
-    	$this->redirect($this->referer());
+    	$this->redirect(array('action'=>'index'));
 	}
 
 	function admin_doaction(){
