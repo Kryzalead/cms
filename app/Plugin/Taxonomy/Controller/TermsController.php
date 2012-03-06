@@ -17,10 +17,6 @@ class TermsController extends TaxonomyAppController{
 		die();
 	}
 
-	function admin_edit($term = null){
-		
-	}
-
 	function admin_add($object,$object_id){
 		
 		$type = $this->request->query['type'];
@@ -80,6 +76,11 @@ class TermsController extends TaxonomyAppController{
 			$json[] = array('id'=>$id,'label'=>$name);
 		}
 		die(json_encode($json));
+	}
+
+	function admin_edit($term = null){
+		$d['title_for_layout'] = 'Catégories';
+		$this->set($d);
 	}
 }
  ?>
