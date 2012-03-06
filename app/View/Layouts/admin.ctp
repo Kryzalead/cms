@@ -82,7 +82,7 @@
                     <ul>
                         <li><?php echo $this->Html->link("Tous les articles",array('action'=>'index','controller'=>'posts')); ?></li>
                         <li><?php echo $this->Html->link("Ajouter",array('action'=>'edit','controller'=>'posts')); ?></li>
-                        <li><?php echo $this->Html->link("Catégories",array('plugin'=>'Taxonomy','controller'=>'terms','action'=>'edit','admin'=>true)); ?></li>
+                        <li><?php echo $this->Html->link("Catégories",array('plugin'=>'taxonomy','controller'=>'terms','action'=>'edit','category')); ?></li>
                     </ul>
                 </li>
                 <li <?php echo ($currentController == 'medias')  ? 'class="current"' : '' ?>>
