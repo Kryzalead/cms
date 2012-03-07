@@ -55,6 +55,7 @@
  image_edit: action à appeller losr du clic sur le bouton lors d'une sélection
  relative_urls: met les url en absolue
  content_css: css utilisé par l'editeur
+ entity_encoding : "raw" //permet de garder les accès lors de la récupération du contenu par le plugin lien
 */
  ?>
 <?php $this->Html->scriptStart(array('inline'=>false)); ?>
