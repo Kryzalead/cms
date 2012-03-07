@@ -31,7 +31,7 @@ class MediasController extends AppController{
 		}
 
 		$this->paginate = array(
-			'fields'=>array('Media.id','Media.name','Media.created'),
+			'fields'=>array('Media.id','Media.name','Media.created','Media.mime_type','Media.guid'),
 			'conditions'=>$conditions,
 			'limit'=>Configure::read('elements_per_page')
 		);
@@ -185,24 +185,51 @@ class MediasController extends AppController{
 		$this->layout = 'modal';
 
 		if($this->request->is('post') || $this->request->is('put')){
-			$method = $this->request->data['Media']['type'];
+			$method = $this->request->data['Media']['method'];
 			switch ($method) {
 				case 'upload':
 					$this->admin_edit();
+					return;
 					break;
 				case 'url':
-					$this->set('src',$this->request->data['Media']['src']);
-					$this->set('title',$this->request->data['Media']['title']);
-					$this->set('alt',$this->request->data['Media']['alt']);
-					$this->set('class',$this->request->data['Media']['class']);
+					$d['src'] = $this->request->data['Media']['src'];
+					$d['title'] = (!empty($this->request->data['Media']['title'])) ? $this->request->data['Media']['title'] : '';
+					$d['alt'] = (!empty($this->request->data['Media']['alt'])) ? $this->request->data['Media']['alt'] : 'Image utilisateur';
+					$d['class'] = $this->request->data['Media']['class'];	
+
 					$this->layout = null;
+					$this->set($d);
 					$this->render('tinymce');
-					die();
+					return;
 					break;
 				case 'library':
+					
+					$d['title'] = $this->request->data['Media']['title'];
+					$d['alt'] = (!empty($this->request->data['Media']['alt'])) ? $this->request->data['Media']['alt'] : 'Image utilisateur';
+					$d['class'] = $this->request->data['Media']['class'];	
+
+					$file = $this->request->data['Media']['guid'];
+					$file_name = end(explode('/',$file));
+					$name = current(explode('.',$file_name));
+
+					$size = $this->request->data['Media']['size'];
+					if($size == 'thumbnail')
+						$src = str_replace($name,$name.'_t', $file);
+					elseif($size == 'medium')	
+						$src = str_replace($name,$name.'_m', $file);
+					elseif($size == 'large')
+						$src = str_replace($name,$name.'_l', $file);
+					else
+						$src = $file;
+
+					$d['src'] = $src;
+
+					$this->set($d);
+					$this->layout = null;
+					$this->render('tinymce');
+					return;
 					break;
 				default:
-					# code...
 					break;
 			}
 		}
@@ -214,6 +241,12 @@ class MediasController extends AppController{
 			$d['action'] = 'url';
 		}
 		elseif($tabs == 'library'){
+			$d['taille'] = array(
+				'thumbnail'		=>	'Petite',
+				'medium'		=>	'Moyenne',
+				'large'			=>	'Grande'
+			);
+			$this->request->data['Media']['size'] = 'thumbnail';
 			$this->admin_index();
 		}
 		
@@ -224,6 +257,15 @@ class MediasController extends AppController{
 			'alignCenter'=>'Centrer',
 			'alignRight'=>'Droite'
 		);
+
+		$this->request->data['Media']['class'] = 'alignLeft';
+
+		if(!empty($this->request->query)){
+			$this->request->data['Media']['src'] = $this->request->query['src'];
+			$this->request->data['Media']['title'] = $this->request->query['title'];
+			$this->request->data['Media']['alt'] = (!empty($this->request->data['Media']['alt'])) ? $this->request->data['Media']['alt'] : 'Image utilisateur';
+			$this->request->data['Media']['class'] = $this->request->query['class'];
+		}
 
 		$this->set($d);
 		if($tabs != 'library')

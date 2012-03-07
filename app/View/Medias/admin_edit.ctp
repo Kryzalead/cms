@@ -4,7 +4,9 @@
 	#sidemenu a{color: #21759B;;background-color: #F9F9F9;border-color: #F9F9F9;border-bottom-color: #DFDFDF;padding: 0 7px;display: block;float: left;line-height: 28px;border-top-width: 1px;border-top-style: solid;border-bottom-width: 1px;border-bottom-style: solid;text-decoration: none}
 	#sidemenu a:hover{color: #D54E21}
 	#sidemenu a.current {background-color: white;border-color: #DFDFDF #DFDFDF white;color: #D54E21;font-weight: normal;padding-left: 6px;padding-right: 6px;-webkit-border-top-left-radius: 3px;-webkit-border-top-right-radius: 3px;border-top-left-radius: 3px;border-top-right-radius: 3px;border-width: 1px;border-style: solid;}
-
+	#content .radio input{opacity: 1;
+	-moz-opacity: 1;
+	filter:alpha(opacity=1);}
 </style>
 
 <?php if ($this->request->action == 'admin_tinymce'): ?>
@@ -18,15 +20,15 @@
 		</li>
 		<li>
 			<?php if ($current_tabs == 'url'): ?>
-				<?php echo $this->Html->link("Depuis votre ordinateur",array('action'=>'tinymce','controller'=>'medias','url'),array('class'=>'current')); ?>
+				<?php echo $this->Html->link("Depuis le web",array('action'=>'tinymce','controller'=>'medias','url'),array('class'=>'current')); ?>
 			<?php else: ?>
-				<?php echo $this->Html->link("Depuis votre ordinateur",array('action'=>'tinymce','controller'=>'medias','url')); ?>
+				<?php echo $this->Html->link("Depuis le web",array('action'=>'tinymce','controller'=>'medias','url')); ?>
 			<?php endif ?>
 		<li>
 			<?php if ($current_tabs == 'library'): ?>
-				<?php echo $this->Html->link("Depuis votre ordinateur",array('action'=>'tinymce','controller'=>'medias','library'),array('class'=>'current')); ?>
+				<?php echo $this->Html->link("Bibliothèque",array('action'=>'tinymce','controller'=>'medias','library'),array('class'=>'current')); ?>
 			<?php else: ?>
-				<?php echo $this->Html->link("Depuis votre ordinateur",array('action'=>'tinymce','controller'=>'medias','library')); ?>
+				<?php echo $this->Html->link("Bibliothèque",array('action'=>'tinymce','controller'=>'medias','library')); ?>
 			<?php endif ?>
 		</li>
 	</ul>
@@ -40,12 +42,13 @@
 <?php endif; ?>			
 
 <?php if ($action == 'add'): ?>
-	<div>
+	<div style="margin-top: 20px;">
 		<?php echo $this->Form->create('Media',array('type'=>'file')) ?>
 			<?php echo $this->Form->input('name',array('label'=>"Nom du média")); ?>
 			<?php echo $this->Form->input('file',array('label'=>false,'type'=>'file')); ?>
 			<?php echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))); ?>
 			<?php echo $this->Form->input('type',array('label'=>false,'type'=>'hidden','value'=>'attachment')); ?>
+			<?php echo ($this->request->action == 'admin_tinymce') ? $this->Form->input('method',array('label'=>false,'type'=>'hidden','value'=>'upload')) : '' ?>
 			<?php echo $this->Form->input('status',array('label'=>false,'type'=>'hidden','value'=>'inherit')); ?>
 		<?php echo $this->Form->end('Envoyer') ?>
 		<p>
@@ -76,13 +79,16 @@
 			<?php echo $this->Form->end('Mettre à jour'); ?>
 		</div>
 <?php elseif($action == 'url'): ?>
-	<h3>Insérer un média depuis un autre site</h3>
-	<?php echo $this->Form->create('Media') ?>
-		<?php echo $this->Form->input('Media.src',array('label'=>"Adresse web : ")); ?>
-		<?php echo $this->Form->input('Media.title',array('label'=>"Titre : ")); ?>
-		<?php echo $this->Form->input('Media.alt',array('label'=>"Texte alternatif")); ?>
-		<?php echo $this->Form->input('Media.type',array('label'=>false,'type'=>'hidden','value'=>'url')); ?>
-		<?php echo $this->Form->input('class',array('legend'=>"Alignement : ",'options'=>$alignement,'type'=>'radio')); ?>
-	<?php echo $this->Form->end('Insérer') ?>	
+	<div style="margin-top: 20px;">
+		<h3>Insérer un média depuis un autre site</h3>
+		<?php echo $this->Form->create('Media') ?>
+			<?php echo $this->Form->input('Media.src',array('label'=>"Adresse web : ")); ?>
+			<?php echo $this->Form->input('Media.title',array('label'=>"Titre : ")); ?>
+			<?php echo $this->Form->input('Media.alt',array('label'=>"Texte alternatif")); ?>
+			<?php echo $this->Form->input('Media.method',array('label'=>false,'type'=>'hidden','value'=>'url')); ?>
+			<?php echo $this->Form->input('class',array('legend'=>"Alignement : ",'options'=>$alignement,'type'=>'radio')); ?>
+		<?php echo $this->Form->end('Insérer') ?>
+	</div>
+		
 <?php endif ?>
 

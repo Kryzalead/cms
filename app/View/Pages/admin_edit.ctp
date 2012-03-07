@@ -80,11 +80,9 @@
     });
 
     // fonction qui permet de renvoyer du code à tinymce
-    function send_to_editor(src,title){
+    function send_to_editor(content){
         // on init l'editeur
         var ed = tinyMCE.activeEditor;
-        tinyMCE.execCommand("mceReplaceContent",false,'<a href="'+src+'" title="'+title+'">{$selection}</a>');
-        
-        return true;
+        ed.execCommand('mceInsertContent',false,content);
     }
 <?php $this->Html->scriptEnd(); ?>
