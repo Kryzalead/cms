@@ -29,7 +29,7 @@
 
 				// si l'élement sélectionné est un lien
 				if(el.nodeName == 'A'){
-					// on récupère le contenu ainsi que els attributs du lien
+					// on récupère le contenu ainsi que les attributs du lien
 					src		=	ed.dom.getAttrib(el,'href');
 					title 	=	ed.dom.getAttrib(el,'title');
 				}
@@ -38,7 +38,9 @@
 					title 	=	'';
 				}
 
-				url += '?src='+src+'&title='+title;
+				content=se.getContent();
+
+				url += '?content='+content+'&src='+src+'&title='+title;
 
 				// on ouvre une fenêtre avec l'objet windowManager de tinymce
 				// il permet de gérer tout ce qui est ouverture et fermeture des fenetre

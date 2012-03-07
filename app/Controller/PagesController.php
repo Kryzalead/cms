@@ -232,5 +232,37 @@ class PagesController extends AppController{
 		$d['status_selected'] = 'publish';
 		$this->set($d);
 	}
+
+	function admin_tinymce(){
+		
+		$this->layout = 'modal';
+
+		if($this->request->is('post') || $this->request->is('put')){
+			$d['content'] = $this->request->data['Post']['content'];
+			$d['src'] = $this->request->data['Post']['link-src'];
+			$d['title'] = $this->request->data['Post']['link-title'];
+
+			$this->layout = null;
+			$this->set($d);
+			$this->render('tinymce');
+			return;
+		}
+
+		$d['posts'] = $this->Post->find('all',array(
+			'fields'=>array('Post.id','Post.name','Post.type','Post.guid'),
+			'conditions'=>array(
+				'OR'=>array(
+					array('Post.type'=>'post'),
+					array('Post.type'=>'page')
+				)
+			)
+		));
+
+		$this->request->data['Post']['link-title'] = (!empty($this->request->query['title'])) ? $this->request->query['title'] : '';
+		$this->request->data['Post']['link-src'] = (!empty($this->request->query['src'])) ? $this->request->query['src'] : '';
+		$this->request->data['Post']['content'] = $this->request->query['content'];
+
+		$this->set($d);
+	}
 }
  ?>

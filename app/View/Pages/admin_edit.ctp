@@ -76,7 +76,8 @@
         image_edit: '<?php echo $this->Html->url(array('controller'=>'medias','action'=>'tinymce','url')); ?>',
         lien_explorer: '<?php echo $this->Html->url(array('controller'=>'pages','action'=>'tinymce')) ?>',
         relative_urls: false,
-        content_css: '<?php echo $this->Html->url('/css/wysiwyg.css') ?>'
+        content_css: '<?php echo $this->Html->url('/css/wysiwyg.css') ?>',
+        entity_encoding : "raw"
     });
 
     // fonction qui permet de renvoyer du code à tinymce

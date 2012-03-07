@@ -2,7 +2,7 @@
 <script type="text/javascript">
 	// on récupère la fenêtre parente
 	var win = window.dialogArguments || opener || parent || top;
-	win.send_to_editor("<?php echo $src ?>","<?php echo $title ?>");
+	win.send_to_editor('<a href="<?php echo $src ?>" title="<?php echo $title ?>"><?php echo $content ?></a>');
 	// on ferme la popup
 	tinyMCEPopup.close();
 </script>
