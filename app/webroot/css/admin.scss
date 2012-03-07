@@ -40,7 +40,9 @@ body{
 /* remember to define focus styles! */
 :focus {outline: 0;}
 
-ol, ul {list-style: none;}
+ol, ul {list-style: none;padding:0;}
+
+* {padding:0; margin:0;}
 
 /* tables still need 'cellspacing="0"' in the markup */
 table {
@@ -66,28 +68,38 @@ blockquote, q {quotes: "" "";}
          url('fonts/ftusj/fff_tusj-wfont.svg#FFFTusjBold') format('svg');
     	font-weight: normal; font-style: normal;}
 
- @font-face {
-    font-family: 'phoenix';
-    src: url('fonts/phoenix/phoenixscriptflf.eot');
-    src: url('fonts/phoenix/phoenixscriptflf.eot?#iefix') format('embedded-opentype'),
-         url('fonts/phoenix/phoenixscriptflf.woff') format('woff'),
-         url('fonts/phoenix/phoenixscriptflf.ttf') format('truetype'),
-         url('fonts/phoenix/phoenixscriptflf.svg#PhoenixScriptFLFRegular') format('svg');
-    font-weight: normal;font-style: normal;}
+@font-face {
+font-family: 'phoenix';
+src: url('fonts/phoenix/phoenixscriptflf.eot');
+src: url('fonts/phoenix/phoenixscriptflf.eot?#iefix') format('embedded-opentype'),
+     url('fonts/phoenix/phoenixscriptflf.woff') format('woff'),
+     url('fonts/phoenix/phoenixscriptflf.ttf') format('truetype'),
+     url('fonts/phoenix/phoenixscriptflf.svg#PhoenixScriptFLFRegular') format('svg');
+	font-weight: normal;font-style: normal;}
 
 
 .cb, .clear{clear: both;}
 .relative{position: relative;}
 
-#head, #head a.button, #head .search{background: url(images/bandeau.png);}
+
+ /* faire le degrader voir ligne 496 */
+#head {
+	background-image: linear-gradient(bottom, rgb(49,49,49) 13%, rgb(67,67,67) 57%, rgb(85,85,85) 85%);
+	background-image: -o-linear-gradient(bottom, rgb(49,49,49) 13%, rgb(67,67,67) 57%, rgb(85,85,85) 85%);
+	background-image: -moz-linear-gradient(bottom, rgb(49,49,49) 13%, rgb(67,67,67) 57%, rgb(85,85,85) 85%);
+	background-image: -webkit-linear-gradient(bottom, rgb(49,49,49) 13%, rgb(67,67,67) 57%, rgb(85,85,85) 85%);
+	background-image: -ms-linear-gradient(bottom, rgb(49,49,49) 13%, rgb(67,67,67) 57%, rgb(85,85,85) 85%);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.13, rgb(49,49,49)),color-stop(0.57, rgb(67,67,67)),color-stop(0.85, rgb(85,85,85)));}
+
+#head a.button, #head .search{background-color:#2A2A2A;}
 
 
 /* ------------------- */
 /*   FRAMEWORKS  */
 /* ---------------- */
-.boxOmbre		{@include box-shadow(#444,0px,2px,10px);}
+.boxOmbre			{@include box-shadow(#444,0px,2px,10px);}
 .checkerBoxOmbre	{@include box-shadow(#D2D2D2,0px,0px,10px);}
-.contentRadiusHaut 	{@include border-radius (9px 9px 0px 0px,9px 9px 0px 0px)};
+.contentRadiusHaut {@include border-radius (9px 9px 0px 0px,9px 9px 0px 0px)};
 
 /* -- Default -- */
 $default-box-shadow-h-offset:0px;
@@ -221,7 +233,7 @@ $none:none;
 	padding: 0 5px;}
 
 
-/* ********************************************** SIDEBAR ********************************************************** */
+/* ********************************************** SIDEBAR MENU PRINCIPAL ************************************************* */
 #sidebar{
 	position: fixed;
 	z-index: 3;
@@ -318,7 +330,196 @@ $none:none;
 .collapsed #content{margin-left: 90px;}
 
 
-/***********************************************  COLORS ********************************************************** */
+/* **********************************************  MENU AIDE ******************************************************** */
+#aide {margin-top:40px;
+	position: relative;
+}
+
+
+#screen-options-wrap,
+#contextual-help-wrap {
+	margin: 0;
+	padding: 8px 20px 12px;
+	position: relative;
+	overflow: auto;}
+
+#screen-meta .screen-reader-text {visibility: hidden;}
+
+#screen-meta-links {margin: 0 24px 0 0;}
+
+/* screen options and help tabs revert */
+#screen-meta {
+	display: none;
+	position: relative;
+	margin: 0 15px 0 5px;
+	border-width: 0 1px 1px;
+	border-style: none solid solid;}
+
+#screen-options-link-wrap,
+#contextual-help-link-wrap {
+	float: right;
+	height: 22px;
+	padding: 0;
+	margin: 0 0 0 6px;
+	font-family: sans-serif;}
+
+#screen-options-link-wrap,
+#contextual-help-link-wrap,
+#screen-meta {
+	-webkit-border-bottom-left-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;}
+
+#screen-meta-links a.show-settings {
+	text-decoration: none;
+	z-index: 1;
+	padding: 0 16px 0 6px;
+	height: 22px;
+	line-height: 22px;
+	font-size: 12px;
+	display: block;
+	text-shadow: rgba(255,255,255,0.7) 0 1px 0;}
+
+#screen-meta-links a.show-settings:hover {text-decoration: none;}
+/* end screen options and help tabs */
+
+.toggle-arrow {
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-color: transparent;
+	height: 22px;
+	line-height: 22px;
+	display: block;}
+
+.toggle-arrow-active {background-position: bottom left;}
+
+#screen-options-wrap h5,
+#contextual-help-wrap h5 {
+	margin: 8px 0;
+	font-size: 13px;}
+
+.metabox-prefs label {
+	display: inline-block;
+	padding-right: 15px;
+	white-space: nowrap;
+	line-height: 30px;}
+
+.metabox-prefs label input {
+	margin: 0 5px 0 2px;
+}
+
+.metabox-prefs label a {
+	display: none;
+}
+
+/* -- Help text -- */
+#contextual-help-wrap {
+	padding: 0;
+	margin-left: -4px;}
+
+#contextual-help-columns {position: relative;}
+
+#contextual-help-back {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 150px;
+	right: 170px;
+	border-width: 0 1px;
+	border-style: solid;}
+
+#contextual-help-wrap.no-sidebar #contextual-help-back {
+	right: 0;
+	border-right-width: 0;
+	-webkit-border-bottom-right-radius: 2px;
+	border-bottom-right-radius: 2px;}
+
+.contextual-help-tabs {
+	float: left;
+	width: 150px;
+	margin: 0;}
+
+.contextual-help-tabs ul {margin: 1em 0;}
+
+.contextual-help-tabs li {
+	margin-bottom: 0;
+	list-style-type: none;
+	border-style: solid;
+	border-width: 1px 0;
+	border-color: transparent;}
+
+.contextual-help-tabs a {
+	display: block;
+	padding: 5px 5px 5px 12px;
+	line-height: 18px;
+	text-decoration: none;}
+
+.contextual-help-tabs .active {
+	padding: 0;
+	margin: 0 -1px 0 0;
+	border-width: 1px 0 1px 1px;
+	border-style: solid;}
+
+.contextual-help-tabs-wrap {
+	padding: 0 20px;
+	overflow: auto;}
+
+.help-tab-content {
+	display: none;
+	margin: 0 22px 12px 0;
+	line-height: 1.6em;}
+
+.help-tab-content.active {display: block;}
+
+.help-tab-content li {
+	list-style-type: disc;
+	margin-left: 18px;}
+
+.contextual-help-sidebar {
+	width: 150px;
+	float: right;
+	padding: 0 8px 0 12px;
+	overflow: auto;}
+
+
+/* -- couleur menu aide -- */
+#screen-meta {
+	background-color: #f1f1f1;
+	border-color: #ccc;
+	-webkit-box-shadow: 0 1px 3px rgba( 0, 0, 0, 0.05 );
+	box-shadow: 0 1px 3px rgba( 0, 0, 0, 0.05 );}
+
+#contextual-help-back {background: #fff;}
+.contextual-help-tabs a:hover {	color: #333;}
+
+#contextual-help-back, .contextual-help-tabs .active {border-color: #ccc;}
+.contextual-help-tabs .active, .contextual-help-tabs .active a, .contextual-help-tabs .active a:hover {background: #fff;color: #000;}
+
+/* screen options and help tabs */
+#screen-options-link-wrap,
+#contextual-help-link-wrap {
+	background-color: #e3e3e3; /* Fallback */
+	border-right: 1px solid transparent;
+	border-left: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	background-image: linear-gradient(bottom, rgb(85,85,85) 13%, rgb(67,67,67) 57%, rgb(49,49,49) 88%);
+	background-image: -o-linear-gradient(bottom, rgb(85,85,85) 13%, rgb(67,67,67) 57%, rgb(49,49,49) 88%);
+	background-image: -moz-linear-gradient(bottom, rgb(85,85,85) 13%, rgb(67,67,67) 57%, rgb(49,49,49) 88%);
+	background-image: -webkit-linear-gradient(bottom, rgb(85,85,85) 13%, rgb(67,67,67) 57%, rgb(49,49,49) 88%);
+	background-image: -ms-linear-gradient(bottom, rgb(85,85,85) 13%, rgb(67,67,67) 57%, rgb(49,49,49) 88%);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.13, rgb(85,85,85)),color-stop(0.57, rgb(67,67,67)),color-stop(0.88, rgb(49,49,49)));}
+
+#contextual-help-link-wrap{width:50px;}
+#screen-options-link-wrap {width:130px;}
+
+#screen-meta-links a.show-settings {color: #AEAEAE;}
+#screen-meta-links a.show-settings:hover {color: #FFF;}
+#screen-meta-links a.show-settings {background: transparent url(images/arrow_aide.png) no-repeat 96% 5px;}
+#screen-meta-links a.show-settings.screen-meta-active {background: transparent url(images/slidebuttons.png) no-repeat 97% -45px;}
+
+
+/* **********************************************  COLORS ********************************************************** */
 /* Background */
 .dark{background: url(images/setting_button/bg/dark-bg.png);}
 
@@ -327,8 +528,8 @@ $none:none;
 	-moz-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 	-o-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-}
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);}
+
 .dark #content h1{
 	color: #FFF;
 	@extend .contentTextShadowDark;}
