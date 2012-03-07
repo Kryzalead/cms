@@ -3,13 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
         <title><?php echo $title_for_layout; ?></title>
-        <?php echo $this->Html->css('style.css'); ?>
+        <?php echo $this->Html->css('graf.css'); ?>
+        <?php echo $this->Html->css('admin.css') ?>
         <?php echo $this->Html->css('start/jquery-ui.css') ?>
     </head>
     <body>
-        <div class="container"  style="margin-top: 50px">
+        <div id="content" class="white" style="margin-left: 0px">
             <?php echo $this->Session->flash() ?>
-            <?php echo $content_for_layout;?>
+            <?php echo $content_for_layout ?>
         </div>
     </body>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
