@@ -25,15 +25,8 @@ class User extends AppModel{
 			)
 		),
 		'email'		=>	array(
-			'required'	=>	array(
-				'rule'		=>	'notEmpty',
-				'required'	=>	true,
-				'message'	=>	'Votre email est obligatoire'
-			),
-			'email'		=>	array(
-				'rule'		=>	'email',
-				'message'	=>	'Votre email n\'est pas valide'
-			)	
+			'rule'		=>	'email',
+			'message'	=>	'Votre email n\'est pas valide'
 		),
 		'siteweb'	=>	array(
 			'rule'		=>	'url',

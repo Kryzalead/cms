@@ -108,8 +108,15 @@
                         <li><?php echo $this->Html->link("Votre profil",array('plugin'=>null,'action'=>'edit','controller'=>'users',$this->Session->read('Auth.User.id'))); ?></li>
                     </ul>
                 </li>
-                <li class="nosubmenu <?php echo ($currentController == 'options')  ? 'current' : '' ?>">
-                    <?php echo $this->Html->link($this->Html->image('icone-config.png',array('height'=>25,'width'=>25)) . 'Réglage',array('plugin'=>null,'action'=>'index','controller'=>'options'),array('escape'=>false)); ?>
+                <li <?php echo ($currentController == 'options')  ? 'class="current"' : '' ?>>
+                    <?php echo $this->Html->link($this->Html->image('icone-config.png',array('height'=>25,'width'=>25)) . 'Réglages',array('plugin'=>null,'action'=>'edit','controller'=>'options'),array('escape'=>false)); ?>
+                    <ul>
+                        <li><?php echo $this->Html->link("Général",array('plugin'=>null,'action'=>'general','controller'=>'options')); ?></li>
+                        <li><?php echo $this->Html->link("Ecriture",array('plugin'=>null,'action'=>'write','controller'=>'options')); ?></li>
+                        <li><?php echo $this->Html->link("Lecture",array('plugin'=>null,'action'=>'edit','controller'=>'options')); ?></li>
+                        <li><?php echo $this->Html->link("Discussion",array('plugin'=>null,'action'=>'edit','controller'=>'options')); ?></li>
+                        <li><?php echo $this->Html->link("Médias",array('plugin'=>null,'action'=>'edit','controller'=>'options')); ?></li>
+                    </ul>
                 </li>
             </ul>
             <a href="#collapse" id="menucollapse">◀ Réduire le menu</a>
