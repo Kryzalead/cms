@@ -18,7 +18,6 @@
 	-moz-opacity: 1;
 	filter:alpha(opacity=1);}
 </style>
-
 <?php if ($this->request->action == 'admin_tinymce'): ?>
 	<div id="upload_tinymce">
 		<ul id="sidemenu">
@@ -145,45 +144,49 @@
 	<?php echo $this->Paginator->numbers(); ?>
 <?php else: ?>
 	<div id="medias_tinymce">
-		<?php foreach ($medias as $k => $v): ?>
-			<div id="media_<?php echo $v['Media']['id'];?>" class="media_tinymce">
-				<?php $alt  = (!empty($v['Media']['alt'])) ? $v['Media']['alt'] : ''?>
-				<div class="toggle_media">
-					<div class="toggle_thumbnail">
-						<?php echo $this->Html->image($v['Media']['thumbnail'],array('width'=>60,'height'=>60,'title'=>$v['Media']['name'])) ?>
+		<?php if (!empty($medias)): ?>
+			<?php foreach ($medias as $k => $v): ?>
+				<div id="media_<?php echo $v['Media']['id'];?>" class="media_tinymce">
+					<?php $alt  = (!empty($v['Media']['alt'])) ? $v['Media']['alt'] : ''?>
+					<div class="toggle_media">
+						<div class="toggle_thumbnail">
+							<?php echo $this->Html->image($v['Media']['thumbnail'],array('width'=>60,'height'=>60,'title'=>$v['Media']['name'])) ?>
+						</div>
+						<div class="toggle_name">
+							<?php echo $v['Media']['name']; ?>
+						</div>
+						<div class="toggle_action_media">
+							<a href="#" class="toggle on">Afficher</a>
+							<a href="#" class="toggle off" style="display: none">Masquer</a>
+						</div>
+						<div class="clear"></div>
+					</div>	
+					<div class="media_form">
+						<div style="float:left;margin-right: 20px">
+							<?php echo $this->Html->image($v['Media']['thumbnail'],array('width'=>128,'height'=>128,'alt'=>$alt,'title'=>$v['Media']['name'])); ?>
+						</div>
+						<div style="float: left">
+							<p><span style="color: #000">Nom du fichier :</span><?php echo $v['Media']['name']; ?></p>
+							<p><span style="color: #000">Type du fichier :</span><?php echo $v['Media']['mime_type'] ?></p>
+							<p><span style="color: #000">Date de mise en ligne :</span><?php echo $this->date->format($v['Media']['created'],'FR') ?></p>
+							<p><span style="color: #000">Taille :</span><?php echo $v['Media']['size'] ?></p>
+						</div>
+						<div style="clear: both"></div>
+						<?php echo $this->Form->create('Media'); ?>
+				   			<?php echo $this->Form->input('title',array('label'=>'Titre : ','value'=>$v['Media']['name'])) ?>
+				   			<?php echo $this->Form->input('alt',array('label'=>'Texte alternatif : ','value'=>$alt)) ?>
+							<?php echo $this->Form->input('class',array('legend'=>"Alignement : ",'options'=>$alignement,'type'=>'radio')); ?>
+							<div style="margin-bottom: 5px"></div>
+							<?php echo $this->Form->input('size',array('legend'=>"Taille : ",'options'=>$taille,'type'=>'radio')); ?>
+						   	<?php echo $this->Form->input('method',array('type'=>'hidden','value'=>'library')) ?>
+						   	<?php echo $this->Form->input('guid',array('value'=>$v['Media']['guid'],'type'=>'hidden')) ?>
+			   			<?php echo $this->Form->end('Insérer') ?>	
 					</div>
-					<div class="toggle_name">
-						<?php echo $v['Media']['name']; ?>
-					</div>
-					<div class="toggle_action_media">
-						<a href="#" class="toggle on">Afficher</a>
-						<a href="#" class="toggle off" style="display: none">Masquer</a>
-					</div>
-					<div class="clear"></div>
-				</div>	
-				<div class="media_form">
-					<div style="float:left;margin-right: 20px">
-						<?php echo $this->Html->image($v['Media']['thumbnail'],array('width'=>128,'height'=>128,'alt'=>$alt,'title'=>$v['Media']['name'])); ?>
-					</div>
-					<div style="float: left">
-						<p><span style="color: #000">Nom du fichier :</span><?php echo $v['Media']['name']; ?></p>
-						<p><span style="color: #000">Type du fichier :</span><?php echo $v['Media']['mime_type'] ?></p>
-						<p><span style="color: #000">Date de mise en ligne :</span><?php echo $this->date->format($v['Media']['created'],'FR') ?></p>
-						<p><span style="color: #000">Taille :</span><?php echo $v['Media']['size'] ?></p>
-					</div>
-					<div style="clear: both"></div>
-					<?php echo $this->Form->create('Media'); ?>
-			   			<?php echo $this->Form->input('title',array('label'=>'Titre : ','value'=>$v['Media']['name'])) ?>
-			   			<?php echo $this->Form->input('alt',array('label'=>'Texte alternatif : ','value'=>$alt)) ?>
-						<?php echo $this->Form->input('class',array('legend'=>"Alignement : ",'options'=>$alignement,'type'=>'radio')); ?>
-						<div style="margin-bottom: 5px"></div>
-						<?php echo $this->Form->input('size',array('legend'=>"Taille : ",'options'=>$taille,'type'=>'radio')); ?>
-					   	<?php echo $this->Form->input('method',array('type'=>'hidden','value'=>'library')) ?>
-					   	<?php echo $this->Form->input('guid',array('value'=>$v['Media']['guid'],'type'=>'hidden')) ?>
-		   			<?php echo $this->Form->end('Insérer') ?>	
 				</div>
-			</div>
-		<?php endforeach ?>
+			<?php endforeach ?>
+		<?php else: ?>
+			<div style="padding: 2px;border: 1px solid #DFDFDF;">Pas de médias à afficher</div>	
+		<?php endif ?>
 	</div>
 	
 	<?php echo $this->Html->scriptStart(array('inline'=>false)) ?>
