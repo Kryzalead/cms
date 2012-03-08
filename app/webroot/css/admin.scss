@@ -1499,7 +1499,7 @@ $none:none;
 	text-shadow: 0px 0px #4E7A85 !important;
 	font-weight: bold !important;
 }
-/*Checkbox/Radio*/
+/*Checkbox/Radio
 .selector, .checker, .button, .radio, .uploader{
 	position: relative;
 	display: inline-block;
@@ -1508,7 +1508,7 @@ $none:none;
 }
 .selector span, .checker span, .button span, .radio span, .uploader span{display: block;}
 #content .checker:hover, #content .radio:hover{
-	/*+box-shadow:0px 0px 10px #D2D2D2;*/
+	+box-shadow:0px 0px 10px #D2D2D2;
 	@extend .checkerBoxOmbre;}
 
 #content .checker, #content .checker span, #content .checker input, #content .radio, #content .radio span, #content .radio input{
@@ -1523,7 +1523,7 @@ $none:none;
 }
 #content .checker span.checked, #content .radio span.checked{
 	background-position: top left;
-}
+}*/
 /*Select*/
 #content .selector, #content .selector select, #content .selector span{
 	width: 162px !important;
