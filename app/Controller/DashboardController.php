@@ -28,6 +28,7 @@ class DashboardController extends AppController{
 			$d['total'.ucfirst($value['Post']['type'])] = $value[0]['total'];
 		}
 		
+		// on récupère le nombre de taxonomy
 		$this->loadModel('Taxonomy.Term');
 
 		$count = $this->Term->find('all',array(
@@ -39,6 +40,16 @@ class DashboardController extends AppController{
 			$d['total'.ucfirst($value['Term']['type'])] = $value[0]['total'];
 		}
 		
+
+		// on récupère les derniers brouillons
+		$d['last_drafts'] = $this->Post->find('all',array(
+			'fields'=>array('Post.id','Post.name','Post.content','Post.created'),
+			'conditions'=>array(
+				'Post.type'=>'post',
+				'Post.status'=>'draft'	
+			)
+		));
+
 		$this->set($d);
 	}
 }
