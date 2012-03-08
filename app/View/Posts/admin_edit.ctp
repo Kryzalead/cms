@@ -13,7 +13,7 @@
 	<?php echo $this->Form->input('id'); ?>
         <?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
 	<?php echo $this->Form->input('type',array('type'=>'hidden','value'=>'post')) ?>
-	<?php echo $this->Form->input('content',array('label'=>'Contenu : ','style'=>'width:100%','rows'=>15)) ?>
+	<?php echo $this->Form->input('content',array('label'=>'Contenu : ','style'=>'width:100%','rows'=>Configure::read('default_post_edit_rows'))) ?>
 </div>
 
 <div id="blocsAjoutCote">

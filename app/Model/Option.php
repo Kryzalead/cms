@@ -9,6 +9,22 @@ class Option extends AppModel{
 		'admin_email'=>array(
 			'rule'=>'email',
 			'message'=>"L'adresse de messagerie n'est pas valide"
+		),
+		'default_post_edit_rows'=>array(
+			'rule'=>'numeric',
+			'message'=>"Le champs doit être un nombre"
 		)
 	);
+
+	function beforeSave($data){
+		$data = array();
+		foreach ($this->data['Option'] as $k => $v) {
+			$data = array(
+				'name'=>$k,
+				'value'=>$v
+			);
+		}
+		$this->data['Option'] = $data;
+		return true;
+	}
 }

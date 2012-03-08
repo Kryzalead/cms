@@ -113,7 +113,7 @@
                     <ul>
                         <li><?php echo $this->Html->link("Général",array('plugin'=>null,'action'=>'general','controller'=>'options')); ?></li>
                         <li><?php echo $this->Html->link("Ecriture",array('plugin'=>null,'action'=>'write','controller'=>'options')); ?></li>
-                        <li><?php echo $this->Html->link("Lecture",array('plugin'=>null,'action'=>'edit','controller'=>'options')); ?></li>
+                        <li><?php echo $this->Html->link("Lecture",array('plugin'=>null,'action'=>'read','controller'=>'options')); ?></li>
                         <li><?php echo $this->Html->link("Discussion",array('plugin'=>null,'action'=>'edit','controller'=>'options')); ?></li>
                         <li><?php echo $this->Html->link("Médias",array('plugin'=>null,'action'=>'edit','controller'=>'options')); ?></li>
                     </ul>
