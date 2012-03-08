@@ -32,54 +32,61 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 32, admin.scss */
+/* Général */
+/* line 34, admin.scss */
+html,
 body {
-  line-height: 1;
-  color: black;
-  background: white;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 39, admin.scss */
+body {
+  font-family: sans-serif;
   font-size: 0.75em;
-  font-family: Arial, Helvetica, Sans-serif;
-  background-color: #FFF;
+  line-height: 1.4em;
+  min-width: 600px;
+  background-color: white;
 }
 
-/* remember to define focus styles! */
-/* line 41, admin.scss */
-:focus {
-  outline: 0;
-}
-
-/* line 43, admin.scss */
+/* line 46, admin.scss */
 ol, ul {
   list-style: none;
   padding: 0;
 }
 
-/* line 45, admin.scss */
+/* remember to define focus styles! */
+/* line 49, admin.scss */
+:focus {
+  outline: 0;
+}
+
+/* line 50, admin.scss */
 * {
   padding: 0;
   margin: 0;
 }
 
 /* tables still need 'cellspacing="0"' in the markup */
-/* line 48, admin.scss */
+/* line 53, admin.scss */
 table {
   border-collapse: separate;
   border-spacing: 0;
 }
 
-/* line 52, admin.scss */
+/* line 57, admin.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
 }
 
-/* line 57, admin.scss */
-blockquote:before, blockquote:after,
-q:before, q:after {
+/* line 61, admin.scss */
+blockquote:before, blockquote:after, q:before, q:after {
   content: "";
 }
 
-/* line 59, admin.scss */
+/* line 62, admin.scss */
 blockquote, q {
   quotes: "" "";
 }
@@ -101,18 +108,18 @@ blockquote, q {
   font-style: normal;
 }
 
-/* line 81, admin.scss */
+/* line 83, admin.scss */
 .cb, .clear {
   clear: both;
 }
 
-/* line 82, admin.scss */
+/* line 84, admin.scss */
 .relative {
   position: relative;
 }
 
 /* faire le degrader voir ligne 496 */
-/* line 86, admin.scss */
+/* line 87, admin.scss */
 #head {
   background-image: linear-gradient(bottom, #313131 13%, #434343 57%, #555555 85%);
   background-image: -o-linear-gradient(bottom, #313131 13%, #434343 57%, #555555 85%);
@@ -122,7 +129,7 @@ blockquote, q {
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.13, #313131), color-stop(0.57, #434343), color-stop(0.85, #555555));
 }
 
-/* line 94, admin.scss */
+/* line 95, admin.scss */
 #head a.button, #head .search {
   background-color: #2A2A2A;
 }
@@ -130,15 +137,15 @@ blockquote, q {
 /* ------------------- */
 /*   FRAMEWORKS  */
 /* ---------------- */
-/* line 100, admin.scss */
-.boxOmbre, #head {
+/* line 101, admin.scss */
+.checkerBoxOmbre {
   -moz-box-shadow: 0px 2px 10px #444444;
   -webkit-box-shadow: 0px 2px 10px #444444;
   -o-box-shadow: 0px 2px 10px #444444;
   box-shadow: 0px 2px 10px #444444;
 }
 
-/* line 101, admin.scss */
+/* line 102, admin.scss */
 .checkerBoxOmbre {
   -moz-box-shadow: 0px 0px 10px #d2d2d2;
   -webkit-box-shadow: 0px 0px 10px #d2d2d2;
@@ -146,7 +153,7 @@ blockquote, q {
   box-shadow: 0px 0px 10px #d2d2d2;
 }
 
-/* line 102, admin.scss */
+/* line 103, admin.scss */
 .contentRadiusHaut, #content .bloc .title {
   -webkit-border-radius: 9px 9px;
   -moz-border-radius: 9px 9px 0px 0px / 9px 9px 0px 0px;
@@ -156,23 +163,43 @@ blockquote, q {
   border-radius: 9px 9px 0px 0px / 9px 9px 0px 0px;
 }
 
+/* line 104, admin.scss */
+.aideRadiusBas, #aide_wrap {
+  -webkit-border-radius: 0px 0px;
+  -moz-border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+  -o-border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+  -ms-border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+  -khtml-border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+  border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+}
+
+/* line 105, admin.scss */
+.aideRadiusBasBouton, #bouton_options_ecran, #contextual-help-link-wrap {
+  -webkit-border-radius: 0px 0px;
+  -moz-border-radius: 0px 0px 3px 3px / 0px 0px 3px 3px;
+  -o-border-radius: 0px 0px 3px 3px / 0px 0px 3px 3px;
+  -ms-border-radius: 0px 0px 3px 3px / 0px 0px 3px 3px;
+  -khtml-border-radius: 0px 0px 3px 3px / 0px 0px 3px 3px;
+  border-radius: 0px 0px 3px 3px / 0px 0px 3px 3px;
+}
+
 /* -- Default -- */
 /*$default-border-radius:10px;*/
 /* --  Mixin -- */
 /* - Content .bloc .dark - */
-/* line 143, admin.scss */
+/* line 152, admin.scss */
 .contentTextShadowDark, .dark #content h1 {
   text-shadow: black 0px 1px 0px;
 }
 
 /* -- Style Basic Frameworks -- */
-/* line 146, admin.scss */
+/* line 155, admin.scss */
 .textShadowWhite, #content.white .bloc .title {
   text-shadow: white 0px 1px 0px;
 }
 
 /* ********************************************** HEADER ********************************************************** */
-/* line 150, admin.scss */
+/* line 159, admin.scss */
 #head {
   height: 40px;
   position: fixed;
@@ -185,33 +212,33 @@ blockquote, q {
   z-index: 9999;
 }
 
-/* line 162, admin.scss */
+/* line 171, admin.scss */
 #head .left {
   position: active absolute;
   left: 15px;
   top: 0;
 }
 
-/* line 167, admin.scss */
+/* line 176, admin.scss */
 #head .right {
   position: absolute;
   top: 0;
   right: 15px;
 }
 
-/* line 172, admin.scss */
+/* line 181, admin.scss */
 #head a {
   color: #FFF;
   text-decoration: none;
 }
 
-/* line 176, admin.scss */
+/* line 185, admin.scss */
 #head a:hover {
   text-decoration: underline;
   color: #E07126;
 }
 
-/* line 180, admin.scss */
+/* line 189, admin.scss */
 #head .gravatar {
   border: 1px solid #222;
   display: block;
@@ -234,7 +261,7 @@ blockquote, q {
 }
 
 /** Search Form **/
-/* line 192, admin.scss */
+/* line 201, admin.scss */
 #head .search {
   display: inline-block;
   position: relative;
@@ -252,7 +279,7 @@ blockquote, q {
   border-radius: 5px;
 }
 
-/* line 203, admin.scss */
+/* line 212, admin.scss */
 #head .search input.text {
   position: absolute;
   border: none;
@@ -265,7 +292,7 @@ blockquote, q {
   text-shadow: #aaaaaa 0px 1px 4px;
 }
 
-/* line 214, admin.scss */
+/* line 223, admin.scss */
 #head .search input.submit {
   height: 25px;
   position: absolute;
@@ -279,7 +306,7 @@ blockquote, q {
   overflow: hidden;
 }
 
-/* line 226, admin.scss */
+/* line 235, admin.scss */
 #head .search label {
   position: absolute;
   border: none;
@@ -291,7 +318,7 @@ blockquote, q {
 }
 
 /* ********************************************** SIDEBAR MENU PRINCIPAL ************************************************* */
-/* line 237, admin.scss */
+/* line 246, admin.scss */
 #sidebar {
   position: fixed;
   z-index: 3;
@@ -308,7 +335,7 @@ blockquote, q {
   text-shadow: #111111 0px 1px 4px;
 }
 
-/* line 248, admin.scss */
+/* line 257, admin.scss */
 #sidebar > ul > li > a {
   height: 40px;
   line-height: 40px;
@@ -323,7 +350,7 @@ blockquote, q {
   border-bottom: 1px solid #333;
 }
 
-/* line 261, admin.scss */
+/* line 270, admin.scss */
 #sidebar > ul > li > ul > li ul {
   margin-left: 20px;
   /*+box-shadow:none;*/
@@ -334,7 +361,7 @@ blockquote, q {
   border: none;
 }
 
-/* line 270, admin.scss */
+/* line 279, admin.scss */
 #sidebar ul li a img {
   vertical-align: text-bottom;
   padding-right: 4px;
@@ -345,7 +372,7 @@ blockquote, q {
   opacity: 0.49;
 }
 
-/* line 279, admin.scss */
+/* line 288, admin.scss */
 #sidebar ul li:hover a img, #sidebar ul li.current a img {
   /*+opacity:100%;*/
   filter: alpha(opacity=100);
@@ -354,19 +381,19 @@ blockquote, q {
   opacity: 1;
 }
 
-/* line 286, admin.scss */
+/* line 295, admin.scss */
 #sidebar ul li.nosubmenu a {
   background-image: none !important;
 }
 
-/* line 288, admin.scss */
+/* line 297, admin.scss */
 #sidebar > ul > li:hover > a, #sidebar > ul > li.current > a {
   color: #FFF;
   background-position: 96% -53px !important;
   background-color: #585858;
 }
 
-/* line 293, admin.scss */
+/* line 302, admin.scss */
 #sidebar ul li ul {
   background: #404040;
   /*+box-shadow:inset 0 0 15px #3A3A3A;*/
@@ -378,7 +405,7 @@ blockquote, q {
   padding: 7px 0px;
 }
 
-/* line 303, admin.scss */
+/* line 312, admin.scss */
 #sidebar ul li li a {
   height: 28px;
   line-height: 28px;
@@ -391,18 +418,18 @@ blockquote, q {
   color: #949090;
 }
 
-/* line 314, admin.scss */
+/* line 323, admin.scss */
 #sidebar ul li li a:hover, #sidebar ul li li.current a {
   background-position: 37px -31px;
 }
 
-/* line 316, admin.scss */
+/* line 325, admin.scss */
 #sidebar a:hover, #sidebar li.current > a {
   padding-left: 0px;
   color: #09f !important;
 }
 
-/* line 317, admin.scss */
+/* line 326, admin.scss */
 #sidebar a#menucollapse {
   color: #AAA;
   display: block;
@@ -414,7 +441,7 @@ blockquote, q {
   font-style: italic;
 }
 
-/* line 318, admin.scss */
+/* line 327, admin.scss */
 #sidebar a span {
   color: #AAA;
   border: 1px solid #AAA;
@@ -428,17 +455,17 @@ blockquote, q {
   background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 }
 
-/* line 320, admin.scss */
+/* line 329, admin.scss */
 .collapsed #sidebar {
   width: 56px;
 }
 
-/* line 321, admin.scss */
+/* line 330, admin.scss */
 .collapsed #sidebar > ul > li {
   position: relative;
 }
 
-/* line 322, admin.scss */
+/* line 331, admin.scss */
 .collapsed #sidebar > ul > li > a {
   width: 52px;
   overflow: hidden;
@@ -451,12 +478,12 @@ blockquote, q {
   transition: 0.3s;
 }
 
-/* line 323, admin.scss */
+/* line 332, admin.scss */
 .collapsed #sidebar > ul > li:hover > a {
   width: 200px;
 }
 
-/* line 324, admin.scss */
+/* line 333, admin.scss */
 .collapsed #sidebar > ul > li ul {
   position: absolute;
   width: 146px;
@@ -469,79 +496,85 @@ blockquote, q {
   display: block!important;
 }
 
-/* line 325, admin.scss */
+/* line 334, admin.scss */
 .collapsed #sidebar > ul > li ul ul {
   left: 0;
   margin-left: 0px;
 }
 
-/* line 326, admin.scss */
+/* line 335, admin.scss */
 .collapsed #sidebar > ul > li:hover > ul {
   overflow: visible;
   left: 56px;
 }
 
-/* line 327, admin.scss */
+/* line 336, admin.scss */
 .collapsed #sidebar > ul > li ul li a {
   text-indent: 10px;
   background: none;
   overflow: hidden;
 }
 
-/* line 328, admin.scss */
+/* line 337, admin.scss */
 .collapsed #sidebar > ul > li ul ul li a {
   text-indent: 20px;
 }
 
-/* line 329, admin.scss */
+/* line 338, admin.scss */
 .collapsed #sidebar > ul > li ul ul ul li a {
   text-indent: 40px;
 }
 
-/* line 330, admin.scss */
+/* line 339, admin.scss */
 .collapsed #content {
   margin-left: 90px;
 }
 
 /* **********************************************  MENU AIDE ******************************************************** */
-/* line 334, admin.scss */
+/* line 345, admin.scss */
+.hidden,
+.js .closed .inside, .js .hide-if-js,
+.no-js .hide-if-no-js {
+  display: none;
+}
+
+/* line 347, admin.scss */
 #aide {
   margin-top: 40px;
   position: relative;
 }
 
-/* line 340, admin.scss */
-#screen-options-wrap,
-#contextual-help-wrap {
+/* line 351, admin.scss */
+#ecran_options_wrap, #aide_wrap {
   margin: 0;
   padding: 8px 20px 12px;
   position: relative;
   overflow: auto;
 }
 
-/* line 346, admin.scss */
+/* line 357, admin.scss */
 #screen-meta .screen-reader-text {
   visibility: hidden;
 }
 
-/* line 348, admin.scss */
+/* line 358, admin.scss */
 #screen-meta-links {
   margin: 0 24px 0 0;
 }
 
 /* screen options and help tabs revert */
-/* line 351, admin.scss */
+/* line 361, admin.scss */
 #screen-meta {
-  display: none;
+  display: block;
+  /* display: none; */
   position: relative;
   margin: 0 15px 0 5px;
   border-width: 0 1px 1px;
   border-style: none solid solid;
 }
 
-/* line 359, admin.scss */
-#screen-options-link-wrap,
-#contextual-help-link-wrap {
+/* line 368, admin.scss */
+#bouton_options_ecran, #contextual-help-link-wrap {
   float: right;
   height: 22px;
   padding: 0;
@@ -549,17 +582,7 @@ blockquote, q {
   font-family: sans-serif;
 }
 
-/* line 368, admin.scss */
-#screen-options-link-wrap,
-#contextual-help-link-wrap,
-#screen-meta {
-  -webkit-border-bottom-left-radius: 3px;
-  -webkit-border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-/* line 374, admin.scss */
+/* line 377, admin.scss */
 #screen-meta-links a.show-settings {
   text-decoration: none;
   z-index: 1;
@@ -571,13 +594,13 @@ blockquote, q {
   text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
 }
 
-/* line 384, admin.scss */
+/* line 387, admin.scss */
 #screen-meta-links a.show-settings:hover {
   text-decoration: none;
 }
 
 /* end screen options and help tabs */
-/* line 387, admin.scss */
+/* line 390, admin.scss */
 .toggle-arrow {
   background-repeat: no-repeat;
   background-position: top left;
@@ -587,50 +610,49 @@ blockquote, q {
   display: block;
 }
 
-/* line 395, admin.scss */
+/* line 398, admin.scss */
 .toggle-arrow-active {
   background-position: bottom left;
 }
 
-/* line 398, admin.scss */
-#screen-options-wrap h5,
-#contextual-help-wrap h5 {
+/* line 400, admin.scss */
+#ecran_options_wrap h5, #aide_wrap h5 {
   margin: 8px 0;
   font-size: 13px;
 }
 
-/* line 402, admin.scss */
-.metabox-prefs label {
+/* line 404, admin.scss */
+.metabox label {
   display: inline-block;
   padding-right: 15px;
   white-space: nowrap;
   line-height: 30px;
 }
 
-/* line 408, admin.scss */
-.metabox-prefs label input {
+/* line 410, admin.scss */
+.metabox label input {
   margin: 0 5px 0 2px;
 }
 
 /* line 412, admin.scss */
-.metabox-prefs label a {
+.metabox label a {
   display: none;
 }
 
-/* -- Help text -- */
-/* line 417, admin.scss */
-#contextual-help-wrap {
+/* -- aide text -- */
+/* line 415, admin.scss */
+#aide_wrap {
   padding: 0;
   margin-left: -4px;
 }
 
-/* line 421, admin.scss */
-#contextual-help-columns {
+/* line 420, admin.scss */
+#aide_colonnes {
   position: relative;
 }
 
-/* line 423, admin.scss */
-#contextual-help-back {
+/* line 422, admin.scss */
+#aide_back {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -640,28 +662,28 @@ blockquote, q {
   border-style: solid;
 }
 
-/* line 432, admin.scss */
-#contextual-help-wrap.no-sidebar #contextual-help-back {
+/* line 431, admin.scss */
+#aide_wrap.no-sidebar #aide_back {
   right: 0;
   border-right-width: 0;
   -webkit-border-bottom-right-radius: 2px;
   border-bottom-right-radius: 2px;
 }
 
-/* line 438, admin.scss */
-.contextual-help-tabs {
+/* line 437, admin.scss */
+.colonne_menu {
   float: left;
   width: 150px;
   margin: 0;
 }
 
-/* line 443, admin.scss */
-.contextual-help-tabs ul {
+/* line 442, admin.scss */
+.colonne_menu ul {
   margin: 1em 0;
 }
 
-/* line 445, admin.scss */
-.contextual-help-tabs li {
+/* line 444, admin.scss */
+.colonne_menu li {
   margin-bottom: 0;
   list-style-type: none;
   border-style: solid;
@@ -669,93 +691,98 @@ blockquote, q {
   border-color: transparent;
 }
 
-/* line 452, admin.scss */
-.contextual-help-tabs a {
+/* line 451, admin.scss */
+.colonne_menu a {
   display: block;
   padding: 5px 5px 5px 12px;
   line-height: 18px;
   text-decoration: none;
 }
 
-/* line 458, admin.scss */
-.contextual-help-tabs .active {
+/* line 457, admin.scss */
+.colonne_menu .active {
   padding: 0;
   margin: 0 -1px 0 0;
   border-width: 1px 0 1px 1px;
   border-style: solid;
 }
 
-/* line 464, admin.scss */
-.contextual-help-tabs-wrap {
+/* line 463, admin.scss */
+.colonne_texte_wrap {
   padding: 0 20px;
   overflow: auto;
 }
 
-/* line 468, admin.scss */
+/* line 467, admin.scss */
 .help-tab-content {
   display: none;
   margin: 0 22px 12px 0;
   line-height: 1.6em;
 }
 
-/* line 473, admin.scss */
+/* line 472, admin.scss */
 .help-tab-content.active {
   display: block;
 }
 
-/* line 475, admin.scss */
+/* line 474, admin.scss */
 .help-tab-content li {
   list-style-type: disc;
   margin-left: 18px;
 }
 
-/* line 479, admin.scss */
-.contextual-help-sidebar {
+/* line 478, admin.scss */
+.aide_image {
   width: 150px;
   float: right;
-  padding: 0 8px 0 12px;
-  overflow: auto;
+  padding: 10px 0px 0 0px;
+  overflow: none;
 }
 
 /* -- couleur menu aide -- */
-/* line 487, admin.scss */
+/* line 485, admin.scss */
 #screen-meta {
   background-color: #f1f1f1;
   border-color: #ccc;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0px 5px 10px #888888;
+  -webkit-box-shadow: 0px 5px 10px #888888;
+  -o-box-shadow: 0px 5px 10px #888888;
+  box-shadow: 0px 5px 10px #888888;
+  -webkit-border-radius: 0px 0px;
+  -moz-border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+  -o-border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+  -ms-border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+  -khtml-border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
+  border-radius: 0px 0px 9px 9px / 0px 0px 9px 9px;
 }
 
-/* line 493, admin.scss */
-#contextual-help-back {
+/* line 490, admin.scss */
+#aide_back {
   background: #fff;
 }
 
-/* line 494, admin.scss */
-.contextual-help-tabs a:hover {
+/* line 491, admin.scss */
+.colonne_menu a:hover {
   color: #333;
 }
 
-/* line 496, admin.scss */
-#contextual-help-back, .contextual-help-tabs .active {
+/* line 492, admin.scss */
+#aide_back, .colonne_menu .active {
   border-color: #ccc;
 }
 
-/* line 497, admin.scss */
-.contextual-help-tabs .active, .contextual-help-tabs .active a, .contextual-help-tabs .active a:hover {
+/* line 493, admin.scss */
+.colonne_menu .active, .colonne_menu .active a, .colonne_menu .active a:hover {
   background: #fff;
   color: #000;
 }
 
 /* screen options and help tabs */
-/* line 501, admin.scss */
-#screen-options-link-wrap,
+/* line 497, admin.scss */
+#bouton_options_ecran,
 #contextual-help-link-wrap {
   background-color: #e3e3e3;
-  /* Fallback */
-  border-right: 1px solid transparent;
-  border-left: 1px solid transparent;
-  border-bottom: 1px solid transparent;
+  border: 1px solid transparent;
   background-image: linear-gradient(bottom, #555555 13%, #434343 57%, #313131 88%);
   background-image: -o-linear-gradient(bottom, #555555 13%, #434343 57%, #313131 88%);
   background-image: -moz-linear-gradient(bottom, #555555 13%, #434343 57%, #313131 88%);
@@ -764,44 +791,49 @@ blockquote, q {
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.13, #555555), color-stop(0.57, #434343), color-stop(0.88, #313131));
 }
 
-/* line 513, admin.scss */
+/* line 507, admin.scss */
 #contextual-help-link-wrap {
-  width: 50px;
+  width: 45px;
 }
 
-/* line 514, admin.scss */
-#screen-options-link-wrap {
-  width: 130px;
+/* line 508, admin.scss */
+#option_ecran_wrap {
+  width: 140px;
 }
 
-/* line 516, admin.scss */
+/* line 510, admin.scss */
 #screen-meta-links a.show-settings {
-  color: #AEAEAE;
-}
-
-/* line 517, admin.scss */
-#screen-meta-links a.show-settings:hover {
   color: #FFF;
+  -moz-box-shadow: 0px 5px 10px #888888;
+  -webkit-box-shadow: 0px 5px 10px #888888;
+  -o-box-shadow: 0px 5px 10px #888888;
+  box-shadow: 0px 5px 10px #888888;
+  text-shadow: #111111 0px 1px 4px;
 }
 
-/* line 518, admin.scss */
+/* line 511, admin.scss */
+#screen-meta-links a.show-settings:hover {
+  color: #09F;
+}
+
+/* line 512, admin.scss */
 #screen-meta-links a.show-settings {
-  background: transparent url(images/arrow_aide.png) no-repeat 96% 5px;
+  background: transparent url(images/arrow_aide.png) no-repeat 100% 4px;
 }
 
-/* line 519, admin.scss */
+/* line 513, admin.scss */
 #screen-meta-links a.show-settings.screen-meta-active {
-  background: transparent url(images/slidebuttons.png) no-repeat 97% -45px;
+  background: transparent url(images/arrow_aide.png) no-repeat 96% 5px;
 }
 
 /* **********************************************  COLORS ********************************************************** */
 /* Background */
-/* line 524, admin.scss */
+/* line 518, admin.scss */
 .dark {
   background: url(images/setting_button/bg/dark-bg.png);
 }
 
-/* line 526, admin.scss */
+/* line 520, admin.scss */
 .dark #content .bloc {
   /*+box-shadow:0px 5px 15px rgba(0, 0, 0, 0.5);*/
   -moz-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
@@ -810,13 +842,13 @@ blockquote, q {
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* line 533, admin.scss */
+/* line 527, admin.scss */
 .dark #content h1 {
   color: #FFF;
 }
 
 /*White blocks*/
-/* line 538, admin.scss */
+/* line 532, admin.scss */
 #content.white .bloc .title {
   background: url(images/setting_button/blocs_titles/white-title.png);
   color: #222;
@@ -824,33 +856,33 @@ blockquote, q {
   border: none;
 }
 
-/* line 545, admin.scss */
+/* line 539, admin.scss */
 #content.white .bloc .title .toggle {
   background-position: left -18px;
 }
 
-/* line 546, admin.scss */
+/* line 540, admin.scss */
 #content.white .bloc .title .toggle.hide {
   background-position: right -18px;
 }
 
-/* line 547, admin.scss */
+/* line 541, admin.scss */
 #content.white .bloc .title .next {
   background-position: right -18px;
 }
 
-/* line 548, admin.scss */
+/* line 542, admin.scss */
 #content.white .bloc .title .prev {
   background-position: center -18px;
 }
 
-/* line 549, admin.scss */
+/* line 543, admin.scss */
 #content.white .bloc .tabs a {
   color: #434242;
 }
 
 /*Dark Sidebar*/
-/* line 552, admin.scss */
+/* line 546, admin.scss */
 #sidebar.black {
   background-color: #262626;
   border-right: 1px solid #1B1B1B;
@@ -861,7 +893,7 @@ blockquote, q {
   text-shadow: #111111 0px 1px 4px;
 }
 
-/* line 557, admin.scss */
+/* line 551, admin.scss */
 #sidebar.black > ul > li > a {
   color: #F0F0F0;
   /*+text-shadow:0px 1px #0D0D0D;*/
@@ -875,14 +907,14 @@ blockquote, q {
   border-right: 4px solid #303030;
 }
 
-/* line 569, admin.scss */
+/* line 563, admin.scss */
 #sidebar.black > ul > li:hover > a, #sidebar.black ul li.current > a {
   background-color: #262626;
   color: #FFF;
   border-right-color: #09F;
 }
 
-/* line 574, admin.scss */
+/* line 568, admin.scss */
 #sidebar.black ul li ul {
   background: #262626;
   /*+box-shadow:inset 0 0 15px #1B1B1B;*/
@@ -895,7 +927,7 @@ blockquote, q {
   border-bottom: 0px solid #000;
 }
 
-/* line 585, admin.scss */
+/* line 579, admin.scss */
 #sidebar.black ul ul ul {
   background: #262626;
   /*+box-shadow:inset 0 0 15px #1B1B1B;*/
@@ -908,23 +940,23 @@ blockquote, q {
   border-bottom: 0px solid #000;
 }
 
-/* line 596, admin.scss */
+/* line 590, admin.scss */
 .collapsed #sidebar.black ul ul {
   border-right: none;
 }
 
-/* line 598, admin.scss */
+/* line 592, admin.scss */
 #sidebar.black ul li li a {
   color: #747474;
 }
 
 /* White sidebar */
-/* line 601, admin.scss */
+/* line 595, admin.scss */
 #sidebar.white a#menucollapse {
   color: #555;
 }
 
-/* line 603, admin.scss */
+/* line 597, admin.scss */
 #sidebar.white {
   background-color: #ECECEC;
   border-right: none;
@@ -935,7 +967,7 @@ blockquote, q {
   text-shadow: #111111 0px 1px 4px;
 }
 
-/* line 608, admin.scss */
+/* line 602, admin.scss */
 #sidebar.white > ul > li > a {
   color: #7C7D7E;
   /*+text-shadow:none;*/
@@ -949,14 +981,14 @@ blockquote, q {
   border-right: 4px solid #D6D6D6;
 }
 
-/* line 620, admin.scss */
+/* line 614, admin.scss */
 #sidebar.white > ul > li:hover > a, #sidebar.white > ul > li.current > a {
   background-color: #ECECEC;
   color: #09f;
   border-right-color: #808080;
 }
 
-/* line 625, admin.scss */
+/* line 619, admin.scss */
 #sidebar.white ul li ul {
   background: #F8F8F8;
   /*+box-shadow:inset 0 0 15px #CECECE;*/
@@ -974,7 +1006,7 @@ blockquote, q {
   border-bottom: 1px solid #D6D6D6;
 }
 
-/* line 641, admin.scss */
+/* line 635, admin.scss */
 #sidebar.white ul li li a {
   color: #7C7D7E;
   /*+text-shadow:none;*/
@@ -985,18 +1017,18 @@ blockquote, q {
   background-image: url(images/dark-sideli.png);
 }
 
-/* line 650, admin.scss */
+/* line 644, admin.scss */
 #sidebar.white a:hover, #sidebar.white li.current > a {
   color: #000 !important;
 }
 
 /**  White **/
-/* line 653, admin.scss */
+/* line 647, admin.scss */
 .white #content.login {
   color: #808080;
 }
 
-/* line 655, admin.scss */
+/* line 649, admin.scss */
 .white #content.login div.input {
   background-color: #EEE;
   background-color: rgba(255, 255, 255, 0.5);
@@ -1008,7 +1040,7 @@ blockquote, q {
   border: 1px solid #C2C1C1;
 }
 
-/* line 665, admin.scss */
+/* line 659, admin.scss */
 .white #content.login div.submit input {
   /*+box-shadow:0px 2px 5px #B2B2B2;*/
   -moz-box-shadow: 0px 2px 5px #B2B2B2;
@@ -1017,13 +1049,13 @@ blockquote, q {
   box-shadow: 0px 2px 5px #B2B2B2;
 }
 
-/* line 672, admin.scss */
+/* line 666, admin.scss */
 .white #content.login div.input label {
   color: #A7A3A3;
 }
 
 /*********************************************** CONTENT ***********************************************************/
-/* line 676, admin.scss */
+/* line 670, admin.scss */
 #content {
   margin: 28px 40px 0px 280px;
   color: #6D6D6D;
@@ -1032,42 +1064,42 @@ blockquote, q {
   position: relative;
 }
 
-/* line 683, admin.scss */
+/* line 677, admin.scss */
 #content.nosidebar {
   margin-left: 40px;
 }
 
-/* line 685, admin.scss */
+/* line 679, admin.scss */
 #content a {
   color: #0A93CC;
 }
 
-/* line 687, admin.scss */
+/* line 681, admin.scss */
 #content a:hover {
-  color: #000000;
+  color: #000;
   text-decoration: underline;
 }
 
-/* line 691, admin.scss */
+/* line 685, admin.scss */
 #content em, #content em a {
   font-style: italic;
   color: #B2B2B2;
   font-weight: normal;
 }
 
-/* line 696, admin.scss */
+/* line 690, admin.scss */
 #content strong {
   font-weight: bold;
   color: #1A1616;
 }
 
-/* line 700, admin.scss */
+/* line 694, admin.scss */
 #content pre {
   font-style: italic;
   font-size: 1.1em;
 }
 
-/* line 704, admin.scss */
+/* line 698, admin.scss */
 #content h1 {
   color: #000;
   font: normal 3.5em 'ftusj';
@@ -1076,28 +1108,23 @@ blockquote, q {
   text-shadow: #111111 0px 1px 4px;
 }
 
-/* line 711, admin.scss */
+/* line 705, admin.scss */
 #content h1 a {
   color: inherit;
 }
 
-/* line 712, admin.scss */
+/* line 706, admin.scss */
 #content h1 span {
   font-size: 16px;
 }
 
-/* line 713, admin.scss */
-#content .bloc:first-child {
-  margin-top: 84px;
-}
-
-/* line 714, admin.scss */
+/* line 707, admin.scss */
 #content h1 img {
   vertical-align: top;
   margin: -15px 10px 0 0;
 }
 
-/* line 716, admin.scss */
+/* line 709, admin.scss */
 #content .bloc {
   margin: 20px 0px 0px;
   background-color: #FFF;
@@ -1114,18 +1141,18 @@ blockquote, q {
   border-radius: 11px;
 }
 
-/* line 722, admin.scss */
+/* line 715, admin.scss */
 #content .left, #content .right {
   width: 49%;
   float: left;
 }
 
-/* line 726, admin.scss */
+/* line 719, admin.scss */
 #content .right {
   float: right;
 }
 
-/* line 728, admin.scss */
+/* line 721, admin.scss */
 #content .bloc .title {
   height: 35px;
   position: relative;
@@ -1137,7 +1164,7 @@ blockquote, q {
   color: #E6E6E6;
 }
 
-/* line 739, admin.scss */
+/* line 732, admin.scss */
 #content .bloc .title .toggle {
   display: block;
   height: 18px;
@@ -1148,34 +1175,34 @@ blockquote, q {
   right: 10px;
 }
 
-/* line 748, admin.scss */
+/* line 741, admin.scss */
 #content .bloc .title .toggle.hide {
   background-position: top right;
 }
 
-/* line 749, admin.scss */
+/* line 742, admin.scss */
 #content .good {
   color: #6F9106;
 }
 
-/* line 750, admin.scss */
+/* line 743, admin.scss */
 #content .neutral {
   color: #FF7400;
 }
 
-/* line 751, admin.scss */
+/* line 744, admin.scss */
 #content .bad {
   color: #C21C1C;
 }
 
 /*Modal content*/
-/* line 754, admin.scss */
+/* line 747, admin.scss */
 .modal #content {
   margin: 0;
   padding: 0px;
 }
 
-/* line 758, admin.scss */
+/* line 751, admin.scss */
 .modal #content .bloc {
   margin: 0px;
   padding: 0px;
@@ -1188,18 +1215,18 @@ blockquote, q {
 }
 
 /**  Login **/
-/* line 765, admin.scss */
+/* line 758, admin.scss */
 #content.login {
   width: 350px;
   margin: 90px auto 0;
 }
 
-/* line 769, admin.scss */
+/* line 762, admin.scss */
 #content.login .notif {
   margin: 12px 0px 16px;
 }
 
-/* line 771, admin.scss */
+/* line 764, admin.scss */
 #content.login div.input {
   height: 33px;
   line-height: 33px;
@@ -1222,7 +1249,7 @@ blockquote, q {
   margin-top: 16px;
 }
 
-/* line 792, admin.scss */
+/* line 785, admin.scss */
 #content.login div.input input {
   position: absolute;
   top: 0;
@@ -1235,7 +1262,7 @@ blockquote, q {
   padding: 0 10px;
 }
 
-/* line 803, admin.scss */
+/* line 796, admin.scss */
 #content.login div.input label {
   position: absolute;
   top: 0;
@@ -1245,14 +1272,14 @@ blockquote, q {
   color: #3A3636;
 }
 
-/* line 811, admin.scss */
+/* line 804, admin.scss */
 #content.login div.submit {
   float: right;
   width: 97px;
   text-align: right;
 }
 
-/* line 816, admin.scss */
+/* line 809, admin.scss */
 #content.login .checkbox {
   background: none !important;
   /*+box-shadow:none;*/
@@ -1263,19 +1290,19 @@ blockquote, q {
   border: none !important;
 }
 
-/* line 825, admin.scss */
+/* line 818, admin.scss */
 #content.login div.checkbox {
   float: left;
   width: 229px;
   margin-top: 3px;
 }
 
-/* line 830, admin.scss */
+/* line 823, admin.scss */
 #content.login div.checkbox label {
   cursor: pointer;
 }
 
-/* line 833, admin.scss */
+/* line 826, admin.scss */
 #content.login div.submit input {
   /*+box-shadow:0px 2px 5px #202020;*/
   -moz-box-shadow: 0px 2px 5px #202020;
@@ -1285,7 +1312,7 @@ blockquote, q {
 }
 
 /**  Texts **/
-/* line 841, admin.scss */
+/* line 834, admin.scss */
 #content .bloc .content h1 {
   color: #000;
   font-family: Arial, Helvetica, Sans-serif;
@@ -1299,44 +1326,44 @@ blockquote, q {
   font-weight: bold;
 }
 
-/* line 853, admin.scss */
+/* line 846, admin.scss */
 #content .bloc .content h1, #content .bloc .content h2, #content .bloc .content h3, #content .bloc .content h4, #content .bloc .content h5 {
   color: #000000;
   font-weight: bold;
   padding: 0 0px 5px;
 }
 
-/* line 858, admin.scss */
+/* line 851, admin.scss */
 #content .bloc .content h2 {
   color: #1B1B1B;
   font-size: 25px;
 }
 
-/* line 862, admin.scss */
+/* line 855, admin.scss */
 #content .bloc .content h3 {
   color: #282828;
   font-size: 22px;
 }
 
-/* line 866, admin.scss */
+/* line 859, admin.scss */
 #content .bloc .content h4 {
   color: #404040;
   font-size: 20px;
 }
 
-/* line 870, admin.scss */
+/* line 863, admin.scss */
 #content .bloc .content h5 {
   color: #5A5656;
   font-size: 18px;
 }
 
-/* line 874, admin.scss */
+/* line 867, admin.scss */
 #content .bloc .content p {
   padding: 5px 0 10px;
   line-height: 1.5em;
 }
 
-/* line 878, admin.scss */
+/* line 871, admin.scss */
 #content .bloc .content ul, #content .bloc .content ol {
   list-style: disc;
   margin-left: 25px;
@@ -1344,31 +1371,31 @@ blockquote, q {
   padding: 5px 0 10px;
 }
 
-/* line 884, admin.scss */
+/* line 877, admin.scss */
 #content .bloc .content ul.toolbar {
   padding: 3px 0px 0px 3px;
   margin: 0px;
   border: 0;
 }
 
-/* line 889, admin.scss */
+/* line 882, admin.scss */
 #content .bloc .content ul.toolbar li:hover {
   border: 1 solid #FFF;
   background-color: #D9D6D6;
 }
 
-/* line 893, admin.scss */
+/* line 886, admin.scss */
 #content .wysiwyg {
   margin: 1px;
   padding: 0px;
 }
 
-/* line 897, admin.scss */
+/* line 890, admin.scss */
 #content .bloc .content ol {
   list-style: decimal;
 }
 
-/* line 899, admin.scss */
+/* line 892, admin.scss */
 #content .bloc .content {
   padding: 10px;
   background-color: #F7F7F7;
@@ -1381,7 +1408,7 @@ blockquote, q {
   border-radius: 5px;
 }
 
-/* line 905, admin.scss */
+/* line 898, admin.scss */
 #content .loader {
   position: absolute;
   top: 0;
@@ -1393,7 +1420,7 @@ blockquote, q {
 }
 
 /**  Tabs **/
-/* line 915, admin.scss */
+/* line 908, admin.scss */
 #content .title .tabs {
   position: absolute;
   bottom: 0;
@@ -1401,7 +1428,7 @@ blockquote, q {
   height: 31px;
 }
 
-/* line 921, admin.scss */
+/* line 914, admin.scss */
 #content .title .tabs a {
   padding: 1px 21px 0;
   /*+border-radius:6px 6px 0 0;*/
@@ -1419,7 +1446,7 @@ blockquote, q {
   margin: 5px 0 0px 0px;
 }
 
-/* line 937, admin.scss */
+/* line 930, admin.scss */
 #content .title .tabs a.active, #content .title .tabs a:hover {
   color: #000;
   border: 1px solid #CFD1D4;
@@ -1434,12 +1461,12 @@ blockquote, q {
 }
 
 /** Shortcuts**/
-/* line 950, admin.scss */
+/* line 943, admin.scss */
 #content .center {
   margin: 0 auto;
 }
 
-/* line 953, admin.scss */
+/* line 946, admin.scss */
 #content .bloc .shortcut {
   width: 105px;
   text-align: center;
@@ -1457,7 +1484,7 @@ blockquote, q {
   display: inline-block;
 }
 
-/* line 969, admin.scss */
+/* line 962, admin.scss */
 #content .bloc .shortcut span {
   color: #FFFFFF;
   display: block;
@@ -1472,14 +1499,14 @@ blockquote, q {
   background: url(notif.png);
 }
 
-/* line 982, admin.scss */
+/* line 975, admin.scss */
 #content .bloc .shortcut:hover {
   color: #2D2D2D;
   border: 1px solid #6F7275;
   background-color: #DBDCDE;
 }
 
-/* line 987, admin.scss */
+/* line 980, admin.scss */
 #content .bloc .shortcut img {
   display: block;
   margin: 0 auto 10px;
@@ -1488,35 +1515,35 @@ blockquote, q {
 }
 
 /** Table **/
-/* line 994, admin.scss */
+/* line 987, admin.scss */
 #content table {
   width: 100%;
   text-align: left;
 }
 
-/* line 998, admin.scss */
+/* line 991, admin.scss */
 #content table .picture img {
   border: 4px solid #DFDFDF;
   margin: 7px;
   padding: 0px;
 }
 
-/* line 1003, admin.scss */
+/* line 996, admin.scss */
 #content table .picture a:hover img {
   border-color: #BDBDBD;
 }
 
-/* line 1005, admin.scss */
+/* line 998, admin.scss */
 #content table h1, #content table h2, #content table h3, #content table h4, #content table h5 {
   display: inline;
 }
 
-/* line 1008, admin.scss */
+/* line 1001, admin.scss */
 #content table thead th {
   border-bottom: 1px solid #BDBDBD;
 }
 
-/* line 1011, admin.scss */
+/* line 1004, admin.scss */
 #content table thead tr th {
   font-weight: bold;
   color: #151515;
@@ -1524,12 +1551,12 @@ blockquote, q {
   padding-bottom: 2px;
 }
 
-/* line 1017, admin.scss */
+/* line 1010, admin.scss */
 #content table thead tr th a {
   color: #151515;
 }
 
-/* line 1020, admin.scss */
+/* line 1013, admin.scss */
 #content table tbody tr td {
   height: 30px;
   vertical-align: middle;
@@ -1537,50 +1564,50 @@ blockquote, q {
   border-top: 1px solid #FFFFFF;
 }
 
-/* line 1026, admin.scss */
+/* line 1019, admin.scss */
 #content table tbody tr:nth-child(2n+1) td {
   background-color: #F0F0F0;
 }
 
-/* line 1029, admin.scss */
+/* line 1022, admin.scss */
 #content table tbody tr:hover td {
   background-color: #EAEAEA;
   border-bottom: 1px solid #CACACA;
   border-top: 1px solid #E2E2E2;
 }
 
-/* line 1034, admin.scss */
+/* line 1027, admin.scss */
 #content table tbody tr td.actions {
   text-align: right;
   padding-right: 10px;
   width: 70px;
 }
 
-/* line 1039, admin.scss */
+/* line 1032, admin.scss */
 #content table.noalt tbody tr td {
   background-color: transparent !important;
   border-bottom: 1px solid #DADBDD;
 }
 
-/* line 1043, admin.scss */
+/* line 1036, admin.scss */
 #content table.noborder tbody tr td {
   border: none;
 }
 
-/* line 1046, admin.scss */
+/* line 1039, admin.scss */
 #content table tbody tr td img {
   padding-right: 5px;
 }
 
 /** Pagination**/
-/* line 1050, admin.scss */
+/* line 1043, admin.scss */
 #content .pagination {
   text-align: right;
   margin: 10px -7px 10px 10px;
   /*[empty]border:;*/
 }
 
-/* line 1055, admin.scss */
+/* line 1048, admin.scss */
 #content .pagination a {
   display: inline-block;
   height: 20px;
@@ -1598,12 +1625,12 @@ blockquote, q {
   border-radius: 3px 3px 3px 3px;
 }
 
-/* line 1071, admin.scss */
+/* line 1064, admin.scss */
 #content .pagination a.next, #content .pagination a.prev {
   border: 1px solid #FFFFFF;
 }
 
-/* line 1074, admin.scss */
+/* line 1067, admin.scss */
 #content .pagination a.current, #content .pagination a:hover {
   background: url(buttons.png) left -68px;
   border: 1px solid #3580A9;
@@ -1616,7 +1643,7 @@ blockquote, q {
   font-weight: bold;
 }
 
-/* line 1085, admin.scss */
+/* line 1078, admin.scss */
 #content .pagination a.next:hover, #content .pagination a.prev:hover {
   background: none;
   /*+text-shadow:none;*/
@@ -1630,7 +1657,7 @@ blockquote, q {
 }
 
 /** Notification **/
-/* line 1097, admin.scss */
+/* line 1090, admin.scss */
 #content .notif {
   position: relative;
   padding: 15px 15px;
@@ -1660,12 +1687,12 @@ blockquote, q {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-/* line 1125, admin.scss */
+/* line 1118, admin.scss */
 #content .content .notif {
   margin-bottom: 10px;
 }
 
-/* line 1128, admin.scss */
+/* line 1121, admin.scss */
 #content .notif .close {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   float: right;
@@ -1681,7 +1708,7 @@ blockquote, q {
   text-decoration: none;
 }
 
-/* line 1142, admin.scss */
+/* line 1135, admin.scss */
 #content .notif .close:hover {
   color: #000000;
   text-decoration: none;
@@ -1691,13 +1718,13 @@ blockquote, q {
   opacity: 0.4;
 }
 
-/* line 1150, admin.scss */
+/* line 1143, admin.scss */
 #content .notif strong {
   font-weight: bold;
   color: inherit;
 }
 
-/* line 1154, admin.scss */
+/* line 1147, admin.scss */
 #content .notif.success {
   background-color: #57a957;
   background-repeat: repeat-x;
@@ -1715,7 +1742,7 @@ blockquote, q {
   color: #FFF;
 }
 
-/* line 1170, admin.scss */
+/* line 1163, admin.scss */
 #content .notif.error, #content .bloc .notif.error {
   background-color: #c43c35;
   background-repeat: repeat-x;
@@ -1733,7 +1760,7 @@ blockquote, q {
   color: #FFF!important;
 }
 
-/* line 1186, admin.scss */
+/* line 1179, admin.scss */
 #content .notif.info {
   background-color: #339bb9;
   background-repeat: repeat-x;
@@ -1752,17 +1779,17 @@ blockquote, q {
 }
 
 /**  Forms **/
-/* line 1203, admin.scss */
+/* line 1196, admin.scss */
 #content .bloc .input {
   padding: 5px 0 10px;
 }
 
-/* line 1206, admin.scss */
+/* line 1199, admin.scss */
 #content .bloc .input.inline {
   display: inline-block;
 }
 
-/* line 1210, admin.scss */
+/* line 1203, admin.scss */
 #content .bloc label {
   display: block;
   color: #2C2C2C;
@@ -1771,12 +1798,12 @@ blockquote, q {
   font-size: 14px;
 }
 
-/* line 1217, admin.scss */
+/* line 1210, admin.scss */
 #content .bloc .input label span {
   color: #0877A6;
 }
 
-/* line 1220, admin.scss */
+/* line 1213, admin.scss */
 #content .bloc .input input, #content .bloc .input select {
   border: 1px solid #C8CACC;
   height: 28px;
@@ -1786,21 +1813,21 @@ blockquote, q {
   padding: 0 5px;
 }
 
-/* line 1228, admin.scss */
+/* line 1221, admin.scss */
 #content .bloc .input select {
   padding: 5px 5px 5px 0;
   padding-left: 5px;
   height: auto;
 }
 
-/* line 1233, admin.scss */
+/* line 1226, admin.scss */
 #content .bloc .checkbox input {
   width: auto;
   display: inline-block;
   height: auto;
 }
 
-/* line 1238, admin.scss */
+/* line 1231, admin.scss */
 #content .bloc .input label.inline {
   color: #6D6D6D;
   font-size: 1em;
@@ -1812,18 +1839,18 @@ blockquote, q {
   line-height: 23px;
 }
 
-/* line 1248, admin.scss */
+/* line 1241, admin.scss */
 #content .bloc .input select {
   width: auto;
 }
 
-/* line 1251, admin.scss */
+/* line 1244, admin.scss */
 #content .bloc .input textarea {
   width: 98%;
   padding: 1%;
 }
 
-/* line 1255, admin.scss */
+/* line 1248, admin.scss */
 #content .bloc .input input.datepicker {
   background-image: url(input-datepicker.png);
   background-position: 98px center;
@@ -1831,53 +1858,53 @@ blockquote, q {
   width: 110px;
 }
 
-/* line 1261, admin.scss */
+/* line 1254, admin.scss */
 #content .bloc .medium input {
   width: 50%;
 }
 
-/* line 1264, admin.scss */
+/* line 1257, admin.scss */
 #content .bloc .long input, #content .bloc .full input {
   width: 98%;
   padding: 0 1%;
 }
 
-/* line 1268, admin.scss */
+/* line 1261, admin.scss */
 #content .bloc .error, #content .bloc .error label, #content .bloc .error input, #content .error-message, #content .error textarea {
   color: #9D261D !important;
   border-color: #C87872 !important;
 }
 
-/* line 1272, admin.scss */
+/* line 1265, admin.scss */
 #content .bloc .error input, #content .bloc .error textarea {
   background-color: #FAE5E3 !important;
 }
 
-/* line 1275, admin.scss */
+/* line 1268, admin.scss */
 #content .bloc .loading input, input.loading {
   background: url(loader.gif) right center white no-repeat !important;
   padding-right: 35px;
 }
 
-/* line 1279, admin.scss */
+/* line 1272, admin.scss */
 #content .error-message {
   display: block;
 }
 
 /** Gallery **/
-/* line 1283, admin.scss */
+/* line 1276, admin.scss */
 #content .gallery {
   text-align: left;
   margin: 28px 0 0 !important;
   padding: 0 !important;
 }
 
-/* line 1288, admin.scss */
+/* line 1281, admin.scss */
 #content .bloc .gallery {
   margin-top: 0 !important;
 }
 
-/* line 1291, admin.scss */
+/* line 1284, admin.scss */
 #content .gallery li {
   display: inline-block;
   padding: 5px;
@@ -1892,13 +1919,13 @@ blockquote, q {
   background: #FFF;
 }
 
-/* line 1304, admin.scss */
+/* line 1297, admin.scss */
 #content .gallery li span.info {
   display: block;
   text-align: left;
 }
 
-/* line 1308, admin.scss */
+/* line 1301, admin.scss */
 #content .gallery li .del {
   background: url(img/close2.png);
   width: 30px;
@@ -1911,7 +1938,7 @@ blockquote, q {
   text-decoration: none;
 }
 
-/* line 1319, admin.scss */
+/* line 1312, admin.scss */
 #content .gallery li .large {
   position: absolute;
   bottom: 5px;
@@ -1923,7 +1950,7 @@ blockquote, q {
   display: none;
 }
 
-/* line 1329, admin.scss */
+/* line 1322, admin.scss */
 #content .gallery li .over {
   position: absolute;
   text-align: center;
@@ -1934,7 +1961,7 @@ blockquote, q {
   display: none;
 }
 
-/* line 1338, admin.scss */
+/* line 1331, admin.scss */
 #content .gallery li .over span {
   color: #FFF;
   text-decoration: none;
@@ -1949,12 +1976,12 @@ blockquote, q {
   border-radius: 3px 3px 3px 3px;
 }
 
-/* line 1351, admin.scss */
+/* line 1344, admin.scss */
 #content .gallery li:hover .del, #content .gallery li:hover .over, #content .gallery li:hover .large {
   display: block;
 }
 
-/* line 1354, admin.scss */
+/* line 1347, admin.scss */
 #content .gallery li:hover img {
   /*+opacity:30%;*/
   filter: alpha(opacity=30);
@@ -1964,7 +1991,7 @@ blockquote, q {
 }
 
 /*Input colors*/
-/* line 1362, admin.scss */
+/* line 1355, admin.scss */
 #content .bloc .input textarea, #content .bloc .input input, #content .selector, #content .uploader {
   border: 1px solid #DDDCDC;
   /*+box-shadow:inset 2px 1px 5px #CBC9C9;*/
@@ -1975,7 +2002,7 @@ blockquote, q {
   background: #FFFFFF;
 }
 
-/* line 1371, admin.scss */
+/* line 1364, admin.scss */
 #content .bloc .input textarea:focus, #content .bloc .input input:focus {
   border: 1px solid #59C7FF;
   /*+box-shadow:inset 2px 1px 5px #88BCD7;*/
@@ -1986,7 +2013,7 @@ blockquote, q {
 }
 
 /*Range input*/
-/* line 1380, admin.scss */
+/* line 1373, admin.scss */
 #content .ui-slider-horizontal {
   width: 350px;
   background: url(range.png) no-repeat right -35px;
@@ -1994,13 +2021,13 @@ blockquote, q {
   border: none;
 }
 
-/* line 1386, admin.scss */
+/* line 1379, admin.scss */
 #content .ui-slider-range {
   background: url(range.png) no-repeat left -25px;
   border: none;
 }
 
-/* line 1390, admin.scss */
+/* line 1383, admin.scss */
 #content .ui-slider-handle {
   width: 25px;
   height: 25px;
@@ -2012,7 +2039,7 @@ blockquote, q {
 }
 
 /*Datepicker*/
-/* line 1401, admin.scss */
+/* line 1394, admin.scss */
 .ui-datepicker {
   border: none !important;
   padding: 0px !important;
@@ -2025,7 +2052,7 @@ blockquote, q {
   box-shadow: 0 0 5px #B9B6B6;
 }
 
-/* line 1412, admin.scss */
+/* line 1405, admin.scss */
 .ui-datepicker-header {
   background: #363636 none !important;
   border: none !important;
@@ -2043,17 +2070,17 @@ blockquote, q {
   text-shadow: 0 -1px black !important;
 }
 
-/* line 1428, admin.scss */
+/* line 1421, admin.scss */
 .ui-datepicker-title {
   padding-top: 5px !important;
 }
 
-/* line 1431, admin.scss */
+/* line 1424, admin.scss */
 .ui-datepicker-next, .ui-datepicker-prev {
   margin-top: 6px;
 }
 
-/* line 1434, admin.scss */
+/* line 1427, admin.scss */
 .ui-datepicker table {
   margin: 0px !important;
   padding: 0px !important;
@@ -2061,7 +2088,7 @@ blockquote, q {
   border-collapse: collapse !important;
 }
 
-/* line 1440, admin.scss */
+/* line 1433, admin.scss */
 .ui-datepicker table thead th {
   margin: 0px !important;
   padding: 0px !important;
@@ -2074,12 +2101,12 @@ blockquote, q {
   line-height: 19px !important;
 }
 
-/* line 1451, admin.scss */
+/* line 1444, admin.scss */
 .ui-datepicker table tbody tr {
   height: 29px;
 }
 
-/* line 1453, admin.scss */
+/* line 1446, admin.scss */
 .ui-datepicker table td {
   border: none !important;
   background: none !important;
@@ -2091,7 +2118,7 @@ blockquote, q {
   border: 1px solid #BBBBBB !important;
 }
 
-/* line 1463, admin.scss */
+/* line 1456, admin.scss */
 .ui-datepicker table td a {
   display: block !important;
   height: 29px !important;
@@ -2110,7 +2137,7 @@ blockquote, q {
   border: none !important;
 }
 
-/* line 1480, admin.scss */
+/* line 1473, admin.scss */
 .ui-datepicker table td a:hover, .ui-datepicker table td.ui-datepicker-current-day a {
   background-position: right top !important;
   color: #FFFFFF !important;
@@ -2123,7 +2150,7 @@ blockquote, q {
   font-weight: bold !important;
 }
 
-/* line 1491, admin.scss */
+/* line 1484, admin.scss */
 .ui-datepicker table td.ui-datepicker-today a {
   background-position: center top !important;
   color: #FFFFFF !important;
@@ -2162,7 +2189,7 @@ blockquote, q {
 	background-position: top left;
 }*/
 /*Select*/
-/* line 1528, admin.scss */
+/* line 1521, admin.scss */
 #content .selector, #content .selector select, #content .selector span {
   width: 162px !important;
   height: 28px;
@@ -2172,7 +2199,7 @@ blockquote, q {
   display: block;
 }
 
-/* line 1536, admin.scss */
+/* line 1529, admin.scss */
 #content .selector span {
   background: none;
   position: absolute;
@@ -2181,7 +2208,7 @@ blockquote, q {
   text-indent: 10px;
 }
 
-/* line 1543, admin.scss */
+/* line 1536, admin.scss */
 #content .selector.focus {
   border: 1px solid #59C7FF;
   /*+box-shadow:inset 2px 1px 5px #88BCD7;*/
@@ -2192,7 +2219,7 @@ blockquote, q {
 }
 
 /*Upload*/
-/* line 1552, admin.scss */
+/* line 1545, admin.scss */
 #content .uploader {
   width: 200px !important;
   height: 25px;
@@ -2201,7 +2228,7 @@ blockquote, q {
   margin: 0px;
 }
 
-/* line 1559, admin.scss */
+/* line 1552, admin.scss */
 #content .uploader input {
   position: absolute;
   width: 200px !important;
@@ -2209,13 +2236,13 @@ blockquote, q {
   z-index: 50;
 }
 
-/* line 1565, admin.scss */
+/* line 1558, admin.scss */
 #content .uploader span {
   height: 25px;
   line-height: 25px;
 }
 
-/* line 1569, admin.scss */
+/* line 1562, admin.scss */
 #content .uploader span.action {
   background: url(images/buttons.png) left -68px;
   border: 1px solid #3580A9;
@@ -2236,7 +2263,7 @@ blockquote, q {
   /*+box-shadow:0px 1px 5px #B2B2B2;*/
 }
 
-/* line 1591, admin.scss */
+/* line 1584, admin.scss */
 #content .uploader.hover span.action, #content .uploader span.action:hover {
   background: #3786B9;
   color: #FFF;
@@ -2249,7 +2276,7 @@ blockquote, q {
 }
 
 /*Submit*/
-/* line 1602, admin.scss */
+/* line 1595, admin.scss */
 #content .submit input, #content .button, .bloc_publier_image input.submit {
   background: url(images/buttons.png) left -68px;
   border: 1px solid #3580A9;
@@ -2264,7 +2291,7 @@ blockquote, q {
   /*+border-radius:3px;*/
 }
 
-/* line 1618, admin.scss */
+/* line 1611, admin.scss */
 #content .button img {
   vertical-align: text-top;
   /*+opacity:65%;*/
@@ -2274,7 +2301,7 @@ blockquote, q {
   opacity: 0.65;
 }
 
-/* line 1626, admin.scss */
+/* line 1619, admin.scss */
 #content .button:hover img {
   /*+opacity:100%;*/
   filter: alpha(opacity=100);
@@ -2283,7 +2310,7 @@ blockquote, q {
   opacity: 1;
 }
 
-/* line 1633, admin.scss */
+/* line 1626, admin.scss */
 #content .submit input:hover, #content .button:hover, .bloc_publier_image input.submit:hover {
   background: #3786B9;
   color: #FFF;
@@ -2296,7 +2323,7 @@ blockquote, q {
   text-shadow: #111111 0px 1px 4px;
 }
 
-/* line 1640, admin.scss */
+/* line 1633, admin.scss */
 #content .black, #content .submit input.black {
   background: url(images/buttons.png);
   border: 1px solid #151515;
@@ -2308,14 +2335,14 @@ blockquote, q {
   color: #929292;
 }
 
-/* line 1650, admin.scss */
+/* line 1643, admin.scss */
 #content .black:hover, #content .submit input.black:hover {
   background: #323232;
   color: #FFF;
   text-decoration: none;
 }
 
-/* line 1655, admin.scss */
+/* line 1648, admin.scss */
 #content .white, #content .submit input.white {
   background: url(images/buttons.png) left -34px;
   border: 1px solid #CCC;
@@ -2332,7 +2359,7 @@ blockquote, q {
   color: #606060;
 }
 
-/* line 1670, admin.scss */
+/* line 1663, admin.scss */
 #content .white:hover, #content .submit input.white:hover {
   background: #EAEAEA;
   color: #555;
@@ -2341,7 +2368,7 @@ blockquote, q {
 }
 
 /* Blocs Ajout article / ajout Page */
-/* line 1678, admin.scss */
+/* line 1671, admin.scss */
 .blocsCentral {
   display: inline-block;
   vertical-align: top;
@@ -2354,7 +2381,7 @@ blockquote, q {
   /*+border-radius:3px;*/
 }
 
-/* line 1691, admin.scss */
+/* line 1684, admin.scss */
 .blocsCentral .input label {
   font-size: 1em;
   margin-bottom: 5px;
@@ -2362,14 +2389,14 @@ blockquote, q {
 }
 
 /* --  Eléments bas tableaux central -- */
-/* line 1698, admin.scss */
+/* line 1691, admin.scss */
 .elements {
   padding-top: 10px;
   text-align: right;
 }
 
 /* --  bloc Ajout page -- */
-/* line 1705, admin.scss */
+/* line 1698, admin.scss */
 #blocsAjoutCote {
   display: inline-block;
   vertical-align: top;
@@ -2378,7 +2405,7 @@ blockquote, q {
 }
 
 /* -- bloc Publier -- */
-/* line 1713, admin.scss */
+/* line 1706, admin.scss */
 .bloc_publier_image {
   height: 120px;
   background: whiteSmoke;
@@ -2387,37 +2414,37 @@ blockquote, q {
   /*+border-radius:3px;*/
 }
 
-/* line 1722, admin.scss */
+/* line 1715, admin.scss */
 .bloc_publier_image h3 {
   color: #000;
   font-size: 1.1em;
   padding: 10px 0 0;
 }
 
-/* line 1727, admin.scss */
+/* line 1720, admin.scss */
 .bloc_publier_image p {
   display: inline-block;
 }
 
-/* line 1729, admin.scss */
+/* line 1722, admin.scss */
 .bloc_publier_image input.submit {
   margin: 10px 10px 0 0;
   padding: 3px 7px;
 }
 
-/* line 1733, admin.scss */
+/* line 1726, admin.scss */
 #bloc_img_une {
   height: 60px;
   margin-top: 20px;
 }
 
-/* line 1734, admin.scss */
+/* line 1727, admin.scss */
 #bloc_img_une h3 {
   padding-bottom: 10px;
 }
 
 /** iPhone checkbox **/
-/* line 1738, admin.scss */
+/* line 1731, admin.scss */
 #content .iPhoneCheckContainer {
   position: relative;
   height: 27px;
@@ -2425,7 +2452,7 @@ blockquote, q {
   overflow: hidden;
 }
 
-/* line 1744, admin.scss */
+/* line 1737, admin.scss */
 #content .iPhoneCheckContainer input {
   position: absolute;
   top: 5px;
@@ -2435,7 +2462,7 @@ blockquote, q {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 
-/* line 1752, admin.scss */
+/* line 1745, admin.scss */
 #content .iPhoneCheckContainer label {
   white-space: nowrap;
   font-size: 17px;
@@ -2454,26 +2481,26 @@ blockquote, q {
   color: #FFFFFF !important;
 }
 
-/* line 1769, admin.scss */
+/* line 1762, admin.scss */
 #content .iPhoneCheckContainer, .iPhoneCheckContainer label {
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
 }
 
-/* line 1774, admin.scss */
+/* line 1767, admin.scss */
 #content .iPhoneCheckDisabled {
   opacity: 0.5;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
 }
 
-/* line 1779, admin.scss */
+/* line 1772, admin.scss */
 #content label.iPhoneCheckLabelOn, #content label.iPhoneCheckLabelOff {
   background: url("iphonecheck.png") no-repeat right bottom;
 }
 
-/* line 1782, admin.scss */
+/* line 1775, admin.scss */
 #content label.iPhoneCheckLabelOn {
   color: #FFFFFF;
   text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
@@ -2482,13 +2509,13 @@ blockquote, q {
   padding-top: 5px;
 }
 
-/* line 1789, admin.scss */
+/* line 1782, admin.scss */
 #content label.iPhoneCheckLabelOn span {
   padding-left: 8px;
   color: #B2D8E7 !important;
 }
 
-/* line 1793, admin.scss */
+/* line 1786, admin.scss */
 #content label.iPhoneCheckLabelOff {
   color: #CCCCCC;
   text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.9);
@@ -2497,13 +2524,13 @@ blockquote, q {
   background-position: 100% -27px;
 }
 
-/* line 1800, admin.scss */
+/* line 1793, admin.scss */
 #content label.iPhoneCheckLabelOff span {
   padding-right: 8px;
   color: #666464 !important;
 }
 
-/* line 1804, admin.scss */
+/* line 1797, admin.scss */
 #content .iPhoneCheckHandle {
   display: block;
   height: 27px;
@@ -2516,7 +2543,7 @@ blockquote, q {
   padding-left: 3px;
 }
 
-/* line 1815, admin.scss */
+/* line 1808, admin.scss */
 #content .iPhoneCheckHandleRight {
   height: 100%;
   width: 100%;
@@ -2524,7 +2551,7 @@ blockquote, q {
   background: url("slider_right.png") no-repeat right 0;
 }
 
-/* line 1821, admin.scss */
+/* line 1814, admin.scss */
 #content .iPhoneCheckHandleCenter {
   height: 100%;
   width: 100%;
@@ -2533,7 +2560,7 @@ blockquote, q {
 
 /** Charts *
 plugin styles*/
-/* line 1828, admin.scss */
+/* line 1821, admin.scss */
 #content .bloc .visualize {
   border: 1px solid #888;
   position: relative;
@@ -2541,12 +2568,12 @@ plugin styles*/
   margin: 20px auto;
 }
 
-/* line 1834, admin.scss */
+/* line 1827, admin.scss */
 #content .bloc .visualize canvas {
   position: absolute;
 }
 
-/* line 1837, admin.scss */
+/* line 1830, admin.scss */
 #content .bloc .visualize ul, #content .bloc .visualize li {
   margin: 0;
   padding: 0;
@@ -2554,7 +2581,7 @@ plugin styles*/
 }
 
 /*table title, key elements*/
-/* line 1843, admin.scss */
+/* line 1836, admin.scss */
 #content .bloc .visualize .visualize-info {
   padding: 3px 5px;
   background: #FAFAFA;
@@ -2565,7 +2592,7 @@ plugin styles*/
   opacity: .8;
 }
 
-/* line 1852, admin.scss */
+/* line 1845, admin.scss */
 #content .bloc .visualize .visualize-title {
   display: block;
   color: #333;
@@ -2573,12 +2600,12 @@ plugin styles*/
   font-size: 1.1em;
 }
 
-/* line 1858, admin.scss */
+/* line 1851, admin.scss */
 #content .bloc .visualize ul.visualize-key {
   list-style: none;
 }
 
-/* line 1861, admin.scss */
+/* line 1854, admin.scss */
 #content .bloc .visualize ul.visualize-key li {
   list-style: none;
   float: left;
@@ -2587,7 +2614,7 @@ plugin styles*/
   position: relative;
 }
 
-/* line 1868, admin.scss */
+/* line 1861, admin.scss */
 #content .bloc .visualize ul.visualize-key .visualize-key-color {
   width: 6px;
   height: 6px;
@@ -2597,25 +2624,25 @@ plugin styles*/
   margin-top: -3px;
 }
 
-/* line 1876, admin.scss */
+/* line 1869, admin.scss */
 #content .bloc .visualize ul.visualize-key .visualize-key-label {
   color: #000;
 }
 
 /*pie labels*/
-/* line 1880, admin.scss */
+/* line 1873, admin.scss */
 #content .bloc .visualize-pie .visualize-labels {
   list-style: none;
 }
 
-/* line 1883, admin.scss */
+/* line 1876, admin.scss */
 #content .bloc .visualize-pie .visualize-label-pos, .visualize-pie .visualize-label {
   position: absolute;
   margin: 0;
   padding: 0;
 }
 
-/* line 1888, admin.scss */
+/* line 1881, admin.scss */
 #content .bloc .visualize-pie .visualize-label {
   display: block;
   color: #FFF;
@@ -2623,14 +2650,14 @@ plugin styles*/
   font-size: 1em;
 }
 
-/* line 1894, admin.scss */
+/* line 1887, admin.scss */
 #content .bloc .visualize-pie-outside .visualize-label {
   color: #000;
   font-weight: normal;
 }
 
 /*line,bar, area labels*/
-/* line 1899, admin.scss */
+/* line 1892, admin.scss */
 #content .bloc .visualize-labels-x, #content .bloc .visualize-labels-y {
   position: absolute;
   left: 0;
@@ -2638,54 +2665,54 @@ plugin styles*/
   list-style: none;
 }
 
-/* line 1905, admin.scss */
+/* line 1898, admin.scss */
 #content .bloc .visualize-labels-x li, #content .bloc .visualize-labels-y li {
   position: absolute;
   bottom: 0;
 }
 
-/* line 1909, admin.scss */
+/* line 1902, admin.scss */
 #content .bloc .visualize-labels-x li span.label, #content .bloc .visualize-labels-y li span.label {
   position: absolute;
   color: #555;
 }
 
-/* line 1913, admin.scss */
+/* line 1906, admin.scss */
 #content .bloc .visualize-labels-x li span.line, #content .bloc .visualize-labels-y li span.line {
   position: absolute;
   border: 0 solid #CCC;
 }
 
-/* line 1917, admin.scss */
+/* line 1910, admin.scss */
 #content .bloc .visualize-labels-x li {
   height: 100%;
 }
 
-/* line 1920, admin.scss */
+/* line 1913, admin.scss */
 #content .bloc .visualize-labels-x li span.label {
   top: 100%;
   margin-top: 5px;
 }
 
-/* line 1924, admin.scss */
+/* line 1917, admin.scss */
 #content .bloc .visualize-labels-x li span.line {
   border-left-width: 1px;
   height: 100%;
   display: block;
 }
 
-/* line 1929, admin.scss */
+/* line 1922, admin.scss */
 #content .bloc .visualize-labels-x li span.line {
   border: 0;
 }
 
 /*hide vertical lines on area, line, bar*/
-/* line 1933, admin.scss */
+/* line 1926, admin.scss */
 #content .bloc .visualize-labels-y li {
   width: 100%;
 }
 
-/* line 1936, admin.scss */
+/* line 1929, admin.scss */
 #content .bloc .visualize-labels-y li span.label {
   right: 100%;
   margin-right: 5px;
@@ -2694,19 +2721,19 @@ plugin styles*/
   text-align: right;
 }
 
-/* line 1943, admin.scss */
+/* line 1936, admin.scss */
 #content .bloc .visualize-labels-y li span.line {
   border-top-width: 1px;
   width: 100%;
 }
 
-/* line 1947, admin.scss */
+/* line 1940, admin.scss */
 #content .bloc .visualize-bar .visualize-labels-x li span.label {
   width: 100%;
   text-align: center;
 }
 
-/* line 1951, admin.scss */
+/* line 1944, admin.scss */
 #content .bloc .visualize .stats_tooltip {
   margin: 3px 4px 0;
   padding: 6px 10px;
@@ -2721,30 +2748,30 @@ plugin styles*/
   text-align: center;
 }
 
-/* line 1964, admin.scss */
+/* line 1957, admin.scss */
 #content .bloc .visualize .stats_tooltip strong {
   color: #FFF;
 }
 
-/* line 1967, admin.scss */
+/* line 1960, admin.scss */
 .visualize-interaction-tracker:hover {
   cursor: help;
 }
 
-/* line 1970, admin.scss */
+/* line 1963, admin.scss */
 .ie8 .visualize-interaction-tracker {
   top: 240px;
 }
 
 /*IE hover Fixes - Added in 1.1
 *  Calendar **/
-/* line 1975, admin.scss */
+/* line 1968, admin.scss */
 #content .calendar .title {
   text-align: center;
   position: relative;
 }
 
-/* line 1979, admin.scss */
+/* line 1972, admin.scss */
 #content .calendar .title .next, #content .calendar .title .prev {
   display: block;
   width: 18px;
@@ -2755,34 +2782,34 @@ plugin styles*/
   position: absolute;
 }
 
-/* line 1988, admin.scss */
+/* line 1981, admin.scss */
 #content .calendar .title .next {
   background-position: 18px top;
   top: 8px;
   right: -13px;
 }
 
-/* line 1993, admin.scss */
+/* line 1986, admin.scss */
 #content .calendar .title .prev {
   background-position: 38px 0%;
   top: 8px;
   left: -35px;
 }
 
-/* line 1998, admin.scss */
+/* line 1991, admin.scss */
 #content .calendar .content {
   padding: 0;
   margin: 0px;
 }
 
-/* line 2002, admin.scss */
+/* line 1995, admin.scss */
 #content .calendar table {
   margin-right: 0px;
   border-collapse: collapse;
   vertical-align: top;
 }
 
-/* line 2007, admin.scss */
+/* line 2000, admin.scss */
 #content .calendar th {
   text-align: center;
   vertical-align: middle;
@@ -2801,7 +2828,7 @@ plugin styles*/
   color: #6D6D6D;
 }
 
-/* line 2024, admin.scss */
+/* line 2017, admin.scss */
 #content .calendar td {
   width: 14%;
   border: 1px solid #C5C5C5;
@@ -2824,7 +2851,7 @@ plugin styles*/
   background: linear-gradient(top, #f0f0f0 0%, #e3e2e2 99%);
 }
 
-/* line 2045, admin.scss */
+/* line 2038, admin.scss */
 #content .calendar td:hover {
   background: #EFEFEF;
   color: #FFFFFF;
@@ -2836,7 +2863,7 @@ plugin styles*/
   color: #000;
 }
 
-/* line 2055, admin.scss */
+/* line 2048, admin.scss */
 #content .calendar td.today {
   background: #949594 none;
   /*+box-shadow:inset 1px 1px 20px #515251;*/
@@ -2860,7 +2887,7 @@ plugin styles*/
   background: linear-gradient(top, #337bb2 0%, #43a6ce 100%);
 }
 
-/* line 2077, admin.scss */
+/* line 2070, admin.scss */
 #content .calendar td.padding, #content .calendar td.padding:hover {
   background: none;
   /*+box-shadow:none;*/
@@ -2870,13 +2897,13 @@ plugin styles*/
   box-shadow: none;
 }
 
-/* line 2085, admin.scss */
+/* line 2078, admin.scss */
 #content .calendar td .relative {
   height: 60px;
   display: block;
 }
 
-/* line 2089, admin.scss */
+/* line 2082, admin.scss */
 #content .calendar td .day {
   font-size: 25px;
   width: 0px;
@@ -2884,12 +2911,12 @@ plugin styles*/
   color: inherit;
 }
 
-/* line 2095, admin.scss */
+/* line 2088, admin.scss */
 #content .calendar td.today .day {
   color: #FFFFFF;
 }
 
-/* line 2098, admin.scss */
+/* line 2091, admin.scss */
 #content .calendar .events span {
   color: #0A93CC;
   padding-right: 4px;
@@ -2897,36 +2924,36 @@ plugin styles*/
   font-style: italic;
 }
 
-/* line 2104, admin.scss */
+/* line 2097, admin.scss */
 #content .calendar .events a {
   color: #707070;
   text-decoration: none;
   font-size: 10.6pt;
 }
 
-/* line 2109, admin.scss */
+/* line 2102, admin.scss */
 #content .calendar .events a:hover {
   text-decoration: underline;
 }
 
-/* line 2112, admin.scss */
+/* line 2105, admin.scss */
 #content .calendar .today .events a {
   color: #FFFFFF;
 }
 
-/* line 2115, admin.scss */
+/* line 2108, admin.scss */
 #content .calendar .today .events span {
   color: #A7C9D8;
 }
 
-/* line 2118, admin.scss */
+/* line 2111, admin.scss */
 #content .calendar ul, #content .calendar ul li {
   list-style: none;
   margin: 0 0 0 3px !important;
   padding: 0 !important;
 }
 
-/* line 2123, admin.scss */
+/* line 2116, admin.scss */
 .tooltipsy {
   background: #000;
   background: rgba(0, 0, 0, 0.8);
@@ -2940,84 +2967,84 @@ plugin styles*/
 }
 
 /* ---- */
-/* line 2138, admin.scss */
+/* line 2131, admin.scss */
 #content .search-box {
   text-align: right;
 }
 
-/* line 2139, admin.scss */
+/* line 2132, admin.scss */
 #content .button-add {
   margin-top: 10px;
 }
 
-/* line 2141, admin.scss */
+/* line 2134, admin.scss */
 #content .list-type-posts .list {
   float: left;
 }
 
-/* line 2142, admin.scss */
+/* line 2135, admin.scss */
 #content .list-type-posts .totalElement {
   text-align: right;
 }
 
-/* line 2144, admin.scss */
+/* line 2137, admin.scss */
 #content .classicTable {
   color: #333;
 }
 
-/* line 2145, admin.scss */
+/* line 2138, admin.scss */
 #content .classicTable th a:hover {
   color: #464646;
 }
 
-/* line 2146, admin.scss */
+/* line 2139, admin.scss */
 #content .classicTable td {
   height: 50px;
 }
 
-/* line 2147, admin.scss */
+/* line 2140, admin.scss */
 #content .classicTable td a:hover {
   color: #D74E21;
 }
 
-/* line 2148, admin.scss */
+/* line 2141, admin.scss */
 #content .classicTable .action_admin {
   text-align: left;
   visibility: hidden;
   margin-top: 10px;
 }
 
-/* line 2149, admin.scss */
+/* line 2142, admin.scss */
 #content .classicTable .action_admin a {
   font-size: 0.9em;
 }
 
-/* line 2150, admin.scss */
+/* line 2143, admin.scss */
 #content .classicTable .action_admin a.upd {
   color: #257EA8;
 }
 
-/* line 2151, admin.scss */
+/* line 2144, admin.scss */
 #content .classicTable .action_admin a.upd:hover {
   color: #D74E21;
 }
 
-/* line 2152, admin.scss */
+/* line 2145, admin.scss */
 #content .classicTable .action_admin a.del {
   color: #BC0B0B;
 }
 
-/* line 2153, admin.scss */
+/* line 2146, admin.scss */
 #content .classicTable .action_admin a.del:hover {
   color: #FF0000;
 }
 
-/* line 2155, admin.scss */
+/* line 2148, admin.scss */
 #content .classicTable tr:hover .action_admin {
   visibility: visible;
 }
 
-/* line 2157, admin.scss */
+/* line 2150, admin.scss */
 .settings {
   background: url(images/setting_button/config_button/bg.gif);
   border-bottom: 5px solid #383838;
@@ -3036,7 +3063,7 @@ plugin styles*/
   border-left: 5px solid #D9D9D9;
 }
 
-/* line 2174, admin.scss */
+/* line 2167, admin.scss */
 .settings .wrapper {
   background: none;
   /*+box-shadow:none;*/
@@ -3047,7 +3074,7 @@ plugin styles*/
   padding: 20px 0;
 }
 
-/* line 2183, admin.scss */
+/* line 2176, admin.scss */
 .settings .wrapper .titre {
   font-size: 1.2em;
   color: #BDBDBD;
@@ -3057,7 +3084,7 @@ plugin styles*/
   text-shadow: #111111 0px 1px 4px;
 }
 
-/* line 2191, admin.scss */
+/* line 2184, admin.scss */
 .settings a {
   background: #616161;
   width: 25px;
@@ -3077,13 +3104,13 @@ plugin styles*/
   margin: 10px;
 }
 
-/* line 2209, admin.scss */
+/* line 2202, admin.scss */
 .settings a.active {
   margin: 7px;
   border: 3px solid #FFF;
 }
 
-/* line 2213, admin.scss */
+/* line 2206, admin.scss */
 .settings .settingbutton {
   position: absolute;
   display: block;
@@ -3106,22 +3133,22 @@ plugin styles*/
   margin: 0;
 }
 
-/* line 2234, admin.scss */
+/* line 2227, admin.scss */
 .settings .left, .settings .right {
   width: 49%;
 }
 
-/* line 2235, admin.scss */
+/* line 2228, admin.scss */
 .settings .left {
   float: left;
 }
 
-/* line 2236, admin.scss */
+/* line 2229, admin.scss */
 .settings .right {
   float: right;
 }
 
-/* line 2237, admin.scss */
+/* line 2230, admin.scss */
 .settings .grid3 {
   width: 150px;
   margin: 0 10px 15px;
