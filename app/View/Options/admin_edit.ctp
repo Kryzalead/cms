@@ -12,6 +12,8 @@
 		<?php elseif($action == 'write'): ?>
 			<?php echo $this->Form->input('Option.default_post_edit_rows',array('label'=>"Taille du champ de saisie : ",'after'=>' lignes')); ?>
 			<?php echo $this->Form->input('Option.default_post_category',array('label'=>"Catégorie par défaut des articles : ",'options'=>$list_category)); ?>
+		<?php elseif($action == 'read'): ?>
+			<?php echo $this->Form->input('Option.posts_per_page',array('label'=>"Les pages du site doivent afficher au plus",'after'=>' articles')); ?>
 		<?php endif ?>
 	<?php echo $this->Form->end('Enregistrer les modifications') ?>
 </div>

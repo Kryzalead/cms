@@ -29,12 +29,18 @@ class OptionsController extends AppController{
     	$d['action'] = 'general';
 
     	if($this->request->is('post') || $this->request->is('put')){
-			if($this->Option->saveAll($this->request->data)){
+			$this->Option->set($this->request->data);
+			if($this->Option->validates()){
+				foreach ($this->request->data['Option'] as $k => $v) {
+					$option_id = $this->Option->field('id',array('name'=>$k));
+					$this->Option->id = $option_id;
+					$this->Option->saveField('value',$v);
+				}
 				$this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
 				$this->redirect(array('action'=>'admin_general'));
 			}
 			else
-				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));	
+				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));
     	}
 
      	$d['list_user_roles'] = Configure::read('user_roles');
@@ -60,12 +66,18 @@ class OptionsController extends AppController{
     	$d['action'] = 'write';
 
     	if($this->request->is('post') || $this->request->is('put')){
-			if($this->Option->saveAll($this->request->data)){
+			$this->Option->set($this->request->data);
+			if($this->Option->validates()){
+				foreach ($this->request->data['Option'] as $k => $v) {
+					$option_id = $this->Option->field('id',array('name'=>$k));
+					$this->Option->id = $option_id;
+					$this->Option->saveField('value',$v);
+				}
 				$this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
-				$this->redirect(array('action'=>'admin_write'));
+				$this->redirect(array('action'=>'admin_general'));
 			}
 			else
-				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));	
+				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));
     	}
 
      	$fields = array(
@@ -98,6 +110,29 @@ class OptionsController extends AppController{
 
     	$d['title_for_layout'] = 'Options de lecture';
     	$d['action'] = 'read';
+
+    	if($this->request->is('post') || $this->request->is('put')){
+			$this->Option->set($this->request->data);
+			if($this->Option->validates()){
+				foreach ($this->request->data['Option'] as $k => $v) {
+					$option_id = $this->Option->field('id',array('name'=>$k));
+					$this->Option->id = $option_id;
+					$this->Option->saveField('value',$v);
+				}
+				$this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
+				$this->redirect(array('action'=>'admin_general'));
+			}
+			else
+				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));
+    	}
+
+    	$fields = array(
+    		'posts_per_page'
+    	);
+
+    	foreach ($fields as $name) {
+     		$this->request->data['Option'][$name] = Configure::read($name);
+     	}
 
     	$this->set($d);
         $this->render('admin_edit');

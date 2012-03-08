@@ -15,16 +15,4 @@ class Option extends AppModel{
 			'message'=>"Le champs doit être un nombre"
 		)
 	);
-
-	function beforeSave($data){
-		$data = array();
-		foreach ($this->data['Option'] as $k => $v) {
-			$data = array(
-				'name'=>$k,
-				'value'=>$v
-			);
-		}
-		$this->data['Option'] = $data;
-		return true;
-	}
 }
