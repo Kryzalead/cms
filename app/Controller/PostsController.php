@@ -51,11 +51,13 @@ class PostsController extends AppController{
 
 	/************ ADMINISTRATION ******************/
 
-	function admin_index($status = ''){
+	function admin_index(){
+
+		debug($this->request->query);die();
 		
 		$d['title_for_layout'] = 'Articles';
 		
-		$this->Post->contain('User');
+		$this->Post->contain(array('User','Term'));
 
 		$conditions = array('Post.type'=>'post');
 
@@ -115,7 +117,7 @@ class PostsController extends AppController{
 	}
 
 	/*
-	*	Fonction qui affiche les pages par auteur
+	*	Fonction qui affiche les articles par auteur
 	*/
 	function admin_author($author = null){
 		
@@ -216,7 +218,7 @@ class PostsController extends AppController{
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 			if($this->Post->save($this->request->data)){
-				if(!$id)
+				if(empty($this->request->data['Post']['terms']))
 					$this->Post->initCat();
 			
 			if($id)

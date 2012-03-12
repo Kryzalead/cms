@@ -86,7 +86,7 @@ class Post extends AppModel{
 		$this->TermR->save(array(
 			'object'=>'Post',
 			'object_id'=>$this->id,
-			'term_id'=>1
+			'term_id'=>Configure::read('default_post_category')
 		));
 		return true;
 	}

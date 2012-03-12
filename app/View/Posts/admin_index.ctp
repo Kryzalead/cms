@@ -18,7 +18,7 @@
 		<?php echo $this->Html->link("Tous",array('action'=>'index')); ?>
 		(<span class="total"><?php echo $total ?></span>)
 		<?php if ($totalPublish != 0): ?>
-			| <?php echo $this->Html->link("Publiés",array('action'=>'index','publish')); ?>
+			| <?php echo $this->Html->link("Publiés",array('action'=>'index','?'=>array('status'=>'publish'))); ?>
 			(<span class="totalPublished"><?php echo $totalPublish ?></span>) 	
 		<?php endif ?> 
 		<?php if ($totalDraft != 0): ?>
@@ -48,6 +48,8 @@
 						<th><input type="checkbox" class="checkall"></th>
 						<th><?php echo $this->Paginator->sort('name','Titre'); ?></th>
 						<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
+						<th>Catégories</th>
+						<th>Mots-clefs</th>
 						<th><?php echo $this->Paginator->sort('created','Date'); ?></th>
 					</tr>
 				</thead>
@@ -82,6 +84,20 @@
 								</div>
 							</td>
 							<td><?php echo $this->Html->link($v['User']['username'],array('action'=>'author',$v['User']['username'])); ?></td>
+							<td>
+								<?php foreach ($v['Taxonomy']['category'] as $k1 => $v1): ?>
+									<?php echo $this->Html->link($v1['name'],array('action'=>'','controller'=>'')); ?>
+								<?php endforeach ?>
+							</td>
+							<td>
+								<?php if(!empty($v['Taxonomy']['tag'])): ?>
+									<?php foreach ($v['Taxonomy']['tag'] as $k1 => $v1): ?>
+										<?php echo $v1['name'] ?>
+									<?php endforeach ?>
+								<?php else: ?>
+									Aucun mot-clef				
+								<?php endif; ?>	
+							</td>	
 							<td><?php echo $this->date->format($v['Post']['created'],'FR'); ?></td>
 						</tr>
 					<?php endforeach ?>
@@ -97,6 +113,8 @@
 						<th><input type="checkbox"></th>
 						<th><?php echo $this->Paginator->sort('name','Titre'); ?></th>
 						<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
+						<th>Catégories</th>
+						<th>Mots-clefs</th>
 						<th><?php echo $this->Paginator->sort('created','Date'); ?></th>
 					</tr>
 				</tfoot>
