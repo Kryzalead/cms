@@ -195,6 +195,19 @@ jQuery(function($){
         $(this).parent().fadeTo(500,0).slideUp(); 
         return false; 
     });
+
+    /*
+    *   Affichage ou non du select des pages pour le choix de la page d'acceuil
+    */
+    $("#OptionShowOnFrontPage").click(function(){
+        if($(this).is(':checked'))
+            $('#page_on_front').removeAttr('disabled');
+    });
+
+    $("#OptionShowOnFrontPost").click(function(){
+        if($(this).is(':checked'))
+            $('#page_on_front').attr('disabled','disabled');
+    });
 });
 
 

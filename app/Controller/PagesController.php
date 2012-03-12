@@ -32,8 +32,10 @@ class PagesController extends AppController{
 			}
 		}
 		
-		if($slug != $page['Post']['slug']){
+		if($id != Configure::read('page_on_front') && $slug == null){
+			if($slug != $page['Post']['slug']){
 				$this->redirect($page['Post']['link'],301);
+			}
 		}
 		
 		$d['page'] = $page;

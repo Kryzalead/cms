@@ -114,25 +114,40 @@ class OptionsController extends AppController{
     	if($this->request->is('post') || $this->request->is('put')){
 			$this->Option->set($this->request->data);
 			if($this->Option->validates()){
+				if(empty($this->request->data['Option']['page_on_front']))
+					$this->request->data['Option']['page_on_front'] = 0;
 				foreach ($this->request->data['Option'] as $k => $v) {
 					$option_id = $this->Option->field('id',array('name'=>$k));
 					$this->Option->id = $option_id;
 					$this->Option->saveField('value',$v);
 				}
 				$this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
-				$this->redirect(array('action'=>'admin_general'));
+				$this->redirect(array('action'=>'admin_read'));
 			}
 			else
 				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));
     	}
 
     	$fields = array(
-    		'posts_per_page'
+    		'posts_per_page',
+    		'show_on_front',
+    		'page_on_front',
     	);
 
     	foreach ($fields as $name) {
      		$this->request->data['Option'][$name] = Configure::read($name);
      	}
+
+     	$d['list_show_on_front'] = array(
+     		'post'=>'Les derniers articles',
+     		'page'=>'Une page statique (voir en dessous)'
+     	);
+
+     	$this->loadModel('Post');
+     	$d['list_page_on_show'] =  $this->Post->find('list',array(
+     		'conditions'=>array('Post.type'=>'page','Post.status'=>'publish')
+     	));
+     	$d['is_disabled'] = Configure::read('show_on_front') == 'post' ? 'disabled' : '';
 
     	$this->set($d);
         $this->render('admin_edit');
