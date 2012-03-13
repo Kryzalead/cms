@@ -3,11 +3,44 @@ App::uses('Sanitize', 'Utility');
 
 class PostsController extends AppController{
 
+
+	/*
+	* Fonction qui affiche la page d'acceuil
+	*/
+	function home(){
+
+		$id = $this->request->params['page_on_front'];
+		$this->Post->id = $id;
+		$slug = $this->Post->field('slug');
+
+		$post = Cache::read('Page.slug_'.$slug);
+
+		if(empty($post)){
+			$post = $this->Post->find('first',array(
+				'fields'=>array('Post.id','Post.name','Post.slug','Post.type','Post.content'),
+				'conditions'=>array('Post.slug'=>$slug,'Post.type'=>'page')
+			));
+
+			if(empty($post))
+				throw new NotFoundException('Erreur 404');
+			else{
+				Cache::write('Page.slug_'.$slug,$post);
+			}
+		}
+
+		$d['post'] = $post;
+		$d['title_for_layout'] = 'Accueil | '.Configure::read('site_name');
+		$this->set($d);
+		$this->render('view');
+	}
+
 	/*
 	*	Fonction affichant les derniers articles
 	*/
 
 	function index(){
+
+		$d['title_for_layout'] = 'Blog | '.Configure::read('site_name');
 		
 		$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
 
@@ -25,26 +58,57 @@ class PostsController extends AppController{
 	}
 
 	/*
-	*	Fonction affichant un article
+	*	Fonction affichant un post
 	*/
-	function view($id = null,$slug = null){
-		
-		if ($id == null) 
-			throw new NotFoundException("Pas d'article");
+	function view(){
 
-		$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
+		$type = $this->request->params['type'];
+		$slug = $this->request->params['slug'];
 
-		$post = $this->Post->find('first',array(
-			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.created','Post.type'),
-			'conditions'=>array('Post.id'=>$id)
-		));
-
-		if(empty($post))
-			throw new NotFoundException('Erreur 404');
-		
-		if ($slug != $post['Post']['slug']) 
-			$this->redirect($post['Post']['link'],301);
+		if($type == 'post'){
 			
+			$id = $this->request->params['id'];
+
+			$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
+
+			$post = $this->Post->find('first',array(
+				'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.created','Post.type'),
+				'conditions'=>array('Post.id'=>$id,'Post.type'=>'post')
+			));
+
+			if(empty($post))
+				throw new NotFoundException('Erreur 404');
+
+			if ($slug != $post['Post']['slug']) 
+				$this->redirect($post['Post']['link'],301);
+
+			$d['title_for_layout'] = $post['Post']['slug'].' | Blog | '.Configure::read('site_name');
+			
+
+		}
+		elseif($type == 'page'){
+
+			$post = Cache::read('Page.slug_'.$slug);
+
+			if(empty($post)){
+				$post = $this->Post->find('first',array(
+					'fields'=>array('Post.id','Post.name','Post.slug','Post.type','Post.content'),
+					'conditions'=>array('Post.slug'=>$slug,'Post.type'=>'page')
+				));
+
+				if(empty($post))
+					throw new NotFoundException('Erreur 404');
+				else{
+					Cache::write('Page.slug_'.$slug,$post);
+				}
+			}
+			
+			$d['title_for_layout'] = $post['Post']['slug'].' | '.Configure::read('site_name');			
+		}
+		else{
+			throw new NotFoundException('Erreur 404');
+		}
+
 		$d['post'] = $post;
 		$this->set($d);
 	}

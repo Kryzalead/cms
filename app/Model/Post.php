@@ -50,6 +50,7 @@ class Post extends AppModel{
 				$v['Post']['link'] = array(
 					'controller' 	=> 	Inflector::pluralize($v['Post']['type']),
 					'action'		=>	'view',
+					'type'			=>	$v['Post']['type'],
 					'id'			=>	$v['Post']['id'],
 					'slug'			=>	$v['Post']['slug']
 				);

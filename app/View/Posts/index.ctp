@@ -1,4 +1,3 @@
-<?php $this->set('title_for_layout','Blog | '.Configure::read('site_name')); ?>
 <?php foreach($posts as $k => $v):?>
 	<div class="hentry">
 		<h2 class="entry-title"><?php echo $this->Html->link($v['Post']['name'],$v['Post']['link'],array('title'=>$v['Post']['name'])); ?></h2>

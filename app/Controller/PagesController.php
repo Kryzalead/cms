@@ -6,42 +6,6 @@ class PagesController extends AppController{
 
 	public $uses = array('Post');
 
-	/*
-	*	Fonction affichant une page
-	*/
-
-	function view($id = null,$slug = null){
-		
-		if ($id == null) {
-			throw new NotFoundException("Pas de page");
-		}
-
-		$page = Cache::read('Page.id_'.$id);
-
-		if(!$page){
-			$page = $this->Post->find('first',array(
-				'fields'=>array('Post.id','Post.name','Post.content','Post.slug','Post.type'),
-				'conditions'=>array('Post.id'=>$id)
-			));
-
-			if(empty($page)){
-				throw new NotFoundException('Erreur 404');
-			}
-			else{
-				Cache::write('Page.id_'.$id,$page);
-			}
-		}
-		
-		if($id != Configure::read('page_on_front') && $slug == null){
-			if($slug != $page['Post']['slug']){
-				$this->redirect($page['Post']['link'],301);
-			}
-		}
-		
-		$d['page'] = $page;
-
-		$this->set($d);
-	}
 
 	/************ ADMINISTRATION ******************/
 
