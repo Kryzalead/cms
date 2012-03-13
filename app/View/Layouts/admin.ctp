@@ -73,8 +73,8 @@
                 <li <?php echo ($currentController == 'pages')  ? 'class="current"' : '' ?>>
                     <?php echo $this->Html->link($this->Html->image('icone-pages.png',array('height'=>25,'width'=>25)) . 'Pages',array('plugin'=>null,'action'=>'index','controller'=>'pages'),array('escape'=>false)); ?>
                     <ul>
-                        <li><?php echo $this->Html->link("Toutes les pages",array('plugin'=>null,'action'=>'index','controller'=>'pages')); ?></li>
-                        <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'edit','controller'=>'pages')); ?></li>
+                        <li><?php echo $this->Html->link("Toutes les pages",array('plugin'=>null,'action'=>'index','controller'=>'posts','?'=>array('type'=>'page'))); ?></li>
+                        <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'new','controller'=>'posts','?'=>array('type'=>'page'))); ?></li>
                     </ul>
                 </li>
                 <li <?php echo ($currentController == 'posts')  ? 'class="current"' : '' ?>>

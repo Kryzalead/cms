@@ -3,7 +3,6 @@ App::uses('Sanitize', 'Utility');
 
 class PostsController extends AppController{
 
-
 	/*
 	* Fonction qui affiche la page d'acceuil
 	*/
@@ -117,21 +116,68 @@ class PostsController extends AppController{
 
 	function admin_index(){
 
-		debug($this->request->query);die();
-		
-		$d['title_for_layout'] = 'Articles';
-		
-		$this->Post->contain(array('User','Term'));
+		// on récupère le type de post
+		$type = !empty($this->request->query['type']) ? $this->request->query['type'] : 'post';
+		if(!in_array($type, array('post','page')))
+			throw new NotPostTypeExist('test');
+		$d['type'] = $type;
 
-		$conditions = array('Post.type'=>'post');
+		// on récupère le status demandé
+		// si il est vide, on le met à all
+		$status = !empty($this->request->query['status']) ? $this->request->query['status'] : 'all';
+		$d['status'] = $status;
 
-		if(!empty($this->request->query['search'])){
-			$search = Sanitize::clean($this->request->query['search']);
-			$conditions = array_merge(array('Post.content LIKE'=>'%'.$search.'%','Post.status <>'=>'trash'),$conditions);
+
+		// variable des textes de la vue
+		$d['title_for_layout'] = $type == 'page' ? 'Pages' : 'Articles';
+		$d['icon_for_layout'] = $type == 'page' ? 'icone-pages.png' : 'icone-posts.png';
+		$d['text_for_add_post'] = $type == 'page' ? 'Ajouter une page' : 'Ajouter un article';
+		$d['text_for_submit_search'] = $type == 'page' ? 'Rechercher dans les pages' : 'Rechercher dans les articles';
+
+		// début des conditions
+		$conditions = array('Post.type'=>$type);
+
+		$find_status = true;
+
+		// si une recherche a été demandée
+		if(!empty($this->request->query['s'])){
+			$search = Sanitize::clean($this->request->query['s']);
+			$conditions = array_merge($conditions,array(
+				'OR'=>array(
+					array('Post.name LIKE'=>'%'.$search.'%'),
+					array('Post.content LIKE'=>'%'.$search.'%')
+				)
+			));
+			
+			$d['search'] = $search;
 		}
-		else
-			$conditions = (!empty($status)) ? array_merge(array('Post.status'=>$status),$conditions) : array_merge(array('Post.status <>'=>'trash'),$conditions);	
-	
+		else{
+			if(!empty($this->request->query['author'])){
+				$conditions = array_merge($conditions,array('Post.user_id'=>$this->request->query['author'],'Post.status <>'=>'trash'));
+				$find_status = false;
+			}
+		}
+
+		if($find_status){
+			if(!empty($status)){
+				if($status != 'all')
+					$conditions = array_merge($conditions,array('Post.status'=>$status));
+				else
+					$conditions = array_merge($conditions,array('Post.status <>'=>'trash'));
+			}	
+			else
+				$conditions = array_merge($conditions,array('Post.status <>'=>'trash'));
+
+			
+		}
+
+		// ajout des contain
+		if($type == 'post')
+			$this->Post->contain(array('User','Term'));
+		elseif($type == 'page')
+			$this->Post->contain('User');
+		
+		// on prépare la pagination
 		$this->paginate = array(
 			'fields'=>array('Post.id','Post.name','Post.status','Post.type','Post.slug','Post.created','User.id','User.username'),
 			'conditions'=>$conditions,
@@ -140,31 +186,39 @@ class PostsController extends AppController{
 
 		$d['posts'] = $this->Paginate('Post');
 
+		// initialisation des compteur de la vue
 		$d['totalPublish'] = $d['totalDraft'] = $d['totalTrash'] = 0;
 
+		// on enlève les contain
 		$this->Post->contain();
+
 
 		$count = $this->Post->find('all',array(
 			'fields'=>array('Post.status','COUNT(Post.id) AS total'),
-			'conditions'=>array('Post.type'=>'post'),
+			'conditions'=>array('Post.type'=>$type),
 			'group'=>'Post.status'
 		));
 
+		// assignation des compteurs
 		foreach ($count as $k => $v)
 			$d['total'.ucfirst($v['Post']['status'])] = $v[0]['total'];
 		
 		$d['total'] = $d['totalPublish'] + $d['totalDraft'];
 
-		$d['totalElement'] = $d['totalElement'] = (empty($status)) ? $d['total'] : $d['total'.ucfirst($status)];
+		// si une recherche, totalElement vaut le total de post trouvés
+		if(!empty($search))
+			$d['totalElement'] = count($d['posts']);
+		else
+			$d['totalElement'] = $d['totalElement'] = (empty($status) || $status == 'all') ? $d['total'] : $d['total'.ucfirst($status)];
 
-		$d['status'] = $status;
-
+		// préparation de la list do_action
 		$d['list_action'] = array(
 			'0'=>'Action groupées'
 		);
 		switch ($status) {
 			case '':
 			case 'publish':
+			case 'all':
 				$d['list_action'] = array_merge($d['list_action'],array('draft'=>'Déplacer dans les brouillons','trash'=>'Déplacer dans la corbeille'));
 				break;
 			case 'draft':
@@ -177,109 +231,106 @@ class PostsController extends AppController{
 				break;
 		}
 
+		// on set les datas
 		$this->set($d);
 	}
 
-	/*
-	*	Fonction qui affiche les articles par auteur
-	*/
-	function admin_author($author = null){
-		
-		$d['title_for_layout'] = 'Articles';
+	function admin_post(){
 
-		$author = (!empty($author)) ? $author : 'admin';
+		$action = $this->request->query['action'];
+		$id = $this->request->query['id'];
 
-		$this->Post->contain('User');
-
-		$d['posts'] = $this->Post->find('all',array(
-			'fields'=>array('Post.id','Post.name','Post.status','Post.type','Post.slug','Post.created','User.id','User.username'),
-			'conditions'=>array('Post.type'=>'post','User.username'=>$author),
-			'limit'=>Configure::read('elements_per_page')
-		));
-
-		$d['totalPublish'] = $d['totalDraft'] = $d['totalTrash'] = 0;
-
-		$this->Post->contain();
-
-		$count = $this->Post->find('all',array(
-			'fields'=>array('Post.status','COUNT(Post.id) AS total'),
-			'conditions'=>array('Post.type'=>'post'),
-			'group'=>'Post.status'
-		));
-
-		foreach ($count as $k => $v)
-			$d['total'.ucfirst($v['Post']['status'])] = $v[0]['total'];
-		
-		$d['total'] = $d['totalPublish'] + $d['totalDraft'];
-
-		$d['totalElement'] = count($d['posts']);
-
-		$d['status'] = '';
-
-		$this->set($d);
-	}
-
-	/*
-	*	Fonction qui met un article à la corbeille
-	*/
-
-	function admin_trash($id,$token = null){
-		
-		if(empty($token))
-			$this->redirect('/');
-		elseif($this->Session->read('Security.token') != $token)
-			$this->redirect('/');
-
-    	$this->Post->id = $id;
-    	$this->Post->saveField('status','trash');
-    	$this->Session->setFlash("Article déplacé dans la corbeille","notif");
-    	$this->redirect($this->referer());
-	}
-
-	/*
-	*	Fonction qui retire un article à la corbeille
-	*/
-
-	function admin_untrash($id){
-
-    	$this->Post->id = $id;
-    	$this->Post->saveField('status','draft');
-    	$this->Session->setFlash("Article retiré de la corbeille","notif");
-    	$this->redirect($this->referer());
-	}
-
-	/*
-	*	Fonction qui supprime un article
-	*/
-
-	function admin_delete($id,$token = null){
-		
-		if(empty($token))
-			$this->redirect('/');
-		elseif($this->Session->read('Security.token') != $token)
-			$this->redirect('/');
-
-    	$this->Post->id = $id;
-    	$this->Post->delete();
-    	$this->Session->setFlash("L'article a bien été supprimé","notif");
-    	$this->redirect(array('action'=>'index'));
+		$this->Post->id = $this->request->query['id'];
+		switch ($action) {
+			case 'trash':
+				$this->Post->saveField('status','trash');
+				$this->Session->setFlash("Element déplacé dans la corbeille","notif");
+				break;
+			case 'untrash':
+				$this->Post->saveField('status','draft');
+				$this->Session->setFlash("Element retiré de la corbeille","notif");
+				break;
+			case 'delete':
+				if(empty($this->request->query['token']))
+					$this->redirect('/');
+				elseif($this->Session->read('Security.token') != $this->request->query['token'])
+					$this->redirect('/');
+				
+				$this->Post->delete();
+				$this->Session->setFlash("Element supprimé","notif");
+				break;	
+			default:
+				# code...
+				break;
+		}
+		$this->redirect($this->referer());
 	}
 
 	function admin_doaction(){
-		parent::doaction('article');
+		$action = $this->request->data['Post']['action'];
+		$type = $this->request->data['Post']['type'];
+		$count = 0;
+		
+		unset($this->request->data['Post']['action']);
+		unset($this->request->data['Post']['type']);
+
+		foreach ($this->request->data['Post'] as $k => $v) {
+			if(!empty($v)){
+				$this->Post->id = $k;
+				if($action != 'delete'){
+					$this->Post->saveField('status',$action);
+				}
+				else{
+					$this->Post->delete();
+				}
+				$count ++;
+			}	
+		}
+
+		$texte = $type == 'post' ? 'article' : 'page';
+		if($count > 0){
+			$terminaison = ($count > 1 ) ? 's' : '';
+			$feminin = $type == 'page' ? 'e' : '';
+			switch ($action) {
+				case 'publish':
+					$this->Session->setFlash($count." ".$texte.$terminaison." publié".$feminin.$terminaison,"notif");
+					break;
+				case 'draft':
+					$this->Session->setFlash($count." ".$texte.$terminaison." déplacé".$feminin.$terminaison." dans les brouillons","notif");
+					break;	
+				case 'trash':
+					$this->Session->setFlash($count." ".$texte.$terminaison." déplacé".$feminin.$terminaison." dans la corbeille","notif");
+					break;
+				case 'delete':
+					$this->Session->setFlash($count." ".$texte.$terminaison." supprimé".$feminin.$terminaison,"notif");
+					break;
+				default:
+					break;
+			}
+		}
+		$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 	}
 
+	function admin_new(){
+		
+	}
 	/*
 	* Fonction qui permet d'editer un article
 	*/
-	function admin_edit($id = null){
+	function admin_edit(){
 
-		$d['title_for_layout'] = 'Ajouter un nouvel article';
+		$type = (!empty($this->request->query['type'])) ? $this->request->query['type'] : 'post';
+		$d['type'] = $type;
+
+		$id = !empty($this->request->query['id']) ? $this->request->query['id'] : 0;
+
+		$d['title_for_layout'] = $type == 'post' ? 'Ajouter un nouvel article' : 'Ajouter une nouvelle page';
+		$d['icon_for_layout'] = $type == 'post' ? 'icone-posts-add.png' : 'icone-pages-add.png';
 		$d['texte_submit'] = 'Publier';
 		
 		$this->Post->contain('Term');
 
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if($this->request->is('post') || $this->request->is('put')) {
 
 			if($this->Post->save($this->request->data)){
 				if(empty($this->request->data['Post']['terms']))
@@ -297,7 +348,7 @@ class PostsController extends AppController{
 			
 		}
 		elseif($id){
-			$d['title_for_layout'] = "Modifier l'article";
+			$d['title_for_layout'] = $type == 'post' ? "Modifier l'article" : "Modifier la page";
 			$d['texte_submit'] = 'Mettre à jour';
 
 			$this->Post->id = $id;

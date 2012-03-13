@@ -1,19 +1,18 @@
 <h1>
-    <?php echo $this->Html->image('icone-posts-add.png',array('width'=>72,'height'=>72)); ?>
+    <?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>
     <?php echo $title_for_layout ?>
 </h1>
 
 <?php echo $this->Form->create('Post') ?>
-
 <div class="blocsCentral">
-	<?php echo $this->Form->input('name',array('label'=>'Titre : ','style'=>'width:100%')) ?>
+	<?php echo $this->Form->input('Post.name',array('label'=>'Titre : ','style'=>'width:100%')) ?>
 	<br />
-	<?php echo $this->Form->input('slug',array('label'=>'Url : ','style'=>'width:100%')) ?>
+	<?php echo $this->Form->input('Post.slug',array('label'=>'Url : ','style'=>'width:100%')) ?>
 	<br />
-	<?php echo $this->Form->input('id'); ?>
-        <?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
-	<?php echo $this->Form->input('type',array('type'=>'hidden','value'=>'post')) ?>
-	<?php echo $this->Form->input('content',array('label'=>'Contenu : ','style'=>'width:100%','rows'=>Configure::read('default_post_edit_rows'))) ?>
+	<?php echo $this->Form->input('Post.id'); ?>
+        <?php echo $this->Form->input('Post.user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
+	<?php echo $this->Form->input('Post.type',array('type'=>'hidden','value'=>$type)) ?>
+	<?php echo $this->Form->input('Post.content',array('label'=>'Contenu : ','style'=>'width:100%','rows'=>Configure::read('default_post_edit_rows'))) ?>
 </div>
 
 <div id="blocsAjoutCote">
