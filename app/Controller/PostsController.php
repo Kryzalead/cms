@@ -118,8 +118,12 @@ class PostsController extends AppController{
 
 		// on récupère le type de post
 		$type = !empty($this->request->query['type']) ? $this->request->query['type'] : 'post';
-		if(!in_array($type, array('post','page')))
-			throw new NotPostTypeExist('test');
+		if(!in_array($type, array('post','page'))){
+			$this->layout = 'error-page';
+			$d['message'] = "Type d’article invalide";
+			$this->set($d);
+			$this->render('/errors/error-page');return;
+		}	
 		$d['type'] = $type;
 
 		// on récupère le status demandé
