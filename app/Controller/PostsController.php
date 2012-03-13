@@ -150,6 +150,7 @@ class PostsController extends AppController{
 		$conditions = array('Post.type'=>$type);
 
 		$find_status = true;
+		$find_by_term = false;
 
 		// si une recherche a été demandée
 		if(!empty($this->request->query['s'])){
@@ -165,8 +166,14 @@ class PostsController extends AppController{
 		}
 		else{
 			if(!empty($this->request->query['author'])){
-				$conditions = array_merge($conditions,array('Post.user_id'=>$this->request->query['author'],'Post.status <>'=>'trash'));
+				$conditions = array_merge($conditions,array('Post.user_id'=>$this->request->query['author']));
 				$find_status = false;
+			}
+			if(!empty($this->request->query['category'])){
+				$find_by_term = true;
+				$find_status = false;
+				$term_slug = $this->request->query['category'];
+				$term_type = 'category';
 			}
 		}
 
@@ -182,21 +189,37 @@ class PostsController extends AppController{
 
 			
 		}
+		else
+			$conditions = array_merge($conditions,array('Post.status <>'=>'trash'));
+		
 
 		// ajout des contain
 		if($type == 'post')
 			$this->Post->contain(array('User','Term'));
 		elseif($type == 'page')
 			$this->Post->contain('User');
-		
+
 		// on prépare la pagination
 		$this->paginate = array(
 			'fields'=>array('Post.id','Post.name','Post.status','Post.type','Post.slug','Post.created','User.id','User.username'),
 			'conditions'=>$conditions,
 			'limit'=>Configure::read('elements_per_page')
 		);
-
+		
 		$d['posts'] = $this->Paginate('Post');
+
+		if($find_by_term){
+			$data = array();
+			foreach ($d['posts'] as $k => $v) {
+				$post_id = $v['Post']['id'];
+				foreach ($v['Term'] as $k1 => $v1) {
+					if($v1['type'] == $term_type && $v1['slug'] == $term_slug){
+						$data[] = $d['posts'][$k];
+					}
+				}
+			}
+			$d['posts'] = $data;
+		}
 
 		// initialisation des compteur de la vue
 		$d['totalPublish'] = $d['totalDraft'] = $d['totalTrash'] = 0;

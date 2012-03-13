@@ -83,7 +83,11 @@
 										<?php if ($v['Post']['status'] == 'draft'): ?>
 											preview
 										<?php else: ?>
-											afficher
+											<?php if ($type == 'post'): ?>
+												<?php echo $this->Html->link("Afficher",array('action'=>'view','admin'=>false,'type'=>'post','id'=>$v['Post']['id'],'slug'=>$v['Post']['slug']),array('target'=>'_blank')); ?>
+											<?php else: ?>
+												<?php echo $this->Html->link("Afficher",array('action'=>'view','admin'=>false,'type'=>'page','slug'=>$v['Post']['slug']),array('target'=>'_blank')); ?>
+											<?php endif ?>
 										<?php endif ?>
 									<?php endif ?>
 								</div>
@@ -92,7 +96,7 @@
 							<?php if ($type == 'post'): ?>
 							<td>
 								<?php foreach ($v['Taxonomy']['category'] as $k1 => $v1): ?>
-									<?php echo $this->Html->link($v1['name'],array('action'=>'','controller'=>'')); ?>
+									<?php echo $this->Html->link($v1['name'],array('?'=>array('type'=>$type,'category'=>$v1['slug']))); ?>
 								<?php endforeach ?>
 							</td>
 							<td>
@@ -111,6 +115,8 @@
 					<?php else: ?>
 						<td></td>
 						<td>Aucun article à afficher</td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 					<?php endif ?>
