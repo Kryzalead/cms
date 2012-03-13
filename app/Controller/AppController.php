@@ -64,5 +64,11 @@ class AppController extends Controller{
 		}
 		return false;
 	}
+
+	function error($message){
+		$this->layout = 'error-page';
+		$this->set('message',$message);
+		$this->render('/errors/error-page');
+	}
 }
  ?>

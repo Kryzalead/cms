@@ -76,8 +76,12 @@ class Post extends AppModel{
 	*/
 	function afterSave($data){
 		if(!empty($this->data['Post']['slug'])){
+			
 			$id = $this->id;
-			$guid = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'posts/'.$this->data['Post']['slug'].'-'.$id;
+			if($this->data['Post']['type'] == 'post')
+				$guid = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'blog/'.$this->data['Post']['slug'].'-'.$id;
+			else
+				$guid = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').$this->data['Post']['slug'].'.html';
 			$this->saveField('guid',$guid);
 		}
 		return true;

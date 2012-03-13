@@ -3,6 +3,9 @@ App::uses('Sanitize', 'Utility');
 
 class PostsController extends AppController{
 
+	protected $alllow_post_type = array('post','page');
+	protected $allow_post_status = array('all','publish','draft','trash');
+
 	/*
 	* Fonction qui affiche la page d'acceuil
 	*/
@@ -118,17 +121,22 @@ class PostsController extends AppController{
 
 		// on récupère le type de post
 		$type = !empty($this->request->query['type']) ? $this->request->query['type'] : 'post';
-		if(!in_array($type, array('post','page'))){
-			$this->layout = 'error-page';
-			$d['message'] = "Type d’article invalide";
-			$this->set($d);
-			$this->render('/errors/error-page');return;
-		}	
+		
+		if(!in_array($type, $this->alllow_post_type)){
+			$this->error("Type d’article invalide");
+			return;
+		}
+				
 		$d['type'] = $type;
 
 		// on récupère le status demandé
 		// si il est vide, on le met à all
 		$status = !empty($this->request->query['status']) ? $this->request->query['status'] : 'all';
+		if(!empty($status)){
+			if(!in_array($status, $this->allow_post_status)){
+				$status = '';
+			}
+		}
 		$d['status'] = $status;
 
 
@@ -243,8 +251,16 @@ class PostsController extends AppController{
 
 		$action = $this->request->query['action'];
 		$id = $this->request->query['id'];
+		$this->Post->id =$id;
+		
+		$post_type = $this->Post->field('type');
+		
+		if(empty($post_type)){
+			$this->error("Voulez-vous vraiment faire cela ?");
+			return;
+		}
 
-		$this->Post->id = $this->request->query['id'];
+		
 		switch ($action) {
 			case 'trash':
 				$this->Post->saveField('status','trash');
@@ -315,50 +331,82 @@ class PostsController extends AppController{
 		$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 	}
 
-	function admin_new(){
-		
-	}
 	/*
 	* Fonction qui permet d'editer un article
 	*/
 	function admin_edit(){
 
+
 		$type = (!empty($this->request->query['type'])) ? $this->request->query['type'] : 'post';
-		$d['type'] = $type;
+		
+		if(!in_array($type, $this->alllow_post_type)){
+			$this->error("Type d’article invalide");
+			return;
+		}
 
 		$id = !empty($this->request->query['id']) ? $this->request->query['id'] : 0;
-
+		
+		if(!empty($id)){
+			$this->Post->id = $id;
+			$post_type = $this->Post->field('type');
+			if(!empty($post_type)){
+				if($type != $post_type)
+					$this->redirect(array('action'=>'edit','?'=>array('type'=>$post_type,'id'=>$id)));
+			}
+			else{
+				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
+				return;
+			}
+		}
+		
+		$d['type'] = $type;
 		$d['title_for_layout'] = $type == 'post' ? 'Ajouter un nouvel article' : 'Ajouter une nouvelle page';
 		$d['icon_for_layout'] = $type == 'post' ? 'icone-posts-add.png' : 'icone-pages-add.png';
 		$d['texte_submit'] = 'Publier';
 		
-		$this->Post->contain('Term');
+		if($type == 'post')
+			$this->Post->contain('Term');
 
 		if($this->request->is('post') || $this->request->is('put')) {
 
 			if($this->Post->save($this->request->data)){
 				if(empty($this->request->data['Post']['terms']))
-					$this->Post->initCat();
+					if($type == 'post')
+						$this->Post->initCat();
 			
-			if($id)
-				$this->Session->setFlash("L'article a bien été modifié",'notif');
-			else
-				$this->Session->setFlash("L'article a bien été publié",'notif');
+			$action = $this->request->data['Post']['action'];
+			$type =  $this->request->data['Post']['type'];
 
-			$this->redirect(array('action'=>'index'));
+			if($action == 'upd')
+				$message = $type == 'post' ? "L'article a bien été modifié" : "La page a bien été modifiée";	
+			elseif($action == 'add')
+				$message = $type == 'post' ? "L'article a bien été publié" : "La page a bien été publiée";
+			
+			$this->Session->setFlash($message,'notif');
+
+			$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 			}
 			else
-				$this->Session->setFlash('Merci de corriger vos erreurs','notif',array('type'=>'error'));	
+				$this->Session->setFlash('Merci de corriger vos erreurs','notif',array('typeMessage'=>'error'));	
 			
 		}
 		elseif($id){
 			$d['title_for_layout'] = $type == 'post' ? "Modifier l'article" : "Modifier la page";
 			$d['texte_submit'] = 'Mettre à jour';
+			$d['action'] = 'upd';
 
 			$this->Post->id = $id;
-			$this->request->data = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status','Post.type'));
+			$post = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status','Post.type'));
+			
+			if(empty($post)){
+				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
+				return;
+			}
+
+			$this->request->data = $post;
 		}
 		else{
+			$d['action'] = 'add';
 			$last_id = current($this->Post->find('first',array(
 				'fields'=>'MAX(id) AS maxid',
 			)));
@@ -366,7 +414,9 @@ class PostsController extends AppController{
 			$this->request->data['Post']['id'] = $last_id['maxid'] + 1;
 
 		}
-		$d['terms'] = $this->Post->getFixedTerms();
+
+		if($type == 'post')
+			$d['terms'] = $this->Post->getFixedTerms();
 
 		$d['list_status'] = array(
 			'publish'=>'Publié',
@@ -374,6 +424,39 @@ class PostsController extends AppController{
 		);
 
 		$d['status_selected'] = 'publish';
+		$this->set($d);
+	}
+
+	function admin_tinymce(){
+		
+		$this->layout = 'modal';
+
+		if($this->request->is('post') || $this->request->is('put')){
+			$d['content'] = $this->request->data['Post']['content'];
+			$d['src'] = $this->request->data['Post']['link-src'];
+			$d['title'] = $this->request->data['Post']['link-title'];
+
+			$this->layout = null;
+			$this->set($d);
+			$this->render('tinymce');
+			return;
+		}
+
+		$d['posts'] = $this->Post->find('all',array(
+			'fields'=>array('Post.id','Post.name','Post.type','Post.guid'),
+			'conditions'=>array(
+				'OR'=>array(
+					array('Post.type'=>'post'),
+					array('Post.type'=>'page')
+				),
+				'Post.status <>'=>'trash'
+			)
+		));
+
+		$this->request->data['Post']['link-title'] = (!empty($this->request->query['title'])) ? $this->request->query['title'] : '';
+		$this->request->data['Post']['link-src'] = (!empty($this->request->query['src'])) ? $this->request->query['src'] : '';
+		$this->request->data['Post']['content'] = $this->request->query['content'];
+
 		$this->set($d);
 	}
 }
