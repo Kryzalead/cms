@@ -10,6 +10,8 @@
 			<?php $request = array('type'=>$options['params']['type'],'status'=>$k) ?>
 		<?php elseif($model == 'media'): ?>
 			<?php $request = array('type_mime'=>$k) ?>
+		<?php elseif($model == 'user'): ?>
+			<?php $request = array('role'=>$k) ?>	
 		<?php endif ?>
 		<?php if ($k == 'all'): ?>
 			<li class="<?php echo $k ?>">

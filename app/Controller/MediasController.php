@@ -75,7 +75,10 @@ class MediasController extends AppController{
 		$d['total'] = $d['totalImages'] + $d['totalVideos'];
 		$d['data_for_top_table']['count']['total'] = $d['total'];
 
-		$d['totalElement'] = (empty($mime) || $mime == 'all') ? $d['total'] : $d['total'.ucfirst($mime)];
+		if(!empty($search))
+			$d['totalElement'] = count($d['medias']);
+		else
+			$d['totalElement'] = (empty($mime) || $mime == 'all') ? $d['total'] : $d['total'.ucfirst($mime)];
 
 		$d['list_action'] = array(
 			'0'=>'Actions groupées',
@@ -212,8 +215,6 @@ class MediasController extends AppController{
 	*/
 	function admin_delete(){
 
-		
-		
 		if(empty($this->request->query['token']))
 			$this->redirect('/');
 		elseif($this->Session->read('Security.token') != $this->request->query['token'])

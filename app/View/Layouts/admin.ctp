@@ -105,7 +105,7 @@
                     <ul>
                         <li><?php echo $this->Html->link("Tous les utilisateurs",array('plugin'=>null,'action'=>'index','controller'=>'users')); ?></li>
                         <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'edit','controller'=>'users')); ?></li>
-                        <li><?php echo $this->Html->link("Votre profil",array('plugin'=>null,'action'=>'edit','controller'=>'users',$this->Session->read('Auth.User.id'))); ?></li>
+                        <li><?php echo $this->Html->link("Votre profil",array('plugin'=>null,'action'=>'edit','controller'=>'users','?'=>array('id'=>$this->Session->read('Auth.User.id')))); ?></li>
                     </ul>
                 </li>
                 <li <?php echo ($currentController == 'options')  ? 'class="current"' : '' ?>>

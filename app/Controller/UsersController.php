@@ -3,6 +3,8 @@
 App::uses('Sanitize', 'Utility');
 
 class UsersController extends AppController{
+
+	public $alllow_role_user = array('all','admin','user');
 	
 	/*
 	*	Fonction de connexion
@@ -35,9 +37,25 @@ class UsersController extends AppController{
 		$this->redirect('/');
 	}
 
-	function admin_index($role = ''){
+	function admin_index(){
 
 		$d['title_for_layout'] = 'Utilisateurs';
+
+		$role = !empty($this->request->query['role']) ? $this->request->query['role'] : 'all';
+		if(!in_array($role,$this->alllow_role_user)){
+			$this->error("Type d'utilisateur invalide");
+			return;
+		}
+
+		$d['data_for_top_table'] = array(
+			'action'=>'index',
+			'list'=>array(
+				'all'=>'Tous',
+				'admin'=>'Administrateur',
+				'user'=>'Utilisateur'
+			),
+			'current'=>$role
+		);
 
 		$this->User->contain(array(
 			'User_meta'=>array(
@@ -54,7 +72,7 @@ class UsersController extends AppController{
 			$conditions = array_merge(array('User.username LIKE'=>'%'.$search.'%'),$conditions);
 		}
 		else{
-			$conditions = (!empty($role)) ? array_merge(array('User.role'=>$role),$conditions) : array();
+			$conditions = (!empty($role) && $role !='all') ? array_merge(array('User.role'=>$role),$conditions) : array();
 		}
 
 		$this->paginate = array(
@@ -75,35 +93,69 @@ class UsersController extends AppController{
 			'group'		=>	'User.role'
 		));
 
-		foreach ($count as $key => $value) {
-			$d['total'.ucfirst($value['User']['role'])] = $value[0]['total'];
+		foreach ($count as $k => $v) {
+			$d['total'.ucfirst($v['User']['role'])] = $v[0]['total'];
+			$d['data_for_top_table']['count']['total'.ucfirst($v['User']['role'])] = $v[0]['total'];
 		}
 
 		$d['total'] = $d['totalAdmin'] + $d['totalUser'];
+		$d['data_for_top_table']['count']['total'] = $d['total'];
 
-		$d['totalElement'] = (empty($role)) ? $d['total'] : $d['total'.ucfirst($role)];
+		if(!empty($search))
+			$d['totalElement'] = count($d['users']);
+		else
+			$d['totalElement'] = (empty($role) || $role == 'all') ? $d['total'] : $d['total'.ucfirst($role)];
 
 		$d['list_action'] = array(
 			'0'=>'Actions groupées',
-			'delete'=>'Supprimer'
+			'delete'=>'Supprimer définitivement'
 		);
 		
 		$this->set($d);
 	}
 
 	function admin_doaction(){
-		parent::doaction('utilisateur');
+		$action = $this->request->data['User']['action'];
+		$count = 0;
+		
+		unset($this->request->data['User']['action']);
+
+		foreach ($this->request->data['User'] as $k => $v) {
+			if(!empty($v)){
+				$this->User->id = $k;
+				$this->User->delete();
+				$count ++;
+			}	
+		}
+		if($count > 0){
+			$terminaison = ($count > 1 ) ? 's' : '';
+			$this->Session->setFlash($count." utilisateur".$terminaison." supprimé".$terminaison,"notif");
+
+		}
+		$this->redirect(array('action'=>'index'));
 	}
 	
-	function admin_delete($id){
+	function admin_delete(){
 
-		if ($this->request->is('get')) 
-        	throw new MethodNotAllowedException();
+		if(empty($this->request->query['token']))
+			$this->redirect('/');
+		elseif($this->Session->read('Security.token') != $this->request->query['token'])
+			$this->redirect('/');
+		
+		$id = $this->request->query['id'];
+		$count = $this->User->find('count',array(
+			'conditions'=>array('User.id'=>$id)
+		));
 
-    	$this->User->id = $id;
-    	$this->User->delete($id);
-    	$this->Session->setFlash("L'utilisateur a bien été supprimé","notif");
-    	$this->redirect($this->referer());
+		if(!$count){
+			$this->error("L'utilisateur ne peut être supprimé car il n'existe pas");
+			return;
+		}
+
+		$this->User->id = $id;
+		$this->User->delete();
+		$this->Session->setFlash("L'utilisateur a bien été supprimé","notif");
+		$this->redirect($this->referer());
 	}
 	
 	function admin_edit($id = null){
@@ -111,6 +163,10 @@ class UsersController extends AppController{
 		$d['texte_submit'] = 'Ajouter un utilisateur';
 		$d['title_for_layout'] = 'Ajouter un utilisateur';
 
+		$id = !empty($this->request->query['id']) ? $this->request->query['id'] : 0;
+		if(!is_numeric($id))
+			$this->redirect(array('action'=>'index'));
+		
 		if($this->request->is('post') || $this->request->is('put')){
 			
 			if($this->request->data['User']['password'] != $this->request->data['User']['passwordconfirm']){
@@ -160,8 +216,14 @@ class UsersController extends AppController{
 					)
 				)
 			));
+
 			$this->User->id = $id;
-			$this->request->data = $this->User->read(array('User.id','User.username','User.email','User.siteweb','User.role'));
+			$user = $this->User->read(array('User.id','User.username','User.email','User.siteweb','User.role'));
+			if(empty($user)){
+				$this->error("Identifiant utilisateur invalide.");
+				return;
+			}
+			$this->request->data = $user;
 		}
 
 		$d['roles'] = array(
