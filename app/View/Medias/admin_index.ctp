@@ -1,7 +1,4 @@
 <style type="text/css">
-	#content a:hover{color: #ff4b33}
-	#content #post-status .current{color: #000;font-weight : bold;}
-
 	#sidemenu{list-style-type: none;padding-left: 10px;font-size: 12px;margin: 0 5px;overflow:hidden;background-color: #F9F9F9;border-bottom-color: #DFDFDF;};
 	#sidemenu li{display: inline;line-height: 200%;list-style: none;text-align: center;white-space: nowrap;margin: 0;padding: 0;}
 	#sidemenu a{color: #21759B;;background-color: #F9F9F9;border-color: #F9F9F9;border-bottom-color: #DFDFDF;padding: 0 7px;display: block;float: left;line-height: 28px;border-top-width: 1px;border-top-style: solid;border-bottom-width: 1px;border-bottom-style: solid;text-decoration: none}
@@ -63,28 +60,9 @@
 		<?php echo $this->Form->input('search',array('label'=>'')) ?>
 		<?php echo $this->Form->end('Rechercher dans les medias'); ?>
 	</div>
-	<div class="list-type-posts">
-		<p class="list" id="post-status">
-			<?php if ($mime == 'all'): ?>
-				<?php echo $this->Html->link("Tous",array(),array('class'=>'current')); ?>
-			<?php else: ?>
-				<?php echo $this->Html->link("Tous",array()); ?>
-			<?php endif ?>
-			(<span class="total"><?php echo $total ?></span>)
-			<?php if ($totalImages != 0): ?>
-				<?php if ($mime == 'images'): ?>
-				 	| <?php echo $this->Html->link("Images",array('?'=>array('type_mime'=>'images')),array('class'=>'current')); ?>
-				<?php else: ?>
-					| <?php echo $this->Html->link("Images",array('?'=>array('type_mime'=>'images'))); ?>
-				<?php endif ?>
-				(<span class="totalImages"><?php echo $totalImages ?></span>) 	
-			<?php endif ?> 
-			<?php if ($totalVideos != 0): ?>
-				| <?php echo $this->Html->link("Videos",array('?'=>array('type_mime'=>'videos'))); ?>
-				(<span class="totalVideos"><?php echo $totalVideos ?></span>)	
-			<?php endif ?>
-		</p>
-		<p class="totalElement">
+	<div>
+		<?php echo $this->element('list-top-table',array('model'=>'media','options'=>$data_for_top_table)) ?>
+		<p style="text-align: right">
 			<?php $terminaison = ($totalElement > 1) ? 's' : '';?>
 			<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>
 		</p>

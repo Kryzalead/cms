@@ -20,6 +20,16 @@ class MediasController extends AppController{
 		}
 		$d['mime'] = $mime;
 
+		$d['data_for_top_table'] = array(
+			'action'=>'index',
+			'list'=>array(
+				'all'=>'Tous',
+				'images'=>'Images',
+				'videos'=>'Videos'
+			),
+			'current'=>$mime
+		);
+
 		$conditions = array('Media.type'=>'attachment');
 
 		if(!empty($this->request->query['search'])){
@@ -56,11 +66,14 @@ class MediasController extends AppController{
 		$d['totalImages'] = $d['totalVideos'] = 0;
 
 		foreach ($count as $k => $v) {
-			if($v['Media']['mime_type'] == 'image/jpeg')
+			if($v['Media']['mime_type'] == 'image/jpeg'){
 				$d['totalImages'] = $v[0]['total'];
+				$d['data_for_top_table']['count']['totalImages'] = $d['totalImages'];
+			}
 		}
 
 		$d['total'] = $d['totalImages'] + $d['totalVideos'];
+		$d['data_for_top_table']['count']['total'] = $d['total'];
 
 		$d['totalElement'] = (empty($mime) || $mime == 'all') ? $d['total'] : $d['total'.ucfirst($mime)];
 
@@ -105,7 +118,7 @@ class MediasController extends AppController{
 						$this->Session->setFlash("Votre média a bien été ajouté","notif");
 						if($this->request->action == 'admin_tinymce')
 							$this->redirect(array('action'=>'tinymce','library'));
-						$this->redirect(array('action'=>'edit',$this->Media->id));
+						$this->redirect(array('action'=>'edit','?'=>array('attachment_id'=>$this->Media->id)));
 					}
 					else
 						$this->Session->setFlash("Une erreur interne s'est produite lors de l'upload du média","notif",array('type'=>'error'));

@@ -145,6 +145,18 @@ class PostsController extends AppController{
 		$d['icon_for_layout'] = $type == 'page' ? 'icone-pages.png' : 'icone-posts.png';
 		$d['text_for_add_post'] = $type == 'page' ? 'Ajouter une page' : 'Ajouter un article';
 		$d['text_for_submit_search'] = $type == 'page' ? 'Rechercher dans les pages' : 'Rechercher dans les articles';
+		
+		$d['data_for_top_table'] = array(
+			'action'=>'index',
+			'params'=>array('type'=>$type),
+			'list'=>array(
+				'all'=>'Tous',
+				'publish'=>'Publiés',
+				'draft'=>'Brouillons',
+				'trash'=>'Corbeille'
+			),
+			'current'=>$status
+		);
 
 		// début des conditions
 		$conditions = array('Post.type'=>$type);
@@ -235,10 +247,13 @@ class PostsController extends AppController{
 		));
 
 		// assignation des compteurs
-		foreach ($count as $k => $v)
+		foreach ($count as $k => $v){
 			$d['total'.ucfirst($v['Post']['status'])] = $v[0]['total'];
+			$d['data_for_top_table']['count']['total'.ucfirst($v['Post']['status'])] = $v[0]['total'];
+		}
 		
 		$d['total'] = $d['totalPublish'] + $d['totalDraft'];
+		$d['data_for_top_table']['count']['total'] = $d['total'];
 
 		// si une recherche, totalElement vaut le total de post trouvés
 		if(!empty($search) || !empty($find_by_term))

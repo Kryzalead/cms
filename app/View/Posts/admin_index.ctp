@@ -1,7 +1,3 @@
-<style type="text/css">
-	#content a:hover{color: #ff4b33}
-	#content #post-status .current{color: #000;font-weight : bold;}
-</style>
 <h1>
 	<?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
@@ -20,39 +16,7 @@
 </div>
 
 <div>
-	<p style="display: inline-block;float: left" id="post-status">
-		<?php if ($status == 'all'): ?>
-			<?php echo $this->Html->link("Tous",array('?'=>array('type'=>$type)),array('class'=>'current')); ?>
-		<?php else: ?>
-			<?php echo $this->Html->link("Tous",array('?'=>array('type'=>$type))); ?>
-		<?php endif ?>
-		
-		(<span class="total"><?php echo $total ?></span>)
-		<?php if ($totalPublish != 0): ?>
-			<?php if ($status == 'publish'): ?>
-				 | <?php echo $this->Html->link("Publiés",array('?'=>array('type'=>$type,'status'=>'publish')),array('class'=>'current')); ?>
-			<?php else: ?>
-				 | <?php echo $this->Html->link("Publiés",array('?'=>array('type'=>$type,'status'=>'publish'))); ?>
-			<?php endif ?> 
-			(<span class="totalPublished"><?php echo $totalPublish ?></span>) 	
-		<?php endif ?> 
-		<?php if ($totalDraft != 0): ?>
-			<?php if ($status == 'draft'): ?>
-				 | <?php echo $this->Html->link("Brouillons",array('?'=>array('type'=>$type,'status'=>'draft')),array('class'=>'current')); ?>
-			<?php else: ?>
-				 | <?php echo $this->Html->link("Brouillons",array('?'=>array('type'=>$type,'status'=>'draft'))); ?>
-			<?php endif ?> 
-			(<span class="totalDraft"><?php echo $totalDraft ?></span>)	
-		<?php endif ?>
-		<?php if ($totalTrash != 0): ?>
-			<?php if ($status == 'trash'): ?>
-				 | <?php echo $this->Html->link("Corbeille",array('?'=>array('type'=>$type,'status'=>'trash')),array('class'=>'current')); ?>
-			<?php else: ?>
-				 | <?php echo $this->Html->link("Corbeille",array('?'=>array('type'=>$type,'status'=>'trash'))); ?>
-			<?php endif ?> 
-			(<span class="totalTrash"><?php echo $totalTrash ?></span>) 	
-		<?php endif ?>
-	</p>
+	<?php echo $this->element('list-top-table',array('model'=>'post','options'=>$data_for_top_table)) ?>
 	<p style="text-align: right">
 		<?php $terminaison = ($totalElement > 1) ? 's' : '';?>
 		<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>
