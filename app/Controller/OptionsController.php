@@ -9,7 +9,7 @@ class OptionsController extends AppController{
 				$options = $this->Option->find('all',array(
 				'fields'	=>	array('name','value')
 				));	
-				//Cache::write('config_site',$options);
+				Cache::write('config_site',$options);
 			}
 			else
 				$options = Cache::read('config_site');

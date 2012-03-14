@@ -4,18 +4,20 @@ App::uses('Sanitize', 'Utility');
 class MediasController extends AppController{
 	
 	public $components = array('Img');
+	public $allow_attachment_type = array('images','videos');
 
 	/*
 	*	Fonction index de l'administration
 	*/
-	function admin_index($mime = ''){
+	function admin_index(){
+
 		$d['title_for_layout'] = 'Bibliothèque';
-		$this->Media->contain(array(
-			'User'=>array(
-				'fields'=>array('User.id','User.username')
-			),
-			'Post_meta'
-		));
+		
+		$mime = !empty($this->request->query['type_mime']) ? $this->request->query['type_mime'] : 'images';
+		if(!in_array($mime,$this->allow_attachment_type)){
+			$this->error("Type de médias invalide");
+			return;
+		}
 
 		$conditions = array('Media.type'=>'attachment');
 
@@ -23,12 +25,16 @@ class MediasController extends AppController{
 			$search = Sanitize::clean($this->request->query['search']);
 			$conditions = array_merge(array('Media.name LIKE'=>'%'.$search.'%'),$conditions);
 		}
-		else{
-			if(!empty($mime)){
-				if($mime == 'images')
-					$conditions = array_merge($conditions,array('Media.mime_type'=>'image/jpeg'));
-			}	
-		}
+		
+		if($mime == 'images')
+			$conditions = array_merge($conditions,array('Media.mime_type'=>'image/jpeg'));
+		
+		$this->Media->contain(array(
+			'User'=>array(
+				'fields'=>array('User.id','User.username')
+			),
+			'Post_meta'
+		));
 
 		$this->paginate = array(
 			'fields'=>array('Media.id','Media.name','Media.created','Media.mime_type','Media.guid'),
@@ -72,6 +78,10 @@ class MediasController extends AppController{
 		
 		$d['title_for_layout'] = 'Ajouter un média';
 		$d['action'] = 'add';
+
+		$id = !empty($this->request->query['attachment_id']) ? $this->request->query['attachment_id'] : 0;
+		if(!is_numeric($id))
+			$this->redirect(array('action'=>'index'));
 
 		if($this->request->is('post') || $this->request->is('put')){
 			if($this->request->is('post')){
@@ -148,10 +158,14 @@ class MediasController extends AppController{
 			$d['media'] = $this->Media->read(
 				array('Media.id','Media.name','Media.created','Media.mime_type','Media.guid','Media.content')
 			);
+
+			if(empty($d['media'])){
+				$this->error("Vous tentez de modifier un média qui n'existe plus");
+				return;
+			}
+
 			$this->request->data = $d['media'];
 		}
-
-
 		$this->set($d);
 	}
 
@@ -159,21 +173,51 @@ class MediasController extends AppController{
 	*	Fonction qui permet d'éffectuer des actions groupées
 	*/
 	function admin_doaction(){
-		parent::doaction('média');
+		$action = $this->request->data['Media']['action'];
+		$count = 0;
+		
+		unset($this->request->data['Media']['action']);
+
+		foreach ($this->request->data['Media'] as $k => $v) {
+			if(!empty($v)){
+				$this->Media->id = $k;
+				$this->Media->delete();
+				$count ++;
+			}	
+		}
+		if($count > 0){
+			$terminaison = ($count > 1 ) ? 's' : '';
+			$this->Session->setFlash($count." médias supprimé".$terminaison,"notif");
+
+		}
+		$this->redirect(array('action'=>'index'));
 	}
 
 	/*
 	*	Fonction qui supprime un média
 	*/
-	function admin_delete($id,$token = null){
-		if(empty($token))
+	function admin_delete(){
+
+		
+		
+		if(empty($this->request->query['token']))
 			$this->redirect('/');
-		elseif($this->Session->read('Security.token') != $token)
+		elseif($this->Session->read('Security.token') != $this->request->query['token'])
 			$this->redirect('/');
+		
+		$id = $this->request->query['id'];
+		$count = $this->Media->find('count',array(
+			'conditions'=>array('Media.id'=>$id)
+		));
+
+		if(!$count){
+			$this->error("Le médias ne peut être supprimé car il n'existe pas");
+			return;
+		}
 
 		$this->Media->id = $id;
 		$this->Media->delete();
-		$this->Session->setFlash("Le média a bien été supprimé","notif");
+		$this->Session->setFlash("Le médias a bien été supprimé","notif");
 		$this->redirect($this->referer());
 	}
 

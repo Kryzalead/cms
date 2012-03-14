@@ -241,7 +241,7 @@ class PostsController extends AppController{
 		$d['total'] = $d['totalPublish'] + $d['totalDraft'];
 
 		// si une recherche, totalElement vaut le total de post trouvés
-		if(!empty($search))
+		if(!empty($search) || !empty($find_by_term))
 			$d['totalElement'] = count($d['posts']);
 		else
 			$d['totalElement'] = $d['totalElement'] = (empty($status) || $status == 'all') ? $d['total'] : $d['total'.ucfirst($status)];
@@ -368,6 +368,8 @@ class PostsController extends AppController{
 		}
 
 		$id = !empty($this->request->query['id']) ? $this->request->query['id'] : 0;
+		if(!is_numeric($id))
+			$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 		
 		if(!empty($id)){
 			$this->Post->id = $id;

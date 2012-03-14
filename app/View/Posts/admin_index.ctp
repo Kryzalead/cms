@@ -1,3 +1,7 @@
+<style type="text/css">
+	#content #post-status a:hover{color: #ff4b33}
+	#content #post-status #current-status{color: #000;font-weight : bold;}
+</style>
 <h1>
 	<?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
@@ -16,19 +20,36 @@
 </div>
 
 <div>
-	<p style="display: inline-block;float: left">
-		<?php echo $this->Html->link("Tous",array('action'=>'index','?'=>array('type'=>$type))); ?>
+	<p style="display: inline-block;float: left" id="post-status">
+		<?php if ($status == 'all'): ?>
+			<?php echo $this->Html->link("Tous",array('?'=>array('type'=>$type)),array('id'=>'current-status')); ?>
+		<?php else: ?>
+			<?php echo $this->Html->link("Tous",array('?'=>array('type'=>$type))); ?>
+		<?php endif ?>
+		
 		(<span class="total"><?php echo $total ?></span>)
 		<?php if ($totalPublish != 0): ?>
-			| <?php echo $this->Html->link("Publiés",array('action'=>'index','?'=>array('type'=>$type,'status'=>'publish'))); ?>
+			<?php if ($status == 'publish'): ?>
+				 | <?php echo $this->Html->link("Publiés",array('?'=>array('type'=>$type,'status'=>'publish')),array('id'=>'current-status')); ?>
+			<?php else: ?>
+				 | <?php echo $this->Html->link("Publiés",array('?'=>array('type'=>$type,'status'=>'publish'))); ?>
+			<?php endif ?> 
 			(<span class="totalPublished"><?php echo $totalPublish ?></span>) 	
 		<?php endif ?> 
 		<?php if ($totalDraft != 0): ?>
-			| <?php echo $this->Html->link("Brouillons",array('action'=>'index','?'=>array('type'=>$type,'status'=>'draft'))); ?>
+			<?php if ($status == 'draft'): ?>
+				 | <?php echo $this->Html->link("Brouillons",array('?'=>array('type'=>$type,'status'=>'draft')),array('id'=>'current-status')); ?>
+			<?php else: ?>
+				 | <?php echo $this->Html->link("Brouillons",array('?'=>array('type'=>$type,'status'=>'draft'))); ?>
+			<?php endif ?> 
 			(<span class="totalDraft"><?php echo $totalDraft ?></span>)	
 		<?php endif ?>
 		<?php if ($totalTrash != 0): ?>
-			| <?php echo $this->Html->link("Corbeille",array('action'=>'index','?'=>array('type'=>$type,'status'=>'trash'))); ?>
+			<?php if ($status == 'trash'): ?>
+				 | <?php echo $this->Html->link("Corbeille",array('?'=>array('type'=>$type,'status'=>'trash')),array('id'=>'current-status')); ?>
+			<?php else: ?>
+				 | <?php echo $this->Html->link("Corbeille",array('?'=>array('type'=>$type,'status'=>'trash'))); ?>
+			<?php endif ?> 
 			(<span class="totalTrash"><?php echo $totalTrash ?></span>) 	
 		<?php endif ?>
 	</p>
@@ -123,7 +144,7 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<th><input type="checkbox"></th>
+						<th><input type="checkbox" class="checkall"></th>
 						<th><?php echo $this->Paginator->sort('name','Titre'); ?></th>
 						<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
 						<?php if ($type == 'post'): ?>

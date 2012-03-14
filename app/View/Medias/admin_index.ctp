@@ -50,7 +50,7 @@
 		<?php echo $this->Html->image('icone-medias.png',array('width'=>62,'height'=>62)); ?>
 		<?php echo $title_for_layout ?>
 	</h1>
-	<?php echo $this->Html->link('Ajouter un média',array('action'=>'edit'),array('class'=>'btn primary')) ?>
+	<?php echo $this->Html->link('Ajouter un média',array('action'=>'edit'),array('class'=>'button button-add')) ?>
 	<?php if (!empty($this->request->query['search'])): ?>
 		<span style="color: #777">Résultats de recherche pour "<?php echo $this->request->query['search'] ?>"
 	<?php endif ?>
@@ -62,14 +62,14 @@
 	</div>
 	<div class="list-type-posts">
 		<p class="list">
-			<?php echo $this->Html->link("Tous",array('action'=>'index')); ?>
+			<?php echo $this->Html->link("Tous",array()); ?>
 			(<span class="total"><?php echo $total ?></span>)
 			<?php if ($totalImages != 0): ?>
-				| <?php echo $this->Html->link("Images",array('action'=>'index','images')); ?>
+				| <?php echo $this->Html->link("Images",array('?'=>array('type_mime'=>'images'))); ?>
 				(<span class="totalImages"><?php echo $totalImages ?></span>) 	
 			<?php endif ?> 
 			<?php if ($totalVideos != 0): ?>
-				| <?php echo $this->Html->link("Vidéos",array('action'=>'index','videos')); ?>
+				| <?php echo $this->Html->link("Videos",array('?'=>array('type_mime'=>'videos'))); ?>
 				(<span class="totalVideos"><?php echo $totalVideos ?></span>)	
 			<?php endif ?>
 		</p>
@@ -87,9 +87,9 @@
 		<thead style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
 			<tr style="color: #21759B">
 				<th><input type="checkbox" class="checkall"></th>
-				<th>Fichier</th>
-				<th>Auteur</th>
-				<th>Date</th>
+				<th><?php echo $this->Paginator->sort('Post.name','Fichier'); ?></th>
+				<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
+				<th><?php echo $this->Paginator->sort('Post.created','Date'); ?></th>
 			</tr>
 		</thead>
 		<tbody style="color: gray;">
@@ -103,13 +103,13 @@
 							<?php echo $this->Html->image($v['Media']['thumbnail'],array('title'=>$v['Media']['name'],'alt'=>$alt,'width'=>60,'height'=>60)) ?>
 						</div>
 						<div>
-							<?php echo $this->Html->link($v['Media']['name'],array('action'=>'edit',$v['Media']['id'])); ?>
+							<?php echo $this->Html->link($v['Media']['name'],array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id']))); ?>
 							<p style="margin-top: 5px;color: #333;margin-bottom: 5px">
 								<?php echo strtoupper(substr($v['Media']['thumbnail'],-3,3));?>
 							</p>
 							<div class="action_admin">
-								<?php echo $this->Html->link("Modifier",array('action'=>'edit',$v['Media']['id']),array('class'=>'upd')); ?> |
-								<?php echo $this->Html->link("Supprimer définitivement",array('action'=>'delete',$v['Media']['id'],$this->Session->read('Security.token')),array('class'=>'del'),'Voulez vous vraiment supprimer ce contenu ?'); ?>
+								<?php echo $this->Html->link("Modifier",array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id'])),array('class'=>'upd')); ?> |
+								<?php echo $this->Html->link("Supprimer définitivement",array('controller'=>'medias','action'=>'delete','?'=>array('id'=>$v['Media']['id'],'token'=>$this->Session->read('Security.token'))),array('class'=>'del'),'Voulez vous vraiment supprimer ce contenu ?'); ?>
 							</div>
 						</div>
 					</td>
@@ -127,10 +127,10 @@
 		</tbody>
 		<tfoot style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
 			<tr style="color: #21759B">
-				<th><input type="checkbox"></th>
-				<th>Fichier</th>
-				<th>Auteur</th>
-				<th>Date</th>
+				<th><input type="checkbox" class="checkall"></th>
+				<th><?php echo $this->Paginator->sort('Post.name','Fichier'); ?></th>
+				<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
+				<th><?php echo $this->Paginator->sort('Post.created','Date'); ?></th>
 			</tr>
 		</tfoot>
 	</table>
@@ -191,8 +191,6 @@
 	
 	<?php echo $this->Html->scriptStart(array('inline'=>false)) ?>
 		jQuery(function($){
-		// On transforme notre conteneur principal en un conteneur d'onglets
-		  $("#ConteneurPrincipal").tabs();
 		  	$('.on').click(function(){
 		  		object = $(this);
 		  		$(object).parent().parent().children('.toggle_thumbnail').fadeOut(200);
