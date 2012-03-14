@@ -1,4 +1,7 @@
 <style type="text/css">
+	#content a:hover{color: #ff4b33}
+	#content #post-status .current{color: #000;font-weight : bold;}
+
 	#sidemenu{list-style-type: none;padding-left: 10px;font-size: 12px;margin: 0 5px;overflow:hidden;background-color: #F9F9F9;border-bottom-color: #DFDFDF;};
 	#sidemenu li{display: inline;line-height: 200%;list-style: none;text-align: center;white-space: nowrap;margin: 0;padding: 0;}
 	#sidemenu a{color: #21759B;;background-color: #F9F9F9;border-color: #F9F9F9;border-bottom-color: #DFDFDF;padding: 0 7px;display: block;float: left;line-height: 28px;border-top-width: 1px;border-top-style: solid;border-bottom-width: 1px;border-bottom-style: solid;text-decoration: none}
@@ -61,11 +64,19 @@
 		<?php echo $this->Form->end('Rechercher dans les medias'); ?>
 	</div>
 	<div class="list-type-posts">
-		<p class="list">
-			<?php echo $this->Html->link("Tous",array()); ?>
+		<p class="list" id="post-status">
+			<?php if ($mime == 'all'): ?>
+				<?php echo $this->Html->link("Tous",array(),array('class'=>'current')); ?>
+			<?php else: ?>
+				<?php echo $this->Html->link("Tous",array()); ?>
+			<?php endif ?>
 			(<span class="total"><?php echo $total ?></span>)
 			<?php if ($totalImages != 0): ?>
-				| <?php echo $this->Html->link("Images",array('?'=>array('type_mime'=>'images'))); ?>
+				<?php if ($mime == 'images'): ?>
+				 	| <?php echo $this->Html->link("Images",array('?'=>array('type_mime'=>'images')),array('class'=>'current')); ?>
+				<?php else: ?>
+					| <?php echo $this->Html->link("Images",array('?'=>array('type_mime'=>'images'))); ?>
+				<?php endif ?>
 				(<span class="totalImages"><?php echo $totalImages ?></span>) 	
 			<?php endif ?> 
 			<?php if ($totalVideos != 0): ?>
@@ -206,7 +217,6 @@
 		  		$(object).parent().parent().children('.toggle_thumbnail').fadeIn(200);
 		  		$(this).parent().parent().siblings('.media_form').fadeOut(250);
 		  	});
-		  	
 		});
 	<?php echo $this->Html->scriptEnd(); ?>
 <?php endif; ?>	

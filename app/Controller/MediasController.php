@@ -4,7 +4,7 @@ App::uses('Sanitize', 'Utility');
 class MediasController extends AppController{
 	
 	public $components = array('Img');
-	public $allow_attachment_type = array('images','videos');
+	public $allow_attachment_type = array('all','images','videos');
 
 	/*
 	*	Fonction index de l'administration
@@ -13,11 +13,12 @@ class MediasController extends AppController{
 
 		$d['title_for_layout'] = 'Bibliothèque';
 		
-		$mime = !empty($this->request->query['type_mime']) ? $this->request->query['type_mime'] : 'images';
+		$mime = !empty($this->request->query['type_mime']) ? $this->request->query['type_mime'] : 'all';
 		if(!in_array($mime,$this->allow_attachment_type)){
 			$this->error("Type de médias invalide");
 			return;
 		}
+		$d['mime'] = $mime;
 
 		$conditions = array('Media.type'=>'attachment');
 
@@ -61,7 +62,7 @@ class MediasController extends AppController{
 
 		$d['total'] = $d['totalImages'] + $d['totalVideos'];
 
-		$d['totalElement'] = (empty($mime)) ? $d['total'] : $d['total'.ucfirst($mime)];
+		$d['totalElement'] = (empty($mime) || $mime == 'all') ? $d['total'] : $d['total'.ucfirst($mime)];
 
 		$d['list_action'] = array(
 			'0'=>'Actions groupées',
