@@ -48,7 +48,7 @@
         <div id="head">
             <?php echo $this->element('admin-top-barre') ?>
         </div>
-        <?php echo $this->element('admin-menu',array(),array('cache' => true)); ?>
+        <?php echo $this->element('admin-menu'); ?>
         <div id="content" class="white">
             <?php echo $this->Session->flash() ?>
             <?php echo $content_for_layout ?>

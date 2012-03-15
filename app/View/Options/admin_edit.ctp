@@ -21,6 +21,34 @@
 			<?php echo $this->Form->input('Option.show_on_front',array('legend'=>"La page d'accueil affiche",'type'=>'radio','options'=>$list_show_on_front)); ?>
 			<?php echo $this->Form->input('Option.page_on_front',array('label'=>"Page d'acceuil",'type'=>'select','options'=>$list_page_on_show,'id'=>'page_on_front',$is_disabled)); ?>
 			<?php echo $this->Form->input('Option.posts_per_page',array('label'=>"Les pages du site doivent afficher au plus",'after'=>' articles')); ?>
+		<?php elseif($action == 'media'): ?>
+			<h3>Taille des images</h3>
+			<p>Les tailles précisées ci-dessous déterminent les dimensions maximales (en pixels) à utiliser lors de l’insertion d’une image dans le corps d’un article.</p>
+			<table style="margin-top: 20px">
+				<tbody>
+					<tr>
+						<th style="width: 200px;height: 50px;line-height: 50px">Taille des miniatures</th>
+						<td style="background: none;border: none">
+							<?php echo $this->Form->input('Option.thumbnail_size_w',array('label'=>"Largeur",'div'=>array('style'=>'float: left;margin-right: 10px'),'style'=>'margin-left: 5px;width: 50px')); ?>
+							<?php echo $this->Form->input('Option.thumbnail_size_h',array('label'=>"Longueur",'style'=>'margin-left: 5px;width: 50px')); ?>
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 200px;height: 50px;line-height: 50px">Taille moyenne</th>
+						<td style="background: none;border: none">
+							<?php echo $this->Form->input('Option.medium_size_w',array('label'=>"Largeur",'div'=>array('style'=>'float: left;margin-right: 10px'),'style'=>'margin-left: 5px;width: 50px')); ?>
+							<?php echo $this->Form->input('Option.medium_size_h',array('label'=>"Longueur",'style'=>'margin-left: 5px;width: 50px')); ?>
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 200px;height: 50px;line-height: 50px">Grande taille</th>
+						<td style="background: none;border: none">
+							<?php echo $this->Form->input('Option.large_size_w',array('label'=>"Largeur",'div'=>array('style'=>'float: left;margin-right: 10px'),'style'=>'margin-left: 5px;width: 50px')); ?>
+							<?php echo $this->Form->input('Option.large_size_h',array('label'=>"Longueur",'style'=>'margin-left: 5px;width: 50px')); ?>
+						</td>
+					</tr>
+				</tbody>
+			</table>	
 		<?php endif ?>
 	<?php echo $this->Form->end('Enregistrer les modifications') ?>
 </div>

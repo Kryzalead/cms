@@ -30,10 +30,10 @@ class MenusController extends AppController{
 	/*
 	*	Fonction qui permet d'administrer les menus
 	*/
-	function admin_index($id = null){
+	function admin_index(){
 		$d['title_for_layout'] = 'Menus';
 		$d['texte_for_submit'] = 'Créer le menu';
-		
+
 		$this->loadModel('Post');
 		$d['listPages'] = $this->Post->find('list',array(
 			'conditions'=>array('Post.type'=>'page','Post.status'=>'publish')
@@ -45,8 +45,8 @@ class MenusController extends AppController{
 			$d['menu_id'] = 0;
 		}
 		else{
-			if(empty($id)){
-				if($id != '0'){
+			if(empty($this->request->query['id'])){
+				if($this->request->query['id'] != '0'){
 					$temp = current($this->Menu->find('first',array(
 						'fields'=>array('id'),
 						'order'=>'id ASC'
@@ -57,7 +57,7 @@ class MenusController extends AppController{
 					$d['menu_id'] = 0;
 			}
 			else
-				$d['menu_id'] = $id;	
+				$d['menu_id'] = $this->request->query['id'];	
 		}
 
 		if($d['menu_id'] == 0){
@@ -106,17 +106,28 @@ class MenusController extends AppController{
 			else
 				$this->Session->setFlash("Une erreur s'est produite lors de la création du menu","notif",array('type'=>'error'));
 		}
-		$this->redirect(array('action'=>'index',$this->Menu->id));
+		$this->redirect(array('action'=>'index','?'=>array('id'=>$this->Menu->id)));
 	}
 
 	/*
 	*	Fonction qui permet de supprimer un menu
 	*/
-	function admin_delete($id,$token = null){
-		if(empty($token))
+	function admin_delete(){
+
+		if(empty($this->request->query['token']))
 			$this->redirect('/');
-		elseif($this->Session->read('Security.token') != $token)
+		elseif($this->Session->read('Security.token') != $this->request->query['token'])
 			$this->redirect('/');
+		
+		$id = $this->request->query['id'];
+		$count = $this->Menu->find('count',array(
+			'conditions'=>array('Menu.id'=>$id)
+		));
+
+		if(!$count){
+			$this->error("Le menu ne peut être supprimé car il n'existe pas");
+			return;
+		}
 
 		$this->Menu->id = $id;
 		$this->Menu->delete();
@@ -129,7 +140,7 @@ class MenusController extends AppController{
 	*/
 	function admin_addItem(){
 		
-		if($this->request->is('Post')){
+		if($this->request->is('post')){
 			
 			// on initialise le tableau des datas
 			$data = array();
@@ -159,6 +170,7 @@ class MenusController extends AppController{
 			}
 			$this->Menu->Menu_post->saveAll($data);
 			$this->Session->setFlash("Les élements ont bien été ajoutés au menu","notif");
+			Cache::delete('element__menu_cache');
 			$this->redirect($this->referer());
 		}
 		else
@@ -168,7 +180,17 @@ class MenusController extends AppController{
 	/*
 	*	Fonction qui supprime un item
 	*/
-	function admin_deleteItem($id){
+	function admin_deleteItem(){
+
+		$id = $this->request->query['id'];
+		$count = $this->Menu->Menu_post->find('count',array(
+			'conditions'=>array('id'=>$id)
+		));
+
+		if($count == 0){
+			$this->error("L'item ne peut être supprimé car il n'existe pas");
+			return;
+		}
 		
 		// on récupère la position
 		$this->Menu->Menu_post->id = $id;
@@ -189,6 +211,7 @@ class MenusController extends AppController{
 		// on supprime l'item
 		$this->Menu->Menu_post->delete($id);
 		$this->Session->setFlash("L'élément a bien été supprimé du menu","notif");
+		Cache::delete('element__menu_cache');
 		$this->redirect($this->referer());
 	}
 
@@ -212,6 +235,7 @@ class MenusController extends AppController{
 			// on incrémente la position
 			$position++;
 		}
+		Cache::delete('element__menu_cache');
 		// on renvois la vue admin_index
 		$this->render('admin_index');
 		// on retourne true pour dire que tout s'est bien passé

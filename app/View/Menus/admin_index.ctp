@@ -30,11 +30,11 @@
 				<ul style="list-style-type: none">
 					<?php foreach ($listMenus as $k => $v): ?>
 						<li style="width: 124px;display: inline-block;background: #F9F9F9;border: 1px solid #DFDFDF;text-align: center;height: 28px;line-height: 28px">
-							<?php echo $this->Html->link($v,array('action'=>'index',$k),array('style'=>'color: #464646;')); ?>
+							<?php echo $this->Html->link($v,array('action'=>'index','?'=>array('id'=>$k)),array('style'=>'color: #464646;')); ?>
 						</li>
 					<?php endforeach ?>
 					<li style="width: 40px;display: inline-block;background: #F9F9F9;border: 1px solid #DFDFDF;text-align: center;height: 28px;line-height: 28px">
-							<?php echo $this->Html->link('+',array('action'=>'index',0),array('style'=>'color: #464646;','title'=>'Ajouter un menu')); ?>
+							<?php echo $this->Html->link('+',array('action'=>'index','?'=>array('id'=>0)),array('style'=>'color: #464646;','title'=>'Ajouter un menu')); ?>
 						</li>
 				</ul>
 			</div>
@@ -50,7 +50,7 @@
 					</div>
 					<?php if ($menu_id != 0): ?>
 						<div id="menu-action" style="margin: 5px">
-							<?php echo $this->Html->link("Supprimer le menu",array('action'=>'delete',$menu_id,$this->Session->read('Security.token')),array('style'=>'color: red')); ?>
+							<?php echo $this->Html->link("Supprimer le menu",array('action'=>'delete','?'=>array('id'=>$menu_id,'token'=>$this->Session->read('Security.token'))),array('style'=>'color: red')); ?>
 						</div>	
 					<?php endif ?>
 					<div id="block-menu-items" style="background-color: #fff;margin-top: 20px;border-top: 1px solid #DFDFDF;border-bottom: 1px solid #DFDFDF">
@@ -65,10 +65,10 @@
 										</div>
 										<div class="menu-item-action" style="background-colo: whiteSmoke;padding: 5px">
 											<span>
-											<?php echo $this->Html->link("Supprimer",array('action'=>'deleteItem',$v['Menu_post']['id']),array('style="color: red;font-size: 12px"'),'Voulez vous vraiment supprimer cet élement'); ?>
+											<?php echo $this->Html->link("Supprimer",array('action'=>'deleteItem','?'=>array('id'=>$v['Menu_post']['id'])),array('style="color: red;font-size: 12px"'),'Voulez vous vraiment supprimer cet élement'); ?>
 											</span> |
 											<span>
-											<?php echo $this->Html->link("Editer",array('action'=>'edit','controller'=>Inflector::pluralize($v['Post']['type']),$v['Post']['id']),array('style'=>'color: #257EA8;font-size: 12px')); ?>
+											<?php echo $this->Html->link("Editer",array('action'=>'edit','controller'=>'posts','?'=>array('type'=>$v['Post']['type'],'id'=>$v['Post']['id'])),array('style'=>'color: #257EA8;font-size: 12px')); ?>
 											</span>
 										</div>
 									</li>

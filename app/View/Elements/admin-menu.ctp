@@ -15,7 +15,7 @@
             <ul>
                 <li><?php echo $this->Html->link("Tous les articles",array('plugin'=>null,'action'=>'index','controller'=>'posts')); ?></li>
                 <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'edit','controller'=>'posts')); ?></li>
-                <li><?php echo $this->Html->link("Catégories",array('plugin'=>'taxonomy','controller'=>'terms','action'=>'edit','category')); ?></li>
+                <li><?php echo $this->Html->link("Catégories",array('plugin'=>'taxonomy','controller'=>'terms','action'=>'edit','?'=>array('type'=>'category'))); ?></li>
             </ul>
         </li>
         <li <?php echo ($currentController == 'medias')  ? 'class="current"' : '' ?>>
@@ -48,7 +48,7 @@
                 <li><?php echo $this->Html->link("Ecriture",array('plugin'=>null,'action'=>'write','controller'=>'options')); ?></li>
                 <li><?php echo $this->Html->link("Lecture",array('plugin'=>null,'action'=>'read','controller'=>'options')); ?></li>
                 <li><?php echo $this->Html->link("Discussion",array('plugin'=>null,'action'=>'edit','controller'=>'options')); ?></li>
-                <li><?php echo $this->Html->link("Médias",array('plugin'=>null,'action'=>'edit','controller'=>'options')); ?></li>
+                <li><?php echo $this->Html->link("Médias",array('plugin'=>null,'action'=>'media','controller'=>'options')); ?></li>
             </ul>
         </li>
     </ul>

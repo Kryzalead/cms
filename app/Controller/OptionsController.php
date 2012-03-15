@@ -36,11 +36,12 @@ class OptionsController extends AppController{
 					$this->Option->id = $option_id;
 					$this->Option->saveField('value',$v);
 				}
+                Cache::delete('config_site');
 				$this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
 				$this->redirect(array('action'=>'admin_general'));
 			}
 			else
-				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));
+				$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
     	}
 
      	$d['list_user_roles'] = Configure::read('user_roles');
@@ -73,11 +74,12 @@ class OptionsController extends AppController{
 					$this->Option->id = $option_id;
 					$this->Option->saveField('value',$v);
 				}
+                Cache::delete('config_site');
 				$this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
-				$this->redirect(array('action'=>'admin_general'));
+				$this->redirect(array('action'=>'admin_write'));
 			}
 			else
-				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));
+				$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
     	}
 
      	$fields = array(
@@ -121,11 +123,12 @@ class OptionsController extends AppController{
 					$this->Option->id = $option_id;
 					$this->Option->saveField('value',$v);
 				}
+                Cache::delete('config_site');
 				$this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
 				$this->redirect(array('action'=>'admin_read'));
 			}
 			else
-				$this->Session->setFlash("Merci de corriger vos informations","notif",array('type'=>'error'));
+				$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
     	}
 
     	$fields = array(
@@ -150,6 +153,49 @@ class OptionsController extends AppController{
      	$d['is_disabled'] = Configure::read('show_on_front') == 'post' ? 'disabled' : '';
 
     	$this->set($d);
+        $this->render('admin_edit');
+    }
+
+    function admin_media(){
+        $d['title_for_layout'] = 'Réglages des médias';
+        $d['action'] = 'media';
+
+        if ($this->request->is('put') || $this->request->is('post')) {
+            
+            $valid = true;
+            foreach ($this->request->data['Option'] as $k => $v) {
+                if(!is_numeric($v))
+                    $valid = false;
+            }
+            if($valid){
+                foreach ($this->request->data['Option'] as $k => $v) {
+
+                    $option_id = $this->Option->field('id',array('name'=>$k));
+                    $this->Option->id = $option_id;
+                    $this->Option->saveField('value',$v);
+                }
+                Cache::delete('config_site');
+                $this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
+                $this->redirect(array('action'=>'admin_media'));
+            }
+            else
+                $this->Session->setFlash("Les valeurs doivent être numérique","notif",array('typeMessage'=>'error'));
+        }
+
+        $fields = array(
+            'thumbnail_size_w',
+            'thumbnail_size_h',
+            'medium_size_w',
+            'medium_size_h',
+            'large_size_w',
+            'large_size_h'
+        );
+
+        foreach ($fields as $name) {
+            $this->request->data['Option'][$name] = Configure::read($name);
+        }
+
+        $this->set($d);
         $this->render('admin_edit');
     }
 }
