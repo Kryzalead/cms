@@ -1,3 +1,5 @@
+<p><?php echo $type ?> : <span style="color: #333"><?php echo $term ?></span>	</p>
+
 <?php foreach($posts as $k => $v):?>
 	<div class="hentry">
 		<h2 class="entry-title"><?php echo $this->Html->link($v['Post']['name'],$v['Post']['link'],array('title'=>$v['Post']['name'])); ?></h2>
@@ -36,4 +38,3 @@
 		<?php endif; ?>		
 	</div>
 <?php endforeach;?>
-<?php echo $this->Paginator->numbers() ?>

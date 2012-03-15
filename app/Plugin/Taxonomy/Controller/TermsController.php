@@ -1,6 +1,52 @@
 <?php 
 class TermsController extends TaxonomyAppController{
 	
+	function view($type,$slug){
+
+		$term = $this->Term->find('first',array(
+			'fields'=>array('Term.id','Term.name'),
+			'conditions'=>array('Term.type'=>$type,'Term.slug'=>$slug)
+		));
+
+		if(empty($term))
+			throw new NotFoundException('Erreur 404');
+		
+		$term_id = $term['Term']['id'];
+		$object = $this->Term->TermR->field('object',array('term_id',$term_id));
+		$term_posts = $this->Term->TermR->find('all',array(
+			'fields'=>array('object_id'),
+			'conditions'=>array('term_id'=>$term_id)
+		));
+		
+		$object_ids = array();
+		foreach ($term_posts as $k => $v) {
+			$object_ids[] = $v['TermR']['object_id'];
+		}
+
+		$this->loadModel($object);
+		if ($object == 'Post') {
+			$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
+		}
+
+		$d['posts'] = $this->$object->find('all',array(
+			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created'),
+			'conditions'=>array(
+				'Post.id'=>$object_ids
+			),
+			'order'=>'Post.created DESC',
+		));
+
+		if($type == 'category')
+			$d['type'] = 'Catégorie';
+		elseif($type == 'tag')
+			$d['type'] = 'Mot-Clef';
+		
+		$d['term'] = $term['Term']['name'];
+
+		$this->set($d);
+		
+	}
+
 	function admin_deleteR($id = null){
 		$this->Term->TermR->id = $id;
 		$term_id = $this->Term->TermR->field('term_id');

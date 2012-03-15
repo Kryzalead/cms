@@ -17,7 +17,7 @@ class AppController extends Controller{
 
 		// défini l'action à appeller pour se connecter
 		// on place le prefix admin à false pour que ça n'apparaisse pas dans l'url
-		$this->Auth->loginAction = array('controller'=>'users','action'=>'login','admin'=>false);
+		$this->Auth->loginAction = array('plugin'=>false,'controller'=>'users','action'=>'login','admin'=>false);
 
 		// on demande à utiliser le système d'autorisation par controller
 		$this->Auth->authorize = array('Controller');

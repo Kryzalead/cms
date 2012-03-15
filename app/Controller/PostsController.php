@@ -411,7 +411,7 @@ class PostsController extends AppController{
 
 			if($this->Post->save($this->request->data)){
 				if(empty($this->request->data['Post']['terms']))
-					if($type == 'post')
+					if($this->request->data['Post']['type'] == 'post')
 						$this->Post->initCat();
 			
 			$action = $this->request->data['Post']['action'];

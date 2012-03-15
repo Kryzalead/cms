@@ -43,6 +43,7 @@ class Post extends AppModel{
 	*	Fonction a executer après avoir récupéré les datas
 	*/
 	function afterFind($data){
+		
 		// création d'un index link
 		// cet index servira dans les liens pour les vues
 		foreach ($data as $k => $v) {
@@ -64,7 +65,6 @@ class Post extends AppModel{
 	*	Fonction a executer avant l'enregistrement
 	*/
 	function beforeSave($data){
-		
 		if(empty($this->data['Post']['slug']) && isset($this->data['Post']['slug']) && !empty($this->data['Post']['name'])){
 			$this->data['Post']['slug'] = strtolower(Inflector::slug($this->data['Post']['name'],'-'));		
 		}

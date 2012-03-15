@@ -10,6 +10,7 @@ class UsersController extends AppController{
 	*	Fonction de connexion
 	*/
 	function login(){
+		
 		$this->set('title_for_layout','Connexion');
 		
 		$this->layout = 'login';
@@ -20,7 +21,7 @@ class UsersController extends AppController{
 				// si tout est ok, on redirige vers la page qu'on souhaite
 				$token = md5(time()*rand(85,945));
 				$this->Session->write('Security.token',$token);
-				return $this->redirect(array('controller'=>'dashboard','action'=>'index','admin'=>true));
+				return $this->redirect(array('plugin'=>false,'controller'=>'dashboard','action'=>'index','admin'=>true));
 			}
 			else{
 				$this->Session->setFlash("Identifiants incorrect","notif",array('type'=>'error'));
