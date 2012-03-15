@@ -32,8 +32,8 @@ class MediasController extends AppController{
 
 		$conditions = array('Media.type'=>'attachment');
 
-		if(!empty($this->request->query['search'])){
-			$search = Sanitize::clean($this->request->query['search']);
+		if(!empty($this->request->query['s'])){
+			$search = Sanitize::clean($this->request->query['s']);
 			$conditions = array_merge(array('Media.name LIKE'=>'%'.$search.'%'),$conditions);
 		}
 		

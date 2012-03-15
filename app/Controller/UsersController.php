@@ -67,8 +67,8 @@ class UsersController extends AppController{
 
 		$conditions = array();
 
-		if(!empty($this->request->query['search'])){
-			$search = Sanitize::clean($this->request->query['search']);
+		if(!empty($this->request->query['s'])){
+			$search = Sanitize::clean($this->request->query['s']);
 			$conditions = array_merge(array('User.username LIKE'=>'%'.$search.'%'),$conditions);
 		}
 		else{

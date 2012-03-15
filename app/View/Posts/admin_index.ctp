@@ -6,28 +6,13 @@
 	<?php if (!empty($search)): ?>
 		<span>Résultats de recherche pour "<?php echo $search ?>"
 	<?php endif ?>
-
-<div class="search-box" style="text-align: right">
-	<?php echo $this->Form->create('Post',array('type'=>'get')); ?>
-	<?php echo $this->Form->input('s',array('label'=>'')) ?>
-	<?php echo $this->Form->input('type',array('label'=>null,'type'=>'hidden','value'=>$type)); ?>
-	<?php echo $this->Form->input('status',array('label'=>null,'type'=>'hidden','value'=>$status)); ?>
-	<?php echo $this->Form->end($text_for_submit_search); ?>
-</div>
-
+<?php echo $this->element('admin-search',array('model'=>'post','options'=>array('type'=>$type,'status'=>$status),'text_for_submit_search'=>$text_for_submit_search)) ?>
 <div>
-	<?php echo $this->element('list-top-table',array('model'=>'post','options'=>$data_for_top_table)) ?>
-	<p style="text-align: right">
-		<?php $terminaison = ($totalElement > 1) ? 's' : '';?>
-		<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>
-	</p>
+	<?php echo $this->element('admin-list-top-table',array('model'=>'post','options'=>$data_for_top_table)) ?>
+	<?php echo $this->element('admin-total-element',array('total'=>$totalElement)) ?>
 </div>
 <?php echo $this->Form->create('Post',array('url'=>array('controller'=>'posts','action'=>'doaction'))) ?>
-	<div style="margin-top: 10px">
-		<?php echo $this->Form->input('action',array('label'=>false,'type'=>'select','options'=>$list_action)); ?>
-		<?php echo $this->Form->input('type',array('label'=>false,'type'=>'hidden','value'=>$type)); ?>
-		<?php echo $this->Form->submit('Appliquer') ?>
-	</div>
+	<?php echo $this->element('admin-action-groupees',array('list'=>$list_action,'options'=>array('type'=>$type))) ?>
 	<div class="bloc">
 		<div class="content">
 			<table class="classicTable posts">
@@ -122,12 +107,6 @@
 		</div>
 	</div>
 <?php echo $this->Form->end(); ?>
-<div class="elements">
-	<p>
-		<?php $terminaison = ($totalElement > 1) ? 's' : '';?>
-		<span class="totalElement"><?php echo $totalElement ?></span> Élément<?php echo $terminaison ?>
-	</p>
-</div>
-
+<?php echo $this->element('admin-total-element',array('total'=>$totalElement)) ?>
 <?php echo $this->Paginator->numbers(); ?>
 

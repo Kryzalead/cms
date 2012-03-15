@@ -55,23 +55,13 @@
 		<span style="color: #777">Résultats de recherche pour "<?php echo $this->request->query['search'] ?>"
 	<?php endif ?>
 
-	<div class="search-box">
-		<?php echo $this->Form->create('Media',array('type'=>'get')); ?>
-		<?php echo $this->Form->input('search',array('label'=>'')) ?>
-		<?php echo $this->Form->end('Rechercher dans les medias'); ?>
-	</div>
+	<?php echo $this->element('admin-search',array('model'=>'media','text_for_submit_search'=>'Chercher parmi les médias')) ?>
 	<div>
-		<?php echo $this->element('list-top-table',array('model'=>'media','options'=>$data_for_top_table)) ?>
-		<p style="text-align: right">
-			<?php $terminaison = ($totalElement > 1) ? 's' : '';?>
-			<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>
-		</p>
+		<?php echo $this->element('admin-list-top-table',array('model'=>'media','options'=>$data_for_top_table)) ?>
+		<?php echo $this->element('admin-total-element',array('total'=>$totalElement)) ?>
 	</div>
 	<?php echo $this->Form->create('Media',array('url'=>array('controller'=>'medias','action'=>'doaction'))) ?>
-		<div style="margin-top: 10px">
-			<?php echo $this->Form->input('action',array('label'=>false,'type'=>'select','options'=>$list_action)); ?>
-			<?php echo $this->Form->submit('Appliquer') ?>
-		</div>
+	<?php echo $this->element('admin-action-groupees',array('list'=>$list_action)) ?>
 	<table class="classicTable posts" style="-webkit-border-radius: 3px;border-radius: 3px;border-width: 1px;border-style: solid;display: table;border-spacing: 2px;border-color: gray;margin-top: 10px">
 		<thead style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
 			<tr style="color: #21759B">
@@ -124,12 +114,7 @@
 		</tfoot>
 	</table>
 	<?php echo $this->Form->end(); ?>
-	<div style="margin-top: 5px">
-		<p style="text-align: right">
-			<?php $terminaison = ($totalElement > 1) ? 's' : '';?>
-			<span class="totalElement"><?php echo $totalElement ?></span> Element<?php echo $terminaison ?>
-		</p>
-	</div>
+	<?php echo $this->element('admin-total-element',array('total'=>$totalElement)) ?>
 	<?php echo $this->Paginator->numbers(); ?>
 <?php else: ?>
 	<div id="medias_tinymce">
