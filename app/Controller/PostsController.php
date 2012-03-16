@@ -264,7 +264,7 @@ class PostsController extends AppController{
 
 		// on prépare la pagination
 		$this->paginate = array(
-			'fields'=>array('Post.id','Post.name','Post.status','Post.type','Post.slug','Post.created','User.id','User.username'),
+			'fields'=>array('Post.id','Post.name','Post.status','Post.type','Post.slug','Post.created','Post.comment_count','User.id','User.username'),
 			'conditions'=>$conditions,
 			'limit'=>Configure::read('elements_per_page')
 		);

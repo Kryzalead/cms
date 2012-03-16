@@ -1,3 +1,10 @@
+<style type="text/css">
+	
+	.comment-post span{display: inline-block;padding: 0 6px;height: 1.4em;line-height:1.4em;text-align: center;border-radius: 5px;color: #fff;font-weight: bold;cursor: pointer}
+	.comment-post .comment-post-ok{background-color: #21759B;}
+	.comment-post .comment-post-no{background-color: #BBB;}
+	.comment-post span:hover{background-color: #D74E21}
+</style>
 <h1>
 	<?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
@@ -22,8 +29,9 @@
 						<th><?php echo $this->Paginator->sort('name','Titre'); ?></th>
 						<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
 						<?php if ($type == 'post'): ?>
-						<th>Catégories</th>
-						<th>Mots-clefs</th>
+							<th>Catégories</th>
+							<th>Mots-clefs</th>
+							<th><?php echo $this->Html->image('comment-grey-bubble.png') ?></th>
 						<?php endif ?>
 						<th><?php echo $this->Paginator->sort('created','Date'); ?></th>
 					</tr>
@@ -78,6 +86,10 @@
 									Aucun mot-clef				
 								<?php endif; ?>	
 							</td>
+							<td class="comment-post">
+								<?php $class = $v['Post']['comment_count']>0  ?  'comment-post-ok' : 'comment-post-no' ?>
+								<span class="<?php echo $class ?>"><?php echo $v['Post']['comment_count'] ?></span>
+							</td>
 							<?php endif ?>
 							<td><?php echo $this->date->format($v['Post']['created'],'FR'); ?></td>
 						</tr>
@@ -97,8 +109,9 @@
 						<th><?php echo $this->Paginator->sort('name','Titre'); ?></th>
 						<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
 						<?php if ($type == 'post'): ?>
-						<th>Catégories</th>
-						<th>Mots-clefs</th>
+							<th>Catégories</th>
+							<th>Mots-clefs</th>
+							<th><?php echo $this->Html->image('comment-grey-bubble.png') ?></th>
 						<?php endif ?>
 						<th><?php echo $this->Paginator->sort('created','Date'); ?></th>
 					</tr>
