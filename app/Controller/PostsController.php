@@ -41,11 +41,11 @@ class PostsController extends AppController{
 	*/
 
 	function index(){
-
+		
 		$d['title_for_layout'] = 'Blog | '.Configure::read('site_name');
 		
 		$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
-
+		$this->request->params['named']['page'] = $this->params['page'];
 		$this->paginate = array(
 			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created'),
 			'conditions'=>array(
@@ -113,6 +113,48 @@ class PostsController extends AppController{
 
 		$d['post'] = $post;
 		$this->set($d);
+	}
+
+	function viewterm($type = null,$slug = null){
+
+		$term = $this->Post->Term->find('first',array(
+			'fields'=>array('Term.id','Term.name'),
+			'conditions'=>array('Term.type'=>$type,'Term.slug'=>$slug)
+		));
+		if(empty($term))
+			throw new NotFoundException('Erreur 404');
+		
+		$term_id = $term['Term']['id'];
+		
+		$term_posts = $this->Post->Term->TermR->find('all',array(
+			'conditions'=>array('TermR.term_id'=>$term_id)
+		));
+
+		$object_ids = array();
+		foreach ($term_posts as $k => $v) {
+			$object_ids[] = $v['TermR']['object_id'];
+		}
+
+		$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
+
+		$d['posts'] = $this->Post->find('all',array(
+			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created'),
+			'conditions'=>array(
+				'Post.id'=>$object_ids
+			),
+			'order'=>'Post.created DESC',
+		));
+
+		if($type == 'category')
+			$d['type'] = 'Catégorie';
+		elseif($type == 'tag')
+			$d['type'] = 'Mot-Clef';
+		
+		$d['term'] = $term['Term']['name'];
+
+		$this->set($d);
+		
+
 	}
 
 	/************ ADMINISTRATION ******************/

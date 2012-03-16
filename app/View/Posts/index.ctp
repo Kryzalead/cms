@@ -18,7 +18,7 @@
 				<span><strong>Categories : </strong></span>
 				<?php foreach ($v['Taxonomy']['category'] as $k1 => $v1): ?>
 					<span class="entry-category">
-						<?php echo $this->Html->link($v1['name'],array('plugin'=>'taxonomy','controller'=>'terms','action'=>'view','type'=>'category','slug'=>$v1['slug'])); ?>
+						<?php echo $this->Html->link($v1['name'],array('plugin'=>false,'controller'=>'posts','action'=>'viewterm','type'=>'category','slug'=>$v1['slug'])); ?>
 					</span>
 				<?php endforeach ?>
 			<?php endif; ?>	
@@ -27,7 +27,7 @@
 				<span><strong>Tags : </strong></span>
 				<?php foreach ($v['Taxonomy']['tag'] as $k1 => $v1): ?>
 					<span class="entry-category">
-						<?php echo $this->Html->link($v1['name'],array('plugin'=>'taxonomy','controller'=>'terms','action'=>'view','type'=>'tag','slug'=>$v1['slug'])); ?>
+						<?php echo $this->Html->link($v1['name'],array('plugin'=>false,'controller'=>'posts','action'=>'viewterm','type'=>'tag','slug'=>$v1['slug'])); ?>
 					</span>
 				<?php endforeach ?>				
 			<?php endif; ?>	 					
@@ -36,4 +36,7 @@
 		<?php endif; ?>		
 	</div>
 <?php endforeach;?>
+<?php 
+$this->Paginator->options(array('url'=>array('controller'=>'posts','action'=>'index','page'=>$this->params['page']))) ;
+ ?>
 <?php echo $this->Paginator->numbers() ?>
