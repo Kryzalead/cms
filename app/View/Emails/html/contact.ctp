@@ -1,3 +1,3 @@
-<?php echo $name ?> vous a contacté : 
+<p><?php echo $name ?> vous a contacté : </p>
 
-<?php echo $message ?>
+<p><?php echo nl2br(h($message)) ?></p>
