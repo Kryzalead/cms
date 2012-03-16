@@ -56,6 +56,11 @@ class Post extends AppModel{
 					'slug'			=>	$v['Post']['slug']
 				);
 			}
+			if(!empty($v['Comment'])){
+				$v['Post']['totalWaiting'] = count($v['Comment']);
+			}
+			else
+				$v['Post']['totalWaiting'] = 0;
 			$data[$k] = $v;
 		}
 		return $data;

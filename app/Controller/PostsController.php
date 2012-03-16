@@ -258,7 +258,14 @@ class PostsController extends AppController{
 
 		// ajout des contain
 		if($type == 'post')
-			$this->Post->contain(array('User','Term'));
+			$this->Post->contain(array(
+				'User',
+				'Term',
+				'Comment'=>array(
+					'fields'=>array('Comment.id'),
+					'conditions'=>array('Comment.approved'=>0)
+				)
+			));
 		elseif($type == 'page')
 			$this->Post->contain('User');
 

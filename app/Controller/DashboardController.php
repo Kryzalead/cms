@@ -81,7 +81,8 @@ class DashboardController extends AppController{
 		$d['last_comments'] = $this->Comment->find('all',array(
 			'fields'=>array('Comment.id','Comment.author','Comment.approved','Comment.created','Comment.content'),
 			'conditions'=>array('Comment.approved'=>array(0,1)),
-			'limit'=>5
+			'limit'=>5,
+			'order'=>array('Comment.id'=>'DESC')
 		));
 
 		$this->set($d);

@@ -29,13 +29,13 @@
 								<?php echo $v['Comment']['author'] ?> <br>
 								<?php echo $v['Comment']['author_email'] ?> <br>
 								<?php echo $v['Comment']['author_ip'] ?>
-								<div class="action_admin">
-									
-								</div>
 							</td>
 							<td>
 								<?php echo $v['Comment']['created'] ?> <br>
 								<?php echo $v['Comment']['content'] ?>
+								<div class="action_admin">
+									
+								</div>
 							</td>
 							<td>
 								<?php echo $v['Post']['name'] ?> <br>

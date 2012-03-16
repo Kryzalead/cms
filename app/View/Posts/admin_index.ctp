@@ -1,9 +1,10 @@
 <style type="text/css">
-	
-	.comment-post span{display: inline-block;padding: 0 6px;height: 1.4em;line-height:1.4em;text-align: center;border-radius: 5px;color: #fff;font-weight: bold;cursor: pointer}
-	.comment-post .comment-post-ok{background-color: #21759B;}
-	.comment-post .comment-post-no{background-color: #BBB;}
-	.comment-post span:hover{background-color: #D74E21}
+	#content .comment-post span {background-color: #BBB;display: inline-block;text-align: center;border-radius: 5px;color: #fff;font-weight: bold;cursor: pointer}
+	#content .comment-post span.comment-waiting{background-color: #21759B}
+	#content .comment-post span:hover{background-color: #D74E21}
+	#content .comment-post span a{text-decoration: none;color: #fff;display: block;padding: 0 6px;height: 1.4em;line-height:1.4em;}
+	#content .comment-post span a:hover{color: #fff}
+
 </style>
 <h1>
 	<?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>
@@ -87,8 +88,10 @@
 								<?php endif; ?>	
 							</td>
 							<td class="comment-post">
-								<?php $class = $v['Post']['comment_count']>0  ?  'comment-post-ok' : 'comment-post-no' ?>
-								<span class="<?php echo $class ?>"><?php echo $v['Post']['comment_count'] ?></span>
+								<?php $class = (!empty($v['Post']['totalWaiting'])) ? 'class="comment-waiting"'  : ''?>
+								<span <?php echo $class ?>>
+									<?php echo $this->Html->link($v['Post']['comment_count'],array(),array('title'=>$v['Post']['totalWaiting'].' en attente')); ?>
+								</span>
 							</td>
 							<?php endif ?>
 							<td><?php echo $this->date->format($v['Post']['created'],'FR'); ?></td>
