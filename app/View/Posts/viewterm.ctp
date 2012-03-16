@@ -1,4 +1,4 @@
-<p><?php echo $type ?> : <span style="color: #333"><?php echo $term ?></span>	</p>
+<p><?php echo $type ?> : <span style="color: #333"><?php echo $term ?></span></p>
 
 <?php foreach($posts as $k => $v):?>
 	<div class="hentry">

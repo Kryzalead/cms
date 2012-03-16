@@ -32,6 +32,16 @@
 				<?php endforeach ?>				
 			<?php endif; ?>	 					
 			</span>
+			<span>
+				<?php 
+				$count = $v['Post']['comment_count'];
+				if($count != 0){
+					$terminaison = ($count>1) ? 's' : '';
+					$v['Post']['link']['#'] = 'comments';
+					echo $this->Html->link($count." commentaire".$terminaison,$v['Post']['link'],array('title'=>"Voir le".$terminaison." commentaire".$terminaison)); 
+				}
+				?>
+			</span>
 		</div>
 		<?php endif; ?>		
 	</div>

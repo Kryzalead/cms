@@ -5,9 +5,8 @@ class User extends AppModel{
 
 	public $hasMany = array(
 		'Post',
-		'User_meta'=>array(
-			'dependent'=>true
-		)
+		'User_meta'=>array('dependent'=>true),
+		'Comment'=>array('dependent'=>true)
 	);
 
 	public $recursive = -1;

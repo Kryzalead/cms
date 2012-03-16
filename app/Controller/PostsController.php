@@ -47,7 +47,7 @@ class PostsController extends AppController{
 		$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
 		$this->request->params['named']['page'] = $this->params['page'];
 		$this->paginate = array(
-			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created'),
+			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created','Post.comment_count'),
 			'conditions'=>array(
 				'Post.type'=>'post',
 				'Post.status'=>'publish'
@@ -71,10 +71,19 @@ class PostsController extends AppController{
 			
 			$id = $this->request->params['id'];
 
-			$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
+			$this->Post->contain(array(
+				'User'=>array(
+					'fields'=>array('User.username')
+				),
+				'Term',
+				'Comment'=>array(
+					'fields'=>array('Comment.id','Comment.author','Comment.author_email','Comment.author_url','Comment.created','Comment.content'),
+					'conditions'=>array('Comment.approved'=>1)
+				)
+			));
 
 			$post = $this->Post->find('first',array(
-				'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.created','Post.type'),
+				'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.created','Post.type','Post.comment_count'),
 				'conditions'=>array('Post.id'=>$id,'Post.type'=>'post')
 			));
 
