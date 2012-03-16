@@ -8,6 +8,7 @@ class CommentsController extends AppController{
 		if($this->request->is('post')){
 			$this->request->data['Comment']['author_ip'] = $this->RequestHandler->getClientIp();
 			if($this->Comment->save($this->request->data)){
+				$this->Session->setFlash("Merci de votre commentaire","notif");
 				$this->redirect($this->referer());
 			}
 			else{

@@ -157,20 +157,29 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><h4>46 000</h4></td>
-                                <td>Commentaires</td>
+                                <td><h4><?php echo $totalComments ?></h4></td>
+                                <td>
+                                    <?php $terminaison = ($totalComments > 1) ? 's' : '' ?>
+                                    Commentaire<?php echo $terminaison ?>
+                                </td>
                             </tr>
                             <tr>
-                                <td><h4>5</h4></td>
-                                <td class="good">Approuvé</td>
+                                <td><h4><?php echo $totalApproved ?></h4></td>
+                                <td class="good">
+                                    <?php $terminaison = ($totalApproved > 1) ? 's' : '' ?>
+                                    Approuvé<?php echo $terminaison ?>
+                                </td>
                             </tr>
                             <tr>
-                                <td><h4>0</h4></td>
+                                <td><h4><?php echo $totalWaiting ?></h4></td>
                                 <td class="neutral">En attente</td>
                             </tr>
                             <tr>
-                                <td><h4>0</h4></td>
-                                <td class="bad">Indésirable</td>
+                                <td><h4><?php echo $totalSpam ?></h4></td>
+                                <td class="bad">
+                                    <?php $terminaison = ($totalSpam > 1) ? 's' : '' ?>
+                                    Indésirable<?php echo $terminaison ?>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -204,45 +213,34 @@
         </div>
     </div>
     <div class="right">
-        <div id="last-comments" class="bloc">
+        <div id="dashboard-last-comments" class="bloc">
             <div class="title">
                 Commentaires récents
             </div>
             <div class="content">
-                <table class="noalt">
-                    <tbody>
-                        <tr>
-                            <td class="picture" style="width:80px;"><?php echo $this->Html->image('anonymous.png') ?></td>
-                            <td>
-                                <p>
-                                    <strong><a href="#">John Doe</a></strong><br>
-                                    <em>December 24, at 22:13 - <a href="#">Reply</a></em><br>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non nulla sapien, quis luctus felis. Fusce sodales tempus tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non nulla sapien, quis luctus felis. Fusce sodales tempus tincidunt.
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="picture" style="width:80px;"><?php echo $this->Html->image('anonymous.png') ?></td>
-                            <td>
-                                <p>
-                                    <strong><a href="#">John Doe</a></strong><br>
-                                    <em>December 24, at 22:13 - <a href="#">Reply</a></em><br>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non nulla sapien, quis luctus felis. Fusce sodales tempus tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non nulla sapien, quis luctus felis. Fusce sodales tempus tincidunt.
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="picture" style="width:80px;"><?php echo $this->Html->image('anonymous.png') ?></td>
-                            <td>
-                                <p>
-                                    <strong><a href="#">John Doe</a></strong><br>
-                                    <em>December 24, at 22:13 - <a href="#">Reply</a></em><br>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non nulla sapien, quis luctus felis. Fusce sodales tempus tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non nulla sapien, quis luctus felis. Fusce sodales tempus tincidunt.
-                                </p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <?php if (!empty($last_comments)): ?>
+                    <table class="noalt">
+                        <tbody>
+                            <?php foreach ($last_comments as $k => $v): ?>
+                                <?php $style = $v['Comment']['approved'] == 0  ? 'style="background-color: lightYellow"' : ''?>
+                                 <tr <?php echo $style ?>>
+                                    <td class="picture" style="width:80px;"><?php echo $this->Html->image('anonymous.png') ?></td>
+                                    <td>
+                                        <p>
+                                            <strong><?php echo $v['Comment']['author'] ?></strong> sur <?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts','?'=>array('type'=>'post','id'=>$v['Post']['id']))); ?>
+                                            <?php echo (!empty($style)) ? '<span style="color:#777 ;font-style: italic;font-family: sans-serif;font-size: 10px;">[en attente]</span>' : '' ?>
+                                            <br>
+                                            <em><?php echo $this->date->format($v['Comment']['created'],'FR') ?></em><br>
+                                            <p><?php echo $v['Comment']['content'] ?></p>
+                                        </p>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    Aucun commentaires
+                <?php endif ?>
             </div>
         </div>
         <div class="cb"></div>
