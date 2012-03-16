@@ -11,7 +11,9 @@
 		<?php elseif($model == 'media'): ?>
 			<?php $request = array('type_mime'=>$k) ?>
 		<?php elseif($model == 'user'): ?>
-			<?php $request = array('role'=>$k) ?>	
+			<?php $request = array('role'=>$k) ?>
+		<?php elseif($model == 'comment'): ?>
+			<?php $request = array('comment_status'=>$k) ?>		
 		<?php endif ?>
 		<?php if ($k == 'all'): ?>
 			<li class="<?php echo $k ?>">

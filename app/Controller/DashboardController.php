@@ -56,11 +56,12 @@ class DashboardController extends AppController{
 			'group'=>'Comment.approved'
 		));
 		
+		
 		$d['totalWaiting'] = $d['totalApproved'] = $d['totalSpam'] = $d['totalTrash'] = 0;
 		foreach ($count as $k => $v) {
-			if($v['Comment']['approved'] == 0)
+			if($v['Comment']['approved'] == '0')
 				$d['totalWaiting'] =  $v[0]['total'];
-			if($v['Comment']['approved'] == 1)
+			if($v['Comment']['approved'] == '1')
 				$d['totalApproved'] =  $v[0]['total'];
 			if($v['Comment']['approved'] == 'spam')
 				$d['totalSpam'] =  $v[0]['total'];
@@ -70,6 +71,7 @@ class DashboardController extends AppController{
 
 		$d['totalComments'] =  $d['totalApproved'] + $d['totalWaiting'] + $d['totalSpam'];
 
+		
 		$this->Comment->contain(array(
 			'Post'=>array(
 				'fields'=>array('Post.id','Post.name')
@@ -78,7 +80,8 @@ class DashboardController extends AppController{
 
 		$d['last_comments'] = $this->Comment->find('all',array(
 			'fields'=>array('Comment.id','Comment.author','Comment.approved','Comment.created','Comment.content'),
-			'conditions'=>array('Comment.approved'=>array(0,1))
+			'conditions'=>array('Comment.approved'=>array(0,1)),
+			'limit'=>5
 		));
 
 		$this->set($d);
