@@ -45,24 +45,24 @@
 								<?php echo $v['Comment']['content'] ?>
 								<div class="action_admin">
 									<?php if ($v['Comment']['approved'] == '1'): ?>
-										<?php echo $this->Html->link("Désapprouver",array('action'=>''),array('style'=>'color: #D98500')); ?>
-										| <?php echo $this->Html->link("Modifier",array('action'=>''),array('style'=>'color: #21759B')); ?>
-										| <?php echo $this->Html->link("Indésirable",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
-										| <?php echo $this->Html->link("Corbeille",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										<?php echo $this->Html->link("Désapprouver",array('action'=>'action','?'=>array('action'=>'unapprove','id'=>$v['Comment']['id'])),array('style'=>'color: #D98500')); ?>
+										| <?php echo $this->Html->link("Modifier",array('action'=>'edit','?'=>array('id'=>$v['Comment']['id'])),array('style'=>'color: #21759B')); ?>
+										| <?php echo $this->Html->link("Indésirable",array('action'=>'action','?'=>array('action'=>'spam','id'=>$v['Comment']['id'])),array('style'=>'color: #BC0B0B')); ?>
+										| <?php echo $this->Html->link("Corbeille",array('action'=>'action','?'=>array('action'=>'trash','id'=>$v['Comment']['id'])),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 									<?php if ($v['Comment']['approved'] == '0'): ?>
-										<?php echo $this->Html->link("Approuver",array('action'=>''),array('style'=>'color: #006505')); ?>
-										| <?php echo $this->Html->link("Modifier",array('action'=>''),array('style'=>'color: #21759B')); ?>
-										| <?php echo $this->Html->link("Indésirable",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
-										| <?php echo $this->Html->link("Corbeille",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										<?php echo $this->Html->link("Approuver",array('action'=>'action','?'=>array('action'=>'approve','id'=>$v['Comment']['id'])),array('style'=>'color: #006505')); ?>
+										| <?php echo $this->Html->link("Modifier",array('action'=>'edit','?'=>array('id'=>$v['Comment']['id'])),array('style'=>'color: #21759B')); ?>
+										| <?php echo $this->Html->link("Indésirable",array('action'=>'action','?'=>array('action'=>'spam','id'=>$v['Comment']['id'])),array('style'=>'color: #BC0B0B')); ?>
+										| <?php echo $this->Html->link("Corbeille",array('action'=>'action','?'=>array('action'=>'trash','id'=>$v['Comment']['id'])),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 									<?php if ($v['Comment']['approved'] == 'spam'): ?>
-										<?php echo $this->Html->link("N'est pas un indésirable",array('action'=>''),array('style'=>'color: #D98500')); ?>
-										| <?php echo $this->Html->link("Supprimer définitivement",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										<?php echo $this->Html->link("N'est pas un indésirable",array('action'=>'action','?'=>array('action'=>'unspam','id'=>$v['Comment']['id'])),array('style'=>'color: #D98500')); ?>
+										| <?php echo $this->Html->link("Supprimer définitivement",array('action'=>'action','?'=>array('action'=>'delete','id'=>$v['Comment']['id'])),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 									<?php if ($v['Comment']['approved'] == 'trash'): ?>
-										<?php echo $this->Html->link("Restaurer",array('action'=>''),array('style'=>'color: #D98500')); ?>
-										| <?php echo $this->Html->link("Supprimer définitivement",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										<?php echo $this->Html->link("Restaurer",array('action'=>'action','?'=>array('action'=>'untrash','id'=>$v['Comment']['id'])),array('style'=>'color: #D98500')); ?>
+										| <?php echo $this->Html->link("Supprimer définitivement",array('action'=>'action','?'=>array('action'=>'delete','id'=>$v['Comment']['id'])),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 								</div>
 							</td>
