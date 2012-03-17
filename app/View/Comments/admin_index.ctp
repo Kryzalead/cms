@@ -8,7 +8,6 @@
 	#content .comment-post span a{text-decoration: none;color: #fff;display: block;padding: 0 6px;height: 1.4em;line-height:1.4em;}
 	#content .comment-post span a:hover{color: #fff}
 </style>
-
 <h1>
 	<?php echo $this->Html->image('icone-comments.png',array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
@@ -18,7 +17,7 @@
 	<?php echo $this->element('admin-total-element',array('total'=>$totalElement)) ?>
 </div>
 <?php echo $this->Form->create('Comment',array('url'=>array('controller'=>'comments','action'=>'doaction'))) ?>
-	<?php //echo $this->element('admin-action-groupees',array('list'=>$list_action,'options'=>array('type'=>$type))) ?>
+	<?php echo $this->element('admin-action-groupees',array('list'=>$list_action)) ?>
 	<div class="bloc">
 		<div class="content">
 			<table class="classicTable posts">
@@ -47,23 +46,23 @@
 								<div class="action_admin">
 									<?php if ($v['Comment']['approved'] == '1'): ?>
 										<?php echo $this->Html->link("Désapprouver",array('action'=>''),array('style'=>'color: #D98500')); ?>
-										<?php echo $this->Html->link("Modifier",array('action'=>''),array('style'=>'color: #21759B')); ?>
-										<?php echo $this->Html->link("Indésirable",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
-										<?php echo $this->Html->link("Corbeille",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										| <?php echo $this->Html->link("Modifier",array('action'=>''),array('style'=>'color: #21759B')); ?>
+										| <?php echo $this->Html->link("Indésirable",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										| <?php echo $this->Html->link("Corbeille",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 									<?php if ($v['Comment']['approved'] == '0'): ?>
 										<?php echo $this->Html->link("Approuver",array('action'=>''),array('style'=>'color: #006505')); ?>
-										<?php echo $this->Html->link("Modifier",array('action'=>''),array('style'=>'color: #21759B')); ?>
-										<?php echo $this->Html->link("Indésirable",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
-										<?php echo $this->Html->link("Corbeille",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										| <?php echo $this->Html->link("Modifier",array('action'=>''),array('style'=>'color: #21759B')); ?>
+										| <?php echo $this->Html->link("Indésirable",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										| <?php echo $this->Html->link("Corbeille",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 									<?php if ($v['Comment']['approved'] == 'spam'): ?>
 										<?php echo $this->Html->link("N'est pas un indésirable",array('action'=>''),array('style'=>'color: #D98500')); ?>
-										<?php echo $this->Html->link("Supprimer définitivement",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										| <?php echo $this->Html->link("Supprimer définitivement",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 									<?php if ($v['Comment']['approved'] == 'trash'): ?>
 										<?php echo $this->Html->link("Restaurer",array('action'=>''),array('style'=>'color: #D98500')); ?>
-										<?php echo $this->Html->link("Supprimer définitivement",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										| <?php echo $this->Html->link("Supprimer définitivement",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 								</div>
 							</td>

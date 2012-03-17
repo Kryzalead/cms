@@ -109,6 +109,63 @@ class CommentsController extends AppController{
 			}
 				
 		}
+
+		// préparation de la list do_action
+		$d['list_action'] = array(
+			'0'=>'Action groupées'
+		);
+		switch ($comment_status) {
+			case '':
+			case 'all':
+				$d['list_action'] = array_merge($d['list_action'],
+					array(
+						'unapprove'=>'Désapprouver',
+						'approve'=>'Approuver',
+						'spam'=>'Marquer comme indésirable',
+						'trash'=>'Déplacer dans la corbeille'
+					)
+				);
+				break;
+			case 'waiting':
+				$d['list_action'] = array_merge($d['list_action'],
+					array(
+						'approve'=>'Approuver',
+						'spam'=>'Marquer comme indésirable',
+						'trash'=>'Déplacer dans la corbeille'
+					)
+				);
+				break;
+			case 'approved':
+				$d['list_action'] = array_merge($d['list_action'],
+					array(
+						'unapprove'=>'Désapprouver',
+						'spam'=>'Marquer comme indésirable',
+						'trash'=>'Déplacer dans la corbeille'
+					)
+				);
+				break;
+			case 'spam':
+				$d['list_action'] = array_merge($d['list_action'],
+					array(
+						'approve'=>'Approuver',
+						'unspam'=>"N'est pas un indésirable",
+						'delete'=>'Supprimer définitivement'
+					)
+				);
+				break;	
+			case 'trash':
+				$d['list_action'] = array_merge($d['list_action'],
+					array(
+						'untrash'=>'Restaurer',
+						'delete'=>'Supprimer définitivement'
+					)
+				);
+				break;			
+			default:
+				# code...
+				break;
+		}
+
 		
 		$d['total'] =  $d['totalApproved'] + $d['totalWaiting'];
 		$d['data_for_top_table']['count']['total'] = $d['total'];
