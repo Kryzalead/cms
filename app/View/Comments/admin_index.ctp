@@ -1,3 +1,14 @@
+<style type="text/css">
+	#content table tbody tr:nth-child(2n+1) td {background: none}
+	#content table tr.unapproved{background-color: lightYellow}
+	
+	#content .comment-post span {background-color: #BBB;display: inline-block;text-align: center;border-radius: 5px;color: #fff;font-weight: bold;cursor: pointer}
+	#content .comment-post span.comment-waiting{background-color: #21759B}
+	#content .comment-post span:hover{background-color: #D74E21}
+	#content .comment-post span a{text-decoration: none;color: #fff;display: block;padding: 0 6px;height: 1.4em;line-height:1.4em;}
+	#content .comment-post span a:hover{color: #fff}
+</style>
+
 <h1>
 	<?php echo $this->Html->image('icone-comments.png',array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
@@ -19,27 +30,52 @@
 						<th>En réponse à</th>
 					</tr>
 				</thead>
-
 				<tbody>
 					<?php if (!empty($comments)): ?>
 						<?php foreach ($comments as $k => $v):?>
-						<tr id="post_<?php echo $v['Comment']['id'] ?>">
+						<?php $class = ($v['Comment']['approved'] == '0' ) ? 'class="unapproved"' : ''?>
+						<tr id="post_<?php echo $v['Comment']['id'] ?>" <?php echo $class ?>>
 							<td><?php echo $this->Form->input($v['Comment']['id'],array('label'=>false,'type'=>'checkbox')); ?></td>
 							<td>
 								<?php echo $v['Comment']['author'] ?> <br>
 								<?php echo $v['Comment']['author_email'] ?> <br>
-								<?php echo $v['Comment']['author_ip'] ?>
+								<?php echo $this->Html->link($v['Comment']['author_ip'],array('action'=>'','controller'=>'')); ?>
 							</td>
 							<td>
-								<?php echo $v['Comment']['created'] ?> <br>
+								Envoyé le <?php echo $this->date->format($v['Comment']['created'],'FR'); ?> <br>
 								<?php echo $v['Comment']['content'] ?>
 								<div class="action_admin">
-									
+									<?php if ($v['Comment']['approved'] == '1'): ?>
+										<?php echo $this->Html->link("Désapprouver",array('action'=>''),array('style'=>'color: #D98500')); ?>
+										<?php echo $this->Html->link("Modifier",array('action'=>''),array('style'=>'color: #21759B')); ?>
+										<?php echo $this->Html->link("Indésirable",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										<?php echo $this->Html->link("Corbeille",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+									<?php endif ?>
+									<?php if ($v['Comment']['approved'] == '0'): ?>
+										<?php echo $this->Html->link("Approuver",array('action'=>''),array('style'=>'color: #006505')); ?>
+										<?php echo $this->Html->link("Modifier",array('action'=>''),array('style'=>'color: #21759B')); ?>
+										<?php echo $this->Html->link("Indésirable",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+										<?php echo $this->Html->link("Corbeille",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+									<?php endif ?>
+									<?php if ($v['Comment']['approved'] == 'spam'): ?>
+										<?php echo $this->Html->link("N'est pas un indésirable",array('action'=>''),array('style'=>'color: #D98500')); ?>
+										<?php echo $this->Html->link("Supprimer définitivement",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+									<?php endif ?>
+									<?php if ($v['Comment']['approved'] == 'trash'): ?>
+										<?php echo $this->Html->link("Restaurer",array('action'=>''),array('style'=>'color: #D98500')); ?>
+										<?php echo $this->Html->link("Supprimer définitivement",array('action'=>''),array('style'=>'color: #BC0B0B')); ?>
+									<?php endif ?>
 								</div>
 							</td>
-							<td>
-								<?php echo $v['Post']['name'] ?> <br>
-								<?php echo $v['Post']['comment_count'] ?>
+							<td class="comment-post">
+								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts','?'=>array('type'=>'post','id'=>$v['Post']['id']))); ?> <br>
+								<?php $post_id = $v['Post']['id']; ?>
+								<?php $class = ($totalWaitingComments[$post_id] > 0) ? 'class="comment-waiting"'  : ''?>
+								<span <?php echo $class ?>>
+									<?php echo $this->Html->link($v['Post']['comment_count'],array(),array('title'=>$totalWaitingComments[$post_id].' en attente')); ?>
+								</span>
+								<br>
+								<?php echo $this->Html->link("Afficher l'article",array('action'=>'view','controller'=>'posts','admin'=>false,'type'=>'post','id'=>$v['Post']['id'],'slug'=>$v['Post']['slug']),array('target'=>'_blank')); ?>
 							</td>
 						</tr>
 					<?php endforeach ?>

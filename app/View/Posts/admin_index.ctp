@@ -4,7 +4,6 @@
 	#content .comment-post span:hover{background-color: #D74E21}
 	#content .comment-post span a{text-decoration: none;color: #fff;display: block;padding: 0 6px;height: 1.4em;line-height:1.4em;}
 	#content .comment-post span a:hover{color: #fff}
-
 </style>
 <h1>
 	<?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>

@@ -2,7 +2,7 @@
 class CommentsController extends AppController{
 	
 	var $components = array('RequestHandler');
-	public $allow_commen_status = array('all','approved','waiting','spam','trash');
+	public $allow_comment_status = array('all','approved','waiting','spam','trash');
 
 	function post(){
 
@@ -26,7 +26,7 @@ class CommentsController extends AppController{
 		$comment_status = !empty($this->request->query['comment_status']) ? $this->request->query['comment_status'] : 'all';
 		
 		if(!empty($comment_status)){
-			if(!in_array($comment_status,$this->allow_commen_status))
+			if(!in_array($comment_status,$this->allow_comment_status))
 				$comment_status = 'all';
 		}
 		$d['comment_status'] = $comment_status;
@@ -44,17 +44,29 @@ class CommentsController extends AppController{
 		
 		$this->Comment->contain(array(
 			'Post'=>array(
-				'fields'=>array('Post.id','Post.name','Post.comment_count')
+				'fields'=>array('Post.id','Post.name','Post.slug','Post.type','Post.comment_count')
 			)
 		));
 
 		$this->paginate = array(
-			'fields'=>array('Comment.id','Comment.author','Comment.author_email','Comment.author_ip','Comment.created','Comment.content'),
+			'fields'=>array('Comment.id','Comment.author','Comment.author_email','Comment.author_ip','Comment.created','Comment.content','Comment.approved','Comment.post_id'),
 			'conditions'=>$conditions,
 			'limit'=>Configure::read('elements_per_page')
 		);
 
 		$d['comments'] = $this->Paginate('Comment');
+
+		$totalWaitingComments= array();
+		foreach ($d['comments'] as $k => $v) {
+			$d[$k]['Post']['totaltest'] = 'rtest';
+			if(empty($totalWaitingComments[$v['Comment']['post_id']]))
+				$totalWaitingComments[$v['Comment']['post_id']] = 0;
+			
+			if($v['Comment']['approved'] == 0)
+				$totalWaitingComments[$v['Comment']['post_id']] += 1;
+		}
+
+		$d['totalWaitingComments'] = $totalWaitingComments;
 
 		$d['data_for_top_table'] = array(
 			'action'=>'index',
@@ -74,6 +86,7 @@ class CommentsController extends AppController{
 		));
 		
 		$d['totalWaiting'] = $d['totalApproved'] = $d['totalSpam'] = $d['totalTrash'] = 0;
+
 		foreach ($count as $k => $v) {
 			if($v['Comment']['approved'] == '0'){
 				$d['totalWaiting'] =  $v[0]['total'];
@@ -96,7 +109,7 @@ class CommentsController extends AppController{
 			}
 				
 		}
-
+		
 		$d['total'] =  $d['totalApproved'] + $d['totalWaiting'];
 		$d['data_for_top_table']['count']['total'] = $d['total'];
 
