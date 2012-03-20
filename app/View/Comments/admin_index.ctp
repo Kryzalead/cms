@@ -15,7 +15,9 @@
 <?php if (!empty($search)): ?>
 	<span>Résultats de recherche pour "<?php echo $search ?>"
 <?php endif ?>
-<?php echo $this->element('admin-search',array('model'=>'comment','options' => array('comment_status'=>$comment_status),'text_for_submit_search'=>'Rechercher dans les commentaires')) ?>
+<?php if ($show_form_search): ?>
+	<?php echo $this->element('admin-search',array('model'=>'comment','options' => $data_for_search,'text_for_submit_search'=>'Rechercher dans les commentaires')) ?>
+<?php endif ?>
 <div>
 	<?php echo $this->element('admin-list-top-table',array('model'=>'comment','options'=>$data_for_top_table)) ?>
 	<?php echo $this->element('admin-total-element',array('total'=>$totalElement)) ?>
@@ -30,7 +32,9 @@
 						<th><input type="checkbox" class="checkall"></th>
 						<th><?php echo $this->Paginator->sort('author','Auteur'); ?></th>
 						<th>Commentaire</th>
-						<th>En réponse à</th>
+						<?php if ($show_form_search): ?>
+							<th>En réponse à</th>
+						<?php endif ?>
 					</tr>
 				</thead>
 				<tbody>
@@ -78,22 +82,30 @@
 									<?php endif ?>
 								</div>
 							</td>
-							<td class="comment-post">
-								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts','?'=>array('type'=>'post','id'=>$v['Post']['id']))); ?> <br>
-								<?php $post_id = $v['Post']['id']; ?>
-								<?php $class = ($totalWaitingComments[$post_id] > 0) ? 'class="comment-waiting"'  : ''?>
-								<span <?php echo $class ?>>
-									<?php echo $this->Html->link($v['Post']['comment_count'],array(),array('title'=>$totalWaitingComments[$post_id].' en attente')); ?>
-								</span>
-								<br>
-								<?php echo $this->Html->link("Afficher l'article",array('action'=>'view','controller'=>'posts','admin'=>false,'type'=>'post','id'=>$v['Post']['id'],'slug'=>$v['Post']['slug']),array('target'=>'_blank')); ?>
-							</td>
+							<?php if ($show_form_search): ?>
+								<td class="comment-post">
+									<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts','?'=>array('type'=>'post','id'=>$v['Post']['id']))); ?> <br>
+									<?php $post_id = $v['Post']['id']; ?>
+									<?php 
+									$totalWaitingComments[$post_id] = (!empty($totalWaitingComments[$post_id])) ? $totalWaitingComments[$post_id] : 0;
+									$class = ($totalWaitingComments[$post_id] > 0) ? 'class="comment-waiting"'  : '';
+									?>
+									<span <?php echo $class ?>>
+										<?php echo $this->Html->link($v['Post']['comment_count'],array('?'=>array('post_id'=>$v['Comment']['post_id'])),array('title'=>$totalWaitingComments[$post_id].' en attente')); ?>
+									</span>
+									<br>
+									<?php echo $this->Html->link("Afficher l'article",array('action'=>'view','controller'=>'posts','admin'=>false,'type'=>'post','id'=>$v['Post']['id'],'slug'=>$v['Post']['slug']),array('target'=>'_blank')); ?>
+								</td>
+							<?php endif ?>
+							
 						</tr>
 					<?php endforeach ?>
 					<?php else: ?>
 						<td></td>
 						<td>Aucun commentaire à afficher</td>
-						<td></td>
+						<?php if ($show_form_search): ?>
+							<th>En réponse à</th>
+						<?php endif ?>
 						<td></td>
 					<?php endif ?>
 				</tbody>
@@ -102,7 +114,9 @@
 						<th><input type="checkbox" class="checkall"></th>
 						<th><?php echo $this->Paginator->sort('author','Auteur'); ?></th>
 						<th>Commentaire</th>
-						<th>En réponse à</th>
+						<?php if ($show_form_search): ?>
+							<th>En réponse à</th>
+						<?php endif ?>
 					</tr>
 				</tfoot>
 			</table>

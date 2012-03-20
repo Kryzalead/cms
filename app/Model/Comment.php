@@ -29,8 +29,9 @@ class Comment extends AppModel{
 	);
 
 	function beforeSave($data){
-		$this->data['Comment']['approved'] = 0;
+		
 		$this->data['Comment']['user_id'] = 0;
+		
 		return $this->data;
 	}
 }

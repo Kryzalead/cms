@@ -14,6 +14,9 @@
 			<?php $request = array('role'=>$k) ?>
 		<?php elseif($model == 'comment'): ?>
 			<?php $request = array('comment_status'=>$k) ?>		
+			<?php if (!empty($options['params']['post_id'])): ?>
+				<?php $request['post_id'] = $options['params']['post_id'] ?>
+			<?php endif ?>
 		<?php endif ?>
 		<?php if ($k == 'all'): ?>
 			<li class="<?php echo $k ?>">
@@ -22,6 +25,12 @@
 						<?php echo $this->Html->link($v,array('action'=>$options['action'],'controller'=>$model.'s','?'=>array('type'=>'page')),array('class'=>'current')); ?>
 					<?php else: ?>
 						<?php echo $this->Html->link($v,array('action'=>$options['action'],'controller'=>$model.'s','?'=>array('type'=>'page'))); ?>
+					<?php endif ?>
+				<?php elseif(!empty($options['params']['post_id'])): ?>	
+					<?php if ($options['current'] == 'all'): ?>
+						<?php echo $this->Html->link($v,array('action'=>$options['action'],'controller'=>$model.'s','?'=>array('post_id'=>$options['params']['post_id'])),array('class'=>'current')); ?>
+					<?php else: ?>
+						<?php echo $this->Html->link($v,array('action'=>$options['action'],'controller'=>$model.'s','?'=>array('post_id'=>$options['params']['post_id']))); ?>
 					<?php endif ?>
 				<?php else: ?>
 					<?php if ($options['current'] == 'all'): ?>

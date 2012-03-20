@@ -5,6 +5,7 @@ class CommentsController extends AppController{
 	
 	var $components = array('RequestHandler');
 	public $allow_comment_status = array('all','approved','waiting','spam','trash');
+	public $allow_comment_actions = array('approve','unapprove','spam','unspam','trash','untrash','delete');
 
 	function post(){
 
@@ -24,6 +25,9 @@ class CommentsController extends AppController{
 	function admin_index(){
 
 		$d['title_for_layout'] = 'Commentaires';
+		$d['data_for_search'] = array();
+		$d['show_form_search'] = true;
+		$find_status = true;
 
 		$comment_status = !empty($this->request->query['comment_status']) ? $this->request->query['comment_status'] : 'all';
 		
@@ -32,6 +36,7 @@ class CommentsController extends AppController{
 				$comment_status = 'all';
 		}
 		$d['comment_status'] = $comment_status;
+		$d['data_for_search']['comment_status'] = $comment_status;
 
 		$conditions = array();
 
@@ -42,8 +47,10 @@ class CommentsController extends AppController{
 			));
 			$d['search'] = $this->request->query['ip'];
 			$this->request->data['Comment']['ip'] = $d['search'];
+			$find_status = false;
 		}
-		else{
+
+		if($find_status){
 			if($comment_status == 'all')
 				$conditions = array_merge($conditions,array('Comment.approved'=>array(0,1)));
 			if($comment_status == 'approved')
@@ -58,9 +65,22 @@ class CommentsController extends AppController{
 				$conditions = array_merge($conditions,array('Comment.content LIKE'=>'%'.$search.'%'));
 				$d['search'] = $search;
 				$this->request->data['Comment']['s'] = $search;
-			}
+			}	
+
+			if(!empty($this->request->query['post_id'])){
+				
+				$post = $this->Comment->Post->find('first',array(
+					'conditions'=>array('id'=>$this->request->query['post_id'])
+				));
+
+				$d['search'] = (!empty($post)) ? $post['Post']['name'] : '(Pas de titre)';
+				$d['data_for_search']['post_id'] = $this->request->query['post_id'];
+				$d['show_form_search'] = false;
+				
+				$conditions = array_merge($conditions,array('Comment.post_id'=>$this->request->query['post_id']));
+			}	
 		}
-		
+
 		$this->Comment->contain(array(
 			'Post'=>array(
 				'fields'=>array('Post.id','Post.name','Post.slug','Post.type','Post.comment_count')
@@ -87,8 +107,17 @@ class CommentsController extends AppController{
 			$d['totalWaitingComments'][$v['Comment']['post_id']] = $v[0]['total'];
 		}
 
+		$options = array();
+		if(!$d['show_form_search']){
+			$options = array(
+				'post_id'=>$this->request->query['post_id'],
+				'comment_status'=>$comment_status
+			);
+		}
+
 		$d['data_for_top_table'] = array(
 			'action'=>'index',
+			'params'=>$options,
 			'list'=>array(
 				'all'=>'Tous',
 				'waiting'=>'En attente de relecture',
@@ -99,10 +128,13 @@ class CommentsController extends AppController{
 			'current'=>$comment_status
 		);
 
-		
+		$conditions = array();
+		if(!$d['show_form_search'])		
+			$conditions = array('Comment.post_id'=>$this->request->query['post_id']);
 
 		$count = $this->Comment->find('all',array(
 			'fields'=>array('Comment.approved','COUNT(Comment.id) AS total'),
+			'conditions'=>$conditions,
 			'group'=>'Comment.approved'
 		));
 		
@@ -197,5 +229,63 @@ class CommentsController extends AppController{
 		$d['totalElement'] = (empty($comment_status) || $comment_status == 'all') ? $d['total'] : $d['total'.ucfirst($comment_status)];
 		
 		$this->set($d);
+	}
+
+	function admin_action(){
+
+		$action = $this->request->query['action'];
+		$id = $this->request->query['id'];
+		
+		$count = $this->Comment->find('count',array(
+			'conditions'=>array('Comment.id'=>$id)
+		));
+
+		if(empty($count)){
+			$this->error("Le commentaire n'existe pas");
+			return false;
+		}
+
+		if(!in_array($action,$this->allow_comment_actions)){
+			$this->error("Action inconnue");
+			return false;
+		}
+
+		$this->Comment->id =$id;
+
+		switch ($action) {
+			case 'approve':
+				$this->Comment->saveField('approved','1');
+				$this->Session->setFlash("Le commentaire a bien été approuvé","notif");
+				break;
+			case 'unapprove':
+				$this->Comment->saveField('approved','0');
+				$this->Session->setFlash("Le commentaire a bien été désapprouvé","notif");
+				break;	
+			case 'spam':
+				$this->Comment->saveField('approved','spam');
+				$this->Session->setFlash("Le commentaire a été déplacé dans les indésirables","notif");
+				break;
+			case 'unspam':
+				$this->Comment->saveField('approved','0');
+				$this->Session->setFlash("Le commentaire a été sorti des indésirables","notif");
+				break;	
+			case 'trash':
+				$this->Comment->saveField('approved','trash');
+				$this->Session->setFlash("Le commentaire a été déplacé dans la corbeille","notif");
+				break;
+			case 'untrash':
+				$this->Comment->saveField('approved','0');
+				$this->Session->setFlash("Le commentaire a été sorti de la corbeille","notif");
+				break;
+			case 'delete':
+				$this->Comment->delete();
+				$this->Session->setFlash("Le commentaire a bien été supprimé","notif");
+				break;			
+			default:
+				# code...
+				break;
+		}
+		
+		$this->redirect(array('action'=>'index'));
 	}
 }
