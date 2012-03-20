@@ -1,4 +1,6 @@
 <?php
+App::uses('Sanitize', 'Utility');
+
 class CommentsController extends AppController{
 	
 	var $components = array('RequestHandler');
@@ -33,14 +35,31 @@ class CommentsController extends AppController{
 
 		$conditions = array();
 
-		if($comment_status == 'all')
-			$conditions = array_merge($conditions,array('Comment.approved'=>array(0,1)));
-		if($comment_status == 'approved')
-			$conditions = array_merge($conditions,array('Comment.approved'=>1));
-		if($comment_status == 'waiting')
-			$conditions = array_merge($conditions,array('Comment.approved'=>0));
-		if($comment_status == 'spam' || $comment_status == 'trash')
-			$conditions = array_merge($conditions,array('Comment.approved'=>$comment_status));
+		if(!empty($this->request->query['ip'])){
+			$conditions = array_merge($conditions,array(
+				'Comment.approved'=>array(0,1),
+				'Comment.author_ip'=>$this->request->query['ip']
+			));
+			$d['search'] = $this->request->query['ip'];
+			$this->request->data['Comment']['ip'] = $d['search'];
+		}
+		else{
+			if($comment_status == 'all')
+				$conditions = array_merge($conditions,array('Comment.approved'=>array(0,1)));
+			if($comment_status == 'approved')
+				$conditions = array_merge($conditions,array('Comment.approved'=>1));
+			if($comment_status == 'waiting')
+				$conditions = array_merge($conditions,array('Comment.approved'=>0));
+			if($comment_status == 'spam' || $comment_status == 'trash')
+				$conditions = array_merge($conditions,array('Comment.approved'=>$comment_status));
+
+			if(!empty($this->request->query['s'])){
+				$search = Sanitize::clean($this->request->query['s']);
+				$conditions = array_merge($conditions,array('Comment.content LIKE'=>'%'.$search.'%'));
+				$d['search'] = $search;
+				$this->request->data['Comment']['s'] = $search;
+			}
+		}
 		
 		$this->Comment->contain(array(
 			'Post'=>array(
@@ -56,17 +75,17 @@ class CommentsController extends AppController{
 
 		$d['comments'] = $this->Paginate('Comment');
 
-		$totalWaitingComments= array();
-		foreach ($d['comments'] as $k => $v) {
-			$d[$k]['Post']['totaltest'] = 'rtest';
-			if(empty($totalWaitingComments[$v['Comment']['post_id']]))
-				$totalWaitingComments[$v['Comment']['post_id']] = 0;
-			
-			if($v['Comment']['approved'] == 0)
-				$totalWaitingComments[$v['Comment']['post_id']] += 1;
-		}
+		$this->Comment->contain();
 
-		$d['totalWaitingComments'] = $totalWaitingComments;
+		$count = $this->Comment->find('all',array(
+			'fields'=>array('COUNT(*) AS total, Comment.post_id'),
+			'conditions'=>array('Comment.approved'=>0),
+			'group'=>'Comment.post_id'
+		));
+
+		foreach ($count as $k => $v) {
+			$d['totalWaitingComments'][$v['Comment']['post_id']] = $v[0]['total'];
+		}
 
 		$d['data_for_top_table'] = array(
 			'action'=>'index',
@@ -79,6 +98,8 @@ class CommentsController extends AppController{
 			),
 			'current'=>$comment_status
 		);
+
+		
 
 		$count = $this->Comment->find('all',array(
 			'fields'=>array('Comment.approved','COUNT(Comment.id) AS total'),
@@ -166,9 +187,12 @@ class CommentsController extends AppController{
 				break;
 		}
 
+		if(!empty($d['search']))
+			$d['total'] = count($d['comments']);
+		else
+			$d['total'] =  $d['totalApproved'] + $d['totalWaiting'];
 		
-		$d['total'] =  $d['totalApproved'] + $d['totalWaiting'];
-		$d['data_for_top_table']['count']['total'] = $d['total'];
+		$d['data_for_top_table']['count']['total'] = $d['totalApproved'] + $d['totalWaiting'];
 
 		$d['totalElement'] = (empty($comment_status) || $comment_status == 'all') ? $d['total'] : $d['total'.ucfirst($comment_status)];
 		

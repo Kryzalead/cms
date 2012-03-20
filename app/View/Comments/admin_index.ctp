@@ -12,6 +12,10 @@
 	<?php echo $this->Html->image('icone-comments.png',array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
 </h1>
+<?php if (!empty($search)): ?>
+	<span>Résultats de recherche pour "<?php echo $search ?>"
+<?php endif ?>
+<?php echo $this->element('admin-search',array('model'=>'comment','options' => array('comment_status'=>$comment_status),'text_for_submit_search'=>'Rechercher dans les commentaires')) ?>
 <div>
 	<?php echo $this->element('admin-list-top-table',array('model'=>'comment','options'=>$data_for_top_table)) ?>
 	<?php echo $this->element('admin-total-element',array('total'=>$totalElement)) ?>
@@ -37,11 +41,19 @@
 							<td><?php echo $this->Form->input($v['Comment']['id'],array('label'=>false,'type'=>'checkbox')); ?></td>
 							<td>
 								<?php echo $v['Comment']['author'] ?> <br>
-								<?php echo $v['Comment']['author_email'] ?> <br>
-								<?php echo $this->Html->link($v['Comment']['author_ip'],array('action'=>'','controller'=>'')); ?>
+								<?php echo $this->Html->link($v['Comment']['author_email'],'mailto:'.$v['Comment']['author_email']); ?> <br>
+								<?php echo $this->Html->link($v['Comment']['author_ip'],array('?'=>array('ip'=>$v['Comment']['author_ip']))); ?>
 							</td>
 							<td>
-								Envoyé le <?php echo $this->date->format($v['Comment']['created'],'FRS',true); ?> <br>
+								<?php 
+								$v['Post']['link']['admin'] = false;
+								$v['Post']['link']['#'] = 'comment-'.$v['Comment']['id'];
+								?>
+								<?php if ($v['Comment']['approved'] == '1'): ?>
+									Envoyé le <?php echo $this->Html->link($this->date->format($v['Comment']['created'],'FRS',true),$v['Post']['link']); ?> <br>
+								<?php else: ?>
+									Envoyé le <?php echo $this->date->format($v['Comment']['created'],'FRS',true)?> <br>
+								<?php endif ?>
 								<?php echo $v['Comment']['content'] ?>
 								<div class="action_admin">
 									<?php if ($v['Comment']['approved'] == '1'): ?>
