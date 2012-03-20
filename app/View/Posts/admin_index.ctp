@@ -93,7 +93,7 @@
 								</span>
 							</td>
 							<?php endif ?>
-							<td><?php echo $this->date->format($v['Post']['created'],'FR'); ?></td>
+							<td><?php echo $this->date->format($v['Post']['created'],'STR',true); ?></td>
 						</tr>
 					<?php endforeach ?>
 					<?php else: ?>

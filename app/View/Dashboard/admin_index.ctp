@@ -197,7 +197,7 @@
                      <?php foreach ($last_drafts as $k => $v): ?>
                         <li class="draft_item">
                             <?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts',$v['Post']['id'])); ?>
-                            <span><?php echo $this->date->format($v['Post']['created'],'FR') ?></span>
+                            <span><?php echo $this->date->format($v['Post']['created'],'FRS') ?></span>
                             
                                 <p><?php  echo $this->Text->truncate($v['Post']['content'],200,array('exact'=>false,'html'=>true));?></p>
                             
@@ -230,7 +230,6 @@
                                             <strong><?php echo $v['Comment']['author'] ?></strong> sur <?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts','?'=>array('type'=>'post','id'=>$v['Post']['id']))); ?>
                                             <?php echo (!empty($style)) ? '<span style="color:#777 ;font-style: italic;font-family: sans-serif;font-size: 10px;">[en attente]</span>' : '' ?>
                                             <br>
-                                            <em><?php echo $this->date->format($v['Comment']['created'],'FR') ?></em><br>
                                             <p><?php echo $v['Comment']['content'] ?></p>
                                         </p>
                                     </td>

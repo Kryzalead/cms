@@ -41,7 +41,7 @@
 								<?php echo $this->Html->link($v['Comment']['author_ip'],array('action'=>'','controller'=>'')); ?>
 							</td>
 							<td>
-								Envoyé le <?php echo $this->date->format($v['Comment']['created'],'FR'); ?> <br>
+								Envoyé le <?php echo $this->date->format($v['Comment']['created'],'FRS',true); ?> <br>
 								<?php echo $v['Comment']['content'] ?>
 								<div class="action_admin">
 									<?php if ($v['Comment']['approved'] == '1'): ?>
@@ -57,7 +57,7 @@
 										| <?php echo $this->Html->link("Corbeille",array('action'=>'action','?'=>array('action'=>'trash','id'=>$v['Comment']['id'])),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 									<?php if ($v['Comment']['approved'] == 'spam'): ?>
-										<?php echo $this->Html->link("N'est pas un indésirable",array('action'=>'action','?'=>array('action'=>'unspam','id'=>$v['Comment']['id'])),array('style'=>'color: #D98500')); ?>
+										<?php echo $this->Html->link("N'est pas un indésirable",array('action'=>'action','?'=>array('action'=>'unspam','id'=>$v['Comment']['id'])),array('style'=>'color: #D98500')); ?>  
 										| <?php echo $this->Html->link("Supprimer définitivement",array('action'=>'action','?'=>array('action'=>'delete','id'=>$v['Comment']['id'])),array('style'=>'color: #BC0B0B')); ?>
 									<?php endif ?>
 									<?php if ($v['Comment']['approved'] == 'trash'): ?>

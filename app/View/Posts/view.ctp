@@ -3,7 +3,7 @@
     <?php if ($post['Post']['type'] == 'post'): ?>
     	<div class="entry-meta">
 			<span>Posté le </span>
-			<span class="entry-date"><?php echo $this->date->format($post['Post']['created'],'FR') ?></span>
+			<span class="entry-date"><?php echo $this->date->format($post['Post']['created'],'FRS') ?></span>
 			<span>par</span>
 			<span class="entry-author"><?php echo $post['User']['username'] ?></span>
 		</div>
@@ -51,7 +51,7 @@
 							<?php echo $v['author'] ?> a écrit : 
 						</div>
 						<div class="comment-meta">
-							Posté le <?php echo $this->date->format($v['created'],'FR') ?>
+							Posté le <?php echo $this->date->format($v['created'],'FRS',true) ?>
 						</div>
 						<div class="comment-message">
 							<?php echo $v['content'] ?>

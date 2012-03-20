@@ -3,7 +3,7 @@
 		<h2 class="entry-title"><?php echo $this->Html->link($v['Post']['name'],$v['Post']['link'],array('title'=>$v['Post']['name'])); ?></h2>
 		<div class="entry-meta">
 			<span>Posté le </span>
-			<span class="entry-date"><?php echo $this->date->format($v['Post']['created'],'FR') ?></span>
+			<span class="entry-date"><?php echo $this->date->format($v['Post']['created'],'FRS') ?></span>
 			<span>par</span>
 			<span class="entry-author"><?php echo $v['User']['username'] ?></span>
 		</div>

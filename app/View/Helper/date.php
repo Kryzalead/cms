@@ -261,7 +261,7 @@ class DateHelper extends AppHelper{
 	    return $res;
     }
     
-    public function format($date,$type = null){
+    public function format($date,$type = null,$showHeure = false){
         
         // analyse de la date envoyée
         $infosdate = array();
@@ -269,6 +269,7 @@ class DateHelper extends AppHelper{
         if(isset($infosdate['heure ']) && $infosdate['heure'] != '00:00:00'){
             $heures = explode(':',$infosdate['heure']);
             $timestamp = gmmktime($heures[0],$heures[1],$heures[2],$infosdate['mois'],$infosdate['jour'],$infosdate['annee']);
+
         }
         else
             $timestamp = gmmktime(0,0,0,$infosdate['mois'],$infosdate['jour'],$infosdate['annee']);
@@ -288,11 +289,20 @@ class DateHelper extends AppHelper{
                     $res .= ' '.$infosdate['jour'];
                     $res .= ' '.($this->cMois ? $this->sMois[gmdate('n',$timestamp)] : $this->mois[gmdate('n',$timestamp)]);
                     $res .= ' '.$infosdate['annee'];
+                    if($showHeure){
+                        $heures = explode(':',$infosdate['heure']);
+                        $res .= ' à '.$heures[0].' h '.$heures[1].' min' ;
+                    }
+                        
                     break;
                 case 'FRS' :
                     $res = ' '.$infosdate['jour'];
                     $res .= ' '.($this->cMois ? $this->sMois[gmdate('n',$timestamp)] : $this->mois[gmdate('n',$timestamp)]);
                     $res .= ' '.$infosdate['annee'];
+                    if($showHeure){
+                        $heures = explode(':',$infosdate['heure']);
+                        $res .= ' à '.$heures[0].' h '.$heures[1].' min' ;
+                    }
                     break;
                 case 'URL' :
                     $res = gmdate('Y/m/d',$timestamp);
