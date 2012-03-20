@@ -33,7 +33,7 @@
 						<th><?php echo $this->Paginator->sort('author','Auteur'); ?></th>
 						<th>Commentaire</th>
 						<?php if ($show_form_search): ?>
-							<th>En réponse à</th>
+							<th><?php echo $this->Paginator->sort('post_id','En réponse à'); ?></th>
 						<?php endif ?>
 					</tr>
 				</thead>
@@ -115,7 +115,7 @@
 						<th><?php echo $this->Paginator->sort('author','Auteur'); ?></th>
 						<th>Commentaire</th>
 						<?php if ($show_form_search): ?>
-							<th>En réponse à</th>
+							<th><?php echo $this->Paginator->sort('post_id','En réponse à'); ?></th>
 						<?php endif ?>
 					</tr>
 				</tfoot>

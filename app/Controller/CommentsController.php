@@ -288,4 +288,69 @@ class CommentsController extends AppController{
 		
 		$this->redirect(array('action'=>'index'));
 	}
+
+	function admin_doaction(){
+		$action = $this->request->data['Comment']['action'];
+		$count = 0;
+		
+		unset($this->request->data['Comment']['action']);
+
+		foreach ($this->request->data['Comment'] as $k => $v) {
+			if(!empty($v)){
+				$this->Comment->id = $k;
+				switch ($action) {
+					case 'approve':
+						$this->Comment->saveField('approved','1');
+						break;
+					case 'unapprove':
+					case 'unspam':
+					case 'untrash':
+						$this->Comment->saveField('approved','0');
+						break;	
+					case 'spam':
+					case 'trash':
+						$this->Comment->saveField('approved',$action);
+						break;
+					case 'delete':
+						$this->Comment->delete();
+						break;			
+					default:
+						# code...
+						break;
+				}
+				$count ++;
+			}	
+		}
+
+		$texte  = 'commentaire';
+		if($count > 0){
+			$terminaison = ($count > 1 ) ? 's' : '';
+			switch ($action) {
+				case 'approve':
+					$this->Session->setFlash($count." ".$texte.$terminaison." approuvé".$terminaison,"notif");
+					break;
+				case 'unapprove':
+					$this->Session->setFlash($count." ".$texte.$terminaison." désapprouvé".$terminaison,"notif");
+					break;	
+				case 'spam':
+					$this->Session->setFlash($count." ".$texte.$terminaison." déplacé".$terminaison." dans les indésirables","notif");
+					break;
+				case 'unspam':
+					$this->Session->setFlash($count." ".$texte.$terminaison." sorti".$terminaison." des indésirables","notif");
+					break;
+				case 'trash':
+					$this->Session->setFlash($count." ".$texte.$terminaison." déplacé".$terminaison." dans la corbeille","notif");
+					break;
+				case 'untrash':
+					$this->Session->setFlash($count." ".$texte.$terminaison." sorti".$terminaison." de la corbeille","notif");
+					break;
+				case 'delete':
+					$this->Session->setFlash($count." ".$texte.$terminaison." supprimé".$terminaison,"notif");
+					break;				
+				default:
+					break;
+			}
+		}
+		$this->redirect(array('action'=>'index'));
+	}
 }
