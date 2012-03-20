@@ -353,4 +353,41 @@ class CommentsController extends AppController{
 		}
 		$this->redirect(array('action'=>'index'));
 	}
+
+	function admin_edit(){
+
+		$d['title_for_layout'] = 'Editer un commentaire';
+		$id = $this->request->query['id'];
+
+
+		if($this->request->is('post') || $this->request->is('put')){
+			if($this->Comment->save($this->request->data)){
+				$this->Session->setFlash("Le commentaire a bien été modifié","notif");
+			}
+			else
+				$this->Session->setFlash("Une erreur s'est produite lors de la sauvegarde du commentaire","notif",array('typeMessage'=>'error'));
+			$this->redirect(array('action'=>'index'));
+		}
+		elseif($id){
+			$this->Comment->id = $id;
+			$comment = $this->Comment->read();
+			
+			if(empty($comment)){
+				$this->error("Fucking damnation !!!! no comments here ololololol(délire du dev)");
+				return;
+			}
+
+			$this->request->data= $comment;
+		}
+		else{
+			$this->error("Fucking damnation !!!! no comments here ololololol(délire du dev)");
+			return;
+		}
+		$d['list_etat'] = array(
+			'1'=>'Approuvé',
+			'0'=>'En attente',
+			'spam'=>'Indésirables'
+		);
+		$this->set($d);
+	}
 }

@@ -31,9 +31,7 @@
             <div>
                 <p><a href="">Ajouter une image à la une</a></p>
             </div>
-    </div>
-    
-               
+    </div>        
 </div>
 <?php if ($type == 'post'): ?>
     <?php echo $this->Form->input('terms',array('label'=>'Taxonomy','type'=>'select','multiple'=>'checkbox')); ?>
