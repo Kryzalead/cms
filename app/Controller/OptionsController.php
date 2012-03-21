@@ -1,7 +1,7 @@
 <?php 
 class OptionsController extends AppController{
-	
-	public function init(){
+
+	function init(){
 		// on check si options_init vaut false
 		if(!Configure::read('options_init')){
 			if(!Cache::read('config_site')){
@@ -160,6 +160,9 @@ class OptionsController extends AppController{
         $d['title_for_layout'] = 'Réglages des médias';
         $d['action'] = 'media';
 
+        if($this->Session->read('Auth.User.role') != 'superadmin'){
+            $this->error("test");return;
+        }
         if ($this->request->is('put') || $this->request->is('post')) {
             
             $valid = true;

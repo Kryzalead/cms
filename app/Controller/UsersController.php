@@ -53,7 +53,7 @@ class UsersController extends AppController{
 			'list'=>array(
 				'all'=>'Tous',
 				'admin'=>'Administrateur',
-				'user'=>'Utilisateur'
+				'user'=>'Abonné'
 			),
 			'current'=>$role
 		);
@@ -75,6 +75,8 @@ class UsersController extends AppController{
 		else{
 			$conditions = (!empty($role) && $role !='all') ? array_merge(array('User.role'=>$role),$conditions) : array();
 		}
+
+		$conditions = array_merge($conditions,array('User.role <>'=>'superadmin'));
 
 		$this->paginate = array(
 			'fields'=>array('User.id','User.username','User.email','User.role','User.page_count','User.post_count'),
@@ -171,7 +173,7 @@ class UsersController extends AppController{
 		if($this->request->is('post') || $this->request->is('put')){
 			
 			if($this->request->data['User']['password'] != $this->request->data['User']['passwordconfirm']){
-				$this->Session->setFlash("Les mots de passe ne correspondent pas","notif",array('type'=>'error'));
+				$this->Session->setFlash("Les mots de passe ne correspondent pas","notif",array('typeMessage'=>'error'));
 			}
 			else{
 				if(empty($this->request->data['User']['password']))

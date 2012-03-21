@@ -167,7 +167,7 @@ class PostsController extends AppController{
 	}
 
 	/************ ADMINISTRATION ******************/
-
+	
 	function admin_index(){
 
 		// on récupère le type de post

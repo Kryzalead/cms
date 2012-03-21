@@ -1,6 +1,6 @@
 <div class="menu">
 	<ul class="nav">
-		<?php $menu = $this->requestAction(array('controller'=>'menus','action'=>'getMenu','principal')) ?>
+		<?php $menu = $this->requestAction(array('controller'=>'menus','action'=>'getMenu','principal','admin'=>false)) ?>
 		<?php foreach ($menu as $k => $v): $v = $v['Post'];?>
 			<li><?php echo $this->Html->link($v['name'],array('plugin'=>null,'controller'=>'posts','action'=>'view','type'=>'page','slug'=>$v['slug']));?></li>
 		<?php endforeach ?>

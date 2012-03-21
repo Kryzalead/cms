@@ -37,7 +37,7 @@
 						$gravatar = md5( strtolower( trim($v['User']['email'])));
 						?>
 						<?php echo $this->Html->image('http://www.gravatar.com/avatar/'.$gravatar.'?s=40') ?>	
-						<?php echo $this->Html->link(ucfirst($v['User']['username']),array('action'=>'edit','?'=>array('id'=>$v['User']['id'])),array('class'=>'upd')) ?>
+						<?php echo $this->Html->link($v['User']['username'],array('action'=>'edit','?'=>array('id'=>$v['User']['id'])),array('class'=>'upd')) ?>
 						
 						<div class="action_admin">
 							<?php echo $this->Html->link('Modifier',array('action'=>'edit','?'=>array('id'=>$v['User']['id'])),array('class'=>'upd')) ?> |

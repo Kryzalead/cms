@@ -12,7 +12,7 @@ class AppController extends Controller{
 		// on importe le controller Options
 		App::import('Controller','Options');
 		$this->Options = new OptionsController();
-		// on initialise le controller Options pour récupérer toutes la configuration du site
+		// on initialise le controller Options pour récupérer toute la configuration du site
 		$this->Options->init();
 
 		// défini l'action à appeller pour se connecter
@@ -27,15 +27,17 @@ class AppController extends Controller{
 			$this->Auth->allow();
 		}
 			
-
 		// si un prefixe existe et si il vaut admin
 		// on met le layout d'administration
-		if(isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin'){
-			$this->layout = 'admin';
-			// on envois aux vues le controller actuel sur lequel on est pour le menu
-			$this->set('currentController',$this->request->controller);
-		}
+		if(isset($this->request->params['prefix'])){
+			if ($this->request->params['prefix'] == 'admin' || $this->request->params['prefix'] == 'superadmin') {
+				$this->layout = 'admin';
+				// on envois aux vues le controller actuel sur lequel on est pour le menu
+				$this->set('currentController',$this->request->controller);
+			}
 			
+		}
+		//debug($this);die();
 	}
 
 	/*
@@ -49,16 +51,20 @@ class AppController extends Controller{
 
 		// définition du tableau des roles
 		$roles = array(
-			'admin'=>10,
+			'superadmin'=>10,
+			'admin'=>9,
+			'editor'=>8,
 			'user'=>5
 		);
 		if(isset($roles[$this->request->params['prefix']])){
 			$lvlAction  = $roles[$this->request->params['prefix']];
 			$lvlUser	= $roles[$user['role']];
-			if($lvlUser >= $lvlAction)
+			if($lvlUser >= $lvlAction){
 				return true;
+			}
+				
 			else{
-				$this->Session->setFlash("Vous n'avez pas la permission d'y accéder","notif",array('type'=>'error'));
+				$this->Session->setFlash("Vous n'avez pas l'accès à cette page","notif");
 				return false;
 			}
 		}
