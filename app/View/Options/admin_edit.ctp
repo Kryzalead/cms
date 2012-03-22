@@ -48,6 +48,15 @@
 						</td>
 					</tr>
 				</tbody>
+			</table>
+		<?php elseif($action == 'discussion'): ?>
+			<table style="margin-top: 20px">
+				<tbody>
+					<tr>
+						<td style="background: none;border: none">Réglages par défault des articles</td>
+						<td style="background: none;border: none"><?php echo $this->Form->input('Option.default_comment_status',array('label'=>"Autoriser les visiteurs à publier des commentaires sur les derniers articles ",'type'=>'checkbox','style'=>'margin-right: 10px')); ?></td>
+					</tr>
+				</tbody>
 			</table>	
 		<?php endif ?>
 	<?php echo $this->Form->end('Enregistrer les modifications') ?>

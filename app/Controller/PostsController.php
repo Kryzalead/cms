@@ -83,7 +83,7 @@ class PostsController extends AppController{
 			));
 
 			$post = $this->Post->find('first',array(
-				'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.created','Post.type','Post.comment_count'),
+				'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.created','Post.type','Post.comment_status','Post.comment_count'),
 				'conditions'=>array('Post.id'=>$id,'Post.type'=>'post')
 			));
 
@@ -103,7 +103,7 @@ class PostsController extends AppController{
 
 			if(empty($post)){
 				$post = $this->Post->find('first',array(
-					'fields'=>array('Post.id','Post.name','Post.slug','Post.type','Post.content'),
+					'fields'=>array('Post.id','Post.name','Post.slug','Post.type','Post.content','Post.comment_status'),
 					'conditions'=>array('Post.slug'=>$slug,'Post.type'=>'page')
 				));
 
@@ -147,7 +147,7 @@ class PostsController extends AppController{
 		$this->Post->contain(array('User'=>array('fields'=>array('User.username')),'Term'));
 
 		$d['posts'] = $this->Post->find('all',array(
-			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created'),
+			'fields'=>array('Post.id','Post.name','Post.slug','Post.content','Post.type','Post.created','Post.comment_status'),
 			'conditions'=>array(
 				'Post.id'=>$object_ids
 			),

@@ -208,6 +208,57 @@ jQuery(function($){
         if($(this).is(':checked'))
             $('#page_on_front').attr('disabled','disabled');
     });
+
+    /*
+    *   Affichage de l'aide
+    */
+    $(".show-settings").click(function(){
+        link = $(this);
+        var href = $(this).attr('href');
+        var id = $(this).attr('id');
+    
+        if(id == 'contextual-help-link'){
+            if(link.hasClass('active')){
+                $('#bouton_options_ecran').show();
+                link.removeClass('active');
+            }
+                
+            else{
+                link.addClass('active');
+                $('#bouton_options_ecran').hide();
+            }
+                
+        }
+        else{
+            if(link.hasClass('active')){
+                link.removeClass('active');
+                $('#contextual-help-link-wrap').show();
+            }
+                
+            else{
+                 link.addClass('active');
+                $('#contextual-help-link-wrap').hide();
+            }
+               
+        }
+        $(href).slideToggle(300);
+        return false;
+    });
+
+    $('.colonne_menu ul li a').click(function(){
+        var link = $(this);
+        var href = $(this).attr('href');
+
+        var old = $('.colonne_menu ul li.active');
+        var old_href = old.children('a').attr('href');
+        
+        old.removeClass('active');
+        $(old_href).removeClass('active');
+
+        link.parent('li').addClass('active');
+        $(href).addClass('active');
+        return false;
+    });
 });
 
 

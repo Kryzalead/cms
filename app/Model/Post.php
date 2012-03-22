@@ -73,6 +73,10 @@ class Post extends AppModel{
 		if(empty($this->data['Post']['slug']) && isset($this->data['Post']['slug']) && !empty($this->data['Post']['name'])){
 			$this->data['Post']['slug'] = strtolower(Inflector::slug($this->data['Post']['name'],'-'));		
 		}
+		if($this->data['Post']['action'] == 'add'){
+			$this->data['Post']['comment_status'] = Configure::read('default_comment_status');
+		}
+		
 		return true;
 	}
 
@@ -81,7 +85,6 @@ class Post extends AppModel{
 	*/
 	function afterSave($data){
 		if(!empty($this->data['Post']['slug'])){
-			
 			$id = $this->id;
 			if($this->data['Post']['type'] == 'post')
 				$guid = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'blog/'.$this->data['Post']['slug'].'-'.$id;
