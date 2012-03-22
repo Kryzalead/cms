@@ -89,7 +89,7 @@
 							<td class="comment-post">
 								<?php $class = (!empty($v['Post']['totalWaiting'])) ? 'class="comment-waiting"'  : ''?>
 								<span <?php echo $class ?>>
-									<?php echo $this->Html->link($v['Post']['comment_count'],array(),array('title'=>$v['Post']['totalWaiting'].' en attente')); ?>
+									<?php echo $this->Html->link($v['Post']['comment_count'],array('controller'=>'comments','action'=>'index','?'=>array('post_id'=>$v['Post']['id'])),array('title'=>$v['Post']['totalWaiting'].' en attente')); ?>
 								</span>
 							</td>
 							<?php endif ?>

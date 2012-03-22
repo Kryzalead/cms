@@ -48,7 +48,7 @@
 							<?php echo $this->Form->end($texte_for_submit) ?>
 						</div>
 					</div>
-					<?php if ($menu_id != 0): ?>
+					<?php if ($menu_id != 0 && $menu_id !=1): ?>
 						<div id="menu-action" style="margin: 5px">
 							<?php echo $this->Html->link("Supprimer le menu",array('action'=>'delete','?'=>array('id'=>$menu_id,'token'=>$this->Session->read('Security.token'))),array('style'=>'color: red')); ?>
 						</div>	

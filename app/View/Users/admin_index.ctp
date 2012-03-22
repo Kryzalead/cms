@@ -40,8 +40,11 @@
 						<?php echo $this->Html->link($v['User']['username'],array('action'=>'edit','?'=>array('id'=>$v['User']['id'])),array('class'=>'upd')) ?>
 						
 						<div class="action_admin">
-							<?php echo $this->Html->link('Modifier',array('action'=>'edit','?'=>array('id'=>$v['User']['id'])),array('class'=>'upd')) ?> |
-							<?php echo $this->Html->link("Supprimer définitivement",array('action'=>'delete','?'=>array('id'=>$v['User']['id'],'token'=>$this->Session->read('Security.token'))),array('class'=>'del')); ?>			
+							<?php echo $this->Html->link('Modifier',array('action'=>'edit','?'=>array('id'=>$v['User']['id'])),array('class'=>'upd')) ?>
+							<?php if ($v['User']['role'] != 'admin'): ?>
+								| <?php echo $this->Html->link("Supprimer définitivement",array('action'=>'delete','?'=>array('id'=>$v['User']['id'],'token'=>$this->Session->read('Security.token'))),array('class'=>'del')); ?>	
+							<?php endif ?>
+									
 						</div>
 					</td>
 					<td>
@@ -49,7 +52,10 @@
 						<?php echo (!empty($v['User_meta']['last_name'])) ? $v['User_meta']['last_name'] : ' '?>
 					</td>
 					<td><?php echo $v['User']['email']; ?></td>
-					<td><?php echo ucfirst($v['User']['role']); ?></td>
+					<td>
+						<?php echo ($v['User']['role'] == 'admin') ? 'Administrateur' : ''?>
+						<?php echo ($v['User']['role'] == 'user') ? 'Abonné' : ''?>
+					</td>
 					<td>
 						<?php echo ($v['User']['page_count'] != 0) ? $this->Html->link($v['User']['page_count'],array('controller'=>'posts','action'=>'index','?'=>array('type'=>'page','author'=>$v['User']['id']))) : 0; ?>
 					</td>

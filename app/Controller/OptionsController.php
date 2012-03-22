@@ -48,7 +48,7 @@ class OptionsController extends AppController{
 
      	$fields = array(
      		'site_name',
-     		'slogan',
+     		'site_slogan',
      		'admin_email',
      		'default_role'
 
@@ -160,9 +160,6 @@ class OptionsController extends AppController{
         $d['title_for_layout'] = 'Réglages des médias';
         $d['action'] = 'media';
 
-        if($this->Session->read('Auth.User.role') != 'superadmin'){
-            $this->error("test");return;
-        }
         if ($this->request->is('put') || $this->request->is('post')) {
             
             $valid = true;
@@ -200,5 +197,25 @@ class OptionsController extends AppController{
 
         $this->set($d);
         $this->render('admin_edit');
+    }
+
+    function superadmin_agence(){
+
+        $d['title_for_layout'] = 'Administration des BOSS';
+
+        if($this->request->is('post') || $this->request->is('put')){
+
+        }
+
+        $fields = array(
+            'site_offline',
+            'content_site_offline'
+        );
+
+        foreach ($fields as $name) {
+            $this->request->data['Option'][$name] = Configure::read($name);
+        }
+       
+        $this->set($d);
     }
 }

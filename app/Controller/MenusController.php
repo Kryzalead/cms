@@ -120,6 +120,10 @@ class MenusController extends AppController{
 			$this->redirect('/');
 		
 		$id = $this->request->query['id'];
+		if($id == 1){
+			$this->error("Comment on va faire pour naviguer sur votre site sans menu ?");
+			return;
+		}
 		$count = $this->Menu->find('count',array(
 			'conditions'=>array('Menu.id'=>$id)
 		));

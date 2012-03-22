@@ -37,7 +37,13 @@ class AppController extends Controller{
 			}
 			
 		}
-		//debug($this);die();
+		else{
+			if(Configure::read('site_offline') == 1){
+				$this->layout = 'offline-page';
+				$this->set('content',Configure::read('content_site_offline'));
+				
+			}
+		}
 	}
 
 	/*

@@ -156,6 +156,13 @@ class UsersController extends AppController{
 		}
 
 		$this->User->id = $id;
+
+		$role = $this->User->field('role');
+		if($role == 'admin'){
+			$this->error("Vous n'avez pas la permission de supprimer un administrateur");
+			return;
+		}
+
 		$this->User->delete();
 		$this->Session->setFlash("L'utilisateur a bien été supprimé","notif");
 		$this->redirect($this->referer());
@@ -231,7 +238,7 @@ class UsersController extends AppController{
 
 		$d['roles'] = array(
 			'admin'=>'Administrateur',
-			'user'=>'Utilisateur'
+			'user'=>'Abonné'
 		);
 
 		$this->set($d);
