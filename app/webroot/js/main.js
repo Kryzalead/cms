@@ -154,41 +154,6 @@ jQuery(function($){
     });
 
     /**
-     * Fake Placeholder
-     * User labels as placeholder for the next input
-     * */
-     
-    $('.placeholder,#content.login .input').each(function(){
-        var label = $(this).find('label:first');
-        var input = $(this).find('input:first,textarea:first'); 
-        if(input.val() != ''){
-            label.stop().hide(); 
-        }
-        input.focus(function(){
-            if($(this).val() == ''){
-                label.stop().fadeTo(500,0.5);  
-            }
-            $(this).parent().removeClass('error').find('.error-message').fadeOut(); 
-        });
-        input.blur(function(){
-            if($(this).val() == ''){
-                label.stop().fadeTo(500,1);  
-            }
-        });
-        input.keypress(function(){
-            label.stop().hide(); 
-        });
-        input.keyup(function(){
-            if($(this).val() == ''){
-                label.stop().fadeTo(500,0.5); 
-            }
-        });
-        input.bind('cut copy paste', function(e) {
-            label.stop().hide(); 
-        });
-    });
-
-    /**
      * Hide notification when close button is pressed
     **/
     $('.notif .close').click(function(){
@@ -236,7 +201,7 @@ jQuery(function($){
             }
                 
             else{
-                 link.addClass('active');
+                link.addClass('active');
                 $('#contextual-help-link-wrap').hide();
             }
                
