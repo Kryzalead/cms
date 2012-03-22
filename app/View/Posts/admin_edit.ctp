@@ -29,10 +29,11 @@
     <div class="bloc_publier_image" id="bloc_img_une"><!-- image à la une -->
         <h3>Image à la une</h3>
             <div>
-                <p><a href="">Ajouter une image à la une</a></p>
+                <p><?php echo $this->Html->link("Ajouter une image à la une",array('controller'=>'medias','action'=>'tinymce'),array('id'=>'add-post-thumbnail')); ?></p>
             </div>
     </div>        
 </div>
+<div id="overlayer" style="display:none"></div>
 <?php if ($type == 'post'): ?>
     <?php echo $this->Form->input('terms',array('label'=>'Taxonomy','type'=>'select','multiple'=>'checkbox')); ?>
     <?php echo $this->Taxonomy->input('tag',array('label'=>'Tags : ')) ?>
@@ -92,4 +93,5 @@
         var ed = tinyMCE.activeEditor;
         ed.execCommand('mceInsertContent',false,content);
     }
+    
 <?php $this->Html->scriptEnd(); ?>

@@ -2,7 +2,7 @@
 class AppController extends Controller{
 
 	public $helpers = array('date','Html','Form','Session','Text','Cache','Taxonomy.Taxonomy');
-	public $components = array('Session','Auth');
+	public $components = array('Session','Auth','RequestHandler');
 	
 	/*
 	*	Fonction qui s'excute avant tout autre fonction du controller
