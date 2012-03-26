@@ -2,7 +2,7 @@
 class ContactAppModel extends AppModel{
 	
 	public $useTable = false;
-	
+
 	public $validate = array(
 		'name'=>array(
 			'rule'=>'notEmpty',
@@ -39,4 +39,5 @@ class ContactAppModel extends AppModel{
 		else
 			return false;
 	}
+	
 }

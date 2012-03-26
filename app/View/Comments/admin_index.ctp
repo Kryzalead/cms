@@ -103,9 +103,7 @@
 					<?php else: ?>
 						<td></td>
 						<td>Aucun commentaire à afficher</td>
-						<?php if ($show_form_search): ?>
-							<th>En réponse à</th>
-						<?php endif ?>
+						<td></td>
 						<td></td>
 					<?php endif ?>
 				</tbody>
