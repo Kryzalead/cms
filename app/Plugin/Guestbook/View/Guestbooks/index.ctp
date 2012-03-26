@@ -32,9 +32,9 @@
 				<?php if ($this->Session->read('Auth.User.role') == 'admin'): ?>
 					<div class="action">
 						<?php if ($v['Guestbook']['approved'] == 0): ?>
-							<?php echo $this->Html->link("Valider",array('admin'=>true,'plugin'=>'guestbook','action'=>'valid','controller'=>'guestbooks','?'=>array('id'=>$v['Guestbook']['id'],'token'=>$this->Session->read('Security.token')))); ?>
+							<?php echo $this->Html->link($this->Html->image('test-pass-icon.png'),array('admin'=>true,'plugin'=>'guestbook','action'=>'valid','controller'=>'guestbooks','?'=>array('id'=>$v['Guestbook']['id'],'token'=>$this->Session->read('Security.token'))),array('escape'=>false,'title'=>'Valider le commentaire')); ?>
 						<?php endif ?>
-						<?php echo $this->Html->link("Supprimer",array('admin'=>true,'plugin'=>'guestbook','action'=>'delete','controller'=>'guestbooks','?'=>array('id'=>$v['Guestbook']['id'],'token'=>$this->Session->read('Security.token')))); ?>
+						<?php echo $this->Html->link($this->Html->image('test-error-icon.png'),array('admin'=>true,'plugin'=>'guestbook','action'=>'delete','controller'=>'guestbooks','?'=>array('id'=>$v['Guestbook']['id'],'token'=>$this->Session->read('Security.token'))),array('escape'=>false,'title'=>'Supprimer le commentaire')); ?>
 					</div>
 				<?php endif ?>	
 			</div>
