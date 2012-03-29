@@ -1,10 +1,7 @@
 <?php 
 class TaxonomyBehavior extends ModelBehavior{
 	
-	protected $_defaults = array(
-		'fixed'=>array('category'),
-		'dynamic'=>array('tag')
-	);
+	protected $_defaults = array();
 
 	/*
 	*	Fonction d'initialisation du comportement

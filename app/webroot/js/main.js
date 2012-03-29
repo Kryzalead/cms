@@ -224,6 +224,25 @@ jQuery(function($){
         $(href).addClass('active');
         return false;
     });
+
+    $('#show-dialog').click(function(){
+        var link = $(this).attr('href');
+        var div = $('<div id="dialog"></div>')
+            .html('<iframe frameborder="0" style=" width: 680px; height: 501px; " src="' + link + '"></iframe>')
+            .dialog({
+                autoOpen: false,
+                modal: false,
+                height: 501,
+                width: 670,
+                title: 'Ajouter une image',
+                resizable: false,
+                open: function (event, ui) {
+                    $('#dialog').css('overflow', 'hidden');
+                }
+            });
+            div.dialog('open');
+        return false;
+    });
 });
 
 

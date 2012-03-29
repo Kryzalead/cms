@@ -107,7 +107,7 @@
     <div class="left">
         <div id="dashboard-today" class="bloc">
             <div class="title">
-                Aujourd'hui
+                Aujourd'hui <?php echo $this->Html->link("test",array('action'=>'tinymce','controller'=>'medias','product'=>'test'),array('id'=>'show-dialog')); ?>
             </div>
             <div class="content">
                 <div class="left">
@@ -242,4 +242,5 @@
         <div class="cb"></div>
     </div>
 </div>
+
 

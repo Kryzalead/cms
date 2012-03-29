@@ -13,7 +13,9 @@
 		<?php if (!empty($post['Taxonomy']['category'])): ?>
 			<span><strong>Categories : </strong></span>
 			<?php foreach ($post['Taxonomy']['category'] as $k1 => $v1): ?>
-				<span class="entry-category"><?php echo $this->Html->link($v1['name'],array('action'=>'','controller'=>'')); ?></span>
+				<span class="entry-category">
+					<?php echo $this->Html->link($v1['name'],array('plugin'=>false,'controller'=>'posts','action'=>'viewterm','type'=>'category','slug'=>$v1['slug'])); ?>
+				</span>
 			<?php endforeach ?>
 		<?php endif; ?>	
 		<?php if(!empty($post['Taxonomy']['tag'])): ?>
