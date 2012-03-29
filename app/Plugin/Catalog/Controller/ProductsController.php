@@ -10,11 +10,12 @@ class ProductsController extends AppController{
 		$this->Product->contain('Term');
 
 		$d['robes'] = $this->Product->find('all',array(
-			'conditions'=>array('product_type'=>'robe'),
+			'fields'=>array('Product.id','Product.name','Product.price','Product.url','Product.slug','Product.product_type'),
+			'conditions'=>array('product_type'=>'robe-de-mariee'),
 			'limit'=>4,
 			'order'=>'rand()'
 		));
-
+		
 		$d['accessoires'] = $this->Product->find('all',array(
 			'conditions'=>array('product_type'=>'accessoire'),
 			'limit'=>4,
@@ -35,6 +36,7 @@ class ProductsController extends AppController{
 
 		if(!empty($this->request->params['slug'])){
 			$this->paginate = array(
+				'fields'=>array('Product.id','Product.name','Product.slug','Product.url','Product.price'),
 				'conditions'=>$conditions,
 				'limit'=>8,
 				'joins'=>array(
@@ -66,7 +68,7 @@ class ProductsController extends AppController{
 		$this->Product->contain('Term');
 		$d['products'] = $this->Paginate('Product');
 		
-		$d['type_product'] = $type_products == 'robe' ? 'robe-de-mariee' : $type_products;
+		$d['type_product'] = $type_products;
 
 		$this->set($d);
 	}
@@ -78,7 +80,10 @@ class ProductsController extends AppController{
 
 		$type_product = $this->request->params['type'];
 
+		$this->Product->contain(array('Term','Product_meta'));
+
 		$d['product'] = $this->Product->find('first',array(
+			'fields'=>array('Product.name','Product.slug','Product.description','Product.url','Product.price','Product.product_type'),
 			'conditions'=>array('Product.id'=>$id,'Product.product_type'=>$type_product)
 		));
 
@@ -87,7 +92,22 @@ class ProductsController extends AppController{
 
 		if($slug != $d['product']['Product']['slug'])
 			$this->redirect(array('plugin'=>'catalog','controller'=>'products','action'=>'view','type'=>$type_product,'slug'=>$d['product']['Product']['slug'],'id'=>$id));
-			
+		
+		foreach ($d['product']['Product_meta'] as $k => $v) {
+			if($v['meta_key'] == 'product_buy_price')
+				$d['product']['Product']['valeur_achat'] = $v['meta_value'];
+			if($v['meta_key'] == 'product_creator_site')
+				$d['product']['Product']['product_creator_site'] = $v['meta_value'];
+		}
+
+		if(!empty($d['product']['Product']['valeur_achat'])){
+			$temp = $d['product']['Product']['price']/$d['product']['Product']['valeur_achat'];
+			$temp2 = $temp-1;
+			$pourcent = ceil($temp2*100);
+			$d['product']['Product']['reduction'] = $pourcent;
+		}
+		
+
 		$this->set($d);
 		
 	}
