@@ -16,8 +16,7 @@
 				<?php foreach ($v['Taxonomy'] as $k1 => $v1) {
 					foreach ($v1 as $k2 => $v2) {
 						echo $v2['type'] == 'product_taille' ? 'Taille : ' : 'Créateur : ';
-						$order = $v2['type'] == 'product_taille' ? 'taille' : 'createur';
-						echo $this->Html->link($v2['name'],array('plugin'=>'catalog','action'=>'index','controller'=>'products','type'=>'robe-de-mariee','order'=>$order,'slug'=>$v2['slug'])); 
+						echo $v2['name']; 
 						echo "<br>";
 					}
 				} ?>
