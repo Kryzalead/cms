@@ -25,8 +25,9 @@ class GuestbooksController extends GuestbookAppController {
 			}
 		}
 
+		
 		$conditions = array();
-		if($this->Session->read('Auth.User.role') != 'admin')
+		if($this->Session->read('Auth.User.role') != 'admin' && $this->Session->read('Auth.User.role') != 'superadmin')
 			$conditions = array_merge($conditions,array('Guestbook.approved'=>1));
 
 		$d['guestbooks'] = $this->Guestbook->find('all',array(

@@ -72,31 +72,47 @@ class ProductsController extends AppController{
 		
 		$d['type_product'] = $type_products;
 
-		$d['list_taille'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' --taille-- ');
-		$tailles = $this->Product->Term->find('all',array(
-			'fields'=>array('Term.name','Term.slug'),
-			'conditions'=>array('Term.type'=>'product_taille'),
-			'order'=>array('Term.name')
-		));
-		
-		foreach ($tailles as $k => $v) {
-			$d['list_taille'] = array_merge($d['list_taille'],array(Router::url('/').'catalogue/'.$d['type_product'].'/taille/'.$v['Term']['slug']=>$v['Term']['name']));
-		}
-		if(!empty($this->request->params['order']) && $this->request->params['order'] == 'taille')
-			$this->request->data['Product']['taille'] = Router::url('/').'catalogue/'.$d['type_product'].'/taille/'.$this->request->params['slug'];
+		if($d['type_product'] == 'robe-de-mariee'){
+			$d['list_taille'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' --taille-- ');
+			$tailles = $this->Product->Term->find('all',array(
+				'fields'=>array('Term.name','Term.slug'),
+				'conditions'=>array('Term.type'=>'product_taille'),
+				'order'=>array('Term.name')
+			));
+			
+			foreach ($tailles as $k => $v) {
+				$d['list_taille'] = array_merge($d['list_taille'],array(Router::url('/').'catalogue/'.$d['type_product'].'/taille/'.$v['Term']['slug']=>$v['Term']['name']));
+			}
+			if(!empty($this->request->params['order']) && $this->request->params['order'] == 'taille')
+				$this->request->data['Product']['taille'] = Router::url('/').'catalogue/'.$d['type_product'].'/taille/'.$this->request->params['slug'];
 
-		$d['list_creator'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' --createur-- ');
-		$creators = $this->Product->Term->find('all',array(
-			'fields'=>array('Term.name','Term.slug'),
-			'conditions'=>array('Term.type'=>'product_creator'),
-			'order'=>array('Term.name')
-		));
-		
-		foreach ($creators as $k => $v) {
-			$d['list_creator'] = array_merge($d['list_creator'],array(Router::url('/').'catalogue/'.$d['type_product'].'/createur/'.$v['Term']['slug']=>$v['Term']['name']));
+			$d['list_creator'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' --createur-- ');
+			$creators = $this->Product->Term->find('all',array(
+				'fields'=>array('Term.name','Term.slug'),
+				'conditions'=>array('Term.type'=>'product_creator'),
+				'order'=>array('Term.name')
+			));
+			
+			foreach ($creators as $k => $v) {
+				$d['list_creator'] = array_merge($d['list_creator'],array(Router::url('/').'catalogue/'.$d['type_product'].'/createur/'.$v['Term']['slug']=>$v['Term']['name']));
+			}
+			if(!empty($this->request->params['order']) && $this->request->params['order'] == 'createur')
+				$this->request->data['Product']['creator'] = Router::url('/').'catalogue/'.$d['type_product'].'/createur/'.$this->request->params['slug'];
 		}
-		if(!empty($this->request->params['order']) && $this->request->params['order'] == 'createur')
-			$this->request->data['Product']['creator'] = Router::url('/').'catalogue/'.$d['type_product'].'/createur/'.$this->request->params['slug'];
+		elseif($d['type_product'] == 'accessoire'){
+			$d['list_category'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' --categorie-- ');
+			$categories = $this->Product->Term->find('all',array(
+				'fields'=>array('Term.name','Term.slug'),
+				'conditions'=>array('Term.type'=>'product_category'),
+				'order'=>array('Term.name')
+			));
+			
+			foreach ($categories as $k => $v) {
+				$d['list_category'] = array_merge($d['list_category'],array(Router::url('/').'catalogue/'.$d['type_product'].'/categorie/'.$v['Term']['slug']=>$v['Term']['name']));
+			}
+			if(!empty($this->request->params['order']) && $this->request->params['order'] == 'categorie')
+				$this->request->data['Product']['categorie'] = Router::url('/').'catalogue/'.$d['type_product'].'/categorie/'.$this->request->params['slug'];
+		}
 		
 		$this->set($d);
 	}

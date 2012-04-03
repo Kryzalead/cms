@@ -1,0 +1,869 @@
+@charset "CP850";
+/* ----------------------------------------- */
+/*		Nom : Aux mariées de Christéle	 */
+/*			Date : 06-03-2012  		*/
+/*              Auteurs: Kryzalead               */
+/* 			  Edition: style.scss			*/
+/*			  Version: 1.0				*/
+/* -------------------------------------- */
+/* ---------------------------------------
+				Reset Tags
+------------------------------------------ */
+/* line 21, styles.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+/* ---------------------------------------
+			Reset HTML 5    
+------------------------------------------ */
+/* line 36, styles.scss */
+aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* ---------------------------------------
+				Styles global
+------------------------------------------ */
+/* line 42, styles.scss */
+html {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 44, styles.scss */
+html, body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95em;
+  color: black;
+  line-height: 1.5;
+  background: #d1789f url(images/bg.jpg) top center repeat;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+/* ---------------------------------------
+			Général reset
+------------------------------------------ */
+/* line 58, styles.scss */
+hr {
+  width: 100%;
+  clear: both;
+  visibility: hidden;
+}
+
+/* line 63, styles.scss */
+.cb {
+  clear: both;
+  display: block !important;
+  float: none !important;
+  height: 0 !important;
+}
+
+/* line 69, styles.scss */
+ol, ul, li {
+  list-style: none;
+  line-height: 1;
+}
+
+/* ---------------------------------------
+				Liens
+------------------------------------------ */
+/* line 77, styles.scss */
+a, p a {
+  text-decoration: none;
+  color: black;
+  outline: 0;
+}
+
+/* line 82, styles.scss */
+a:hover {
+  outline: 0;
+  color: white;
+}
+
+/* line 83, styles.scss */
+a:focus, a:active {
+  outline: 0;
+}
+
+/* line 84, styles.scss */
+a:visited {
+  color: white;
+}
+
+/* line 85, styles.scss */
+a img {
+  border: none;
+}
+
+/* ---------------------------------------
+				Titres Hx
+------------------------------------------ */
+/* line 91, styles.scss */
+h1, h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  position: relative;
+}
+
+/* line 96, styles.scss */
+h1 {
+  font-size: 2em;
+  line-height: 0;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 0;
+}
+
+/* line 103, styles.scss */
+h2 {
+  font-size: 1.2em;
+  line-height: 1.7;
+  color: #000;
+  padding: 0;
+}
+
+/* line 109, styles.scss */
+h1 a, h1 a:visited, h2 a, h2 a:visited {
+  text-decoration: none;
+  color: #999;
+}
+
+/* line 110, styles.scss */
+h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus {
+  text-decoration: none;
+}
+
+/* ---------------------------------------
+			Paragraphe
+------------------------------------------ */
+/* line 116, styles.scss */
+p {
+  margin-bottom: 7px;
+}
+
+/* ---------------------------------------
+				Span
+------------------------------------------ */
+/* line 122, styles.scss */
+.vert {
+  color: #9CA436;
+}
+
+/* line 123, styles.scss */
+.rose {
+  color: #AA4673;
+}
+
+/* line 124, styles.scss */
+.gras {
+  font-weight: bold;
+}
+
+/* line 125, styles.scss */
+.aux_mariees_de_christele {
+  font: bold 1.8em 'jenna';
+  color: #AA4673;
+}
+
+/* ---------------------------------------
+			Frameworks
+------------------------------------------ */
+/* line 131, styles.scss */
+.boxOmbre {
+  -webkit-box-shadow: #222222, 0px, 1px, 5px;
+  -moz-box-shadow: #222222, 0px, 1px, 5px;
+  box-shadow: #222222, 0px, 1px, 5px;
+}
+
+/* line 132, styles.scss */
+.boxRadius {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* -- Defaut -- */
+/* -- $ Var -- */
+/* --  Mixin -- */
+/* ---------------------------------------
+			@Font-face
+------------------------------------------ */
+@font-face {
+  font-family: 'jenna';
+  src: url("fonts/jennasue-webfont.eot");
+  src: url("fonts/jennasue-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/jennasue-webfont.woff") format("woff"), url("fonts/jennasue-webfont.ttf") format("truetype"), url("fonts/jennasue-webfont.svg#JennaSueRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'riesling';
+  src: url("fonts/riesling.eot");
+  src: url("fonts/riesling.eot?#iefix") format("embedded-opentype"), url("fonts/riesling.woff") format("woff"), url("fonts/riesling.ttf") format("truetype"), url("fonts/riesling.svg#RieslingRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ---------------------------------------
+				Container
+------------------------------------------ */
+/* line 192, styles.scss */
+#wrap {
+  width: 990px;
+  margin: 15px auto 0;
+}
+
+/* ---------------------------------------
+				Header
+------------------------------------------ */
+/* line 200, styles.scss */
+header h1 {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  height: 96px;
+  width: 420px;
+}
+
+/* ---------------------------------------
+				Nav
+------------------------------------------ */
+/* line 211, styles.scss */
+nav.menu {
+  height: 17px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* line 216, styles.scss */
+nav.menu ul li {
+  float: left;
+  line-height: 1px;
+}
+
+/* line 220, styles.scss */
+nav.menu li a {
+  color: white;
+  font-size: 1.1em;
+  color: black;
+  font-weight: normal;
+  display: block;
+  /* IE6, IE7 line height fix */
+  padding: 0 7px;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* line 229, styles.scss */
+nav.menu ul li a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* ---------------------------------------
+				Contenu
+------------------------------------------ */
+/* line 237, styles.scss */
+#contenu {
+  width: 990px;
+  background: #eeeeee;
+  /* Old browsers */
+  background-color: #eeeeee;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FFCCCCCC', endColorstr='#FFEEEEEE');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjEwMCUiIHkxPSI1MCUiIHgyPSIwJSIgeTI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlZWVlZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2NjY2NjYyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 100% 50%, 0% 50%, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+  background-image: -webkit-linear-gradient(right, #eeeeee 0%, #cccccc 100%);
+  background-image: -moz-linear-gradient(right, #eeeeee 0%, #cccccc 100%);
+  background-image: -o-linear-gradient(right, #eeeeee 0%, #cccccc 100%);
+  background-image: -ms-linear-gradient(right, #eeeeee 0%, #cccccc 100%);
+  background-image: linear-gradient(right, #eeeeee 0%, #cccccc 100%);
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+  border-radius: 14px;
+  -webkit-box-shadow: 2px 4px 15px #222222;
+  -moz-box-shadow: 2px 4px 15px #222222;
+  box-shadow: 2px 4px 15px #222222;
+}
+
+/* line 245, styles.scss */
+#bg {
+  background: #555555 url(images/bg-contenu.jpg) 270px 0 no-repeat;
+}
+
+/* line 247, styles.scss */
+#bgBlanc {
+  width: 990px;
+  background-color: #fff;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+  border-radius: 14px;
+  -webkit-box-shadow: 2px 4px 15px #222222;
+  -moz-box-shadow: 2px 4px 15px #222222;
+  box-shadow: 2px 4px 15px #222222;
+}
+
+/* line 252, styles.scss */
+#contenu p {
+  color: white;
+  font-size: 0.8em;
+  padding: 10px;
+}
+
+#contenu #bgBlanc p{color: #000}
+
+/* --  Bloc fiche-- */
+/* line 259, styles.scss */
+section.bloc {
+  width: 600px;
+  display: inline-block;
+  margin: 0 10px;
+  padding: 30px 0;
+}
+
+/* line 265, styles.scss */
+section.bloc h1, section.bloc p {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* line 269, styles.scss */
+section.bloc p {
+  width: 500px;
+}
+
+/* -- image accessoires -- */
+/* line 273, styles.scss */
+aside#image-accessoires {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: 220px;
+  left: 20px;
+}
+
+/* line 280, styles.scss */
+aside#image-accessoires img {
+  width: 313px;
+  height: 282px;
+}
+
+/* ---------------------------------------
+				catalogue
+------------------------------------------ */
+/* line 288, styles.scss */
+section.catalogue {
+  position: relative;
+  display: inline-block;
+  width: 970px;
+  margin: 0 auto;
+}
+
+/* line 294, styles.scss */
+section.catalogue h1, #bgBlanc h1 {
+  display: block;
+  vertical-align: top;
+  color: #000;
+  font: normal 3.5em 'riesling';
+  line-height: 0;
+  padding: 50px 0 40px 30px;
+  /*+text-shadow:1px 1px 2px #999;*/
+  -moz-text-shadow: 1px 1px 2px #999;
+  -webkit-text-shadow: 1px 1px 2px #999;
+  -o-text-shadow: 1px 1px 2px #999;
+  text-shadow: 1px 1px 2px #999;
+}
+
+/* line 307, styles.scss */
+section.catalogue figure {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+
+/* line 313, styles.scss */
+section.catalogue figure img {
+  border: 1px solid white;
+  padding: 3px;
+  margin: 10px;
+}
+
+/* line 318, styles.scss */
+section.catalogue nav {
+  margin-left: 15px;
+}
+
+/* line 320, styles.scss */
+section.catalogue nav a:hover figcaption {
+  color: #AA4673;
+  text-decoration: underline;
+}
+
+/* line 324, styles.scss */
+section.catalogue figcaption {
+  background-color: #fff;
+  color: black;
+  position: absolute;
+  padding: 0 10px 0 2px;
+  left: 14px;
+  bottom: 14px;
+}
+
+/* line 332, styles.scss */
+section.catalogue img {
+  display: block;
+  margin: 10px 0;
+  border: 5px solid white;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 1px 1px 14px #555555;
+  -moz-box-shadow: 1px 1px 14px #555555;
+  box-shadow: 1px 1px 14px #555555;
+}
+
+/* ---------------------------------------
+				Fiche produits
+------------------------------------------ */
+/* line 342, styles.scss */
+.fiche h4 {
+  margin-left: 0;
+}
+
+/* line 343, styles.scss */
+.produit-gauche {
+  width: 300px;
+  float: left;
+  padding: 0;
+}
+
+/* line 344, styles.scss */
+.produit-droit {
+  width: 225px;
+  float: left;
+  padding-left: 25px;
+}
+
+/* line 345, styles.scss */
+.fiche .photos {
+  border: 3px solid #DBE5E8;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 1px 1px 14px #555555;
+  -moz-box-shadow: 1px 1px 14px #555555;
+  box-shadow: 1px 1px 14px #555555;
+}
+
+/* line 346, styles.scss */
+.fiche .prix {
+  display: block;
+  float: none;
+  color: #FF683A;
+  font-weight: bold;
+  font-size: 2.6em;
+  /*+text-shadow:1px 1px 2px #999;*/
+  -moz-text-shadow: 1px 1px 2px #999;
+  -webkit-text-shadow: 1px 1px 2px #999;
+  -o-text-shadow: 1px 1px 2px #999;
+  text-shadow: 1px 1px 2px #999;
+}
+
+/* line 347, styles.scss */
+.fiche .ancien-prix {
+  font-weight: bold;
+  text-decoration: line-through;
+  font-style: italic;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.1em;
+}
+
+/* line 348, styles.scss */
+.fiche .description {
+  border-bottom: 1px solid #D9D9D9;
+  padding-bottom: 11px;
+  margin-bottom: 7px;
+}
+
+/* line 349, styles.scss */
+.fiche .description li {
+  line-height: 18px;
+}
+
+/* line 350, styles.scss */
+.fiche .titre {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #AA4673;
+  padding: 15px 0 10px;
+  text-decoration: underline;
+}
+
+/* line 351, styles.scss */
+.fiche .promo {
+  border-bottom: 1px solid #D9D9D9;
+  padding: 3px 0 20px;
+}
+
+/* line 352, styles.scss */
+.fiche .miniatures, .fiche .miniatures li {
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 353, styles.scss */
+.fiche .miniatures li a {
+  float: left;
+  border: 2px solid #D9D9D9;
+  height: 69px;
+  margin: 10px 7px 0 0;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 1px 1px 14px #555555;
+  -moz-box-shadow: 1px 1px 14px #555555;
+  box-shadow: 1px 1px 14px #555555;
+}
+
+/* line 354, styles.scss */
+.fiche .miniatures li a:hover {
+  border-color: #AA4673;
+  /*+opacity:80%;*/
+  filter: alpha(opacity=80);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+}
+
+/* line 355, styles.scss */
+.fiche .tags a {
+  text-decoration: underline;
+}
+
+/* line 356, styles.scss */
+.produit-partage a {
+  text-decoration: none;
+}
+
+/* line 357, styles.scss */
+.produit-partage a:hover {
+  opacity: 0.7;
+  -moz-opacity: 0.7;
+  filter: alpha(opacity=7);
+}
+
+/* gallerie */
+/* line 361, styles.scss */
+.gallerie {
+  overflow: none;
+}
+
+/* line 362, styles.scss */
+.gallerie h4 {
+  line-height: 18px;
+  padding: 20px 0 5px;
+  margin: 20px 0 12px;
+  border-bottom: 1px solid #D9D9D9;
+  border-top: 1px solid #D9D9D9;
+  /*+text-shadow:1px 1px 2px #999;*/
+  -moz-text-shadow: 1px 1px 2px #999;
+  -webkit-text-shadow: 1px 1px 2px #999;
+  -o-text-shadow: 1px 1px 2px #999;
+  text-shadow: 1px 1px 2px #999;
+}
+
+/* line 363, styles.scss */
+.gallerie h4 a {
+  text-decoration: none;
+}
+
+/* line 364, styles.scss */
+.gallerie a {
+  color: #444;
+}
+
+/* line 365, styles.scss */
+.gallerie a:hover {
+  color: #AA4673;
+  text-decoration: underline;
+}
+
+/* line 366, styles.scss */
+.gallerie p {
+  padding: 5px 0;
+}
+
+/* line 367, styles.scss */
+.gallerie .blanc {
+  background: #FFF;
+  margin: 20px;
+}
+
+/* line 368, styles.scss */
+.gallerie .blanc h4 {
+  font: bold 2.1em 'riesling';
+}
+
+/* -- fomulaire de contact --*/
+/* line 372, styles.scss */
+#formContact {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 30px;
+  padding: 0;
+}
+
+/* line 379, styles.scss */
+#formContact legend {
+  display: block;
+  font: normal 4.5em 'riesling';
+  text-align: left;
+  text-decoration: none;
+  padding: 22px 0 20px 80px;
+  color: #AA4673;
+}
+
+/* line 386, styles.scss */
+form.formulaire {
+  width: 360px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* line 391, styles.scss */
+input[type=text], textarea {
+  border: none;
+  background: #fff;
+  width: 340px;
+  height: 42px;
+  padding: 0px 5px;
+  margin: 5px 0 15px 0;
+  color: #686464;
+  font-size: 1em;
+  border: solid 1px #d0c9c9;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 1px 1px 13px #333;
+  -webkit-box-shadow: 1px 1px 13px #333;
+  box-shadow: 1px 1px 13px #333;
+}
+
+/* line 408, styles.scss */
+textarea {
+  font-size: 1.3em;
+  max-width: 390px;
+  max-height: 275px;
+  height: 170px;
+  margin: 25px 0 20px 0;
+}
+
+/* line 415, styles.scss */
+fieldset {
+  border: 0 none;
+}
+
+/* line 416, styles.scss */
+legend {
+  /*display: none;*/
+}
+
+/* line 418, styles.scss */
+.envoyer input {
+  margin: 10px 0 0 212px;
+  width: 145px;
+  height: 50px;
+  padding: 0;
+  background: url('images/envoi.png') top left no-repeat;
+}
+
+/* line 422, styles.scss */
+.envoyer:hover {
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter: alpha(opacity=8);
+}
+
+/*adresse-sociaux*/
+/* line 429, styles.scss */
+#reseauxSociaux {
+  color: #878383;
+  font-size: 1.3em;
+  margin-left: 15px;
+}
+
+/* line 434, styles.scss */
+#reseauxSociaux a {
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px 40px 0 0;
+}
+
+/* line 439, styles.scss */
+#reseauxSociaux a img {
+  width: 150px;
+}
+
+/* line 441, styles.scss */
+#reseauxSociaux a:hover img {
+  opacity: 0.6;
+  -moz-opacity: 0.6;
+  filter: alpha(opacity=6);
+}
+
+/* -- planGoogle -- */
+/* line 449, styles.scss */
+#planGoogle {
+  display: inline-block;
+  vertical-align: top;
+  width: 500px;
+  height: 450px;
+  margin: 100px 0 0 40px;
+  border: 6px solid white;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+  border-radius: 14px;
+  -webkit-box-shadow: 2px 4px 15px #222222;
+  -moz-box-shadow: 2px 4px 15px #222222;
+  box-shadow: 2px 4px 15px #222222;
+}
+
+/* ---------------------------------------
+				partenariats
+------------------------------------------ */
+/* line 464, styles.scss */
+section#partenaires {
+  color: #0F0F0F;
+  margin: 0 auto;
+  width: 970px;
+}
+
+/* line 465, styles.scss */
+ul.ligne1, ul.ligne2 {
+  margin: 20px 0;
+  display: inline-block;
+}
+
+/* line 466, styles.scss */
+ul.ligne1 li, ul.ligne2 li {
+  display: inline-block;
+  vertical-align: top;
+  width: 310px;
+  border-left: 1px solid #E3E3E3;
+  padding: 0 3px;
+  text-align: center;
+}
+
+/* line 467, styles.scss */
+ul.ligne1 li:first-child, ul.ligne2 li:first-child {
+  border: 0;
+}
+
+/* line 468, styles.scss */
+ul.ligne1 li ul li, ul.ligne2 li ul li {
+  padding: 0;
+  margin: 3px 0;
+  border: none;
+}
+
+/* line 469, styles.scss */
+ul.ligne1 li h3, ul.ligne2 li h3 {
+  margin-bottom: 15px;
+  font: bold 2.4em 'riesling';
+}
+
+/* line 470, styles.scss */
+ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {
+  padding-top: 15px;
+}
+
+/* line 471, styles.scss */
+ul.ligne2 li#dernier {
+  border-right: 1px solid #E3E3E3;
+}
+
+/* line 472, styles.scss */
+ul.ligne2 li#avant_dernier {
+  border: none;
+}
+
+/* ---------------------------------------
+				Footer
+------------------------------------------ */
+/* --  bandeau -- */
+/* line 479, styles.scss */
+#bandeau {
+  border-top: 1px solid #F0F0F0;
+  width: 990px;
+  height: 115px;
+  background: transparent url(images/bandeau.png) 0 0 no-repeat;
+  -webkit-border-radius: 0px 0px;
+  -moz-border-radius: 0px 0px 15px 15px / 0px 0px 15px 15px;
+  -ms-border-radius: 0px 0px 15px 15px / 0px 0px 15px 15px;
+  -o-border-radius: 0px 0px 15px 15px / 0px 0px 15px 15px;
+  border-radius: 0px 0px 15px 15px / 0px 0px 15px 15px;
+}
+
+/* line 486, styles.scss */
+#bandeau ul {
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  font: normal 1.8em "jenna";
+  padding-left: 10px;
+}
+
+/* line 493, styles.scss */
+#bandeau ul.horaires {
+  text-align: right;
+}
+
+/* line 495, styles.scss */
+#bandeau li.titre {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+/* line 499, styles.scss */
+#bandeau img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 12px 140px 0;
+}

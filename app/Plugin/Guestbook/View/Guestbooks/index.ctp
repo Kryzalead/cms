@@ -29,7 +29,7 @@
 						<?php echo $v['Guestbook']['author'] ?>
 					<?php endif ?>  
 				</span>
-				<?php if ($this->Session->read('Auth.User.role') == 'admin'): ?>
+				<?php if ($this->Session->read('Auth.User.role') == 'admin' || $this->Session->read('Auth.User.role') == 'superadmin'): ?>
 					<div class="action">
 						<?php if ($v['Guestbook']['approved'] == 0): ?>
 							<?php echo $this->Html->link($this->Html->image('test-pass-icon.png'),array('admin'=>true,'plugin'=>'guestbook','action'=>'valid','controller'=>'guestbooks','?'=>array('id'=>$v['Guestbook']['id'],'token'=>$this->Session->read('Security.token'))),array('escape'=>false,'title'=>'Valider le commentaire')); ?>
