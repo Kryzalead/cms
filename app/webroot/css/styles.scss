@@ -1,0 +1,498 @@
+@import "compass/css3";
+/* ----------------------------------------- */
+/*		Nom : Aux mariées de Christéle	 */
+/*			Date : 06-03-2012  		*/
+/*              Auteurs: Kryzalead               */
+/* 			  Edition: style.scss			*/
+/*			  Version: 1.0				*/
+/* -------------------------------------- */
+
+/* ---------------------------------------
+				Reset Tags
+------------------------------------------ */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;}
+
+
+/* ---------------------------------------
+			Reset HTML 5    
+------------------------------------------ */
+aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+
+
+/* ---------------------------------------
+				Styles global
+------------------------------------------ */
+html {width:100%;height:100%;}
+
+html, body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 0.95em;
+	color: black;
+	line-height: 1.5;
+	background:#D1789F url(images/bg.jpg) top center repeat;
+	-webkit-font-smoothing:antialiased;
+	-moz-font-smoothing:antialiased;
+	font-smoothing:antialiased;}
+	
+
+/* ---------------------------------------
+			Général reset
+------------------------------------------ */
+hr {
+	width: 100%;
+	clear: both;
+	visibility: hidden;}
+
+.cb {
+	clear:both;
+	display:block !important;
+	float:none !important;
+	height:0 !important;}
+
+ol, ul, li {
+	list-style:none;
+	line-height:1;}
+
+
+/* ---------------------------------------
+				Liens
+------------------------------------------ */
+a, p a {
+	text-decoration: none;
+	color: black;
+	outline: 0;}
+
+a:hover 			{outline: 0; color:white;}
+a:focus, a:active	{outline: 0;}
+a:visited			{color: white;}
+a img 				{border: none}
+
+
+/* ---------------------------------------
+				Titres Hx
+------------------------------------------ */
+h1, h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	position:relative;}
+	
+h1 {
+	font-size: 2em;
+	line-height:0;
+	color:#fff;
+	text-transform:capitalize;	
+	padding:0;}
+
+h2 {
+	font-size: 1.2em;
+	line-height:1.7;
+	color:#000;
+	padding:0;}
+
+h1 a, h1 a:visited, h2 a, h2 a:visited			{text-decoration: none; color: #999;}
+h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus	{text-decoration: none;}
+
+
+/* ---------------------------------------
+			Paragraphe
+------------------------------------------ */
+p {margin-bottom: 7px;}
+
+
+/* ---------------------------------------
+				Span
+------------------------------------------ */
+.vert {color: #9CA436;}
+.rose {color: #AA4673;}
+.gras {font-weight:bold;}
+.aux_mariees_de_christele {font:bold 1.8em 'jenna'; color:#AA4673;}
+
+
+/* ---------------------------------------
+			Frameworks
+------------------------------------------ */
+.boxOmbre{@include box-shadow(#222,0px,1px,5px);}
+.boxRadius{@include border-radius(5px);}
+
+/* -- Defaut -- */
+$default-box-shadow-h-offset:2px;
+$default-box-shadow-v-offset:4px;
+$default-box-shadow-blur:15px;
+
+$default-border-radius:14px;
+
+$default-text-shadow-h-offset:0px;
+$default-text-shadow-v-offset:1px;
+$default-text-shadow-blur:5px;
+
+/* -- $ Var -- */
+$ombre:#222;
+$experimental-support-for-svg: true;
+
+/* --  Mixin -- */
+@mixin contenu($ombre){
+	$default-box-shadow-color:$ombre;
+		@include border-radius;
+		@include box-shadow;}
+
+@mixin images{
+	@include border-radius(0px);
+	@include box-shadow(1px 1px 14px #555);}	
+
+@mixin radiusBas {
+	@include border-radius(0px 0px 15px 15px, 0px 0px 15px 15px);}
+
+
+/* ---------------------------------------
+			@Font-face
+------------------------------------------ */
+@font-face {
+    font-family: 'jenna';
+    src: url('fonts/jennasue-webfont.eot');
+    src: url('fonts/jennasue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/jennasue-webfont.woff') format('woff'),
+         url('fonts/jennasue-webfont.ttf') format('truetype'),
+         url('fonts/jennasue-webfont.svg#JennaSueRegular') format('svg');
+    		font-weight: normal;font-style: normal;}
+
+@font-face {
+	font-family: 'riesling';
+		src: url('fonts/riesling.eot');
+		src: url('fonts/riesling.eot?#iefix') format('embedded-opentype'),
+			url('fonts/riesling.woff') format('woff'),
+			url('fonts/riesling.ttf') format('truetype'),
+			url('fonts/riesling.svg#RieslingRegular') format('svg');
+				font-weight: normal;font-style: normal;}
+
+
+/* ---------------------------------------
+				Container
+------------------------------------------ */
+#wrap {
+	width:990px;
+	margin:15px auto 0;}
+
+
+/* ---------------------------------------
+				Header
+------------------------------------------ */
+header h1 {
+	position: relative;
+	display: inline-block;
+	vertical-align:top;
+	height:96px;
+	width:420px;}
+
+
+/* ---------------------------------------
+				Nav
+------------------------------------------ */
+nav.menu {
+	height:17px;
+	display: inline-block;
+	vertical-align:bottom;}	
+
+nav.menu ul li {
+	float: left;
+	line-height:1px;}
+
+nav.menu li a {
+	font-size: 1.1em;
+	color:black;
+	font-weight:normal;
+	display:block;	/* IE6, IE7 line height fix */
+	padding: 0 7px;
+	background-color:transparent;
+	text-decoration:none;}
+
+nav.menu ul li a:hover {
+	color:white;
+	text-decoration:underline;}
+
+
+/* ---------------------------------------
+				Contenu
+------------------------------------------ */
+#contenu {
+	width:990px;
+	background: rgb(238,238,238); /* Old browsers */
+	background-color: rgb(238,238,238);
+	@include filter-gradient(#cccccc, #eeeeee, horizontal);
+	@include background-image(linear-gradient(right, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%));
+	@include contenu;}
+
+#bg{background:#555 url(images/bg-contenu.jpg) 270px 0 no-repeat;}
+
+#bgBlanc {
+	width:990px;
+	background-color:#fff;
+	@include contenu;}
+
+#contenu p {
+	color:white;
+	font-size:0.8em;
+	padding:10px;}
+
+
+/* --  Bloc fiche-- */
+section.bloc {
+	width:600px;
+	display: inline-block;
+	margin:0 10px;
+	padding:30px 0;}
+
+section.bloc h1, section.bloc p {
+	display: inline-block;
+	vertical-align:top;}
+
+section.bloc p{width:500px;}
+
+
+ /* -- image accessoires -- */
+aside#image-accessoires {
+	display: inline-block;
+	vertical-align:top;
+	position: relative;
+	top:220px;
+	left:20px;}
+
+aside#image-accessoires img{
+	width:313px;
+	height:282px;}
+
+
+/* ---------------------------------------
+				catalogue
+------------------------------------------ */
+section.catalogue{
+	position: relative;
+	display: inline-block;
+	width: 970px;
+	margin: 0 auto;}
+
+section.catalogue h1, #bgBlanc h1 {
+	display: block;
+	vertical-align: top;
+	color:#000;
+	font: normal 3.5em 'riesling';
+	line-height: 0;
+	padding: 50px 0 40px 30px;
+	/*+text-shadow:1px 1px 2px #999;*/
+	-moz-text-shadow:1px 1px 2px #999;
+	-webkit-text-shadow:1px 1px 2px #999;
+	-o-text-shadow:1px 1px 2px #999;
+	text-shadow:1px 1px 2px #999;}
+
+section.catalogue figure {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	margin:0;}
+
+section.catalogue figure img {
+	border:1px solid white;
+	padding:3px;
+	margin: 10px;}
+
+section.catalogue nav {margin-left:15px;}
+
+section.catalogue nav a:hover figcaption {
+	color:#AA4673;
+	text-decoration:underline;}
+
+section.catalogue figcaption {
+	background-color:#fff;
+	color:black;
+	position: absolute;
+	padding:0 10px 0 2px;
+	left: 14px;
+	bottom: 14px;}
+
+section.catalogue img {
+	display: block;
+	margin:10px 0;
+	border:5px solid white;
+	@include images;}
+
+
+/* ---------------------------------------
+				Fiche produits
+------------------------------------------ */
+.fiche h4{margin-left:0;}
+.produit-gauche{ width:300px; float:left; padding:0;}
+.produit-droit{ width:225px; float:left; padding-left:25px; }
+.fiche .photos{ border:3px solid #DBE5E8; @include images;}
+.fiche .prix{ display:block; float:none; color:#FF683A; font-weight:bold; font-size:2.6em; /*+text-shadow:1px 1px 2px #999;*/ -moz-text-shadow:1px 1px 2px #999; -webkit-text-shadow:1px 1px 2px #999; -o-text-shadow:1px 1px 2px #999; text-shadow:1px 1px 2px #999;}
+.fiche .ancien-prix{ font-weight:bold; text-decoration:line-through; font-style:italic; margin:0px; padding:0px; font-size:1.1em;}
+.fiche .description{ border-bottom:1px solid #D9D9D9; padding-bottom:11px; margin-bottom:7px; }
+.fiche .description li{line-height:18px;}
+.fiche .titre{font-size:1.2em;font-weight:bold;color:#AA4673;padding:15px 0 10px; text-decoration:underline;}
+.fiche .promo{ border-bottom:1px solid #D9D9D9; padding:3px 0 20px; }
+.fiche .miniatures,.fiche .miniatures li{ background:none; padding:0; margin:0;}
+.fiche .miniatures li a{ float:left; border:2px solid #D9D9D9; height:69px; margin:10px 7px 0 0; @include images}
+.fiche .miniatures li a:hover{ border-color:#AA4673; /*+opacity:80%;*/ filter:alpha(opacity=80); -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -moz-opacity:0.8; opacity:0.8; }
+.fiche .tags a{text-decoration:underline;}
+.produit-partage a{ text-decoration:none; }
+.produit-partage a:hover{ opacity: 0.7;-moz-opacity: 0.7;filter:alpha(opacity=7); }
+
+
+/* gallerie */
+.gallerie{overflow:none;}
+.gallerie h4{ line-height:18px; padding:20px 0 5px; margin:20px 0 12px;border-bottom:1px solid #D9D9D9;border-top:1px solid #D9D9D9;/*+text-shadow:1px 1px 2px #999;*/ -moz-text-shadow:1px 1px 2px #999; -webkit-text-shadow:1px 1px 2px #999; -o-text-shadow:1px 1px 2px #999; text-shadow:1px 1px 2px #999; }
+.gallerie h4 a{ text-decoration:none; }
+.gallerie a{ color:#444; }
+.gallerie a:hover{ color:#AA4673; text-decoration:underline;}
+.gallerie p{ padding:5px 0; }
+.gallerie .blanc{ background:#FFF; margin:20px;}
+.gallerie .blanc h4{ font:bold 2.1em 'riesling'; }
+
+
+/* -- fomulaire de contact --*/
+#formContact {
+	position:relative;
+	display: inline-block;
+	vertical-align:top;
+	margin-left:30px ;
+	padding:0;}
+
+#formContact h1 {
+	font:normal 4.5em 'riesling';
+	text-align:left;
+	text-decoration:none;
+	padding:22px 0 20px 80px;
+	color:#AA4673;}
+
+form.formulaire {
+	width:360px;
+	display: inline-block;
+	vertical-align:top;}
+
+input[type=text], textarea {
+	border:none;
+	background: #fff;
+	width:340px;
+	height:42px;
+	padding:0px 5px;
+	margin:5px 0 15px 0;
+	color:#686464;
+	font-size:1em;
+	border:solid 1px #d0c9c9;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 1px 1px 13px #333;
+	-webkit-box-shadow: 1px 1px 13px #333; 
+	box-shadow: 1px 1px 13px #333;}
+
+textarea {
+	font-size:1.3em;
+	max-width:390px;
+	max-height:275px;
+	height: 170px;
+	margin:25px 0 20px 0;}
+
+fieldset {border:0 none;}
+legend {display:none;}
+
+.envoyer {
+	margin:10px 0 0 212px;
+	padding:0;}
+
+.envoyer:hover{
+	opacity: 0.8;
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=8);}
+
+
+/*adresse-sociaux*/
+#reseauxSociaux {
+	color:#878383;
+	font-size:1.3em;
+	margin-left:15px;}
+
+#reseauxSociaux a{
+	display: inline-block;
+	vertical-align:top;
+	margin:10px 40px 0 0;}
+
+#reseauxSociaux a img{width:150px;}
+
+#reseauxSociaux a:hover img{
+	opacity: 0.6;
+	-moz-opacity: 0.6;
+	filter:alpha(opacity=6);}
+
+
+/* -- planGoogle -- */
+
+#planGoogle {
+	display: inline-block;
+	vertical-align:top;
+	width:500px;
+	height:450px;
+	margin:100px 0 0 40px;
+	border:6px solid white;
+	@include contenu;}
+
+
+
+
+/* ---------------------------------------
+				partenariats
+------------------------------------------ */
+section#partenaires {color:#0F0F0F;margin:0 auto;width:970px;}
+ul.ligne1, ul.ligne2 {margin:20px 0; display: inline-block;}
+ul.ligne1 li, ul.ligne2 li{display: inline-block;vertical-align:top;width:310px;border-left:1px solid #E3E3E3;padding: 0 3px;text-align:center;}
+ul.ligne1 li:first-child, ul.ligne2 li:first-child{border:0}
+ul.ligne1 li ul li, ul.ligne2 li ul li{padding:0;margin:3px 0;border:none;}
+ul.ligne1 li h3, ul.ligne2 li h3{margin-bottom:15px;font:bold 2.4em 'riesling'}
+ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {padding-top:15px;}
+ul.ligne2 li#dernier{border-right:1px solid #E3E3E3;}
+ul.ligne2 li#avant_dernier{border:none;}
+
+
+/* ---------------------------------------
+				Footer
+------------------------------------------ */
+/* --  bandeau -- */
+#bandeau {
+	border-top: 1px solid #F0F0F0;
+	width: 990px;
+	height: 115px;
+	background: transparent url(images/bandeau.png) 0 0 no-repeat;
+	@include radiusBas;}
+
+#bandeau ul {
+	display: inline-block;
+	vertical-align: top;
+	color: white;
+	font: normal 1.8em "jenna";
+	padding-left: 10px;}
+
+#bandeau ul.horaires {text-align: right;}
+
+#bandeau li.titre {
+	font-weight: bold;
+	font-size: 1.4em;}
+
+#bandeau img {
+	display: inline-block;
+	vertical-align: top;
+	margin: 12px 140px 0;}
