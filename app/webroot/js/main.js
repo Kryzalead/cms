@@ -106,15 +106,15 @@ jQuery(function($){
     /**
     * Slide toggle for blocs
     * */
-    $('.bloc .title').append('<a href="#" class="toggle"></a>');
-    $('.bloc .title .tabs').parent().find('.toggle').remove(); 
-    $('.bloc .title .toggle').click(function(){
-        $(this).toggleClass('hide').parent().parent().children('.content').slideToggle(300);
+    $('.bloc .bloc_titre').append('<a href="#" class="toggle"></a>');
+    
+    $('.bloc .bloc_titre .toggle').click(function(){
+        $(this).toggleClass('hide').parent().parent().children('.bloc_contenu').slideToggle(300);
         return false; 
     });
     $('.bloc.hidden').each(function(){
         var e = $(this); 
-        e.find('.content').hide(); 
+        e.find('.bloc_contenu').hide(); 
         e.find('.toggle').addClass('hide');
     });
 

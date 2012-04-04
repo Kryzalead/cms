@@ -4,10 +4,10 @@
 <!--[if IE 9]> <html class="ie9 oldie" lang="fr"><![endif]-->
 <!--[if gt IE 9]><!--><html lang="fr"><!--<![endif]-->
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+        <meta charset="UTF-8">
         <title><?php echo $title_for_layout; ?></title>
-        <?php echo $this->Html->css('graf.css'); ?>
-        <?php echo $this->Html->css('admin.css') ?>
+        <?php // echo $this->Html->css('graf.css'); ?>
+        <?php echo $this->Html->css('ok.css') ?>
         <?php echo $this->Html->css('start/jquery-ui.css') ?>
         <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> 
 
@@ -51,11 +51,10 @@
             <?php echo $this->Session->flash() ?>
             <?php echo $content_for_layout ?>
         </div>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+					<?php echo $this->Html->script('main'); ?>
+					<?php echo $this->Html->script('cookie/jquery.cookie') ?>
+					<?php echo $scripts_for_layout; ?>
     </body>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
-        <?php echo $this->Html->script('main'); ?>
-        <?php echo $this->Html->script('cookie/jquery.cookie') ?>
-        <?php echo $scripts_for_layout; ?>
 </html>
-<?php echo $this->element('sql_dump'); ?>

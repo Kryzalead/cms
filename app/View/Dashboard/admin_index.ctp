@@ -1,6 +1,6 @@
 <div id="aide"><!-- début aide -->
 	<div id="screen-meta" class="metabox">
-		<div id="aide_wrap" style="display: none"> <!-- class="hidden -->
+		<div id="aide_wrap" style="display: none"> <!-- class="hidden" -->
 			<div id="aide_back"></div>
 			<div id="aide_colonnes">
 				<div class="colonne_menu"> <!-- Menu / colonne 1-->
@@ -99,22 +99,23 @@
 		</div>
 	</div>
 </div><!-- fin aide -->
+
 <h1>
-    <?php echo $this->Html->image('icone-home.png',array('width'=>'62px','height'=>'62px')) ?>
+    <?php echo $this->Html->image('icone-home.png',array('width'=>'62','height'=>'62')) ?>
     <?php echo $title_for_layout ?>
 </h1>
 <div id="dashboard">
-    <div class="left">
-        <div id="dashboard-today" class="bloc">
-            <div class="title">
-                Aujourd'hui <?php echo $this->Html->link("test",array('action'=>'tinymce','controller'=>'medias','product'=>'test'),array('id'=>'show-dialog')); ?>
+    <div class="bloc_gauche">
+        <div id="dashboard_aujourdhui" class="bloc">
+            <div class="bloc_titre">
+               <p>Aujourd'hui</p>
             </div>
-            <div class="content">
-                <div class="left">
-                    <table class="noalt">
+            <div class="bloc_contenu">
+					<div class="bloc_gauche">
+                    <table>
                         <thead>
                             <tr>
-                                <th colspan="2"><em>Contenu</em></th>
+                                <th colspan="2">Contenu</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -145,59 +146,66 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="right">
-                    <table class="noalt">
+                <div class="bloc_droit">
+                    <table class="no_paire">
                         <thead>
                             <tr>
                                 <th colspan="2"><em>Commentaires</em></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><h4><?php echo $totalComments ?></h4></td>
-                                <td>
-                                    <?php $terminaison = ($totalComments > 1) ? 's' : '' ?>
-                                    Commentaire<?php echo $terminaison ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h4><?php echo $totalApproved ?></h4></td>
-                                <td class="good">
-                                    <?php $terminaison = ($totalApproved > 1) ? 's' : '' ?>
-                                    Approuvé<?php echo $terminaison ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h4><?php echo $totalWaiting ?></h4></td>
-                                <td class="neutral">En attente</td>
-                            </tr>
-                            <tr>
-                                <td><h4><?php echo $totalSpam ?></h4></td>
-                                <td class="bad">
-                                    <?php $terminaison = ($totalSpam > 1) ? 's' : '' ?>
-                                    Indésirable<?php echo $terminaison ?>
-                                </td>
-                            </tr>
+	                         <tr>
+	                             <td>
+	                             		<h4><?php echo $totalComments ?></h4>
+	                             </td>
+	                             <td>
+	                                 <?php $terminaison = ($totalComments > 1) ? 's' : '' ?>
+	                                 Commentaire<?php echo $terminaison ?>
+	                             </td>
+	                         </tr>
+	                         <tr>
+	                             <td>
+	                           		<h4><?php echo $totalApproved ?></h4>
+	                           	</td>
+	                             <td class="good">
+	                                 <?php $terminaison = ($totalApproved > 1) ? 's' : '' ?>
+	                                 Approuvé<?php echo $terminaison ?>
+	                             </td>
+	                         </tr>
+	                         <tr>
+	                             <td>
+	                             		<h4><?php echo $totalWaiting ?></h4>
+	                             	</td>
+	                             <td class="neutral">En attente</td>
+	                         </tr>
+	                         <tr>
+	                             <td>
+	                             		<h4><?php echo $totalSpam ?></h4>
+	                             	</td>
+	                             <td class="bad">
+	                                 <?php $terminaison = ($totalSpam > 1) ? 's' : '' ?>
+	                                 Indésirable<?php echo $terminaison ?>
+	                             </td>
+	                         </tr>
                         </tbody>
                     </table>
-                </div>
+			</div>
+				</div>	
+        	</div>
+
+        <div id="dashboard_derniers_brouillons" class="bloc">
+            <div class="bloc_titre">
+               <p>Brouillons récents</p>
             </div>
-        </div>
-        <div class="cb"></div>
-        <div id="dashboard-last-drafts" class="bloc">
-            <div class="title">
-                Brouillons récents
-            </div>
-            <div class="content">
+            <div class="bloc_contenu">
                 <?php if (!empty($last_drafts)): ?>
-                    <ul id="lasts_draft" style="list-style-type: none">
+                    <ul id="derniers_brouillons">
                      <?php foreach ($last_drafts as $k => $v): ?>
-                        <li class="draft_item">
+                        <li class="item_brouillon">
                             <?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts',$v['Post']['id'])); ?>
-                            <span><?php echo $this->date->format($v['Post']['created'],'FRS') ?></span>
+                            <span class="date"><?php echo $this->date->format($v['Post']['created'],'FRS') ?></span>
                             
-                                <p><?php  echo $this->Text->truncate($v['Post']['content'],200,array('exact'=>false,'html'=>true));?></p>
-                            
+                                <?php  echo $this->Text->truncate($v['Post']['content'],200,array('exact'=>false,'html'=>true));?>
                         </li>
                     <?php endforeach ?>
                     </ul>
@@ -209,38 +217,31 @@
             </div>
         </div>
     </div>
-    <div class="right">
-        <div id="dashboard-last-comments" class="bloc">
-            <div class="title">
-                Commentaires récents
+    <div class="bloc_droit">
+        <div id="dashboard_derniers_commentaires" class="bloc">
+            <div class="bloc_titre">
+               <p>Commentaires récents</p>
             </div>
-            <div class="content">
+            <div class="bloc_contenu">
                 <?php if (!empty($last_comments)): ?>
-                    <table class="noalt">
-                        <tbody>
-                            <?php foreach ($last_comments as $k => $v): ?>
-                                <?php $style = $v['Comment']['approved'] == 0  ? 'style="background-color: lightYellow"' : ''?>
-                                 <tr <?php echo $style ?>>
-                                    <td class="picture" style="width:80px;"><?php echo $this->Html->image('anonymous.png') ?></td>
-                                    <td>
-                                        <p>
-                                            <strong><?php echo $v['Comment']['author'] ?></strong> sur <?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts','?'=>array('type'=>'post','id'=>$v['Post']['id']))); ?>
-                                            <?php echo (!empty($style)) ? '<span style="color:#777 ;font-style: italic;font-family: sans-serif;font-size: 10px;">[en attente]</span>' : '' ?>
-                                            <br>
-                                            <p><?php echo $v['Comment']['content'] ?></p>
-                                        </p>
-                                    </td>
-                                </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table>
+                	<div id="derniers_commentaires">
+             			<?php foreach ($last_comments as $k => $v): ?>
+								<?php $class = $v['Comment']['approved'] == 0  ? 'non_approuve' : ''?>
+								<div class=" item_commentaire <?php echo $class ?>">
+									<?php echo $this->Html->image('anonymous.png',array('width'=>65,'height'=>65)) ?>
+									<div class="item_commentaire_wrap">
+										<h4 class="item_commentaire_meta"><cite class="item_commentaire_auteur"><?php echo $v['Comment']['author'] ?></cite> sur <?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts','?'=>array('type'=>'post','id'=>$v['Post']['id']))); ?>
+										<?php echo (!empty($style)) ? '[en attente]' : '' ?></h4>
+										<blockquote><p><?php echo $v['Comment']['content'] ?></p></blockquote>
+									</div>
+								</div>
+							<?php endforeach ?>
+             	</div>
                 <?php else: ?>
-                    Aucun commentaires
+                    <p>Aucun commentaires</p>
                 <?php endif ?>
             </div>
         </div>
         <div class="cb"></div>
     </div>
 </div>
-
-
