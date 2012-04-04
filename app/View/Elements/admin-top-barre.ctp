@@ -1,4 +1,4 @@
-<div class="left">
+<div>
     <?php
         $gravatar = md5( strtolower( trim($this->Session->read('Auth.User.email'))));
         echo $this->Html->image('http://www.gravatar.com/avatar/'.$gravatar.'?s=20', array('class'=>"gravatar")); ?>
@@ -9,12 +9,3 @@
     <span>|</span>
     <?php echo $this->Html->link('Se déconnecter',array('controller'=>'users','action'=>'logout','admin'=>false))?>
 </div>
-<!--
-<div class="right">
-    <form action="#" id="search" class="search placeholder">
-        <label>Vous recherchez un truc ?</label>
-        <input type="text" value="" name="q" class="text">
-        <input type="submit" value="rechercher" class="submit">
-    </form>
-</div>
--->
