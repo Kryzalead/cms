@@ -5,7 +5,7 @@ class GuestbooksController extends GuestbookAppController {
 
 	function index(){
 
-		$d['title_for_layout'] = "Livre d'or - ".Configure::read('site_name');
+		$d['title_for_layout'] = "Livre d'or | ".Configure::read('site_name');
 		if($this->request->is('post')){
 
 			if(!empty($this->request->data['Guestbook']['site'])){

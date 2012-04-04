@@ -3,7 +3,7 @@
  
 <head>
   <meta charset="UTF-8">
-  <title>Aux mariées de Christèle</title>
+  <title><?php echo $title_for_layout ?></title>
   <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->

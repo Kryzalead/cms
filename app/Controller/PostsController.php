@@ -110,11 +110,11 @@ class PostsController extends AppController{
 				if(empty($post))
 					throw new NotFoundException('Erreur 404');
 				else{
-					Cache::write('Page.slug_'.$slug,$post);
+					//Cache::write('Page.slug_'.$slug,$post);
 				}
 			}
 			
-			$d['title_for_layout'] = $post['Post']['slug'].' | '.Configure::read('site_name');			
+			$d['title_for_layout'] = ucfirst($post['Post']['slug']).' | '.Configure::read('site_name');			
 		}
 		else{
 			throw new NotFoundException('Erreur 404');

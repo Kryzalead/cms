@@ -5,7 +5,7 @@ class ProductsController extends AppController{
 
 	function home(){
 
-		$d['title_for_layout'] = 'Catalogue';
+		$d['title_for_layout'] = 'Catalogue | '.Configure::read('site_name');
 
 		$this->Product->contain('Term');
 
@@ -114,6 +114,8 @@ class ProductsController extends AppController{
 				$this->request->data['Product']['categorie'] = Router::url('/').'catalogue/'.$d['type_product'].'/categorie/'.$this->request->params['slug'];
 		}
 		
+		$title_for_layout = ($d['type_product'] == 'robe-de-mariee') ? 'Robe de Mariées' : 'Accessoires';
+		$d['title_for_layout'] = $title_for_layout.' | Catalogue | '.Configure::read('site_name');
 		$this->set($d);
 	}
 
@@ -127,7 +129,7 @@ class ProductsController extends AppController{
 		$this->Product->contain(array('Term','Product_meta'));
 
 		$d['product'] = $this->Product->find('first',array(
-			'fields'=>array('Product.name','Product.slug','Product.description','Product.url','Product.price','Product.product_type'),
+			'fields'=>array('Product.name','Product.slug','Product.description','Product.url','Product.price','Product.product_type','Product.url_min'),
 			'conditions'=>array('Product.id'=>$id,'Product.product_type'=>$type_product)
 		));
 
@@ -148,7 +150,7 @@ class ProductsController extends AppController{
 					$d['product']['Meta']['attachment'][] = array(
 						'name'=>$k1,
 						'origin'=>$v1['origin'],
-						'thumb'=>$v1['min']
+						'thumb'=>$v1['thumb']
 					);
 				}
 			}
