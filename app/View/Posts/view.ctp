@@ -1,19 +1,18 @@
-<div class="hentry">
-    <h2 class="entry-title"><?php echo $post['Post']['name'];?></h2>
+<div>
     <?php if ($post['Post']['type'] == 'post'): ?>
-    	<div class="entry-meta">
+    	<div>
 			<span>Posté le </span>
-			<span class="entry-date"><?php echo $this->date->format($post['Post']['created'],'FRS') ?></span>
+			<span><?php echo $this->date->format($post['Post']['created'],'FRS') ?></span>
 			<span>par</span>
-			<span class="entry-author"><?php echo $post['User']['username'] ?></span>
+			<span><?php echo $post['User']['username'] ?></span>
 		</div>
     <?php endif ?>
-	<div class="entry-utility">
-		<span class="cat-links">
+	<div>
+		<span>
 		<?php if (!empty($post['Taxonomy']['category'])): ?>
 			<span><strong>Categories : </strong></span>
 			<?php foreach ($post['Taxonomy']['category'] as $k1 => $v1): ?>
-				<span class="entry-category">
+				<span>
 					<?php echo $this->Html->link($v1['name'],array('plugin'=>false,'controller'=>'posts','action'=>'viewterm','type'=>'category','slug'=>$v1['slug'])); ?>
 				</span>
 			<?php endforeach ?>
@@ -22,12 +21,12 @@
 			<span> | </span>
 			<span><strong>Tags : </strong></span>
 			<?php foreach ($post['Taxonomy']['tag'] as $k1 => $v1): ?>
-				<span class="entry-category"><?php echo $this->Html->link($v1['name'],array('action'=>'','controller'=>'')); ?></span>
+				<span><?php echo $this->Html->link($v1['name'],array('action'=>'','controller'=>'')); ?></span>
 			<?php endforeach ?>				
 		<?php endif; ?>	 					
 		</span>
 	</div>	
-    <div class="entry-content">
+    <div>
 		<?php echo $post['Post']['content'];?>
 	</div>
 </div>

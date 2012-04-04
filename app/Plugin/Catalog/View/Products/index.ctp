@@ -6,19 +6,21 @@
 </style>
 <h2><?php echo $type_product == 'robe-de-mariee' ? 'Robe de mariées' : 'Accessoires' ?></h2>
 <div>
-	<?php if (!empty($products)): ?>
+	<?php $class = (!empty($show_filter)) ? 'active' : '' ?>
+	<?php echo $this->Html->link("Afficher les filtres",'#',array('id'=>'show_filter','class'=>$class)); ?>
+	<div id="product_filter">
+		<span style="float: left">Filter par :</span>
+		<?php echo $this->Form->create('Product') ?>
 		<?php if ($type_product == 'robe-de-mariee'): ?>
-			<?php $class = (!empty($show_filter)) ? 'active' : '' ?>
-			<?php echo $this->Html->link("Afficher les filtres",'#',array('id'=>'show_filter','class'=>$class)); ?>
-			<div id="product_filter">
-				<span>Filter par :</span>
-				<?php echo $this->Form->create('Product') ?>
-					<?php echo $this->Form->input('Product.taille',array('label'=>false,'type'=>'select','options'=>$list_taille,'class'=>'dynamic-select','style'=>'float: left')); ?>
-					<?php echo $this->Form->input('Product.creator',array('label'=>false,'type'=>'select','options'=>$list_creator,'class'=>'dynamic-select')); ?>
-				<?php echo $this->Form->end() ?>
-			</div>
+			<?php echo $this->Form->input('Product.taille',array('label'=>false,'type'=>'select','options'=>$list_taille,'class'=>'dynamic-select','style'=>'float: left')); ?>
+			<?php echo $this->Form->input('Product.creator',array('label'=>false,'type'=>'select','options'=>$list_creator,'class'=>'dynamic-select')); ?>
+		<?php elseif($type_product == 'accessoire'): ?>
+			<?php echo $this->Form->input('Product.categorie',array('label'=>false,'type'=>'select','options'=>$list_category,'class'=>'dynamic-select','style'=>'float: left')); ?>
 		<?php endif ?>
-		<div style="clear: both"></div>
+	<?php echo $this->Form->end() ?>
+	</div>
+	<div style="clear: both"></div>
+	<?php if (!empty($products)): ?>	
 		<?php foreach ($products as $k => $v): ?>
 			<div class="product">
 				<div class="product-img">
