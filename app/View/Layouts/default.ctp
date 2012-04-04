@@ -36,7 +36,10 @@
         </nav><!-- Fin nav -->
     </header><!-- Fin header -->
     <div id="contenu"> <!-- Début contenu -->
-      <?php echo $content_for_layout ?>
+      <?php $bg = ($this->request->params['action'] == 'home') ? 'bg' : 'bgBlanc' ?>
+      <div id="<?php echo $bg ?>">
+        <?php echo $content_for_layout ?>
+      </div>
     </div> <!-- Fin contenu -->
   </div> <!-- Fin wrap -->
             
