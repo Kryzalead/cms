@@ -156,6 +156,9 @@ class ProductsController extends AppController{
 			}
 		}
 
+		$creator = current($d['product']['Taxonomy']['product_creator']);
+		$d['product']['Meta']['product_creator'] = $creator['name'];
+
 		if(!empty($d['product']['Meta']['valeur_achat'])){
 			$temp = $d['product']['Product']['price']/$d['product']['Meta']['valeur_achat'];
 			$temp2 = $temp-1;

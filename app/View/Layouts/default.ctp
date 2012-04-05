@@ -42,10 +42,10 @@
       </div>
     </div> <!-- Fin contenu -->
   </div> <!-- Fin wrap -->
-            
-</body>
-    <?php echo $this->element('sql_dump'); ?>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <?php echo $scripts_for_layout; ?>
+</body>
+    <?php echo $this->element('sql_dump'); ?>
+   
 </html>
 
