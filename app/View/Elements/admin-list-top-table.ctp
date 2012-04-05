@@ -8,6 +8,8 @@
 	<?php foreach ($options['list'] as $k => $v): ?>
 		<?php if ($model == 'post'): ?>
 			<?php $request = array('type'=>$options['params']['type'],'status'=>$k) ?>
+		<?php elseif($model == 'product'): ?>
+			<?php $request = array('type'=>$options['params']['type'],'status'=>$k) ?>
 		<?php elseif($model == 'media'): ?>
 			<?php $request = array('type_mime'=>$k) ?>
 		<?php elseif($model == 'user'): ?>
