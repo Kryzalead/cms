@@ -422,4 +422,89 @@ class ProductsController extends AppController{
 		}
 		$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 	}
+
+	function admin_edit(){
+
+		$type = (!empty($this->request->query['type'])) ? $this->request->query['type'] : 'robe-de-mariee';
+		
+		if(!in_array($type, $this->allow_product)){
+			$this->error("Type de produits invalide");
+			return;
+		}
+
+		$id = !empty($this->request->query['id']) ? $this->request->query['id'] : 0;
+		if(!is_numeric($id))
+			$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
+
+		if(!empty($id)){
+			$this->Product->id = $id;
+			$product_type = $this->Product->field('product_type');
+			if(!empty($product_type)){
+				if($type != $product_type)
+					$this->redirect(array('action'=>'edit','?'=>array('type'=>$product_type,'id'=>$id)));
+			}
+			else{
+				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
+				return;
+			}
+		}
+
+		$d['type'] = $type;
+		$d['title_for_layout'] = $type == 'robe-de-mariee' ? 'Ajouter une nouvelle robe' : 'Ajouter un nouvel accessoire';
+		$d['icon_for_layout'] = $type == 'post' ? 'icone-posts-add.png' : 'icone-pages-add.png';
+		$d['texte_submit'] = 'Publier';
+		
+		$this->Product->contain(array('Product_meta','Term'));
+
+		if($this->request->is('post') || $this->request->is('put')){
+			if($this->Product->save($this->request->data)){
+				$product_id = $this->Product->id;
+				foreach ($this->request->data['Product'] as $k => $v) {
+					if($k == 'product_buy_price'){
+						$product_meta_id = $this->Product->Product_meta->field('id',array('product_id'=>$product_id));
+						$this->Product->Product_meta->id = $product_meta_id ;
+						$this->Product->Product_meta->saveField('meta_value',$v);
+
+					}
+				}
+				$this->Session->setFlash("ok","notif");
+				$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
+			}
+			else{
+				$this->Session->setFlash('Merci de corriger vos erreurs','notif',array('typeMessage'=>'error'));	
+			}
+		}
+		elseif($id){
+			$d['title_for_layout'] = $type == 'robe-de-mariee' ? "Modifier la robe" : "Modifier l'accessoire";
+			$d['texte_submit'] = 'Mettre à jour';
+			$d['action'] = 'upd';
+
+			$this->Product->id = $id;
+			$product = $this->Product->read(array('Product.id','Product.name','Product.slug','Product.description','Product.product_type','Product.price'));
+			if(empty($product)){
+				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
+				return;
+			}
+			foreach ($product['Product_meta'] as $k => $v) {
+				$product['Product'][$v['meta_key']] = $v['meta_value'];
+			}
+			$this->request->data = $product;
+		}
+		else{
+			$last_id = current($this->Product->find('first',array(
+				'fields'=>'MAX(id) AS maxid',
+			)));
+			
+			$this->request->data['Product']['id'] = $last_id['maxid'] + 1;
+		}
+		$d['action'] = 'add';
+		
+		$d['list_status'] = array(
+			'publish'=>'Publié',
+			'draft'=>'Brouillon'
+		);
+
+		$d['status_selected'] = 'publish';
+		$this->set($d);
+	}
 }
