@@ -14,10 +14,53 @@
 							<?php endforeach ?>
 						</ul>
 					<?php endif ?>
+					<div class="cb"></div>
+					<div class="produit-partage"> <!-- Début Produit-partage -->
+						<h4>Partager</h4>
+							<a href="#" title="Partager sur Facebook" target="_tab">
+								<?php echo $this->Html->image('reseaux_sociaux/facebook-icone.png') ?>
+							</a>
+
+							<a href="#" title="Partager sur Twitter" target="_tab">
+								<?php echo $this->Html->image('reseaux_sociaux/twitter-icone.png') ?>
+							</a>
+							<g:plusone size="standard" href="<?php echo $this->Html->url('/') ?>"></g:plusone><!-- bouton google +1 -->
+					</div> <!-- Fin Produit-partage -->
 				</div>
-				<div class="produit-droit">
-					
-				</div>
+				<div class="produit-droit"><!-- Début produit-droit -->
+					<p class="prix"><?php echo $product['Product']['price'] ?> €</p>
+					<?php if (!empty($product['Meta']['valeur_achat'])): ?>
+						<p class="ancien-prix"><?php echo $product['Meta']['valeur_achat'] ?> €</p>
+						<span class="currency" style="display:none;">EUR</span>
+						<div class="promo"> <!-- Début promo -->
+							<p class="pourcentage-reduction"><?php echo $product['Meta']['reduction'] ?> % de réduction</p>
+						</div> <!-- Fin promo -->
+					<?php endif ?>
+					<div class="description"> <!-- Début description -->
+						<ul>
+							<li class="titre">Modèle</li>
+							<li>Créateur : 
+								<?php if (!empty($product['Meta']['product_creator_site'])): ?>
+									<?php echo $this->Html->link($product['Meta']['product_creator'],$product['Meta']['product_creator_site'],array('title'=>"Voir le site de ".$product['Meta']['product_creator'])); ?>
+								<?php else: ?>
+									<?php echo $product['Meta']['product_creator'] ?>
+								<?php endif ?>
+							</li>
+							<li>Nom de la robe : <?php echo $product['Product']['name'] ?></li>
+						</ul>
+						<ul>
+							<li class="titre">Description</li>
+							<li><?php echo $product['Product']['description'] ?></li>
+							<?php if (!empty($product['Taxonomy']['product_taille'])): ?>
+								<li><span class="gras">Taille :</span> 
+									<?php foreach ($product['Taxonomy']['product_taille'] as $k => $v): ?>
+										<?php echo $v['name'].' '; ?>
+									<?php endforeach ?>
+								</li>
+							<?php endif ?>
+						</ul>
+					</div>
+				</div><!-- Fin produit-droit -->
 			</div>
 		</div><!-- Fin gallerie -->
 	</section>

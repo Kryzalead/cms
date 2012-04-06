@@ -9,10 +9,10 @@
 	<?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
 </h1>
-	<?php echo $this->Html->link($text_for_add_post,array('action'=>'edit','?'=>array('type'=>$type)),array('class'=>'button button-add')) ?>
-	<?php if (!empty($search)): ?>
-		<span>Résultats de recherche pour "<?php echo $search ?>"
-	<?php endif ?>
+<?php echo $this->Html->link($text_for_add_post,array('action'=>'edit','?'=>array('type'=>$type)),array('class'=>'button button-add')) ?>
+<?php if (!empty($search)): ?>
+	<span>Résultats de recherche pour "<?php echo $search ?>"
+<?php endif ?>
 <?php echo $this->element('admin-search',array('model'=>'post','options'=>array('type'=>$type,'status'=>$status),'text_for_submit_search'=>$text_for_submit_search)) ?>
 <div>
 	<?php echo $this->element('admin-list-top-table',array('model'=>'post','options'=>$data_for_top_table)) ?>

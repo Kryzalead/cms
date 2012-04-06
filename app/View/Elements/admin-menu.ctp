@@ -3,14 +3,25 @@
         <li class="nosubmenu <?php echo ($currentController == 'dashboard')  ? 'current' : '' ?>">
             <?php echo $this->Html->link($this->Html->image('icone-home.png',array('height'=>25,'width'=>25)) . 'Tableau de bord',array('plugin'=>null,'action'=>'index','controller'=>'dashboard','admin'=>true),array('escape'=>false)); ?>
         </li>
-        <li <?php echo ($currentController == 'pages')  ? 'class="current"' : '' ?>>
+        <li <?php echo ($currentController == 'products') ? 'class="current"' : ''?>>
+            <?php echo $this->Html->link($this->Html->image('icone-home.png',array('height'=>25,'width'=>25)).' Catalogue',array('plugin'=>'catalog','action'=>'index','controller'=>'products','admin'=>true),array('escape'=>false)); ?>
+            <ul>
+                <li>
+                    <?php echo $this->Html->link("Robe de Mariées",array('plugin'=>'catalog','action'=>'index','controller'=>'products','?'=>array('type'=>'robe-de-mariee'),'admin'=>true)); ?>
+                </li>
+                <li>
+                    <?php echo $this->Html->link("Accessoires",array('plugin'=>'catalog','action'=>'index','controller'=>'products','?'=>array('type'=>'accessoire'),'admin'=>true)); ?>
+                </li>
+            </ul>
+        </li>
+        <li <?php echo (!empty($this->request->query['type']) &&  $this->request->query['type'] == 'page')  ? 'class="current"' : '' ?>>
             <?php echo $this->Html->link($this->Html->image('icone-pages.png',array('height'=>25,'width'=>25)) . 'Pages',array('plugin'=>null,'action'=>'index','controller'=>'pages','admin'=>true),array('escape'=>false)); ?>
             <ul>
                 <li><?php echo $this->Html->link("Toutes les pages",array('plugin'=>null,'action'=>'index','controller'=>'posts','?'=>array('type'=>'page'),'admin'=>true)); ?></li>
                 <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'edit','controller'=>'posts','?'=>array('type'=>'page'),'admin'=>true)); ?></li>
             </ul>
         </li>
-        <li <?php echo ($currentController == 'posts')  ? 'class="current"' : '' ?>>
+        <li <?php echo ($currentController == "posts" && (empty($this->request->query['type']) || $this->request->query['type'] == "category"))  ? 'class="current"' : '' ?>>
             <?php echo $this->Html->link($this->Html->image('icone-posts.png',array('height'=>25,'width'=>25)) . 'Articles',array('plugin'=>null,'action'=>'index','controller'=>'posts','admin'=>true),array('escape'=>false)); ?>
             <ul>
                 <li><?php echo $this->Html->link("Tous les articles",array('plugin'=>null,'action'=>'index','controller'=>'posts','admin'=>true)); ?></li>
