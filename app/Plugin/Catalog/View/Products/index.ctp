@@ -14,7 +14,7 @@
 			<?php endif ?>
 		<?php echo $this->Form->end() ?>
 		</div>
-		<div style="clear: both"></div>
+		<div class="cb"></div>
 		<?php if (!empty($products)): ?>	
 			<?php foreach ($products as $k => $v): ?>
 				<div class="product">

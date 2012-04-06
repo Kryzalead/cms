@@ -122,7 +122,7 @@ p {margin-bottom: 7px;}
 .vert {color: #9CA436;}
 .rose {color: #AA4673;}
 .gras {font-weight:bold;}
-.aux_mariees_de_christele {font:bold 1.8em 'jenna'; color:#AA4673;}
+.aux_mariees_de_christele {font:bold 1.2em 'sans-serif'; color:#AA4673;}
 
 
 /* ---------------------------------------
@@ -185,9 +185,9 @@ $experimental-support-for-svg: true;
 /* ---------------------------------------
 				Container
 ------------------------------------------ */
-#wrap {
+.wrap {
 	width:990px;
-	margin:15px auto 0;}
+	margin:0 auto 20px;}
 
 
 /* ---------------------------------------
@@ -197,6 +197,7 @@ header h1 {
 	position: relative;
 	display: inline-block;
 	vertical-align:top;
+	margin-top:20px;
 	height:96px;
 	width:420px;}
 
@@ -250,8 +251,37 @@ nav.menu ul li a:hover {
 	font-size:0.8em;
 	padding:10px;}
 
+#contenu #bgBlanc p{color: #000}
 
-/* --  Bloc fiche-- */
+
+/* --	Bandeau contenu -- */
+#bandeau {
+	border-top: 1px dashed #999;
+	width: 990px;
+	height: 115px;
+	background: transparent url(images/bandeau.png) 0 0 no-repeat;
+	@include radiusBas;}
+
+#bandeau ul {
+	display: inline-block;
+	vertical-align: top;
+	color: white;
+	font: normal 1.8em "jenna";
+	padding-left: 10px;}
+
+#bandeau ul.horaires {text-align: right;}
+
+#bandeau li.titre {
+	font-weight: bold;
+	font-size: 1.4em;}
+
+#bandeau img {
+	display: inline-block;
+	vertical-align: top;
+	margin: 12px 140px 0;}
+
+
+/* --  Bloc -- */
 section.bloc {
 	width:600px;
 	display: inline-block;
@@ -265,7 +295,7 @@ section.bloc h1, section.bloc p {
 section.bloc p{width:500px;}
 
 
- /* -- image accessoires -- */
+/* -- Image accessoires -- */
 aside#image-accessoires {
 	display: inline-block;
 	vertical-align:top;
@@ -364,7 +394,23 @@ section.catalogue img {
 .gallerie .blanc h4{ font:bold 2.1em 'riesling'; }
 
 
-/* -- fomulaire de contact --*/
+/* ---------------------------------------
+				Partenariats
+------------------------------------------ */
+section#partenaires {color:#0F0F0F;margin:0 auto;width:970px;}
+ul.ligne1, ul.ligne2 {margin:20px 0; display: inline-block;}
+ul.ligne1 li, ul.ligne2 li{display: inline-block;vertical-align:top;width:310px;border-left:1px solid #E3E3E3;padding: 0 3px;text-align:center;}
+ul.ligne1 li:first-child, ul.ligne2 li:first-child{border:0}
+ul.ligne1 li ul li, ul.ligne2 li ul li{padding:0;margin:3px 0;border:none;}
+ul.ligne1 li h3, ul.ligne2 li h3{margin-bottom:15px;font:bold 2.2em 'riesling'}
+ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {padding-top:15px;}
+ul.ligne2 li#dernier{border-right:1px solid #E3E3E3;}
+ul.ligne2 li#avant_dernier{border:none;}
+
+
+/* ---------------------------------------
+				Contact
+------------------------------------------ */
 #formContact {
 	position:relative;
 	display: inline-block;
@@ -372,12 +418,16 @@ section.catalogue img {
 	margin-left:30px ;
 	padding:0;}
 
-#formContact h1 {
-	font:normal 4.5em 'riesling';
+#formContact legend {
+	font:normal 4em 'riesling';
 	text-align:left;
 	text-decoration:none;
-	padding:22px 0 20px 80px;
+	padding:40px 0 40px 30px;
 	color:#AA4673;}
+
+#formContact .mariee{
+	visibility: hidden;
+	position: absolute;}
 
 form.formulaire {
 	width:360px;
@@ -389,37 +439,42 @@ input[type=text], textarea {
 	background: #fff;
 	width:340px;
 	height:42px;
-	padding:0px 5px;
+	padding:0px 10px;
 	margin:5px 0 15px 0;
 	color:#686464;
 	font-size:1em;
-	border:solid 1px #d0c9c9;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	-moz-box-shadow: 1px 1px 13px #333;
-	-webkit-box-shadow: 1px 1px 13px #333; 
-	box-shadow: 1px 1px 13px #333;}
+	-webkit-box-shadow: inset 0px 0px 10px 0px #222;
+	-moz-box-shadow: inset 0px 0px 10px 0px #222;
+	box-shadow: inset 0px 0px 10px 0px #222;}
 
 textarea {
 	font-size:1.3em;
-	max-width:390px;
-	max-height:275px;
-	height: 170px;
-	margin:25px 0 20px 0;}
+	max-width:380px;
+	max-height:260px;
+	height: 150px;
+	margin:0;
+	padding-top:10px;}
 
 fieldset {border:0 none;}
-legend {display:none;}
 
-.envoyer {
-	margin:10px 0 0 212px;
-	padding:0;}
+legend {display:hidden;}
+
+.envoyer input {
+	margin: 10px 0 0 230px;
+	width: 120px;
+	height: 35px;
+	border:none;
+	padding: 0;
+	cursor: pointer;
+	background: url('images/bouton_submit.png') top left no-repeat;}
 
 .envoyer:hover{
 	opacity: 0.8;
 	-moz-opacity: 0.8;
 	filter:alpha(opacity=8);}
-
 
 /*adresse-sociaux*/
 #reseauxSociaux {
@@ -435,14 +490,14 @@ legend {display:none;}
 #reseauxSociaux a img{width:150px;}
 
 #reseauxSociaux a:hover img{
-	opacity: 0.6;
-	-moz-opacity: 0.6;
-	filter:alpha(opacity=6);}
+	opacity: 0.8;
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=8);}
 
 
 /* -- planGoogle -- */
 
-#planGoogle {
+#plan_google {
 	display: inline-block;
 	vertical-align:top;
 	width:500px;
@@ -450,49 +505,3 @@ legend {display:none;}
 	margin:100px 0 0 40px;
 	border:6px solid white;
 	@include contenu;}
-
-
-
-
-/* ---------------------------------------
-				partenariats
------------------------------------------- */
-section#partenaires {color:#0F0F0F;margin:0 auto;width:970px;}
-ul.ligne1, ul.ligne2 {margin:20px 0; display: inline-block;}
-ul.ligne1 li, ul.ligne2 li{display: inline-block;vertical-align:top;width:310px;border-left:1px solid #E3E3E3;padding: 0 3px;text-align:center;}
-ul.ligne1 li:first-child, ul.ligne2 li:first-child{border:0}
-ul.ligne1 li ul li, ul.ligne2 li ul li{padding:0;margin:3px 0;border:none;}
-ul.ligne1 li h3, ul.ligne2 li h3{margin-bottom:15px;font:bold 2.4em 'riesling'}
-ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {padding-top:15px;}
-ul.ligne2 li#dernier{border-right:1px solid #E3E3E3;}
-ul.ligne2 li#avant_dernier{border:none;}
-
-
-/* ---------------------------------------
-				Footer
------------------------------------------- */
-/* --  bandeau -- */
-#bandeau {
-	border-top: 1px solid #F0F0F0;
-	width: 990px;
-	height: 115px;
-	background: transparent url(images/bandeau.png) 0 0 no-repeat;
-	@include radiusBas;}
-
-#bandeau ul {
-	display: inline-block;
-	vertical-align: top;
-	color: white;
-	font: normal 1.8em "jenna";
-	padding-left: 10px;}
-
-#bandeau ul.horaires {text-align: right;}
-
-#bandeau li.titre {
-	font-weight: bold;
-	font-size: 1.4em;}
-
-#bandeau img {
-	display: inline-block;
-	vertical-align: top;
-	margin: 12px 140px 0;}

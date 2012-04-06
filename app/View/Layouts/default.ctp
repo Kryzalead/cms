@@ -20,7 +20,7 @@
 
 <!-- mettre alert IE -->
 
-  <div id="wrap"><!-- Début wrap -->
+  <div class="wrap"><!-- Début wrap -->
     <header role="banner"><!--Début header-->
       <h1><?php echo $this->Html->link($this->Html->image('logo-aux-mariees-de-christele.png',array('width'=>412,'height'=>107,'alt'=>'logo Aux Mariées de Christèle')),'/',array('escape'=>false)); ?></h1>
         <nav class="menu" role="navigation"><!-- Début nav -->
