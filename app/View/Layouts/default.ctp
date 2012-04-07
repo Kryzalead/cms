@@ -46,6 +46,4 @@
     <?php echo $scripts_for_layout; ?>
 </body>
     <?php echo $this->element('sql_dump'); ?>
-   
 </html>
-
