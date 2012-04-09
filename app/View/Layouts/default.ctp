@@ -37,15 +37,12 @@
         </nav><!-- Fin nav -->
     </header><!-- Fin header -->
     <div id="contenu"> <!-- Début contenu -->
-      <?php $bg = (empty($this->request->params['plugin']) && $this->request->params['action'] == 'home') ? 'bg' : 'bgBlanc' ?>
-      <div id="<?php echo $bg ?>">
-        <?php if (empty($this->request->params['plugin']) && $this->request->params['controller'] == 'posts'): ?>
-          <section class="bloc">
-            <?php echo $content_for_layout ?>
-          </section>
-        <?php else: ?>
+      <?php $bg = (empty($this->request->params['plugin']) && $this->request->params['action'] == 'home') ? 'class="bg bloc"' : 'class="blocs"' ?>
+        <section <?php echo $bg ?>>
+       
           <?php echo $content_for_layout ?>  
-        <?php endif ?>
+
+        </section>
           <div class="cb"></div>
           <section id="bandeau"> <!-- Début bandeau -->
             <ul>
@@ -62,7 +59,7 @@
               <li>Dimanche fermé</li>
             </ul>
           </section>
-      </div>
+
 
     </div> <!-- Fin contenu -->
   </div> <!-- Fin wrap -->

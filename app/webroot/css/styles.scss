@@ -87,9 +87,9 @@ a img 				{border: none}
 /* ---------------------------------------
 				Form
 ------------------------------------------ */
-textarea {overflow: auto;}
-input {cursor: auto;}
-label {cursor:text;}
+textarea{overflow: auto;}
+input	{cursor: auto;}
+label 	{cursor:text;}
 
 
 /* ---------------------------------------
@@ -101,9 +101,8 @@ h1, h2 {
 	position:relative;}
 	
 h1 {
-	line-height:0;
-	color:#fff;
-	padding:0;
+	font:normal 3.5em'riesling';
+	color:#000;
 	/*+text-shadow:1px 1px 2px #999;*/
 	-moz-text-shadow:1px 1px 2px #999;
 	-webkit-text-shadow:1px 1px 2px #999;
@@ -111,7 +110,6 @@ h1 {
 	text-shadow:1px 1px 2px #999;}
 
 h2 {
-	display: block;
 	font: normal 1.3em sans-serif;
 	padding: 30px 0 20px 30px;
 	/*+text-shadow:1px 1px 2px #999;*/
@@ -120,7 +118,7 @@ h2 {
 	-o-text-shadow:1px 1px 2px #999;
 	text-shadow:1px 1px 2px #999;}
 
-h1 a, h1 a:visited, h2 a, h2 a:visited				{text-decoration: none; color: #999;}
+h1 a, h1 a:visited, h2 a, h2 a:visited			{text-decoration: none; color: #999;}
 h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus	{text-decoration: none;}
 
 
@@ -150,7 +148,7 @@ $default-box-shadow-h-offset:2px;
 $default-box-shadow-v-offset:4px;
 $default-box-shadow-blur:15px;
 
-$default-border-radius:14px;
+$default-border-radius:15px;
 
 $default-text-shadow-h-offset:0px;
 $default-text-shadow-v-offset:1px;
@@ -158,6 +156,8 @@ $default-text-shadow-blur:5px;
 
 /* -- $ Var -- */
 $ombre:#222;
+$experimental-support-for-svg: true;
+
 
 /* --  Mixin -- */
 @mixin contenu($ombre){
@@ -169,8 +169,8 @@ $ombre:#222;
 	@include border-radius(0px);
 	@include box-shadow(1px 1px 14px #555);}	
 
-@mixin radiusBas {
-	@include border-radius(0px 0px 15px 15px, 0px 0px 15px 15px);}
+@mixin radiusHaut {
+	@include border-radius(15px 15px 0px 0px, 15px 15px 0px 0px);}
 
 
 /* ---------------------------------------
@@ -208,7 +208,8 @@ $ombre:#222;
 				Container
 ------------------------------------------ */
 .wrap {
-	width:990px;
+	display: block;
+	width:995px;
 	margin:0 auto 20px;}
 
 
@@ -219,7 +220,6 @@ header h1 {
 	position: relative;
 	display: inline-block;
 	vertical-align:top;
-	padding:0;
 	margin-top:20px;
 	height:96px;
 	width:410px;}
@@ -230,15 +230,15 @@ header h1 {
 ------------------------------------------ */
 nav#menu {
 	display: inline-block;
-	vertical-align:bottom;}	
+	vertical-align:top;
+	margin:70px 0 0 5px;}
 
 nav#menu ul#nav_menu {
 	position: absolute;
 	text-align: left;
 	padding: 0;
-	margin:-50px 0 0 5px;
 	height: 50px;
-	width: 650px;}
+	width: 710px;}
 
 nav#menu ul#nav_menu li {
 	padding: 0;
@@ -247,9 +247,9 @@ nav#menu ul#nav_menu li {
 
 nav#menu ul#nav_menu li a{
 	text-shadow: 2px 2px 3px #333;
-	-moz-transition: color  0.25s;
+	-moz-transition: color 0.25s;
 	-webkit-transition: color 0.25s;
-	-o-transition: color  0.25s;
+	-o-transition: color 0.25s;
 	-ms-transition: color 0.25s;
 	transition: color 0.25s;
 	-moz-transition: font-size 0.25s;
@@ -257,56 +257,51 @@ nav#menu ul#nav_menu li a{
 	-o-transition: font-size 0.25s;
 	-ms-transition: font-size 0.25s;
 	transition: font-size 0.25s;
-	-webkit-transition:  0.25s  ease-out;
-	-moz-transition:  0.25s  ease-out;
-	-o-transition: 0.25s  ease-out;
-	-ms-transition:  0.25s  ease-out;
+	-webkit-transition: 0.25s ease-out;
+	-moz-transition: 0.25s ease-out;
+	-o-transition: 0.25s ease-out;
+	-ms-transition: 0.25s ease-out;
 	font-weight:normal;
-	vertical-align:top;
-	margin-right:5px;
-	line-height: 70px;
+	margin-right:7px;
+	line-height: 0px;
 	font-size:18px;
 	font-family:'leckerli';}
 
 nav#menu ul#nav_menu li a:hover {
-	text-shadow: 4px 8px 5px #888;
+	text-shadow: 3px 6px 4px #777;
 	color: #842490;
 	font-weight:normal;
 	margin-right:2px;
-	line-height: 65px;
-	font-size:18px;}
+	line-height: 0px;
+	font-size:26px;}
 
 
 /* ---------------------------------------
 				Contenu
 ------------------------------------------ */
-#contenu, #bgBlanc {
+#contenu {
 	width:990px;
-	background: rgb(238,238,238);
-	background-color: rgb(238,238,238);
-	@include filter-gradient(#cccccc, #eeeeee, horizontal);
-	@include background-image(linear-gradient(right, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%));
+	background-color:#eee;
 	@include contenu;}
 
-#bg{background:#555 url(images/bg-contenu.jpg) 270px 0 no-repeat;}
+.bg{
+	background:#555 url(images/bg-contenu.jpg) 270px 0 no-repeat;
+	width:990px;
+	@include radiusHaut;}
 
-#bgBlanc {background-color:white;}
-
-#contenu p {
+.bg p{
 	color:white;
-	font-size:0.8em;
-	padding:10px;}
-
-#contenu #bgBlanc p{color:black}
+	line-height:18px;
+	margin:10px 0;}
 
 
 /* --	Bandeau contenu -- */
 #bandeau {
 	border-top: 1px dashed #999;
 	width: 990px;
-	height: 115px;
+	/*height: 115px;*/
 	background: transparent url(images/bandeau.png) 0 0 no-repeat;
-	@include radiusBas;}
+	display: block;}
 
 #bandeau ul {
 	display: inline-block;
@@ -316,7 +311,6 @@ nav#menu ul#nav_menu li a:hover {
 	padding-left: 10px;}
 
 #bandeau ul.horaires {text-align: right;}
-
 #bandeau li.titre {
 	font-weight: bold;
 	font-size: 1.4em;}
@@ -327,18 +321,19 @@ nav#menu ul#nav_menu li a:hover {
 	margin: 12px 140px 0;}
 
 
-/* --  Bloc -- */
-section.bloc {
-	width:600px;
+/* --  Bloc et blocs -- */
+.bloc {
 	display: inline-block;
-	margin:0 10px;
 	padding:30px 0;}
 
-section.bloc h1, section.bloc p {
+.bloc p {
+	width:500px;
+	text-align:justify;
+	padding:10px;
 	display: inline-block;
 	vertical-align:top;}
 
-section.bloc p{width:500px;}
+.blocs {padding:20px;}
 
 
 /* -- Image accessoires -- */
@@ -357,37 +352,39 @@ aside#image-accessoires img{
 /* ---------------------------------------
 				catalogue
 ------------------------------------------ */
-section.catalogue{
+.produit {display: inline-block;vertical-align:top;}
+
+.catalogue{
 	position: relative;
 	display: inline-block;
 	width: 970px;
 	margin: 0 auto;}
 
-section.catalogue h1, #bgBlanc h1 {
+.catalogue h1.titre_produit {
 	display: block;
 	vertical-align: top;
 	color:#000;
 	font: normal 3.5em 'riesling';
-	padding: 30px 0 20px 30px;}
+	padding: 10px 0 20px 30px;}
 
-section.catalogue figure {
+.catalogue figure {
 	position: relative;
 	display: inline-block;
 	vertical-align: top;
 	margin:0;}
 
-section.catalogue figure img {
+.catalogue figure img {
 	border:1px solid white;
 	padding:3px;
 	margin: 10px;}
 
-section.catalogue nav {margin-left:15px;}
+.catalogue nav {margin-left:15px;}
 
-section.catalogue nav a:hover figcaption {
+.catalogue nav figure:hover figcaption{
 	color:#AA4673;
 	text-decoration:underline;}
 
-section.catalogue figcaption {
+.catalogue figcaption {
 	background-color:#fff;
 	color:black;
 	position: absolute;
@@ -395,12 +392,38 @@ section.catalogue figcaption {
 	left: 14px;
 	bottom: 14px;}
 
-section.catalogue img {
+.catalogue img {
 	display: block;
 	margin:10px 0;
 	border:5px solid white;
 	@include images;}
 
+.catalogue img:hover{
+	opacity: 0.8;
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=8);}
+
+.produit_metas {margin-left:10px;}
+.produit_metas span.prix {font-size:1.2em; font-weight:bold;color:#AA4673;margin:10px 0 20px;display: inline-block;}
+.produit_metas p{line-height:12px;text-align:center;}
+
+#catalogue_accessoire {width:950px;margin-top:30px;border-top:1px dotted #c1c1c1;}
+
+/* -- blocs catalogue -- */
+.blocs h1 a{color:#000;}
+
+
+/* -- Recapitulatif produits -- */
+#filtre_produit {margin:20px 10px;}
+#filtre_produit .input select{float:left;}
+
+.toggle {
+	display: inline-block;
+	background:url('images/white-arrow.png') 1px -63px no-repeat;
+	width:18px;
+	height:18px;}
+
+#show_filter .active_arrow {background-position:0 -15px;}
 
 /* ---------------------------------------
 				Fiche produits
