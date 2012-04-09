@@ -3,7 +3,7 @@
     <?php echo $title_for_layout ?>
 </h1>
 
-<?php echo $this->Form->create('Product',array('action'=>'edit')) ?>
+<?php echo $this->Form->create('Product',array('action'=>'edit','type'=>'file')) ?>
 <div class="blocsCentral">
 	<?php echo $this->Form->input('Product.name',array('label'=>'Modèle : ','style'=>'width:100%')) ?>
 	<br />
@@ -23,17 +23,17 @@
         <h3>Publier</h3>
             <div>
                 <p>
-                	<?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
+                	<?php echo $this->Form->input('Product.status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
                 <p>
             </div>
     </div>
 
     <div class="bloc_publier_image" id="bloc_img_une"><!-- image à la une -->
-        <h3>Image à la une</h3>
-            <div>
-                <p><?php echo $this->Html->link("Ajouter une image à la une",array('controller'=>'medias','action'=>'tinymce'),array('id'=>'add-post-thumbnail')); ?></p>
-            </div>
+        <?php echo $this->Form->input('Product.url',array('label'=>"Image à la une",'type'=>'file')); ?>
     </div>        
+</div>
+<div>
+    <h3>Autre image du produit</h3>
 </div>
 <div id="overlayer" style="display:none"></div>
 <?php echo $this->Form->end($texte_submit) ?>

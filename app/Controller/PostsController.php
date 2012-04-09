@@ -26,7 +26,7 @@ class PostsController extends AppController{
 			if(empty($post))
 				throw new NotFoundException('Erreur 404');
 			else{
-				Cache::write('Page.slug_'.$slug,$post);
+				//Cache::write('Page.slug_'.$slug,$post);
 			}
 		}
 

@@ -79,7 +79,7 @@
 					<td>
 						<div style="float: left;width: 70px;">
 							<?php $alt = !empty($v['Media']['alt']) ? $v['Media']['alt'] : ''; ?>
-							<?php echo $this->Html->image($v['Media']['thumbnail'],array('title'=>$v['Media']['name'],'alt'=>$alt,'width'=>60,'height'=>60)) ?>
+							<?php echo $this->Html->image($v['Media']['guid'],array('title'=>$v['Media']['name'],'alt'=>$alt,'width'=>60,'height'=>60)) ?>
 						</div>
 						<div>
 							<?php echo $this->Html->link($v['Media']['name'],array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id']))); ?>
@@ -124,7 +124,7 @@
 					<?php $alt  = (!empty($v['Media']['alt'])) ? $v['Media']['alt'] : ''?>
 					<div class="toggle_media">
 						<div class="toggle_thumbnail">
-							<?php echo $this->Html->image($v['Media']['thumbnail'],array('width'=>60,'height'=>60,'title'=>$v['Media']['name'])) ?>
+							<?php echo $this->Html->image($v['Media']['guid'],array('width'=>60,'height'=>60,'title'=>$v['Media']['name'])) ?>
 						</div>
 						<div class="toggle_name">
 							<?php echo $v['Media']['name']; ?>
@@ -137,7 +137,7 @@
 					</div>	
 					<div class="media_form">
 						<div style="float:left;margin-right: 20px">
-							<?php echo $this->Html->image($v['Media']['thumbnail'],array('width'=>128,'height'=>128,'alt'=>$alt,'title'=>$v['Media']['name'])); ?>
+							<?php echo $this->Html->image($v['Media']['guid'],array('width'=>128,'height'=>128,'alt'=>$alt,'title'=>$v['Media']['name'])); ?>
 						</div>
 						<div style="float: left">
 							<p><span style="color: #000">Nom du fichier :</span><?php echo $v['Media']['name']; ?></p>

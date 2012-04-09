@@ -112,12 +112,15 @@ class MediasController extends AppController{
 						$dir = IMAGES.date('Y'). DS.date('m');
 						
 						move_uploaded_file($file['tmp_name'], $dir.DS.$file_slug.'.'.$file_extension);
-						$format = array('thumbnail','medium','large'); 
-						foreach ($format as $v) {
-							$height = Configure::read($v.'_size_h');
-							$width = Configure::read($v.'_size_w');
-							$this->Img->crop($dir.DS.$file_slug.'.'.$file_extension,$dir.DS.$file_slug.'_'.substr($v, 0,1).'.'.$file_extension,$width,$height);
+						if($file_extension != 'png' && $file_extension =! 'PNG'){
+							$format = array('thumbnail','medium','large'); 
+							foreach ($format as $v) {
+								$height = Configure::read($v.'_size_h');
+								$width = Configure::read($v.'_size_w');
+								$this->Img->crop($dir.DS.$file_slug.'.'.$file_extension,$dir.DS.$file_slug.'_'.substr($v, 0,1).'.'.$file_extension,$width,$height);
+							}
 						}
+						
 						$this->Session->setFlash("Votre média a bien été ajouté","notif");
 						if($this->request->action == 'admin_tinymce')
 							$this->redirect(array('action'=>'tinymce','library'));
@@ -301,6 +304,7 @@ class MediasController extends AppController{
 		}
 		elseif($tabs == 'library'){
 			$d['taille'] = array(
+				'origin'		=> 	'Originale',
 				'thumbnail'		=>	'Petite',
 				'medium'		=>	'Moyenne',
 				'large'			=>	'Grande'

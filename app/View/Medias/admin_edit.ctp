@@ -58,7 +58,7 @@
 <?php elseif($action == 'upd'): ?>
 	<div>
 		<div style="float:left;margin-right: 20px">
-			<?php echo $this->Html->image($media['Media']['thumbnail'],array('width'=>128,'height'=>128,'alt'=>$media['Media']['alt'],'title'=>$media['Media']['name'])); ?>
+			<?php echo $this->Html->image($media['Media']['guid'],array('width'=>128,'height'=>128,'alt'=>$media['Media']['alt'],'title'=>$media['Media']['name'])); ?>
 		</div>
 		<div style="float: left">
 			<p><span style="color: #000">Nom du fichier :</span><?php echo $media['Media']['name']; ?></p>

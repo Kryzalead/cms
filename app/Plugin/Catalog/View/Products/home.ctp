@@ -1,4 +1,4 @@
-<div id="bgBlanc">
+
 	<h2><?php echo $this->Html->link("Robe de mariées",array('action'=>'index','controller'=>'products','type'=>'robe-de-mariee')); ?></h2>
 	<div class="random">
 		<?php foreach ($robes as $k => $v): ?>
@@ -32,4 +32,4 @@
 			</div>
 		<?php endforeach ?>
 	</div>
-</div>
+

@@ -1,4 +1,4 @@
-<div id="bgBlanc">
+
 	<section class="bloc">
 		<h1>Modèle <?php echo $product['Product']['name'] ?></h1>
 		<div class="gallerie"> <!-- Début gallerie -->
@@ -67,5 +67,5 @@
 	<aside id="image-accessoires">
 		<?php echo $this->Html->link($this->Html->image('accessoires.png'),array('action'=>'index','controller'=>'products','type'=>'accessoire'),array('escape'=>false)); ?>
 	</aside>
-</div>
+
 

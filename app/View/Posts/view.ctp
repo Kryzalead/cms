@@ -5,7 +5,7 @@
 		<span>par</span>
 		<span><?php echo $post['User']['username'] ?></span>
 	</div>
-<?php endif ?>
+
 <div>
 	<span>
 	<?php if (!empty($post['Taxonomy']['category'])): ?>
@@ -25,6 +25,7 @@
 	<?php endif; ?>	 					
 	</span>
 </div>	
+<?php endif ?>
 <div>
 	<?php echo $post['Post']['content'];?>
 </div>
@@ -76,18 +77,4 @@
 		</div>
 	<?php endif ?>
 <?php endif ?>
-<section id="bandeau"> <!-- Début bandeau -->
-	<ul>
-		<li class="titre">Aux Mariées de Christèle</li>
-		<li>15a, rte de Faillant</li>
-		<li>17380 Les Nouillers</li>
-		<li>Tél. 06 20 98 53 87</li>
-	</ul>
-	<?php echo $this->Html->image('etiquette.png',array('width'=>197,'height'=>86,'alt'=>"Étiquette fabrication 100% française")) ?>
-	<ul class="horaires">
-		<li class="titre">Horaires</li>
-		<li>Mardi au vendredi: 14h à19h</li>
-		<li>Samedi et lundi: sur rendez-vous</li>
-		<li>Dimanche fermé</li>
-	</ul>
-</section>
+
