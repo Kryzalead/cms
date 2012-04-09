@@ -1,4 +1,4 @@
-<div id="bgBlanc">
+
 	<h2><?php echo $type_product == 'robe-de-mariee' ? 'Robe de mariées' : 'Accessoires' ?></h2>
 	<div>
 		<?php $class = (!empty($show_filter)) ? 'active' : '' ?>
@@ -41,7 +41,7 @@
 		<?php endif ?>
 	</div>
 	<?php echo $this->Paginator->numbers() ?>
-</div>
+
 
 <?php echo $this->Html->scriptStart(array('inline'=>false)) ?>
 

@@ -14,6 +14,7 @@
   <meta name="viewport" content="width=device-width" />
   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/>
   <?php echo $this->Html->css('styles.css') ?>
+  <style type="text/css">.alignLeft{float: left}</style>
 </head>
   
 <body>
@@ -36,10 +37,31 @@
         </nav><!-- Fin nav -->
     </header><!-- Fin header -->
     <div id="contenu"> <!-- Début contenu -->
-      <?php $bg = ($this->request->params['action'] == 'home') ? 'bg' : 'bgBlanc' ?>
+      <?php $bg = (empty($this->request->params['plugin']) && $this->request->params['action'] == 'home') ? 'bg' : 'bgBlanc' ?>
       <div id="<?php echo $bg ?>">
-        <?php echo $content_for_layout ?>
-         <div class="cb"></div>
+        <?php if (empty($this->request->params['plugin']) && $this->request->params['controller'] == 'posts'): ?>
+          <section class="bloc">
+            <?php echo $content_for_layout ?>
+          </section>
+        <?php else: ?>
+          <?php echo $content_for_layout ?>  
+        <?php endif ?>
+          <div class="cb"></div>
+          <section id="bandeau"> <!-- Début bandeau -->
+            <ul>
+              <li class="titre">Aux Mariées de Christèle</li>
+              <li>15a, rte de Faillant</li>
+              <li>17380 Les Nouillers</li>
+              <li>Tél. 06 20 98 53 87</li>
+            </ul>
+            <?php echo $this->Html->image('etiquette.png',array('width'=>197,'height'=>86,'alt'=>"Étiquette fabrication 100% française")) ?>
+            <ul class="horaires">
+              <li class="titre">Horaires</li>
+              <li>Mardi au vendredi: 14h à19h</li>
+              <li>Samedi et lundi: sur rendez-vous</li>
+              <li>Dimanche fermé</li>
+            </ul>
+          </section>
       </div>
 
     </div> <!-- Fin contenu -->

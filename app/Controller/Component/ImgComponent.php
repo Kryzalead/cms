@@ -25,12 +25,21 @@ class ImgComponent extends Component{
         if($dimension[0]==($largeur/$hauteur)*$dimension[1]){ $dimX=$largeur; $dimY=$hauteur; $decalX=0; $decalY=0;}
         $miniature =imagecreatetruecolor ($largeur,$hauteur);
         $ext = end(explode('.',$img)); 
-        if(in_array($ext,array('jpeg','jpg','JPG','JPEG'))){$image = imagecreatefromjpeg($img); }
-        elseif(in_array($ext,array('png','PNG'))){$image = imagecreatefrompng($img); }
+        if(in_array($ext,array('jpeg','jpg','JPG','JPEG'))){
+                $image = imagecreatefromjpeg($img); 
+                imagecopyresampled($miniature,$image,-$decalX,-$decalY,0,0,$dimX,$dimY,$dimension[0],$dimension[1]);
+                imagejpeg($miniature,$dest,90);
+        }
+        elseif(in_array($ext,array('png','PNG'))){
+                $image = imagecreatefrompng($img); 
+                imagealphablending($miniature,FALSE);
+                imagesavealpha($miniature,TRUE);
+                imagecopyresampled($miniature,$image,-$decalX,-$decalY,0,0,$dimX,$dimY,$dimension[0],$dimension[1]);
+                imagepng($miniature,$dest,9);
+        }
         elseif(in_array($ext,array('gif','GIF'))){$image = imagecreatefromgif($img); }
         else{ return false; }
-        imagecopyresampled($miniature,$image,-$decalX,-$decalY,0,0,$dimX,$dimY,$dimension[0],$dimension[1]);
-        imagejpeg($miniature,$dest,90);
+        
           
         return true;
 	}
