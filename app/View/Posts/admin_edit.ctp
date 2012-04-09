@@ -123,7 +123,7 @@
         mode : "textareas",
 		language : "fr",
         theme : "advanced",
-        plugins :   'inlinepopups,paste,image,lien',
+        plugins :   'inlinepopups,paste,advimage,lien',
 
         // Theme options
         theme_advanced_buttons1 :"bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|formatselect,fontselect,fontsizeselect",

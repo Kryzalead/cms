@@ -33,7 +33,22 @@
 						<?php foreach ($products as $k => $v):?>
 							<tr id="product_<?php echo $v['Product']['id'];?>">
 								<td><?php echo $this->Form->input($v['Product']['id'],array('label'=>false,'type'=>'checkbox')); ?></td>
-								<td><?php echo $this->Html->image($v['Product']['url_min'],array('width'=>60,'height'=>60)) ?></td>
+								<td>
+									<?php 
+									$dimension = getimagesize ($v['Product']['url_min']); 
+									$ratio = $dimension[1]/$dimension[0];
+									$width = $dimension[0];
+									$height = $dimension[1];
+									
+									$largeur = 80;$hauteur = 60;
+									while($width > $largeur && $height > $hauteur ){
+										$width = round($width/$ratio);
+										$height = round($height/$ratio);
+									}
+									
+									?>
+									<?php echo $this->Html->image($v['Product']['url_min'],array('width'=>$width,'height'=>$height)) ?>
+								</td>
 								<td>
 									<?php if ($v['Product']['status'] == 'trash'): ?>
 										<span><?php echo $v['Product']['name'] ?></span>

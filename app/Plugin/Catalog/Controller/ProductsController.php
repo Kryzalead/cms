@@ -457,14 +457,16 @@ class ProductsController extends AppController{
 		$this->Product->contain(array('Product_meta','Term'));
 
 		if($this->request->is('post') || $this->request->is('put')){
+			
 			if($this->Product->save($this->request->data)){
 				$product_id = $this->Product->id;
 				foreach ($this->request->data['Product'] as $k => $v) {
-					if($k == 'product_buy_price'){
-						$product_meta_id = $this->Product->Product_meta->field('id',array('product_id'=>$product_id));
-						$this->Product->Product_meta->id = $product_meta_id ;
-						$this->Product->Product_meta->saveField('meta_value',$v);
-
+					if(!empty($v)){
+						if($k == 'product_buy_price'){
+							$product_meta_id = $this->Product->Product_meta->field('id',array('product_id'=>$product_id));
+							$this->Product->Product_meta->id = $product_meta_id ;
+							$this->Product->Product_meta->saveField('meta_value',$v);
+						}
 					}
 				}
 				$this->Session->setFlash("ok","notif");
