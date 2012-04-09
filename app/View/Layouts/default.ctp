@@ -39,7 +39,9 @@
       <?php $bg = ($this->request->params['action'] == 'home') ? 'bg' : 'bgBlanc' ?>
       <div id="<?php echo $bg ?>">
         <?php echo $content_for_layout ?>
+         <div class="cb"></div>
       </div>
+
     </div> <!-- Fin contenu -->
   </div> <!-- Fin wrap -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

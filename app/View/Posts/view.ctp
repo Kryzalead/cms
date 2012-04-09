@@ -5,7 +5,7 @@
 		<span>par</span>
 		<span><?php echo $post['User']['username'] ?></span>
 	</div>
-<?php endif ?>
+
 <div>
 	<span>
 	<?php if (!empty($post['Taxonomy']['category'])): ?>
@@ -25,6 +25,7 @@
 	<?php endif; ?>	 					
 	</span>
 </div>	
+<?php endif ?>
 <div>
 	<?php echo $post['Post']['content'];?>
 </div>
