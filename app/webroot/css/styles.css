@@ -235,16 +235,24 @@ p {
 ------------------------------------------ */
 @font-face {
   font-family: 'jenna';
-  src: url("fonts/jennasue-webfont.eot");
-  src: url("fonts/jennasue-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/jennasue-webfont.woff") format("woff"), url("fonts/jennasue-webfont.ttf") format("truetype"), url("fonts/jennasue-webfont.svg#JennaSueRegular") format("svg");
+  src: url("fonts/jenna/jennasue.eot");
+  src: url("fonts/jenna/jennasue.eot?#iefix") format("embedded-opentype"), url("fonts/jenna/jennasue.woff") format("woff"), url("fonts/jenna/jennasue.ttf") format("truetype"), url("fonts/jenna/jennasue.svg#JennaSueRegular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'riesling';
-  src: url("fonts/riesling.eot");
-  src: url("fonts/riesling.eot?#iefix") format("embedded-opentype"), url("fonts/riesling.woff") format("woff"), url("fonts/riesling.ttf") format("truetype"), url("fonts/riesling.svg#RieslingRegular") format("svg");
+  src: url("fonts/riesling/riesling.eot");
+  src: url("fonts/riesling/riesling.eot?#iefix") format("embedded-opentype"), url("fonts/riesling/riesling.woff") format("woff"), url("fonts/riesling/riesling.ttf") format("truetype"), url("fonts/riesling/riesling.svg#RieslingRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'leckerli';
+  src: url("fonts/leckerli/leckerlione.eot");
+  src: url("fonts/leckerli/leckerlione.eot?#iefix") format("embedded-opentype"), url("fonts/leckerli/leckerlione.woff") format("woff"), url("fonts/leckerli/leckerlione.ttf") format("truetype"), url("fonts/leckerli/leckerlione.svg#LeckerliOneRegular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -252,7 +260,7 @@ p {
 /* ---------------------------------------
 				Container
 ------------------------------------------ */
-/* line 201, styles.scss */
+/* line 210, styles.scss */
 .wrap {
   width: 990px;
   margin: 0 auto 20px;
@@ -261,54 +269,82 @@ p {
 /* ---------------------------------------
 				Header
 ------------------------------------------ */
-/* line 209, styles.scss */
+/* line 218, styles.scss */
 header h1 {
   position: relative;
   display: inline-block;
   vertical-align: top;
+  padding: 0;
   margin-top: 20px;
   height: 96px;
-  width: 420px;
+  width: 410px;
 }
 
 /* ---------------------------------------
 				Nav
 ------------------------------------------ */
-/* line 221, styles.scss */
-nav.menu {
-  height: 17px;
+/* line 231, styles.scss */
+nav#menu {
   display: inline-block;
   vertical-align: bottom;
 }
 
-/* line 226, styles.scss */
-nav.menu ul li {
-  float: left;
-  line-height: 1px;
+/* line 235, styles.scss */
+nav#menu ul#nav_menu {
+  position: absolute;
+  text-align: left;
+  padding: 0;
+  margin: -50px 0 0 5px;
+  height: 50px;
+  width: 650px;
 }
 
-/* line 230, styles.scss */
-nav.menu li a {
-  font-size: 1.1em;
-  color: black;
+/* line 243, styles.scss */
+nav#menu ul#nav_menu li {
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+/* line 248, styles.scss */
+nav#menu ul#nav_menu li a {
+  text-shadow: 2px 2px 3px #333;
+  -moz-transition: color  0.25s;
+  -webkit-transition: color 0.25s;
+  -o-transition: color  0.25s;
+  -ms-transition: color 0.25s;
+  transition: color 0.25s;
+  -moz-transition: font-size 0.25s;
+  -webkit-transition: font-size 0.25s;
+  -o-transition: font-size 0.25s;
+  -ms-transition: font-size 0.25s;
+  transition: font-size 0.25s;
+  -webkit-transition: 0.25s  ease-out;
+  -moz-transition: 0.25s  ease-out;
+  -o-transition: 0.25s  ease-out;
+  -ms-transition: 0.25s  ease-out;
   font-weight: normal;
-  display: block;
-  /* IE6, IE7 line height fix */
-  padding: 0 7px;
-  background-color: transparent;
-  text-decoration: none;
+  vertical-align: top;
+  margin-right: 5px;
+  line-height: 70px;
+  font-size: 18px;
+  font-family: 'leckerli';
 }
 
-/* line 239, styles.scss */
-nav.menu ul li a:hover {
-  color: white;
-  text-decoration: underline;
+/* line 271, styles.scss */
+nav#menu ul#nav_menu li a:hover {
+  text-shadow: 4px 8px 5px #888;
+  color: #842490;
+  font-weight: normal;
+  margin-right: 2px;
+  line-height: 65px;
+  font-size: 18px;
 }
 
 /* ---------------------------------------
 				Contenu
 ------------------------------------------ */
-/* line 247, styles.scss */
+/* line 283, styles.scss */
 #contenu, #bgBlanc {
   width: 990px;
   background: #eeeeee;
@@ -331,30 +367,30 @@ nav.menu ul li a:hover {
   box-shadow: 2px 4px 15px #222222;
 }
 
-/* line 255, styles.scss */
+/* line 291, styles.scss */
 #bg {
   background: #555555 url(images/bg-contenu.jpg) 270px 0 no-repeat;
 }
 
-/* line 257, styles.scss */
+/* line 293, styles.scss */
 #bgBlanc {
-  background-color: #fff;
+  background-color: white;
 }
 
-/* line 259, styles.scss */
+/* line 295, styles.scss */
 #contenu p {
   color: white;
   font-size: 0.8em;
   padding: 10px;
 }
 
-/* line 264, styles.scss */
+/* line 300, styles.scss */
 #contenu #bgBlanc p {
   color: black;
 }
 
 /* --	Bandeau contenu -- */
-/* line 268, styles.scss */
+/* line 304, styles.scss */
 #bandeau {
   border-top: 1px dashed #999;
   width: 990px;
@@ -367,7 +403,7 @@ nav.menu ul li a:hover {
   border-radius: 0px 0px 15px 15px / 0px 0px 15px 15px;
 }
 
-/* line 275, styles.scss */
+/* line 311, styles.scss */
 #bandeau ul {
   display: inline-block;
   vertical-align: top;
@@ -376,18 +412,18 @@ nav.menu ul li a:hover {
   padding-left: 10px;
 }
 
-/* line 282, styles.scss */
+/* line 318, styles.scss */
 #bandeau ul.horaires {
   text-align: right;
 }
 
-/* line 284, styles.scss */
+/* line 320, styles.scss */
 #bandeau li.titre {
   font-weight: bold;
   font-size: 1.4em;
 }
 
-/* line 288, styles.scss */
+/* line 324, styles.scss */
 #bandeau img {
   display: inline-block;
   vertical-align: top;
@@ -395,7 +431,7 @@ nav.menu ul li a:hover {
 }
 
 /* --  Bloc -- */
-/* line 295, styles.scss */
+/* line 331, styles.scss */
 section.bloc {
   width: 600px;
   display: inline-block;
@@ -403,19 +439,19 @@ section.bloc {
   padding: 30px 0;
 }
 
-/* line 301, styles.scss */
+/* line 337, styles.scss */
 section.bloc h1, section.bloc p {
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 305, styles.scss */
+/* line 341, styles.scss */
 section.bloc p {
   width: 500px;
 }
 
 /* -- Image accessoires -- */
-/* line 309, styles.scss */
+/* line 345, styles.scss */
 aside#image-accessoires {
   display: inline-block;
   vertical-align: top;
@@ -424,7 +460,7 @@ aside#image-accessoires {
   left: 20px;
 }
 
-/* line 316, styles.scss */
+/* line 352, styles.scss */
 aside#image-accessoires img {
   width: 313px;
   height: 282px;
@@ -433,7 +469,7 @@ aside#image-accessoires img {
 /* ---------------------------------------
 				catalogue
 ------------------------------------------ */
-/* line 324, styles.scss */
+/* line 360, styles.scss */
 section.catalogue {
   position: relative;
   display: inline-block;
@@ -441,7 +477,7 @@ section.catalogue {
   margin: 0 auto;
 }
 
-/* line 330, styles.scss */
+/* line 366, styles.scss */
 section.catalogue h1, #bgBlanc h1 {
   display: block;
   vertical-align: top;
@@ -450,7 +486,7 @@ section.catalogue h1, #bgBlanc h1 {
   padding: 30px 0 20px 30px;
 }
 
-/* line 337, styles.scss */
+/* line 373, styles.scss */
 section.catalogue figure {
   position: relative;
   display: inline-block;
@@ -458,25 +494,25 @@ section.catalogue figure {
   margin: 0;
 }
 
-/* line 343, styles.scss */
+/* line 379, styles.scss */
 section.catalogue figure img {
   border: 1px solid white;
   padding: 3px;
   margin: 10px;
 }
 
-/* line 348, styles.scss */
+/* line 384, styles.scss */
 section.catalogue nav {
   margin-left: 15px;
 }
 
-/* line 350, styles.scss */
+/* line 386, styles.scss */
 section.catalogue nav a:hover figcaption {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 354, styles.scss */
+/* line 390, styles.scss */
 section.catalogue figcaption {
   background-color: #fff;
   color: black;
@@ -486,7 +522,7 @@ section.catalogue figcaption {
   bottom: 14px;
 }
 
-/* line 362, styles.scss */
+/* line 398, styles.scss */
 section.catalogue img {
   display: block;
   margin: 10px 0;
@@ -504,26 +540,26 @@ section.catalogue img {
 /* ---------------------------------------
 				Fiche produits
 ------------------------------------------ */
-/* line 372, styles.scss */
+/* line 408, styles.scss */
 .fiche h4 {
   margin-left: 0;
 }
 
-/* line 373, styles.scss */
+/* line 409, styles.scss */
 .produit-gauche {
   width: 300px;
   float: left;
   padding: 0;
 }
 
-/* line 374, styles.scss */
+/* line 410, styles.scss */
 .produit-droit {
   width: 225px;
   float: left;
   padding-left: 25px;
 }
 
-/* line 375, styles.scss */
+/* line 411, styles.scss */
 .fiche .photos {
   border: 3px solid #DBE5E8;
   -webkit-border-radius: 0px;
@@ -536,7 +572,7 @@ section.catalogue img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 376, styles.scss */
+/* line 412, styles.scss */
 .fiche .prix {
   display: block;
   float: none;
@@ -550,7 +586,7 @@ section.catalogue img {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 377, styles.scss */
+/* line 413, styles.scss */
 .fiche .ancien-prix {
   font-weight: bold;
   text-decoration: line-through;
@@ -560,19 +596,19 @@ section.catalogue img {
   font-size: 1.1em;
 }
 
-/* line 378, styles.scss */
+/* line 414, styles.scss */
 .fiche .description {
   border-bottom: 1px solid #D9D9D9;
   padding-bottom: 11px;
   margin-bottom: 7px;
 }
 
-/* line 379, styles.scss */
+/* line 415, styles.scss */
 .fiche .description li {
   line-height: 18px;
 }
 
-/* line 380, styles.scss */
+/* line 416, styles.scss */
 .fiche .titre {
   font-size: 1.2em;
   font-weight: bold;
@@ -581,20 +617,20 @@ section.catalogue img {
   text-decoration: underline;
 }
 
-/* line 381, styles.scss */
+/* line 417, styles.scss */
 .fiche .promo {
   border-bottom: 1px solid #D9D9D9;
   padding: 3px 0 20px;
 }
 
-/* line 382, styles.scss */
+/* line 418, styles.scss */
 .fiche .miniatures, .fiche .miniatures li {
   background: none;
   padding: 0;
   margin: 0;
 }
 
-/* line 383, styles.scss */
+/* line 419, styles.scss */
 .fiche .miniatures li a {
   float: left;
   border: 2px solid #D9D9D9;
@@ -610,7 +646,7 @@ section.catalogue img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 384, styles.scss */
+/* line 420, styles.scss */
 .fiche .miniatures li a:hover {
   border-color: #AA4673;
   /*+opacity:80%;*/
@@ -620,17 +656,17 @@ section.catalogue img {
   opacity: 0.8;
 }
 
-/* line 385, styles.scss */
+/* line 421, styles.scss */
 .fiche .tags a {
   text-decoration: underline;
 }
 
-/* line 386, styles.scss */
+/* line 422, styles.scss */
 .produit-partage a {
   text-decoration: none;
 }
 
-/* line 387, styles.scss */
+/* line 423, styles.scss */
 .produit-partage a:hover {
   opacity: 0.7;
   -moz-opacity: 0.7;
@@ -638,12 +674,12 @@ section.catalogue img {
 }
 
 /* gallerie */
-/* line 391, styles.scss */
+/* line 427, styles.scss */
 .gallerie {
   overflow: none;
 }
 
-/* line 392, styles.scss */
+/* line 428, styles.scss */
 .gallerie h4 {
   line-height: 18px;
   padding: 20px 0 5px;
@@ -657,34 +693,34 @@ section.catalogue img {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 393, styles.scss */
+/* line 429, styles.scss */
 .gallerie h4 a {
   text-decoration: none;
 }
 
-/* line 394, styles.scss */
+/* line 430, styles.scss */
 .gallerie a {
   color: #444;
 }
 
-/* line 395, styles.scss */
+/* line 431, styles.scss */
 .gallerie a:hover {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 396, styles.scss */
+/* line 432, styles.scss */
 .gallerie p {
   padding: 5px 0;
 }
 
-/* line 397, styles.scss */
+/* line 433, styles.scss */
 .gallerie .blanc {
   background: #FFF;
   margin: 20px;
 }
 
-/* line 398, styles.scss */
+/* line 434, styles.scss */
 .gallerie .blanc h4 {
   font: bold 2.1em 'riesling';
 }
@@ -692,20 +728,20 @@ section.catalogue img {
 /* ---------------------------------------
 				Partenariats
 ------------------------------------------ */
-/* line 404, styles.scss */
+/* line 440, styles.scss */
 section#partenaires {
   color: #0F0F0F;
   margin: 0 auto;
   width: 970px;
 }
 
-/* line 405, styles.scss */
+/* line 441, styles.scss */
 ul.ligne1, ul.ligne2 {
   margin: 20px 0;
   display: inline-block;
 }
 
-/* line 406, styles.scss */
+/* line 442, styles.scss */
 ul.ligne1 li, ul.ligne2 li {
   display: inline-block;
   vertical-align: top;
@@ -715,35 +751,35 @@ ul.ligne1 li, ul.ligne2 li {
   text-align: center;
 }
 
-/* line 407, styles.scss */
+/* line 443, styles.scss */
 ul.ligne1 li:first-child, ul.ligne2 li:first-child {
   border: 0;
 }
 
-/* line 408, styles.scss */
+/* line 444, styles.scss */
 ul.ligne1 li ul li, ul.ligne2 li ul li {
   padding: 0;
   margin: 3px 0;
   border: none;
 }
 
-/* line 409, styles.scss */
+/* line 445, styles.scss */
 ul.ligne1 li h3, ul.ligne2 li h3 {
   margin-bottom: 15px;
   font: bold 2.2em 'riesling';
 }
 
-/* line 410, styles.scss */
+/* line 446, styles.scss */
 ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {
   padding-top: 15px;
 }
 
-/* line 411, styles.scss */
+/* line 447, styles.scss */
 ul.ligne2 li#dernier {
   border-right: 1px solid #E3E3E3;
 }
 
-/* line 412, styles.scss */
+/* line 448, styles.scss */
 ul.ligne2 li#avant_dernier {
   border: none;
 }
@@ -751,7 +787,7 @@ ul.ligne2 li#avant_dernier {
 /* ---------------------------------------
 				Contact
 ------------------------------------------ */
-/* line 418, styles.scss */
+/* line 454, styles.scss */
 #formContact {
   position: relative;
   display: inline-block;
@@ -760,7 +796,7 @@ ul.ligne2 li#avant_dernier {
   padding: 0;
 }
 
-/* line 425, styles.scss */
+/* line 461, styles.scss */
 #formContact legend {
   font: normal 4em 'riesling';
   text-align: left;
@@ -768,20 +804,20 @@ ul.ligne2 li#avant_dernier {
   padding: 40px 0 40px 30px;
 }
 
-/* line 431, styles.scss */
+/* line 467, styles.scss */
 #formContact .mariee {
   visibility: hidden;
   position: absolute;
 }
 
-/* line 435, styles.scss */
+/* line 471, styles.scss */
 form.formulaire {
   width: 360px;
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 440, styles.scss */
+/* line 476, styles.scss */
 form input[type=text], form textarea {
   border: none;
   background: #fff;
@@ -799,7 +835,7 @@ form input[type=text], form textarea {
   box-shadow: inset 0px 0px 10px 0px #222;
 }
 
-/* line 456, styles.scss */
+/* line 492, styles.scss */
 form textarea {
   font-size: 1.3em;
   width: 330px;
@@ -810,17 +846,17 @@ form textarea {
   padding-top: 10px;
 }
 
-/* line 465, styles.scss */
+/* line 501, styles.scss */
 fieldset {
   border: 0 none;
 }
 
-/* line 466, styles.scss */
+/* line 502, styles.scss */
 legend {
   display: hidden;
 }
 
-/* line 468, styles.scss */
+/* line 504, styles.scss */
 .envoyer input {
   margin: 10px 0 0 230px;
   width: 120px;
@@ -831,7 +867,7 @@ legend {
   background: url("images/bouton_submit.png") top left no-repeat;
 }
 
-/* line 477, styles.scss */
+/* line 513, styles.scss */
 .envoyer:hover {
   opacity: 0.8;
   -moz-opacity: 0.8;
@@ -839,26 +875,26 @@ legend {
 }
 
 /*adresse-sociaux*/
-/* line 483, styles.scss */
+/* line 519, styles.scss */
 #reseauxSociaux {
   color: #878383;
   font-size: 1.3em;
   margin-left: 15px;
 }
 
-/* line 488, styles.scss */
+/* line 524, styles.scss */
 #reseauxSociaux a {
   display: inline-block;
   vertical-align: top;
   margin: 10px 40px 0 0;
 }
 
-/* line 493, styles.scss */
+/* line 529, styles.scss */
 #reseauxSociaux a img {
   width: 150px;
 }
 
-/* line 495, styles.scss */
+/* line 531, styles.scss */
 #reseauxSociaux a:hover img {
   opacity: 0.8;
   -moz-opacity: 0.8;
@@ -866,7 +902,7 @@ legend {
 }
 
 /* -- planGoogle -- */
-/* line 503, styles.scss */
+/* line 539, styles.scss */
 #plan_google {
   display: inline-block;
   vertical-align: top;
@@ -887,12 +923,12 @@ legend {
 /* ---------------------------------------
 				Guestbook
 ------------------------------------------ */
-/* line 516, styles.scss */
+/* line 552, styles.scss */
 .mariee {
   visibility: hidden;
 }
 
-/* line 517, styles.scss */
+/* line 553, styles.scss */
 .comment {
   border: 1px solid #999;
   width: 600px;
@@ -902,53 +938,53 @@ legend {
   border: 1px solid red;
 }
 
-/* line 518, styles.scss */
+/* line 554, styles.scss */
 .comment .comment-title {
   background: #ccc;
   padding: 5px;
   border-bottom: 1px solid #999;
 }
 
-/* line 519, styles.scss */
+/* line 555, styles.scss */
 .comment .comment-title .action {
   float: right;
 }
 
-/* line 520, styles.scss */
+/* line 556, styles.scss */
 .comment .comment-content {
   padding: 5px;
 }
 
-/* line 522, styles.scss */
+/* line 558, styles.scss */
 #GuestbookIndexForm {
   width: 900px;
   margin: 20px 20px 20px;
 }
 
-/* line 526, styles.scss */
+/* line 562, styles.scss */
 #GuestbookIndexForm label {
   display: inline-block;
   vertical-align: top;
   width: 100px;
 }
 
-/* line 531, styles.scss */
+/* line 567, styles.scss */
 #GuestbookIndexForm input[type=text] {
   width: 180px;
 }
 
-/* line 533, styles.scss */
+/* line 569, styles.scss */
 #GuestbookIndexForm .submit {
   display: inline-block;
   margin: 20px 0 0 20px;
 }
 
-/* line 537, styles.scss */
+/* line 573, styles.scss */
 form .placeholder {
   margin-left: 0;
 }
 
-/* line 538, styles.scss */
+/* line 574, styles.scss */
 form .placeholder label {
   position: absolute;
   line-height: 36px;

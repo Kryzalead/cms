@@ -120,7 +120,7 @@ h2 {
 	-o-text-shadow:1px 1px 2px #999;
 	text-shadow:1px 1px 2px #999;}
 
-h1 a, h1 a:visited, h2 a, h2 a:visited			{text-decoration: none; color: #999;}
+h1 a, h1 a:visited, h2 a, h2 a:visited				{text-decoration: none; color: #999;}
 h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus	{text-decoration: none;}
 
 
@@ -178,20 +178,29 @@ $ombre:#222;
 ------------------------------------------ */
 @font-face {
     font-family: 'jenna';
-    src: url('fonts/jennasue-webfont.eot');
-    src: url('fonts/jennasue-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/jennasue-webfont.woff') format('woff'),
-         url('fonts/jennasue-webfont.ttf') format('truetype'),
-         url('fonts/jennasue-webfont.svg#JennaSueRegular') format('svg');
+    src: url('fonts/jenna/jennasue.eot');
+    src: url('fonts/jenna/jennasue.eot?#iefix') format('embedded-opentype'),
+         url('fonts/jenna/jennasue.woff') format('woff'),
+         url('fonts/jenna/jennasue.ttf') format('truetype'),
+         url('fonts/jenna/jennasue.svg#JennaSueRegular') format('svg');
     		font-weight: normal;font-style: normal;}
 
 @font-face {
 	font-family: 'riesling';
-		src: url('fonts/riesling.eot');
-		src: url('fonts/riesling.eot?#iefix') format('embedded-opentype'),
-			url('fonts/riesling.woff') format('woff'),
-			url('fonts/riesling.ttf') format('truetype'),
-			url('fonts/riesling.svg#RieslingRegular') format('svg');
+		src: url('fonts/riesling/riesling.eot');
+		src: url('fonts/riesling/riesling.eot?#iefix') format('embedded-opentype'),
+			url('fonts/riesling/riesling.woff') format('woff'),
+			url('fonts/riesling/riesling.ttf') format('truetype'),
+			url('fonts/riesling/riesling.svg#RieslingRegular') format('svg');
+				font-weight: normal;font-style: normal;}
+
+@font-face {
+	font-family: 'leckerli';
+		src: url('fonts/leckerli/leckerlione.eot');
+		src: url('fonts/leckerli/leckerlione.eot?#iefix') format('embedded-opentype'),
+		   url('fonts/leckerli/leckerlione.woff') format('woff'),
+		   url('fonts/leckerli/leckerlione.ttf') format('truetype'),
+		   url('fonts/leckerli/leckerlione.svg#LeckerliOneRegular') format('svg');
 				font-weight: normal;font-style: normal;}
 
 
@@ -210,35 +219,62 @@ header h1 {
 	position: relative;
 	display: inline-block;
 	vertical-align:top;
+	padding:0;
 	margin-top:20px;
 	height:96px;
-	width:420px;}
+	width:410px;}
 
 
 /* ---------------------------------------
 				Nav
 ------------------------------------------ */
-nav.menu {
-	height:17px;
+nav#menu {
 	display: inline-block;
 	vertical-align:bottom;}	
 
-nav.menu ul li {
-	float: left;
-	line-height:1px;}
+nav#menu ul#nav_menu {
+	position: absolute;
+	text-align: left;
+	padding: 0;
+	margin:-50px 0 0 5px;
+	height: 50px;
+	width: 650px;}
 
-nav.menu li a {
-	font-size: 1.1em;
-	color:black;
+nav#menu ul#nav_menu li {
+	padding: 0;
+	margin: 0;
+	display: inline;}
+
+nav#menu ul#nav_menu li a{
+	text-shadow: 2px 2px 3px #333;
+	-moz-transition: color  0.25s;
+	-webkit-transition: color 0.25s;
+	-o-transition: color  0.25s;
+	-ms-transition: color 0.25s;
+	transition: color 0.25s;
+	-moz-transition: font-size 0.25s;
+	-webkit-transition: font-size 0.25s;
+	-o-transition: font-size 0.25s;
+	-ms-transition: font-size 0.25s;
+	transition: font-size 0.25s;
+	-webkit-transition:  0.25s  ease-out;
+	-moz-transition:  0.25s  ease-out;
+	-o-transition: 0.25s  ease-out;
+	-ms-transition:  0.25s  ease-out;
 	font-weight:normal;
-	display:block;	/* IE6, IE7 line height fix */
-	padding: 0 7px;
-	background-color:transparent;
-	text-decoration:none;}
+	vertical-align:top;
+	margin-right:5px;
+	line-height: 70px;
+	font-size:18px;
+	font-family:'leckerli';}
 
-nav.menu ul li a:hover {
-	color:white;
-	text-decoration:underline;}
+nav#menu ul#nav_menu li a:hover {
+	text-shadow: 4px 8px 5px #888;
+	color: #842490;
+	font-weight:normal;
+	margin-right:2px;
+	line-height: 65px;
+	font-size:18px;}
 
 
 /* ---------------------------------------
@@ -254,7 +290,7 @@ nav.menu ul li a:hover {
 
 #bg{background:#555 url(images/bg-contenu.jpg) 270px 0 no-repeat;}
 
-#bgBlanc {background-color:#fff;}
+#bgBlanc {background-color:white;}
 
 #contenu p {
 	color:white;

@@ -23,15 +23,15 @@
   <div class="wrap"><!-- Début wrap -->
     <header role="banner"><!--Début header-->
       <h1><?php echo $this->Html->link($this->Html->image('logo-aux-mariees-de-christele.png',array('width'=>412,'height'=>107,'alt'=>'logo Aux Mariées de Christèle')),'/',array('escape'=>false)); ?></h1>
-        <nav class="menu" role="navigation"><!-- Début nav -->
-          <ul>
-            <li><?php echo $this->Html->link("Accueil",'/'); ?></li>
-            <li><?php echo $this->Html->link("Catalogue",array('plugin'=>'catalog','action'=>'home','controller'=>'products')); ?>&#124;</li>
-            <li><?php echo $this->Html->link("Contrats",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'contrats')); ?>&#124;</li>
-            <li><?php echo $this->Html->link("Livre d'or",array('plugin'=>'guestbook','action'=>'index','controller'=>'guestbooks')); ?>&#124;</li>
-            <li><?php echo $this->Html->link("Actualités",array('plugin'=>null,'action'=>'index','controller'=>'posts')); ?>&#124;</li>
-            <li><?php echo $this->Html->link("Partenariats",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'partenariats')); ?>&#124;</li>
-            <li><?php echo $this->Html->link("Contact",array('plugin'=>'contact','action'=>'contact','controller'=>'contacts')); ?>&#124;</li>
+        <nav id="menu" role="navigation"><!-- Début nav -->
+          <ul id="nav_menu">
+            <li><span><?php echo $this->Html->link("Accueil",'/'); ?></span></li>
+            <li><span><?php echo $this->Html->link("Catalogue",array('plugin'=>'catalog','action'=>'home','controller'=>'products')); ?></span></li>
+            <li><span><?php echo $this->Html->link("Contrats",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'contrats')); ?></li>
+            <li><span><?php echo $this->Html->link("Livre d'or",array('plugin'=>'guestbook','action'=>'index','controller'=>'guestbooks')); ?></span></li>
+            <li><span><?php echo $this->Html->link("Actualités",array('plugin'=>null,'action'=>'index','controller'=>'posts')); ?></span></li>
+            <li><span><?php echo $this->Html->link("Partenariats",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'partenariats')); ?></span></li>
+            <li><span><?php echo $this->Html->link("Contact",array('plugin'=>'contact','action'=>'contact','controller'=>'contacts')); ?></span></li>
           </ul>
         </nav><!-- Fin nav -->
     </header><!-- Fin header -->
@@ -78,6 +78,30 @@
     }); 
     
     $('.close').click(function(){$(this).parent().fadeTo(500,0).slideUp();});
+    <?php echo $this->Html->scriptEnd(); ?>
+
+    <?php echo $this->Html->scriptStart() ?>
+      $('#nav_menu li a').hover(
+       function() {
+        $(this).animate({
+        fontSize: "24px",
+          color: "#AA4673"
+        
+        }, 250, function() {
+          // Animation complete.
+        });
+       });
+
+      $('#nav_menu li a').mouseleave(
+       function() {
+        $(this).animate({
+        fontSize: "18px",
+          color: "#69665E"
+        
+        }, 250, function() {
+          // Animation complete.
+        });
+       });
     <?php echo $this->Html->scriptEnd(); ?>
     <?php echo $scripts_for_layout; ?>
 </body>
