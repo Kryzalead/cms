@@ -45,9 +45,43 @@
     </div> <!-- Fin contenu -->
   </div> <!-- Fin wrap -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <?php echo $this->Html->scriptStart() ?>
+    
+    $('.placeholder').each(function(){
+       var label = $(this).find('label:first');
+       
+       var input = $(this).find('input:first,textarea:first'); 
+       
+       if(input.val() != ''){
+           label.stop().hide(); 
+       }
+       input.focus(function(){
+           if($(this).val() == ''){
+                label.stop().fadeTo(500,0.5);  
+           }
+           $(this).parent().removeClass('error').find('.error-message').fadeOut(); 
+       });
+       input.blur(function(){
+           if($(this).val() == ''){
+                label.stop().fadeTo(500,1);  
+           }
+       });
+       input.keypress(function(){
+          label.stop().hide(); 
+       });
+       input.keyup(function(){
+           if($(this).val() == ''){
+                label.stop().fadeTo(500,0.5); 
+           }
+       });
+       input.bind('cut copy paste', function(e) {
+            label.stop().hide(); 
+       });
+    }); 
+    
+    $('.close').click(function(){$(this).parent().fadeTo(500,0).slideUp();});
+    <?php echo $this->Html->scriptEnd(); ?>
     <?php echo $scripts_for_layout; ?>
 </body>
     <?php echo $this->element('sql_dump'); ?>
-   
 </html>
-

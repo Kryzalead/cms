@@ -1,20 +1,15 @@
-<style type="text/css">.teletubies{visibility: hidden;}
-	.comment{border: 1px solid #999;width: 600px;margin: 0 auto;border-radius: 5px;margin-bottom: 5px}
-	.comment .comment-title{background: #ccc;padding: 5px;border-bottom: 1px solid #999}
-	.comment .comment-title .action{float: right}
-	.comment .comment-content{padding: 5px}
-</style>
-<p>Vous avez aimé notre site et vous souhaitez nous laisser un petit message</p>
+<h2>Vous avez aimé notre site et vous souhaitez nous laisser un petit message</h2>
 
 <?php echo $this->Form->create('Guestbook') ?>
-<?php echo $this->Form->input('Guestbook.author',array('label'=>"Votre nom")); ?>
-<?php echo $this->Form->input('Guestbook.author_email',array('label'=>"Votre email")); ?>
-<?php echo $this->Form->input('Guestbook.author_url',array('label'=>"Site Web")); ?>
-<?php echo $this->Form->input('Guestbook.content',array('label'=>"Votre message")); ?>
-<?php echo $this->Form->input('Guestbook.site',array('label'=>false,'class'=>'teletubies')); ?>
+<?php echo $this->Form->input('Guestbook.author',array('label'=>"Votre nom", 'div'=>array('class'=>'placeholder'))); ?>
+<?php echo $this->Form->input('Guestbook.author_email',array('label'=>"Votre email", 'div'=>array('class'=>'placeholder'))); ?>
+<?php echo $this->Form->input('Guestbook.author_url',array('label'=>"Site Web", 'div'=>array('class'=>'placeholder'))); ?>
+<?php echo $this->Form->input('Guestbook.content',array('label'=>"Votre message", 'div'=>array('class'=>'placeholder'))); ?>
+<?php echo $this->Form->input('Guestbook.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
 <?php echo $this->Form->end('Ajouter un message') ?>
 <?php if (!empty($guestbooks)): ?>
-<hr>
+<div class="cb"></div>
+
 <div id="guestbook">
 	<?php $terminaison = $totalComments > 1 ? 's' : '' ?>
 	<p><?php echo $totalComments ?> Commentaire<?php echo $terminaison ?></p>
@@ -45,3 +40,19 @@
 	<?php endforeach ?>
 </div>
 <?php endif ?>
+
+<section id="bandeau"> <!-- Début bandeau (bas du content) -->
+	<ul>
+		<li class="titre">Aux Mariées de Christèle</li>
+		<li>15a, rte de Faillant</li>
+		<li>17380 Les Nouillers</li>
+		<li>Tél. 06 20 98 53 87</li>
+	</ul>
+	<?php echo $this->Html->image('etiquette.png',array('width'=>197,'height'=>86,'alt'=>"Étiquette fabrication 100% française")) ?>
+	<ul class="horaires">
+		<li class="titre">Horaires</li>
+		<li>Mardi au vendredi: 14h à19h</li>
+		<li>Samedi et lundi: sur rendez-vous</li>
+		<li>Dimanche fermé</li>
+	</ul>
+</section> <!-- Fin bandeau -->

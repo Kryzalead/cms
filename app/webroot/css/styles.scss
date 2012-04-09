@@ -84,6 +84,13 @@ a:focus, a:active	{outline: 0;}
 a:visited			{color: white;}
 a img 				{border: none}
 
+/* ---------------------------------------
+				Form
+------------------------------------------ */
+textarea {overflow: auto;}
+input {cursor: auto;}
+label {cursor:text;}
+
 
 /* ---------------------------------------
 				Titres Hx
@@ -94,17 +101,24 @@ h1, h2 {
 	position:relative;}
 	
 h1 {
-	font-size: 2em;
 	line-height:0;
 	color:#fff;
-	text-transform:capitalize;	
-	padding:0;}
+	padding:0;
+	/*+text-shadow:1px 1px 2px #999;*/
+	-moz-text-shadow:1px 1px 2px #999;
+	-webkit-text-shadow:1px 1px 2px #999;
+	-o-text-shadow:1px 1px 2px #999;
+	text-shadow:1px 1px 2px #999;}
 
 h2 {
-	font-size: 1.2em;
-	line-height:1.7;
-	color:#000;
-	padding:0;}
+	display: block;
+	font: normal 1.3em sans-serif;
+	padding: 30px 0 20px 30px;
+	/*+text-shadow:1px 1px 2px #999;*/
+	-moz-text-shadow:1px 1px 2px #999;
+	-webkit-text-shadow:1px 1px 2px #999;
+	-o-text-shadow:1px 1px 2px #999;
+	text-shadow:1px 1px 2px #999;}
 
 h1 a, h1 a:visited, h2 a, h2 a:visited			{text-decoration: none; color: #999;}
 h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus	{text-decoration: none;}
@@ -144,7 +158,6 @@ $default-text-shadow-blur:5px;
 
 /* -- $ Var -- */
 $ombre:#222;
-$experimental-support-for-svg: true;
 
 /* --  Mixin -- */
 @mixin contenu($ombre){
@@ -231,9 +244,9 @@ nav.menu ul li a:hover {
 /* ---------------------------------------
 				Contenu
 ------------------------------------------ */
-#contenu {
+#contenu, #bgBlanc {
 	width:990px;
-	background: rgb(238,238,238); /* Old browsers */
+	background: rgb(238,238,238);
 	background-color: rgb(238,238,238);
 	@include filter-gradient(#cccccc, #eeeeee, horizontal);
 	@include background-image(linear-gradient(right, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%));
@@ -241,17 +254,14 @@ nav.menu ul li a:hover {
 
 #bg{background:#555 url(images/bg-contenu.jpg) 270px 0 no-repeat;}
 
-#bgBlanc {
-	width:990px;
-	background-color:#fff;
-	@include contenu;}
+#bgBlanc {background-color:#fff;}
 
 #contenu p {
 	color:white;
 	font-size:0.8em;
 	padding:10px;}
 
-#contenu #bgBlanc p{color: #000}
+#contenu #bgBlanc p{color:black}
 
 
 /* --	Bandeau contenu -- */
@@ -322,13 +332,7 @@ section.catalogue h1, #bgBlanc h1 {
 	vertical-align: top;
 	color:#000;
 	font: normal 3.5em 'riesling';
-	line-height: 0;
-	padding: 50px 0 40px 30px;
-	/*+text-shadow:1px 1px 2px #999;*/
-	-moz-text-shadow:1px 1px 2px #999;
-	-webkit-text-shadow:1px 1px 2px #999;
-	-o-text-shadow:1px 1px 2px #999;
-	text-shadow:1px 1px 2px #999;}
+	padding: 30px 0 20px 30px;}
 
 section.catalogue figure {
 	position: relative;
@@ -422,8 +426,7 @@ ul.ligne2 li#avant_dernier{border:none;}
 	font:normal 4em 'riesling';
 	text-align:left;
 	text-decoration:none;
-	padding:40px 0 40px 30px;
-	color:#AA4673;}
+	padding:40px 0 40px 30px;}
 
 #formContact .mariee{
 	visibility: hidden;
@@ -434,24 +437,25 @@ form.formulaire {
 	display: inline-block;
 	vertical-align:top;}
 
-input[type=text], textarea {
+form input[type=text], form textarea {
 	border:none;
 	background: #fff;
-	width:340px;
-	height:42px;
-	padding:0px 10px;
+	width:200px;
+	height:28px;
+	padding:0 10px;
 	margin:5px 0 15px 0;
 	color:#686464;
 	font-size:1em;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	-webkit-box-shadow: inset 0px 0px 10px 0px #222;
 	-moz-box-shadow: inset 0px 0px 10px 0px #222;
 	box-shadow: inset 0px 0px 10px 0px #222;}
 
-textarea {
+form textarea {
 	font-size:1.3em;
+	width:330px;
 	max-width:380px;
 	max-height:260px;
 	height: 150px;
@@ -459,7 +463,6 @@ textarea {
 	padding-top:10px;}
 
 fieldset {border:0 none;}
-
 legend {display:hidden;}
 
 .envoyer input {
@@ -505,3 +508,31 @@ legend {display:hidden;}
 	margin:100px 0 0 40px;
 	border:6px solid white;
 	@include contenu;}
+
+
+/* ---------------------------------------
+				Guestbook
+------------------------------------------ */
+.mariee{visibility: hidden;}
+.comment{border: 1px solid #999;width: 600px;margin: 0 auto;border-radius: 5px;margin-bottom: 5px;border:1px solid red;}
+.comment .comment-title{background: #ccc;padding: 5px;border-bottom: 1px solid #999}
+.comment .comment-title .action{float: right}
+.comment .comment-content{padding: 5px}
+
+#GuestbookIndexForm {
+	width:900px;
+	margin:20px 20px 20px;}
+
+#GuestbookIndexForm label {
+	display: inline-block;
+	vertical-align:top;
+	width:100px;}
+
+#GuestbookIndexForm input[type=text] {width:180px;} 
+
+#GuestbookIndexForm .submit {
+	display: inline-block;
+	margin:20px 0 0 20px;}
+
+form .placeholder {margin-left:0;}
+form .placeholder label {position: absolute;line-height:36px; margin-left:15px;}
