@@ -76,7 +76,7 @@ class ProductsController extends AppController{
 		$d['type_product'] = $type_products;
 
 		if($d['type_product'] == 'robe-de-mariee'){
-			$d['list_taille'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' --taille-- ');
+			$d['list_taille'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' Taille ');
 			$tailles = $this->Product->Term->find('all',array(
 				'fields'=>array('Term.name','Term.slug'),
 				'conditions'=>array('Term.type'=>'product_taille'),
@@ -89,7 +89,7 @@ class ProductsController extends AppController{
 			if(!empty($this->request->params['order']) && $this->request->params['order'] == 'taille')
 				$this->request->data['Product']['taille'] = Router::url('/').'catalogue/'.$d['type_product'].'/taille/'.$this->request->params['slug'];
 
-			$d['list_creator'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' --createur-- ');
+			$d['list_creator'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' Créateur ');
 			$creators = $this->Product->Term->find('all',array(
 				'fields'=>array('Term.name','Term.slug'),
 				'conditions'=>array('Term.type'=>'product_creator'),
@@ -99,11 +99,11 @@ class ProductsController extends AppController{
 			foreach ($creators as $k => $v) {
 				$d['list_creator'] = array_merge($d['list_creator'],array(Router::url('/').'catalogue/'.$d['type_product'].'/createur/'.$v['Term']['slug']=>$v['Term']['name']));
 			}
-			if(!empty($this->request->params['order']) && $this->request->params['order'] == 'createur')
+			if(!empty($this->request->params['order']) && $this->request->params['order'] == 'Créateur')
 				$this->request->data['Product']['creator'] = Router::url('/').'catalogue/'.$d['type_product'].'/createur/'.$this->request->params['slug'];
 		}
 		elseif($d['type_product'] == 'accessoire'){
-			$d['list_category'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' --categorie-- ');
+			$d['list_category'] = array(Router::url('/').'catalogue/'.$d['type_product']=>' Catégorie ');
 			$categories = $this->Product->Term->find('all',array(
 				'fields'=>array('Term.name','Term.slug'),
 				'conditions'=>array('Term.type'=>'product_category'),
