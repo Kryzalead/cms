@@ -3,12 +3,12 @@
 		<?php echo $this->Form->create('Contact',array('class'=>'formulaire')) ?>
 			<fieldset>
 				<legend>Contactez-nous</legend>
-				<?php echo $this->Form->input('Contact.name',array('label'=>false,'placeholder'=>'Votre nom')); ?>
-				<?php echo $this->Form->input('Contact.email',array('label'=>false,'placeholder'=>'Votre @-mail')); ?>
-				<?php echo $this->Form->input('Contact.message',array('label'=>false,'placeholder'=>'Votre message','type'=>'textarea','cols'=>3,'rows'=>3)); ?>
+				<?php echo $this->Form->input('Contact.name',array('label'=>'Votre nom', 'div'=>array('class'=>'placeholder'))); ?>
+				<?php echo $this->Form->input('Contact.email',array('label'=>'Votre @-mail', 'div'=>array('class'=>'placeholder'))); ?>
+				<?php echo $this->Form->input('Contact.message',array('label'=>'Votre message','div'=>array('class'=>'placeholder'),'type'=>'textarea','cols'=>3,'rows'=>3)); ?>
 				<?php echo $this->Form->input('Contact.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
 			</fieldset>
-		<?php echo $this->Form->end(array('label'=>false,'div'=>array('class'=>'envoyer'))) ?>
+		<?php echo $this->Form->end(array('label'=>'Envoyer','div'=>array('class'=>'envoyer'))) ?>
 
 		<div id="reseauxSociaux">
 			<!--<a href="#"><img class="sociaux" src="images/reseaux_sociaux/twitter.png" alt="twitter"/></a>-->
