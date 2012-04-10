@@ -26,14 +26,16 @@
             </div>
     </div>
 
-    <div class="bloc_publier_image" id="bloc_img_une"><!-- image à la une -->
+    <!--
+    <div class="bloc_publier_image" id="bloc_img_une">
         <h3>Image à la une</h3>
             <div>
-                <p><?php echo $this->Html->link("Ajouter une image à la une",array('controller'=>'medias','action'=>'tinymce'),array('id'=>'add-post-thumbnail')); ?></p>
+                <p><?php //echo $this->Html->link("Ajouter une image à la une",array('controller'=>'medias','action'=>'tinymce'),array('id'=>'add-post-thumbnail')); ?></p>
             </div>
-    </div>        
+    </div> 
+    -->       
 </div>
-<div id="overlayer" style="display:none"></div>
+<!--<div id="overlayer" style="display:none"></div>-->
 <?php if ($type == 'post'): ?>
     <?php echo $this->Form->input('terms',array('label'=>'Taxonomy','type'=>'select','multiple'=>'checkbox')); ?>
     <?php echo $this->Taxonomy->input('tag',array('label'=>'Tags : ')) ?>
@@ -41,6 +43,7 @@
 <?php echo $this->Form->end($texte_submit) ?>
 
 <?php echo $this->Html->script('tiny_mce/tiny_mce.js',array('inline'=>false)); ?>
+<?php echo $this->Html->script('ckeditor/ckeditor.js',array('inline'=>false)); ?>
 <?php 
 // tout ce qui sera compris entre ces deux balises, sera envoyé au niveau du body grâce à inline=>false
 
@@ -65,11 +68,12 @@
 */
  ?>
 <?php $this->Html->scriptStart(array('inline'=>false)); ?>
-    /*
+  
     tinyMCE.init({
         mode                    :   'textareas',
+        language : "fr",
         theme                   :   'advanced',
-        plugins                 :   'inlinepopups,paste,image,lien',
+        plugins                 :   'autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave,visualblocks,inlinepopups,paste,image,lien',
         theme_advanced_buttons1 :"bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
         theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
         theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
@@ -117,77 +121,12 @@
         var ed = tinyMCE.activeEditor;
         ed.execCommand('mceInsertContent',false,content);
     }
-    */
-    tinyMCE.init({
-        // General options
-        mode : "textareas",
-		language : "fr",
-        theme : "advanced",
-        plugins :   'inlinepopups,paste,advimage,lien',
-
-        // Theme options
-        theme_advanced_buttons1 :"bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|formatselect,fontselect,fontsizeselect",
-        theme_advanced_buttons2 : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,image,code,|,forecolor,backcolor",
-        theme_advanced_buttons3 : "",
-        theme_advanced_toolbar_location : "top",
-        theme_advanced_statusbar_location : 'bottom',
-        theme_advanced_resizing: false,
-        paste_remove_styles: true,
-        paste_remove_spans: true,
-        paste_strip_class_attributes: 'all',
-        image_explorer: '<?php echo $this->Html->url(array('controller'=>'medias','action'=>'tinymce')); ?>',
-        image_edit: '<?php echo $this->Html->url(array('controller'=>'medias','action'=>'tinymce','url')); ?>',
-        lien_explorer: '<?php echo $this->Html->url(array('controller'=>'posts','action'=>'tinymce')) ?>',
-        relative_urls: false,
-        content_css: '<?php echo $this->Html->url('/css/wysiwyg.css') ?>',
-        entity_encoding : "raw",
-        // Schema is HTML5 instead of default HTML4
-        schema: "html5",
-        // End container block element when pressing enter inside an empty block
-        end_container_on_empty_block: true,
-
-        // HTML5 formats
-        style_formats : [
-                {title : 'h1', block : 'h1'},
-                {title : 'h2', block : 'h2'},
-                {title : 'h3', block : 'h3'},
-                {title : 'h4', block : 'h4'},
-                {title : 'h5', block : 'h5'},
-                {title : 'h6', block : 'h6'},
-                {title : 'p', block : 'p'},
-                {title : 'div', block : 'div'},
-                {title : 'pre', block : 'pre'},
-                {title : 'section', block : 'section', wrapper: true, merge_siblings: false},
-                {title : 'article', block : 'article', wrapper: true, merge_siblings: false},
-                {title : 'blockquote', block : 'blockquote', wrapper: true},
-                {title : 'hgroup', block : 'hgroup', wrapper: true},
-                {title : 'aside', block : 'aside', wrapper: true},
-                {title : 'figure', block : 'figure', wrapper: true}
-        ],
-
-        // Skin options
-        skin : "o2k7",
-        skin_variant : "silver",
-
-        // Example content CSS (should be your site CSS)
-        content_css : "css/example.css",
-
-        // Drop lists for link/image/media/template dialogs
-        template_external_list_url : "js/template_list.js",
-        external_link_list_url : "js/link_list.js",
-        external_image_list_url : "js/image_list.js",
-        media_external_list_url : "js/media_list.js",
-
-        // Replace values for the template plugin
-        template_replace_values : {
-                username : "Some User",
-                staffid : "991234"
-        }
+    
+    
+/*
+CKEDITOR.replace('PostContent',{
+filebrowserUploadUrl : '<?php echo $this->Html->url(array('controller'=>'medias','action'=>'tinymce')); ?>'
 });
-// fonction qui permet de renvoyer du code à tinymce
-    function send_to_editor(content){
-        // on init l'editeur
-        var ed = tinyMCE.activeEditor;
-        ed.execCommand('mceInsertContent',false,content);
-    }
+*/
+                        
 <?php $this->Html->scriptEnd(); ?>

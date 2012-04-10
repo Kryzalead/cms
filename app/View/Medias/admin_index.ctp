@@ -77,9 +77,30 @@
 				<tr id="post_<?php echo $v['Media']['id'] ?>">
 					<td><?php echo $this->Form->input($v['Media']['id'],array('label'=>false,'type'=>'checkbox')); ?></td>
 					<td>
-						<div style="float: left;width: 70px;">
+						<div style="float: left">
 							<?php $alt = !empty($v['Media']['alt']) ? $v['Media']['alt'] : ''; ?>
-							<?php echo $this->Html->image($v['Media']['guid'],array('title'=>$v['Media']['name'],'alt'=>$alt,'width'=>60,'height'=>60)) ?>
+							<?php 
+								$dimension = getimagesize ($v['Media']['guid']); 
+								$largeur = 80;$hauteur = 60;
+								if ($dimension[1] > $hauteur OR $dimension[0] > $largeur) { 
+								// X plus grand que Y 
+									if ($dimension[1] < $dimension[0]) { 
+									     $width = $hauteur; 
+									     $y = floor($width * ($dimension[1]/$dimension[0])); 
+									} 
+									// Y plus grand que X 
+									else{ 
+									     $height = $largeur; 
+									     $width = floor($height * ($dimension[0]/$dimension[1])); 
+									} 
+								} 
+								else { 
+								     $width = $dimension[0]; 
+								     $height = $dimension[1]; 
+								} 
+								
+								?>
+							<?php echo $this->Html->image($v['Media']['guid'],array('title'=>$v['Media']['name'],'alt'=>$alt,'width'=>$width,'height'=>$height)) ?>
 						</div>
 						<div>
 							<?php echo $this->Html->link($v['Media']['name'],array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id']))); ?>

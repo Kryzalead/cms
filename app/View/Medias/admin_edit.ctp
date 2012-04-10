@@ -58,7 +58,31 @@
 <?php elseif($action == 'upd'): ?>
 	<div>
 		<div style="float:left;margin-right: 20px">
-			<?php echo $this->Html->image($media['Media']['guid'],array('width'=>128,'height'=>128,'alt'=>$media['Media']['alt'],'title'=>$media['Media']['name'])); ?>
+			<?php 
+			$dimension = getimagesize ($media['Media']['guid']); 
+			$ratio = $dimension[1]/$dimension[0];
+			$width = $dimension[0];
+			$height = $dimension[1];
+			
+			$largeur = 128;$hauteur = 128;
+			if ($dimension[1] > $hauteur OR $dimension[0] > $largeur) { 
+			// X plus grand que Y 
+				if ($dimension[1] < $dimension[0]) { 
+				     $width = $hauteur; 
+				     $y = floor($width * ($dimension[1]/$dimension[0])); 
+				} 
+				// Y plus grand que X 
+				else{ 
+				     $height = $largeur; 
+				     $width = floor($height * ($dimension[0]/$dimension[1])); 
+				} 
+			} 
+			else { 
+			     $width = $dimension[0]; 
+			     $height = $dimension[1]; 
+			} 
+			?>
+			<?php echo $this->Html->image($media['Media']['guid'],array('width'=>$width,'height'=>$height,'alt'=>$media['Media']['alt'],'title'=>$media['Media']['name'])); ?>
 		</div>
 		<div style="float: left">
 			<p><span style="color: #000">Nom du fichier :</span><?php echo $media['Media']['name']; ?></p>

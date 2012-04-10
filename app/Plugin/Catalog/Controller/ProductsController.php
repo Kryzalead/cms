@@ -225,7 +225,6 @@ class ProductsController extends AppController{
 			$conditions = array_merge($conditions,array(
 					'Product.name LIKE'=>'%'.$search.'%'
 			));
-			
 			$d['search'] = $search;
 		}
 		else{
