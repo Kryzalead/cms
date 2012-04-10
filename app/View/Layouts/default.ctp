@@ -16,8 +16,8 @@
   <?php echo $this->Html->css('styles.css') ?>
   <style type="text/css">
     .alignLeft{float: left}
-    .bloc #accueil{width: 600px}
-    .bloc #accueil p{width: 100%;display: block;}
+    .bloc #accueil{width: 600px;padding: 10px}
+    .bloc #accueil p{width: 100%;display: block;padding: 0px;line-height: 20px;padding-top:5px}
 
     .catalogue #filtre_produit{height: 20px}
     .blocs #actus{min-height: 500px}

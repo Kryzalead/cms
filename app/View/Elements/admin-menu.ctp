@@ -18,14 +18,14 @@
             <?php echo $this->Html->link($this->Html->image('icone-pages.png',array('height'=>25,'width'=>25)) . 'Pages',array('plugin'=>null,'action'=>'index','controller'=>'pages','admin'=>true),array('escape'=>false)); ?>
             <ul>
                 <li><?php echo $this->Html->link("Toutes les pages",array('plugin'=>null,'action'=>'index','controller'=>'posts','?'=>array('type'=>'page'),'admin'=>true)); ?></li>
-                <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'edit','controller'=>'posts','?'=>array('type'=>'page'),'admin'=>true)); ?></li>
+                <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'add','controller'=>'posts','?'=>array('type'=>'page'),'admin'=>true)); ?></li>
             </ul>
         </li>
         <li <?php echo ($currentController == "posts" && (empty($this->request->query['type']) || $this->request->query['type'] == "category"))  ? 'class="current"' : '' ?>>
             <?php echo $this->Html->link($this->Html->image('icone-posts.png',array('height'=>25,'width'=>25)) . 'Articles',array('plugin'=>null,'action'=>'index','controller'=>'posts','admin'=>true),array('escape'=>false)); ?>
             <ul>
                 <li><?php echo $this->Html->link("Tous les articles",array('plugin'=>null,'action'=>'index','controller'=>'posts','admin'=>true)); ?></li>
-                <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'edit','controller'=>'posts','admin'=>true)); ?></li>
+                <li><?php echo $this->Html->link("Ajouter",array('plugin'=>null,'action'=>'add','controller'=>'posts','admin'=>true)); ?></li>
                 <li><?php echo $this->Html->link("Catégories",array('plugin'=>'taxonomy','controller'=>'terms','action'=>'edit','?'=>array('type'=>'category'),'admin'=>true)); ?></li>
             </ul>
         </li>

@@ -5,14 +5,14 @@
 
 <?php echo $this->Form->create('Post',array('action'=>'edit')) ?>
 <div class="blocsCentral">
-	<?php echo $this->Form->input('Post.name',array('label'=>'Titre : ','style'=>'width:100%')) ?>
+	<?php echo $this->Form->input('Post.name',array('label'=>'Titre : ','style'=>'width: 100%')) ?>
 	<br />
-	<?php echo $this->Form->input('Post.slug',array('label'=>'Url : ','style'=>'width:100%')) ?>
+	<?php echo $this->Form->input('Post.slug',array('label'=>'Url : ','style'=>'width: 100%')) ?>
 	<br />
 	<?php echo $this->Form->input('Post.id'); ?>
         <?php echo $this->Form->input('Post.user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
-	<?php echo $this->Form->input('Post.type',array('type'=>'hidden','value'=>$type)) ?>
-    <?php echo $this->Form->input('Post.action',array('label'=>null,'type'=>'hidden','value'=>$action)); ?>
+	<?php echo $this->Form->input('Post.type',array('type'=>'hidden')) ?>
+    <?php echo $this->Form->input('Post.action',array('label'=>null,'type'=>'hidden')); ?>
 	<?php echo $this->Form->input('Post.content',array('label'=>'Contenu : ','style'=>'width:100%','rows'=>Configure::read('default_post_edit_rows'))) ?>
 </div>
 
@@ -43,7 +43,6 @@
 <?php echo $this->Form->end($texte_submit) ?>
 
 <?php echo $this->Html->script('tiny_mce/tiny_mce.js',array('inline'=>false)); ?>
-<?php echo $this->Html->script('ckeditor/ckeditor.js',array('inline'=>false)); ?>
 <?php 
 // tout ce qui sera compris entre ces deux balises, sera envoyé au niveau du body grâce à inline=>false
 
