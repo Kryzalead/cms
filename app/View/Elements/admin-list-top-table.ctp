@@ -1,10 +1,4 @@
-<style type="text/css">
-	.list-top-table{}
-	.list-top-table li{display: inline-block;}
-	#content a:hover{color: #ff4b33}
-	#content .list-top-table .current{color: #000;font-weight : bold;}
-</style>
-<ul class="list-top-table">
+<ul class="list_top_table">
 	<?php foreach ($options['list'] as $k => $v): ?>
 		<?php if ($model == 'post'): ?>
 			<?php $request = array('type'=>$options['params']['type'],'status'=>$k) ?>

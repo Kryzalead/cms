@@ -26,7 +26,8 @@
 	</span>
 </div>	
 <?php endif ?>
-<div>
+<?php $id = $post['Post']['slug'] ?>
+<div id="<?php echo $id ?>">
 	<?php echo $post['Post']['content'];?>
 </div>
 

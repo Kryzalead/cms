@@ -62,22 +62,22 @@
 	</div>
 	<?php echo $this->Form->create('Media',array('url'=>array('controller'=>'medias','action'=>'doaction'))) ?>
 	<?php echo $this->element('admin-action-groupees',array('list'=>$list_action)) ?>
-	<table class="classicTable posts" style="-webkit-border-radius: 3px;border-radius: 3px;border-width: 1px;border-style: solid;display: table;border-spacing: 2px;border-color: gray;margin-top: 10px">
-		<thead style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
-			<tr style="color: #21759B">
-				<th><input type="checkbox" class="checkall"></th>
+	<table class="liste_table medias">
+		<thead>
+			<tr>
+				<th class="colonne_check"><input type="checkbox" class="checkall"></th>
 				<th><?php echo $this->Paginator->sort('Post.name','Fichier'); ?></th>
 				<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
 				<th><?php echo $this->Paginator->sort('Post.created','Date'); ?></th>
 			</tr>
 		</thead>
-		<tbody style="color: gray;">
+		<tbody>
 			<?php if (!empty($medias)): ?>
 				<?php foreach ($medias as $k => $v):?>
 				<tr id="post_<?php echo $v['Media']['id'] ?>">
-					<td><?php echo $this->Form->input($v['Media']['id'],array('label'=>false,'type'=>'checkbox')); ?></td>
-					<td>
-						<div style="float: left">
+					<td class="colonne_check"><?php echo $this->Form->input($v['Media']['id'],array('label'=>false,'type'=>'checkbox')); ?></td>
+					<td class="colonne_medias">
+						<div class="thumb">
 							<?php $alt = !empty($v['Media']['alt']) ? $v['Media']['alt'] : ''; ?>
 							<?php 
 								$dimension = getimagesize ($v['Media']['guid']); 
@@ -100,18 +100,16 @@
 								} 
 								
 								?>
-							<?php echo $this->Html->image($v['Media']['guid'],array('title'=>$v['Media']['name'],'alt'=>$alt,'width'=>$width,'height'=>$height)) ?>
-						</div>
-						<div>
+								<?php echo $this->Html->image($v['Media']['guid'],array('title'=>$v['Media']['name'],'alt'=>$alt,'width'=>$width,'height'=>$height)) ?>
+							</div>
+							div
 							<?php echo $this->Html->link($v['Media']['name'],array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id']))); ?>
-							<p style="margin-top: 5px;color: #333;margin-bottom: 5px">
-								<?php echo strtoupper(substr($v['Media']['thumbnail'],-3,3));?>
-							</p>
+							<?php echo strtoupper(substr($v['Media']['thumbnail'],-3,3));?>
 							<div class="action_admin">
 								<?php echo $this->Html->link("Modifier",array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id'])),array('class'=>'upd')); ?> |
 								<?php echo $this->Html->link("Supprimer définitivement",array('controller'=>'medias','action'=>'delete','?'=>array('id'=>$v['Media']['id'],'token'=>$this->Session->read('Security.token'))),array('class'=>'del'),'Voulez vous vraiment supprimer ce contenu ?'); ?>
 							</div>
-						</div>
+						
 					</td>
 					<td><?php echo $v['User']['username'] ?></td>
 					<td><?php echo $this->date->format($v['Media']['created'],'FR') ?></td>
@@ -125,9 +123,9 @@
 				<td></td>
 			<?php endif ?>
 		</tbody>
-		<tfoot style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
-			<tr style="color: #21759B">
-				<th><input type="checkbox" class="checkall"></th>
+		<tfoot>
+			<tr>
+				<th class="colonne_check"><input type="checkbox" class="checkall"></th>
 				<th><?php echo $this->Paginator->sort('Post.name','Fichier'); ?></th>
 				<th><?php echo $this->Paginator->sort('User.username','Auteur'); ?></th>
 				<th><?php echo $this->Paginator->sort('Post.created','Date'); ?></th>
