@@ -221,6 +221,12 @@ header h1 {
 /* ---------------------------------------
 				Nav
 ------------------------------------------ */
+ul#nav_menu li a{color: #fff}
+/* -- nous connaitre -- */
+ul#nav_menu li.sub{position: relative}
+ul#nav_menu li.sub ul{position: absolute;left: 0;display: none;width: 320px}
+ul#nav_menu li.sub:hover ul{display: block;}
+
 nav#menu {
 	display: inline-block;
 	vertical-align:top;
@@ -336,7 +342,7 @@ aside#image-accessoires img{
 				catalogue
 ------------------------------------------ */
 .produit {display: inline-block;vertical-align:top;}
-
+.catalogue #filtre_produit{height: 20px}
 .catalogue{
 	position: relative;
 	display: inline-block;
@@ -407,6 +413,12 @@ aside#image-accessoires img{
 	height:18px;}
 
 #show_filter .active_arrow {background-position:0 -15px;}
+
+/* ---------------------------------------
+				Actulités
+------------------------------------------ */
+.blocs #actus{min-height: 500px}
+
 
 /* ---------------------------------------
 				Fiche produits
@@ -553,7 +565,7 @@ legend {display:hidden;}
 
 
 /* ---------------------------------------
-				Guestbook
+					Guestbook
 ------------------------------------------ */
 .mariee{visibility: hidden;}
 .comment{border: 1px solid #999;width: 600px;margin: 0 auto;border-radius: 5px;margin-bottom: 5px;border:1px solid red;}
@@ -588,3 +600,12 @@ form .placeholder {margin-left:0;}
 form .placeholder label {position: absolute;line-height:36px; margin-left:15px;}
 
 #guestbook_image {display: inline-block;vertical-align:top;margin-top:100px;}
+
+
+/* ---------------------------------------
+					Footer
+------------------------------------------ */
+
+footer{margin:0 auto;width:100%;padding:15px 0 10px;text-align:center;color:#747474;font-size:.9em}
+footer a,footer a:visited,footer a:link{color:#747474;}
+footer a:hover{text-decoration:underline;color:#444;}

@@ -14,16 +14,6 @@
   <meta name="viewport" content="width=device-width" />
   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/>
   <?php echo $this->Html->css('styles.css') ?>
-  <style type="text/css">
-    .catalogue #filtre_produit{height: 20px}
-    .blocs #actus{min-height: 500px}
-    
-    ul#nav_menu li a{color: #fff}
-    ul#nav_menu li.sub{position: relative}
-    ul#nav_menu li.sub ul{position: absolute;left: 0;display: none;width: 300px}
-    ul#nav_menu li.sub:hover ul{display: block;}
-    footer{height: 20px;}
-  </style>
 </head>
 <body>
 <!-- mettre alert IE -->
@@ -75,10 +65,12 @@
             </ul>
           </section>
           <div class="cb"></div>
-
     </div> <!-- Fin contenu -->
-    <footer></footer>
+      <footer>
+          <p>&copy; 2012 Coder In &middot; <a href="http://www.coder-in.fr/mentions.html">mentions légales</a> &middot; <a href="#">plan du site</a> &middot; <a href="#logo">haut de page</a></p>
+      </footer>
   </div> <!-- Fin wrap -->
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <?php echo $this->Html->script('script.js'); ?>
     <?php echo $scripts_for_layout; ?>

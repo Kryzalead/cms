@@ -278,13 +278,37 @@ header h1 {
 				Nav
 ------------------------------------------ */
 /* line 224, styles.scss */
+ul#nav_menu li a {
+  color: #fff;
+}
+
+/* -- nous connaitre -- */
+/* line 226, styles.scss */
+ul#nav_menu li.sub {
+  position: relative;
+}
+
+/* line 227, styles.scss */
+ul#nav_menu li.sub ul {
+  position: absolute;
+  left: 0;
+  display: none;
+  width: 320px;
+}
+
+/* line 228, styles.scss */
+ul#nav_menu li.sub:hover ul {
+  display: block;
+}
+
+/* line 230, styles.scss */
 nav#menu {
   display: inline-block;
   vertical-align: top;
   margin: 70px 0 0 10px;
 }
 
-/* line 229, styles.scss */
+/* line 235, styles.scss */
 nav#menu ul#nav_menu {
   position: absolute;
   text-align: left;
@@ -293,14 +317,14 @@ nav#menu ul#nav_menu {
   height: 50px;
 }
 
-/* line 236, styles.scss */
+/* line 242, styles.scss */
 nav#menu ul#nav_menu li {
   padding: 0;
   margin: 0;
   display: inline;
 }
 
-/* line 241, styles.scss */
+/* line 247, styles.scss */
 nav#menu ul#nav_menu li a {
   text-shadow: 2px 2px 3px #333;
   -moz-transition: color 0.25s;
@@ -323,7 +347,7 @@ nav#menu ul#nav_menu li a {
   font-family: 'leckerli';
 }
 
-/* line 262, styles.scss */
+/* line 268, styles.scss */
 nav#menu ul#nav_menu li a:hover {
   text-shadow: 0px 6px 4px #777777;
   filter: dropshadow(color=#777777, offx=3, offy=6);
@@ -336,7 +360,7 @@ nav#menu ul#nav_menu li a:hover {
 /* ---------------------------------------
 				Contenu
 ------------------------------------------ */
-/* line 274, styles.scss */
+/* line 280, styles.scss */
 #contenu {
   width: 990px;
   background-color: #eee;
@@ -350,7 +374,7 @@ nav#menu ul#nav_menu li a:hover {
   box-shadow: 2px 4px 15px #222222;
 }
 
-/* line 279, styles.scss */
+/* line 285, styles.scss */
 .bg {
   background: #555555 url(images/bg-contenu.jpg) 270px 0 no-repeat;
   width: 990px;
@@ -361,13 +385,13 @@ nav#menu ul#nav_menu li a:hover {
   border-radius: 15px 15px 0px 0px / 15px 15px 0px 0px;
 }
 
-/* line 284, styles.scss */
+/* line 290, styles.scss */
 .bg p {
   color: white;
 }
 
 /* --	Bandeau contenu -- */
-/* line 288, styles.scss */
+/* line 294, styles.scss */
 #bandeau {
   border-top: 1px dashed #999;
   width: 990px;
@@ -376,7 +400,7 @@ nav#menu ul#nav_menu li a:hover {
   display: block;
 }
 
-/* line 295, styles.scss */
+/* line 301, styles.scss */
 #bandeau ul {
   display: inline-block;
   vertical-align: top;
@@ -387,19 +411,19 @@ nav#menu ul#nav_menu li a:hover {
   filter: dropshadow(color=#222222, offx=1, offy=1);
 }
 
-/* line 304, styles.scss */
+/* line 310, styles.scss */
 #bandeau ul.horaires {
   text-align: right;
 }
 
-/* line 305, styles.scss */
+/* line 311, styles.scss */
 #bandeau li.titre {
   font-weight: bold;
   font-size: 1.4em;
   padding-bottom: 15px;
 }
 
-/* line 310, styles.scss */
+/* line 316, styles.scss */
 #bandeau img {
   display: inline-block;
   vertical-align: top;
@@ -407,20 +431,20 @@ nav#menu ul#nav_menu li a:hover {
 }
 
 /* --  Bloc Accueil et blocs -- */
-/* line 317, styles.scss */
+/* line 323, styles.scss */
 .bloc #accueil {
   width: 600px;
   padding: 30px 15px 20px;
   margin: 0;
 }
 
-/* line 319, styles.scss */
+/* line 325, styles.scss */
 .blocs {
   padding: 20px;
 }
 
 /* -- Image accessoires -- */
-/* line 323, styles.scss */
+/* line 329, styles.scss */
 aside#image-accessoires {
   display: inline-block;
   vertical-align: top;
@@ -429,7 +453,7 @@ aside#image-accessoires {
   left: 20px;
 }
 
-/* line 330, styles.scss */
+/* line 336, styles.scss */
 aside#image-accessoires img {
   width: 313px;
   height: 282px;
@@ -438,13 +462,18 @@ aside#image-accessoires img {
 /* ---------------------------------------
 				catalogue
 ------------------------------------------ */
-/* line 338, styles.scss */
+/* line 344, styles.scss */
 .produit {
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 340, styles.scss */
+/* line 345, styles.scss */
+.catalogue #filtre_produit {
+  height: 20px;
+}
+
+/* line 346, styles.scss */
 .catalogue {
   position: relative;
   display: inline-block;
@@ -452,7 +481,7 @@ aside#image-accessoires img {
   margin: 0 auto;
 }
 
-/* line 346, styles.scss */
+/* line 352, styles.scss */
 .catalogue h1.titre_produit {
   display: block;
   vertical-align: top;
@@ -461,7 +490,7 @@ aside#image-accessoires img {
   padding: 10px 0 20px 30px;
 }
 
-/* line 353, styles.scss */
+/* line 359, styles.scss */
 .catalogue figure {
   position: relative;
   display: inline-block;
@@ -469,25 +498,25 @@ aside#image-accessoires img {
   margin: 0;
 }
 
-/* line 359, styles.scss */
+/* line 365, styles.scss */
 .catalogue figure img {
   border: 1px solid white;
   padding: 3px;
   margin: 10px;
 }
 
-/* line 364, styles.scss */
+/* line 370, styles.scss */
 .catalogue nav {
   margin-left: 15px;
 }
 
-/* line 366, styles.scss */
+/* line 372, styles.scss */
 .catalogue nav figure:hover figcaption {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 370, styles.scss */
+/* line 376, styles.scss */
 .catalogue figcaption {
   background-color: #fff;
   color: black;
@@ -497,7 +526,7 @@ aside#image-accessoires img {
   bottom: 14px;
 }
 
-/* line 378, styles.scss */
+/* line 384, styles.scss */
 .catalogue img {
   display: block;
   margin: 10px 0;
@@ -512,19 +541,19 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 384, styles.scss */
+/* line 390, styles.scss */
 .catalogue img:hover {
   opacity: 0.8;
   -moz-opacity: 0.8;
   filter: alpha(opacity=8);
 }
 
-/* line 389, styles.scss */
+/* line 395, styles.scss */
 .produit_metas {
   margin-left: 10px;
 }
 
-/* line 390, styles.scss */
+/* line 396, styles.scss */
 .produit_metas span.prix {
   font-size: 1.2em;
   font-weight: bold;
@@ -533,13 +562,13 @@ aside#image-accessoires img {
   display: inline-block;
 }
 
-/* line 391, styles.scss */
+/* line 397, styles.scss */
 .produit_metas p {
   line-height: 12px;
   text-align: center;
 }
 
-/* line 393, styles.scss */
+/* line 399, styles.scss */
 #catalogue_accessoire {
   width: 950px;
   margin-top: 30px;
@@ -547,23 +576,23 @@ aside#image-accessoires img {
 }
 
 /* -- blocs catalogue -- */
-/* line 396, styles.scss */
+/* line 402, styles.scss */
 .blocs h1 a {
   color: #000;
 }
 
 /* -- Recapitulatif produits -- */
-/* line 400, styles.scss */
+/* line 406, styles.scss */
 #filtre_produit {
   margin: 20px 10px;
 }
 
-/* line 401, styles.scss */
+/* line 407, styles.scss */
 #filtre_produit .input select {
   float: left;
 }
 
-/* line 403, styles.scss */
+/* line 409, styles.scss */
 .toggle {
   display: inline-block;
   background: url("images/white-arrow.png") 1px -63px no-repeat;
@@ -571,34 +600,42 @@ aside#image-accessoires img {
   height: 18px;
 }
 
-/* line 409, styles.scss */
+/* line 415, styles.scss */
 #show_filter .active_arrow {
   background-position: 0 -15px;
 }
 
 /* ---------------------------------------
+				Actulités
+------------------------------------------ */
+/* line 420, styles.scss */
+.blocs #actus {
+  min-height: 500px;
+}
+
+/* ---------------------------------------
 				Fiche produits
 ------------------------------------------ */
-/* line 414, styles.scss */
+/* line 426, styles.scss */
 .fiche h4 {
   margin-left: 0;
 }
 
-/* line 415, styles.scss */
+/* line 427, styles.scss */
 .produit-gauche {
   width: 300px;
   float: left;
   padding: 0;
 }
 
-/* line 416, styles.scss */
+/* line 428, styles.scss */
 .produit-droit {
   width: 225px;
   float: left;
   padding-left: 25px;
 }
 
-/* line 417, styles.scss */
+/* line 429, styles.scss */
 .fiche .photos {
   border: 3px solid #DBE5E8;
   -webkit-border-radius: 0px;
@@ -611,7 +648,7 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 418, styles.scss */
+/* line 430, styles.scss */
 .fiche .prix {
   display: block;
   float: none;
@@ -625,7 +662,7 @@ aside#image-accessoires img {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 419, styles.scss */
+/* line 431, styles.scss */
 .fiche .ancien-prix {
   font-weight: bold;
   text-decoration: line-through;
@@ -635,19 +672,19 @@ aside#image-accessoires img {
   font-size: 1.1em;
 }
 
-/* line 420, styles.scss */
+/* line 432, styles.scss */
 .fiche .description {
   border-bottom: 1px solid #D9D9D9;
   padding-bottom: 11px;
   margin-bottom: 7px;
 }
 
-/* line 421, styles.scss */
+/* line 433, styles.scss */
 .fiche .description li {
   line-height: 18px;
 }
 
-/* line 422, styles.scss */
+/* line 434, styles.scss */
 .fiche .titre {
   font-size: 1.2em;
   font-weight: bold;
@@ -656,20 +693,20 @@ aside#image-accessoires img {
   text-decoration: underline;
 }
 
-/* line 423, styles.scss */
+/* line 435, styles.scss */
 .fiche .promo {
   border-bottom: 1px solid #D9D9D9;
   padding: 3px 0 20px;
 }
 
-/* line 424, styles.scss */
+/* line 436, styles.scss */
 .fiche .miniatures, .fiche .miniatures li {
   background: none;
   padding: 0;
   margin: 0;
 }
 
-/* line 425, styles.scss */
+/* line 437, styles.scss */
 .fiche .miniatures li a {
   float: left;
   border: 2px solid #D9D9D9;
@@ -685,7 +722,7 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 426, styles.scss */
+/* line 438, styles.scss */
 .fiche .miniatures li a:hover {
   border-color: #AA4673;
   /*+opacity:80%;*/
@@ -695,17 +732,17 @@ aside#image-accessoires img {
   opacity: 0.8;
 }
 
-/* line 427, styles.scss */
+/* line 439, styles.scss */
 .fiche .tags a {
   text-decoration: underline;
 }
 
-/* line 428, styles.scss */
+/* line 440, styles.scss */
 .produit-partage a {
   text-decoration: none;
 }
 
-/* line 429, styles.scss */
+/* line 441, styles.scss */
 .produit-partage a:hover {
   opacity: 0.7;
   -moz-opacity: 0.7;
@@ -713,12 +750,12 @@ aside#image-accessoires img {
 }
 
 /* gallerie */
-/* line 433, styles.scss */
+/* line 445, styles.scss */
 .gallerie {
   overflow: none;
 }
 
-/* line 434, styles.scss */
+/* line 446, styles.scss */
 .gallerie h4 {
   line-height: 18px;
   padding: 20px 0 5px;
@@ -732,34 +769,34 @@ aside#image-accessoires img {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 435, styles.scss */
+/* line 447, styles.scss */
 .gallerie h4 a {
   text-decoration: none;
 }
 
-/* line 436, styles.scss */
+/* line 448, styles.scss */
 .gallerie a {
   color: #444;
 }
 
-/* line 437, styles.scss */
+/* line 449, styles.scss */
 .gallerie a:hover {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 438, styles.scss */
+/* line 450, styles.scss */
 .gallerie p {
   padding: 5px 0;
 }
 
-/* line 439, styles.scss */
+/* line 451, styles.scss */
 .gallerie .blanc {
   background: #FFF;
   margin: 20px;
 }
 
-/* line 440, styles.scss */
+/* line 452, styles.scss */
 .gallerie .blanc h4 {
   font: bold 2.1em 'riesling';
 }
@@ -767,20 +804,20 @@ aside#image-accessoires img {
 /* ---------------------------------------
 				Partenariats
 ------------------------------------------ */
-/* line 446, styles.scss */
+/* line 458, styles.scss */
 #partenariats {
   color: #0F0F0F;
   margin: 0 auto;
   border: 1px solid red;
 }
 
-/* line 447, styles.scss */
+/* line 459, styles.scss */
 ul.ligne1, ul.ligne2 {
   margin: 20px 0;
   display: inline-block;
 }
 
-/* line 448, styles.scss */
+/* line 460, styles.scss */
 ul.ligne1 li, ul.ligne2 li {
   display: inline-block;
   vertical-align: top;
@@ -790,35 +827,35 @@ ul.ligne1 li, ul.ligne2 li {
   text-align: center;
 }
 
-/* line 449, styles.scss */
+/* line 461, styles.scss */
 ul.ligne1 li:first-child, ul.ligne2 li:first-child {
   border: 0;
 }
 
-/* line 450, styles.scss */
+/* line 462, styles.scss */
 ul.ligne1 li ul li, ul.ligne2 li ul li {
   padding: 0;
   margin: 3px 0;
   border: none;
 }
 
-/* line 451, styles.scss */
+/* line 463, styles.scss */
 ul.ligne1 li h3, ul.ligne2 li h3 {
   margin-bottom: 15px;
   font: bold 2.2em 'riesling';
 }
 
-/* line 452, styles.scss */
+/* line 464, styles.scss */
 ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {
   padding-top: 15px;
 }
 
-/* line 453, styles.scss */
+/* line 465, styles.scss */
 ul.ligne2 li#dernier {
   border-right: 1px solid #E3E3E3;
 }
 
-/* line 454, styles.scss */
+/* line 466, styles.scss */
 ul.ligne2 li#avant_dernier {
   border: none;
 }
@@ -826,7 +863,7 @@ ul.ligne2 li#avant_dernier {
 /* ---------------------------------------
 				Contact
 ------------------------------------------ */
-/* line 460, styles.scss */
+/* line 472, styles.scss */
 #formContact {
   position: relative;
   display: inline-block;
@@ -835,7 +872,7 @@ ul.ligne2 li#avant_dernier {
   padding: 0;
 }
 
-/* line 467, styles.scss */
+/* line 479, styles.scss */
 #formContact legend {
   font: normal 4em 'riesling';
   text-align: left;
@@ -843,20 +880,20 @@ ul.ligne2 li#avant_dernier {
   padding: 40px 0 40px 30px;
 }
 
-/* line 473, styles.scss */
+/* line 485, styles.scss */
 #formContact .mariee {
   visibility: hidden;
   position: absolute;
 }
 
-/* line 477, styles.scss */
+/* line 489, styles.scss */
 form.formulaire {
   width: 360px;
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 482, styles.scss */
+/* line 494, styles.scss */
 form input[type=text], form textarea {
   border: none;
   background: #fff;
@@ -874,7 +911,7 @@ form input[type=text], form textarea {
   box-shadow: inset 0px 0px 10px 0px #222;
 }
 
-/* line 498, styles.scss */
+/* line 510, styles.scss */
 form textarea {
   font-size: 1.3em;
   width: 330px;
@@ -885,17 +922,17 @@ form textarea {
   padding-top: 10px;
 }
 
-/* line 507, styles.scss */
+/* line 519, styles.scss */
 fieldset {
   border: 0 none;
 }
 
-/* line 508, styles.scss */
+/* line 520, styles.scss */
 legend {
   display: hidden;
 }
 
-/* line 510, styles.scss */
+/* line 522, styles.scss */
 .envoyer input {
   margin: 10px 0 0 230px;
   width: 120px;
@@ -906,7 +943,7 @@ legend {
   background: url("images/bouton_submit.png") top left no-repeat;
 }
 
-/* line 519, styles.scss */
+/* line 531, styles.scss */
 .envoyer:hover {
   opacity: 0.8;
   -moz-opacity: 0.8;
@@ -914,26 +951,26 @@ legend {
 }
 
 /*adresse-sociaux*/
-/* line 525, styles.scss */
+/* line 537, styles.scss */
 #reseauxSociaux {
   color: #878383;
   font-size: 1.3em;
   margin-left: 15px;
 }
 
-/* line 530, styles.scss */
+/* line 542, styles.scss */
 #reseauxSociaux a {
   display: inline-block;
   vertical-align: top;
   margin: 10px 40px 0 0;
 }
 
-/* line 535, styles.scss */
+/* line 547, styles.scss */
 #reseauxSociaux a img {
   width: 150px;
 }
 
-/* line 537, styles.scss */
+/* line 549, styles.scss */
 #reseauxSociaux a:hover img {
   opacity: 0.8;
   -moz-opacity: 0.8;
@@ -941,7 +978,7 @@ legend {
 }
 
 /* -- planGoogle -- */
-/* line 545, styles.scss */
+/* line 557, styles.scss */
 #plan_google {
   display: inline-block;
   vertical-align: top;
@@ -960,14 +997,14 @@ legend {
 }
 
 /* ---------------------------------------
-				Guestbook
+					Guestbook
 ------------------------------------------ */
-/* line 558, styles.scss */
+/* line 570, styles.scss */
 .mariee {
   visibility: hidden;
 }
 
-/* line 559, styles.scss */
+/* line 571, styles.scss */
 .comment {
   border: 1px solid #999;
   width: 600px;
@@ -977,30 +1014,30 @@ legend {
   border: 1px solid red;
 }
 
-/* line 560, styles.scss */
+/* line 572, styles.scss */
 .comment .comment-title {
   background: #ccc;
   padding: 5px;
   border-bottom: 1px solid #999;
 }
 
-/* line 561, styles.scss */
+/* line 573, styles.scss */
 .comment .comment-title .action {
   float: right;
 }
 
-/* line 562, styles.scss */
+/* line 574, styles.scss */
 .comment .comment-content {
   padding: 5px;
 }
 
-/* line 564, styles.scss */
+/* line 576, styles.scss */
 #guestbook {
   border-top: 1px solid #D9D9D9;
   padding-top: 10px;
 }
 
-/* line 566, styles.scss */
+/* line 578, styles.scss */
 #guestbook_form {
   padding: 10px 20px;
   background-color: #fff;
@@ -1018,7 +1055,7 @@ legend {
   box-shadow: 2px 4px 15px #222222;
 }
 
-/* line 575, styles.scss */
+/* line 587, styles.scss */
 #guestbook_form label {
   display: inline-block;
   vertical-align: top;
@@ -1026,32 +1063,56 @@ legend {
   width: 100px;
 }
 
-/* line 581, styles.scss */
+/* line 593, styles.scss */
 #guestbook_form input[type=text] {
   width: 180px;
 }
 
-/* line 583, styles.scss */
+/* line 595, styles.scss */
 #guestbook_form .submit {
   display: inline-block;
   margin: 20px 0 0 20px;
 }
 
-/* line 587, styles.scss */
+/* line 599, styles.scss */
 form .placeholder {
   margin-left: 0;
 }
 
-/* line 588, styles.scss */
+/* line 600, styles.scss */
 form .placeholder label {
   position: absolute;
   line-height: 36px;
   margin-left: 15px;
 }
 
-/* line 590, styles.scss */
+/* line 602, styles.scss */
 #guestbook_image {
   display: inline-block;
   vertical-align: top;
   margin-top: 100px;
+}
+
+/* ---------------------------------------
+					Footer
+------------------------------------------ */
+/* line 609, styles.scss */
+footer {
+  margin: 0 auto;
+  width: 100%;
+  padding: 15px 0 10px;
+  text-align: center;
+  color: #747474;
+  font-size: .9em;
+}
+
+/* line 610, styles.scss */
+footer a, footer a:visited, footer a:link {
+  color: #747474;
+}
+
+/* line 611, styles.scss */
+footer a:hover {
+  text-decoration: underline;
+  color: #444;
 }
