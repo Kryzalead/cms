@@ -45,7 +45,8 @@ html, body{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size: 0.95em;
 	color: black;
-	line-height: 1.5;
+			line-height:18px;
+
 	background:#D1789F url(images/bg.jpg) top center repeat;
 	-webkit-font-smoothing:antialiased;
 	-moz-font-smoothing:antialiased;
@@ -66,9 +67,9 @@ hr {
 	float:none !important;
 	height:0 !important;}
 
-ol, ul, li {
-	list-style:none;
-	line-height:1;}
+ol, ul, li {list-style:none;line-height:22px;}
+
+.alignLeft{float: left}
 
 
 /* ---------------------------------------
@@ -87,8 +88,8 @@ a img 				{border: none}
 /* ---------------------------------------
 				Form
 ------------------------------------------ */
-textarea{overflow: auto;}
-input	{cursor: auto;}
+textarea {overflow: auto;}
+input		{cursor: auto;}
 label 	{cursor:text;}
 
 
@@ -123,13 +124,13 @@ h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus	{text-decoration: none;}
 
 
 /* ---------------------------------------
-			Paragraphe
+				Paragraphe
 ------------------------------------------ */
 p {margin-bottom: 7px;}
 
 
 /* ---------------------------------------
-				Span
+					Span
 ------------------------------------------ */
 .vert {color: #9CA436;}
 .rose {color: #AA4673;}
@@ -138,7 +139,7 @@ p {margin-bottom: 7px;}
 
 
 /* ---------------------------------------
-			Frameworks
+				Frameworks
 ------------------------------------------ */
 .boxOmbre{@include box-shadow(#222,0px,1px,5px);}
 .boxRadius{@include border-radius(5px);}
@@ -174,7 +175,7 @@ $experimental-support-for-svg: true;
 
 
 /* ---------------------------------------
-			@Font-face
+				@Font-face
 ------------------------------------------ */
 @font-face {
     font-family: 'jenna';
@@ -272,16 +273,15 @@ nav#menu ul#nav_menu li a{
 	-ms-transition: 0.25s ease-out;
 	font-weight:normal;
 	margin-right:7px;
-	line-height: 0px;
 	font-size:18px;
 	font-family:'leckerli';}
 
 nav#menu ul#nav_menu li a:hover {
-	text-shadow: 3px 6px 4px #777;
+	text-shadow: 3px 6px 4px #777777;
+	filter: dropshadow(color=#777777, offx=3, offy=6);
 	color: #842490;
 	font-weight:normal;
 	margin-right:2px;
-	line-height: 0px;
 	font-size:26px;}
 
 
@@ -300,7 +300,6 @@ nav#menu ul#nav_menu li a:hover {
 
 .bg p{
 	color:white;
-	line-height:18px;
 	margin:10px 0;}
 
 
@@ -308,7 +307,7 @@ nav#menu ul#nav_menu li a:hover {
 #bandeau {
 	border-top: 1px dashed #999;
 	width: 990px;
-	/*height: 115px;*/
+	height:115px;
 	background: transparent url(images/bandeau.png) 0 0 no-repeat;
 	display: block;}
 
@@ -316,31 +315,26 @@ nav#menu ul#nav_menu li a:hover {
 	display: inline-block;
 	vertical-align: top;
 	color: white;
-	font: normal 1.8em "jenna";
-	padding-left: 10px;}
+	font: normal 1.6em 'swenson';
+	padding-left: 10px;
+	text-shadow: 1px 1px 5px #222;
+	filter: dropshadow(color=#222, offx=1, offy=1);}
 
 #bandeau ul.horaires {text-align: right;}
 #bandeau li.titre {
 	font-weight: bold;
-	font-size: 1.4em;}
+	font-size: 1.4em;
+	padding-bottom:15px;}
 
 #bandeau img {
 	display: inline-block;
 	vertical-align: top;
-	margin: 12px 140px 0;}
+	margin: 15px 100px 0;}
 
 
-/* --  Bloc et blocs -- */
-.bloc {
-	display: inline-block;
-	padding:30px 0;}
-
-.bloc p {
-	width:500px;
-	text-align:justify;
-	padding:10px;
-	display: inline-block;
-	vertical-align:top;}
+/* --  Bloc Accueil et blocs -- */
+.bloc #accueil{width: 600px;padding: 10px;}
+.bloc {display: inline-block;}
 
 .blocs {padding:20px;}
 
@@ -613,4 +607,4 @@ legend {display:hidden;}
 form .placeholder {margin-left:0;}
 form .placeholder label {position: absolute;line-height:36px; margin-left:15px;}
 
-#guestbook_image {display: inline-block;vertical-align:top;margin-top:100px;border:1px solid red;}
+#guestbook_image {display: inline-block;vertical-align:top;margin-top:100px;}

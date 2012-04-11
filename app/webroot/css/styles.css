@@ -51,7 +51,7 @@ html, body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.95em;
   color: black;
-  line-height: 1.5;
+  line-height: 18px;
   background: #d1789f url(images/bg.jpg) top center repeat;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
@@ -61,14 +61,14 @@ html, body {
 /* ---------------------------------------
 			Général reset
 ------------------------------------------ */
-/* line 58, styles.scss */
+/* line 59, styles.scss */
 hr {
   width: 100%;
   clear: both;
   visibility: hidden;
 }
 
-/* line 63, styles.scss */
+/* line 64, styles.scss */
 .cb {
   clear: both;
   display: block !important;
@@ -76,39 +76,44 @@ hr {
   height: 0 !important;
 }
 
-/* line 69, styles.scss */
+/* line 70, styles.scss */
 ol, ul, li {
   list-style: none;
-  line-height: 1;
+  line-height: 22px;
+}
+
+/* line 72, styles.scss */
+.alignLeft {
+  float: left;
 }
 
 /* ---------------------------------------
 				Liens
 ------------------------------------------ */
-/* line 77, styles.scss */
+/* line 78, styles.scss */
 a, p a {
   text-decoration: none;
   color: black;
   outline: 0;
 }
 
-/* line 82, styles.scss */
+/* line 83, styles.scss */
 a:hover {
   outline: 0;
   color: white;
 }
 
-/* line 83, styles.scss */
+/* line 84, styles.scss */
 a:focus, a:active {
   outline: 0;
 }
 
-/* line 84, styles.scss */
+/* line 85, styles.scss */
 a:visited {
   color: white;
 }
 
-/* line 85, styles.scss */
+/* line 86, styles.scss */
 a img {
   border: none;
 }
@@ -116,17 +121,17 @@ a img {
 /* ---------------------------------------
 				Form
 ------------------------------------------ */
-/* line 90, styles.scss */
+/* line 91, styles.scss */
 textarea {
   overflow: auto;
 }
 
-/* line 91, styles.scss */
+/* line 92, styles.scss */
 input {
   cursor: auto;
 }
 
-/* line 92, styles.scss */
+/* line 93, styles.scss */
 label {
   cursor: text;
 }
@@ -134,14 +139,14 @@ label {
 /* ---------------------------------------
 				Titres Hx
 ------------------------------------------ */
-/* line 98, styles.scss */
+/* line 99, styles.scss */
 h1, h2 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
   position: relative;
 }
 
-/* line 103, styles.scss */
+/* line 104, styles.scss */
 h1 {
   font: normal 3.5em'riesling';
   color: #000;
@@ -152,7 +157,7 @@ h1 {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 112, styles.scss */
+/* line 113, styles.scss */
 h2 {
   font: normal 1.3em sans-serif;
   padding: 30px 0 20px 30px;
@@ -163,60 +168,60 @@ h2 {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 121, styles.scss */
+/* line 122, styles.scss */
 h1 a, h1 a:visited, h2 a, h2 a:visited {
   text-decoration: none;
   color: #999;
 }
 
-/* line 122, styles.scss */
+/* line 123, styles.scss */
 h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus {
   text-decoration: none;
 }
 
 /* ---------------------------------------
-			Paragraphe
+				Paragraphe
 ------------------------------------------ */
-/* line 128, styles.scss */
+/* line 129, styles.scss */
 p {
   margin-bottom: 7px;
 }
 
 /* ---------------------------------------
-				Span
+					Span
 ------------------------------------------ */
-/* line 134, styles.scss */
+/* line 135, styles.scss */
 .vert {
   color: #9CA436;
 }
 
-/* line 135, styles.scss */
+/* line 136, styles.scss */
 .rose {
   color: #AA4673;
 }
 
-/* line 136, styles.scss */
+/* line 137, styles.scss */
 .gras {
   font-weight: bold;
 }
 
-/* line 137, styles.scss */
+/* line 138, styles.scss */
 .aux_mariees_de_christele {
   font: bold 1.2em 'sans-serif';
   color: #AA4673;
 }
 
 /* ---------------------------------------
-			Frameworks
+				Frameworks
 ------------------------------------------ */
-/* line 143, styles.scss */
+/* line 144, styles.scss */
 .boxOmbre {
   -webkit-box-shadow: #222222, 0px, 1px, 5px;
   -moz-box-shadow: #222222, 0px, 1px, 5px;
   box-shadow: #222222, 0px, 1px, 5px;
 }
 
-/* line 144, styles.scss */
+/* line 145, styles.scss */
 .boxRadius {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -229,7 +234,7 @@ p {
 /* -- $ Var -- */
 /* --  Mixin -- */
 /* ---------------------------------------
-			@Font-face
+				@Font-face
 ------------------------------------------ */
 @font-face {
   font-family: 'jenna';
@@ -266,7 +271,7 @@ p {
 /* ---------------------------------------
 				Container
 ------------------------------------------ */
-/* line 219, styles.scss */
+/* line 220, styles.scss */
 .wrap {
   display: block;
   width: 995px;
@@ -276,7 +281,7 @@ p {
 /* ---------------------------------------
 				Header
 ------------------------------------------ */
-/* line 228, styles.scss */
+/* line 229, styles.scss */
 header h1 {
   position: relative;
   display: inline-block;
@@ -289,14 +294,14 @@ header h1 {
 /* ---------------------------------------
 				Nav
 ------------------------------------------ */
-/* line 240, styles.scss */
+/* line 241, styles.scss */
 nav#menu {
   display: inline-block;
   vertical-align: top;
   margin: 70px 0 0 5px;
 }
 
-/* line 245, styles.scss */
+/* line 246, styles.scss */
 nav#menu ul#nav_menu {
   position: absolute;
   text-align: left;
@@ -305,14 +310,14 @@ nav#menu ul#nav_menu {
   width: 710px;
 }
 
-/* line 252, styles.scss */
+/* line 253, styles.scss */
 nav#menu ul#nav_menu li {
   padding: 0;
   margin: 0;
   display: inline;
 }
 
-/* line 257, styles.scss */
+/* line 258, styles.scss */
 nav#menu ul#nav_menu li a {
   text-shadow: 2px 2px 3px #333;
   -moz-transition: color 0.25s;
@@ -331,18 +336,17 @@ nav#menu ul#nav_menu li a {
   -ms-transition: 0.25s ease-out;
   font-weight: normal;
   margin-right: 7px;
-  line-height: 0px;
   font-size: 18px;
   font-family: 'leckerli';
 }
 
 /* line 279, styles.scss */
 nav#menu ul#nav_menu li a:hover {
-  text-shadow: 3px 6px 4px #777;
+  text-shadow: 3px 6px 4px #777777;
+  filter: dropshadow(color=#777777, offx=3, offy=6);
   color: #842490;
   font-weight: normal;
   margin-right: 2px;
-  line-height: 0px;
   font-size: 26px;
 }
 
@@ -377,70 +381,68 @@ nav#menu ul#nav_menu li a:hover {
 /* line 301, styles.scss */
 .bg p {
   color: white;
-  line-height: 18px;
   margin: 10px 0;
 }
 
 /* --	Bandeau contenu -- */
-/* line 308, styles.scss */
+/* line 307, styles.scss */
 #bandeau {
   border-top: 1px dashed #999;
   width: 990px;
-  /*height: 115px;*/
+  height: 115px;
   background: transparent url(images/bandeau.png) 0 0 no-repeat;
   display: block;
 }
 
-/* line 315, styles.scss */
+/* line 314, styles.scss */
 #bandeau ul {
   display: inline-block;
   vertical-align: top;
   color: white;
-  font: normal 1.8em "jenna";
+  font: normal 1.6em 'swenson';
   padding-left: 10px;
+  text-shadow: 1px 1px 5px #222;
+  filter: dropshadow(color=#222222, offx=1, offy=1);
 }
 
-/* line 322, styles.scss */
+/* line 323, styles.scss */
 #bandeau ul.horaires {
   text-align: right;
 }
 
-/* line 323, styles.scss */
+/* line 324, styles.scss */
 #bandeau li.titre {
   font-weight: bold;
   font-size: 1.4em;
+  padding-bottom: 15px;
 }
 
-/* line 327, styles.scss */
+/* line 329, styles.scss */
 #bandeau img {
   display: inline-block;
   vertical-align: top;
-  margin: 12px 140px 0;
+  margin: 15px 100px 0;
 }
 
-/* --  Bloc et blocs -- */
-/* line 334, styles.scss */
+/* --  Bloc Accueil et blocs -- */
+/* line 336, styles.scss */
+.bloc #accueil {
+  width: 600px;
+  padding: 10px;
+}
+
+/* line 337, styles.scss */
 .bloc {
   display: inline-block;
-  padding: 30px 0;
 }
 
-/* line 338, styles.scss */
-.bloc p {
-  width: 500px;
-  text-align: justify;
-  padding: 10px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-/* line 345, styles.scss */
+/* line 339, styles.scss */
 .blocs {
   padding: 20px;
 }
 
 /* -- Image accessoires -- */
-/* line 349, styles.scss */
+/* line 343, styles.scss */
 aside#image-accessoires {
   display: inline-block;
   vertical-align: top;
@@ -449,7 +451,7 @@ aside#image-accessoires {
   left: 20px;
 }
 
-/* line 356, styles.scss */
+/* line 350, styles.scss */
 aside#image-accessoires img {
   width: 313px;
   height: 282px;
@@ -458,13 +460,13 @@ aside#image-accessoires img {
 /* ---------------------------------------
 				catalogue
 ------------------------------------------ */
-/* line 364, styles.scss */
+/* line 358, styles.scss */
 .produit {
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 366, styles.scss */
+/* line 360, styles.scss */
 .catalogue {
   position: relative;
   display: inline-block;
@@ -472,7 +474,7 @@ aside#image-accessoires img {
   margin: 0 auto;
 }
 
-/* line 372, styles.scss */
+/* line 366, styles.scss */
 .catalogue h1.titre_produit {
   display: block;
   vertical-align: top;
@@ -481,7 +483,7 @@ aside#image-accessoires img {
   padding: 10px 0 20px 30px;
 }
 
-/* line 379, styles.scss */
+/* line 373, styles.scss */
 .catalogue figure {
   position: relative;
   display: inline-block;
@@ -489,25 +491,25 @@ aside#image-accessoires img {
   margin: 0;
 }
 
-/* line 385, styles.scss */
+/* line 379, styles.scss */
 .catalogue figure img {
   border: 1px solid white;
   padding: 3px;
   margin: 10px;
 }
 
-/* line 390, styles.scss */
+/* line 384, styles.scss */
 .catalogue nav {
   margin-left: 15px;
 }
 
-/* line 392, styles.scss */
+/* line 386, styles.scss */
 .catalogue nav figure:hover figcaption {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 396, styles.scss */
+/* line 390, styles.scss */
 .catalogue figcaption {
   background-color: #fff;
   color: black;
@@ -517,7 +519,7 @@ aside#image-accessoires img {
   bottom: 14px;
 }
 
-/* line 404, styles.scss */
+/* line 398, styles.scss */
 .catalogue img {
   display: block;
   margin: 10px 0;
@@ -532,19 +534,19 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 410, styles.scss */
+/* line 404, styles.scss */
 .catalogue img:hover {
   opacity: 0.8;
   -moz-opacity: 0.8;
   filter: alpha(opacity=8);
 }
 
-/* line 415, styles.scss */
+/* line 409, styles.scss */
 .produit_metas {
   margin-left: 10px;
 }
 
-/* line 416, styles.scss */
+/* line 410, styles.scss */
 .produit_metas span.prix {
   font-size: 1.2em;
   font-weight: bold;
@@ -553,13 +555,13 @@ aside#image-accessoires img {
   display: inline-block;
 }
 
-/* line 417, styles.scss */
+/* line 411, styles.scss */
 .produit_metas p {
   line-height: 12px;
   text-align: center;
 }
 
-/* line 419, styles.scss */
+/* line 413, styles.scss */
 #catalogue_accessoire {
   width: 950px;
   margin-top: 30px;
@@ -567,23 +569,23 @@ aside#image-accessoires img {
 }
 
 /* -- blocs catalogue -- */
-/* line 422, styles.scss */
+/* line 416, styles.scss */
 .blocs h1 a {
   color: #000;
 }
 
 /* -- Recapitulatif produits -- */
-/* line 426, styles.scss */
+/* line 420, styles.scss */
 #filtre_produit {
   margin: 20px 10px;
 }
 
-/* line 427, styles.scss */
+/* line 421, styles.scss */
 #filtre_produit .input select {
   float: left;
 }
 
-/* line 429, styles.scss */
+/* line 423, styles.scss */
 .toggle {
   display: inline-block;
   background: url("images/white-arrow.png") 1px -63px no-repeat;
@@ -591,7 +593,7 @@ aside#image-accessoires img {
   height: 18px;
 }
 
-/* line 435, styles.scss */
+/* line 429, styles.scss */
 #show_filter .active_arrow {
   background-position: 0 -15px;
 }
@@ -599,26 +601,26 @@ aside#image-accessoires img {
 /* ---------------------------------------
 				Fiche produits
 ------------------------------------------ */
-/* line 440, styles.scss */
+/* line 434, styles.scss */
 .fiche h4 {
   margin-left: 0;
 }
 
-/* line 441, styles.scss */
+/* line 435, styles.scss */
 .produit-gauche {
   width: 300px;
   float: left;
   padding: 0;
 }
 
-/* line 442, styles.scss */
+/* line 436, styles.scss */
 .produit-droit {
   width: 225px;
   float: left;
   padding-left: 25px;
 }
 
-/* line 443, styles.scss */
+/* line 437, styles.scss */
 .fiche .photos {
   border: 3px solid #DBE5E8;
   -webkit-border-radius: 0px;
@@ -631,7 +633,7 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 444, styles.scss */
+/* line 438, styles.scss */
 .fiche .prix {
   display: block;
   float: none;
@@ -645,7 +647,7 @@ aside#image-accessoires img {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 445, styles.scss */
+/* line 439, styles.scss */
 .fiche .ancien-prix {
   font-weight: bold;
   text-decoration: line-through;
@@ -655,19 +657,19 @@ aside#image-accessoires img {
   font-size: 1.1em;
 }
 
-/* line 446, styles.scss */
+/* line 440, styles.scss */
 .fiche .description {
   border-bottom: 1px solid #D9D9D9;
   padding-bottom: 11px;
   margin-bottom: 7px;
 }
 
-/* line 447, styles.scss */
+/* line 441, styles.scss */
 .fiche .description li {
   line-height: 18px;
 }
 
-/* line 448, styles.scss */
+/* line 442, styles.scss */
 .fiche .titre {
   font-size: 1.2em;
   font-weight: bold;
@@ -676,20 +678,20 @@ aside#image-accessoires img {
   text-decoration: underline;
 }
 
-/* line 449, styles.scss */
+/* line 443, styles.scss */
 .fiche .promo {
   border-bottom: 1px solid #D9D9D9;
   padding: 3px 0 20px;
 }
 
-/* line 450, styles.scss */
+/* line 444, styles.scss */
 .fiche .miniatures, .fiche .miniatures li {
   background: none;
   padding: 0;
   margin: 0;
 }
 
-/* line 451, styles.scss */
+/* line 445, styles.scss */
 .fiche .miniatures li a {
   float: left;
   border: 2px solid #D9D9D9;
@@ -705,7 +707,7 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 452, styles.scss */
+/* line 446, styles.scss */
 .fiche .miniatures li a:hover {
   border-color: #AA4673;
   /*+opacity:80%;*/
@@ -715,17 +717,17 @@ aside#image-accessoires img {
   opacity: 0.8;
 }
 
-/* line 453, styles.scss */
+/* line 447, styles.scss */
 .fiche .tags a {
   text-decoration: underline;
 }
 
-/* line 454, styles.scss */
+/* line 448, styles.scss */
 .produit-partage a {
   text-decoration: none;
 }
 
-/* line 455, styles.scss */
+/* line 449, styles.scss */
 .produit-partage a:hover {
   opacity: 0.7;
   -moz-opacity: 0.7;
@@ -733,12 +735,12 @@ aside#image-accessoires img {
 }
 
 /* gallerie */
-/* line 459, styles.scss */
+/* line 453, styles.scss */
 .gallerie {
   overflow: none;
 }
 
-/* line 460, styles.scss */
+/* line 454, styles.scss */
 .gallerie h4 {
   line-height: 18px;
   padding: 20px 0 5px;
@@ -752,34 +754,34 @@ aside#image-accessoires img {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 461, styles.scss */
+/* line 455, styles.scss */
 .gallerie h4 a {
   text-decoration: none;
 }
 
-/* line 462, styles.scss */
+/* line 456, styles.scss */
 .gallerie a {
   color: #444;
 }
 
-/* line 463, styles.scss */
+/* line 457, styles.scss */
 .gallerie a:hover {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 464, styles.scss */
+/* line 458, styles.scss */
 .gallerie p {
   padding: 5px 0;
 }
 
-/* line 465, styles.scss */
+/* line 459, styles.scss */
 .gallerie .blanc {
   background: #FFF;
   margin: 20px;
 }
 
-/* line 466, styles.scss */
+/* line 460, styles.scss */
 .gallerie .blanc h4 {
   font: bold 2.1em 'riesling';
 }
@@ -787,20 +789,20 @@ aside#image-accessoires img {
 /* ---------------------------------------
 				Partenariats
 ------------------------------------------ */
-/* line 472, styles.scss */
+/* line 466, styles.scss */
 section#partenaires {
   color: #0F0F0F;
   margin: 0 auto;
   width: 970px;
 }
 
-/* line 473, styles.scss */
+/* line 467, styles.scss */
 ul.ligne1, ul.ligne2 {
   margin: 20px 0;
   display: inline-block;
 }
 
-/* line 474, styles.scss */
+/* line 468, styles.scss */
 ul.ligne1 li, ul.ligne2 li {
   display: inline-block;
   vertical-align: top;
@@ -810,35 +812,35 @@ ul.ligne1 li, ul.ligne2 li {
   text-align: center;
 }
 
-/* line 475, styles.scss */
+/* line 469, styles.scss */
 ul.ligne1 li:first-child, ul.ligne2 li:first-child {
   border: 0;
 }
 
-/* line 476, styles.scss */
+/* line 470, styles.scss */
 ul.ligne1 li ul li, ul.ligne2 li ul li {
   padding: 0;
   margin: 3px 0;
   border: none;
 }
 
-/* line 477, styles.scss */
+/* line 471, styles.scss */
 ul.ligne1 li h3, ul.ligne2 li h3 {
   margin-bottom: 15px;
   font: bold 2.2em 'riesling';
 }
 
-/* line 478, styles.scss */
+/* line 472, styles.scss */
 ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {
   padding-top: 15px;
 }
 
-/* line 479, styles.scss */
+/* line 473, styles.scss */
 ul.ligne2 li#dernier {
   border-right: 1px solid #E3E3E3;
 }
 
-/* line 480, styles.scss */
+/* line 474, styles.scss */
 ul.ligne2 li#avant_dernier {
   border: none;
 }
@@ -846,7 +848,7 @@ ul.ligne2 li#avant_dernier {
 /* ---------------------------------------
 				Contact
 ------------------------------------------ */
-/* line 486, styles.scss */
+/* line 480, styles.scss */
 #formContact {
   position: relative;
   display: inline-block;
@@ -855,7 +857,7 @@ ul.ligne2 li#avant_dernier {
   padding: 0;
 }
 
-/* line 493, styles.scss */
+/* line 487, styles.scss */
 #formContact legend {
   font: normal 4em 'riesling';
   text-align: left;
@@ -863,20 +865,20 @@ ul.ligne2 li#avant_dernier {
   padding: 40px 0 40px 30px;
 }
 
-/* line 499, styles.scss */
+/* line 493, styles.scss */
 #formContact .mariee {
   visibility: hidden;
   position: absolute;
 }
 
-/* line 503, styles.scss */
+/* line 497, styles.scss */
 form.formulaire {
   width: 360px;
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 508, styles.scss */
+/* line 502, styles.scss */
 form input[type=text], form textarea {
   border: none;
   background: #fff;
@@ -894,7 +896,7 @@ form input[type=text], form textarea {
   box-shadow: inset 0px 0px 10px 0px #222;
 }
 
-/* line 524, styles.scss */
+/* line 518, styles.scss */
 form textarea {
   font-size: 1.3em;
   width: 330px;
@@ -905,17 +907,17 @@ form textarea {
   padding-top: 10px;
 }
 
-/* line 533, styles.scss */
+/* line 527, styles.scss */
 fieldset {
   border: 0 none;
 }
 
-/* line 534, styles.scss */
+/* line 528, styles.scss */
 legend {
   display: hidden;
 }
 
-/* line 536, styles.scss */
+/* line 530, styles.scss */
 .envoyer input {
   margin: 10px 0 0 230px;
   width: 120px;
@@ -926,7 +928,7 @@ legend {
   background: url("images/bouton_submit.png") top left no-repeat;
 }
 
-/* line 545, styles.scss */
+/* line 539, styles.scss */
 .envoyer:hover {
   opacity: 0.8;
   -moz-opacity: 0.8;
@@ -934,26 +936,26 @@ legend {
 }
 
 /*adresse-sociaux*/
-/* line 551, styles.scss */
+/* line 545, styles.scss */
 #reseauxSociaux {
   color: #878383;
   font-size: 1.3em;
   margin-left: 15px;
 }
 
-/* line 556, styles.scss */
+/* line 550, styles.scss */
 #reseauxSociaux a {
   display: inline-block;
   vertical-align: top;
   margin: 10px 40px 0 0;
 }
 
-/* line 561, styles.scss */
+/* line 555, styles.scss */
 #reseauxSociaux a img {
   width: 150px;
 }
 
-/* line 563, styles.scss */
+/* line 557, styles.scss */
 #reseauxSociaux a:hover img {
   opacity: 0.8;
   -moz-opacity: 0.8;
@@ -961,7 +963,7 @@ legend {
 }
 
 /* -- planGoogle -- */
-/* line 571, styles.scss */
+/* line 565, styles.scss */
 #plan_google {
   display: inline-block;
   vertical-align: top;
@@ -982,12 +984,12 @@ legend {
 /* ---------------------------------------
 				Guestbook
 ------------------------------------------ */
-/* line 584, styles.scss */
+/* line 578, styles.scss */
 .mariee {
   visibility: hidden;
 }
 
-/* line 585, styles.scss */
+/* line 579, styles.scss */
 .comment {
   border: 1px solid #999;
   width: 600px;
@@ -997,30 +999,30 @@ legend {
   border: 1px solid red;
 }
 
-/* line 586, styles.scss */
+/* line 580, styles.scss */
 .comment .comment-title {
   background: #ccc;
   padding: 5px;
   border-bottom: 1px solid #999;
 }
 
-/* line 587, styles.scss */
+/* line 581, styles.scss */
 .comment .comment-title .action {
   float: right;
 }
 
-/* line 588, styles.scss */
+/* line 582, styles.scss */
 .comment .comment-content {
   padding: 5px;
 }
 
-/* line 590, styles.scss */
+/* line 584, styles.scss */
 #guestbook {
   border-top: 1px solid #D9D9D9;
   padding-top: 10px;
 }
 
-/* line 592, styles.scss */
+/* line 586, styles.scss */
 #guestbook_form {
   padding: 10px 20px;
   background-color: #fff;
@@ -1038,7 +1040,7 @@ legend {
   box-shadow: 2px 4px 15px #222222;
 }
 
-/* line 601, styles.scss */
+/* line 595, styles.scss */
 #guestbook_form label {
   display: inline-block;
   vertical-align: top;
@@ -1046,33 +1048,32 @@ legend {
   width: 100px;
 }
 
-/* line 607, styles.scss */
+/* line 601, styles.scss */
 #guestbook_form input[type=text] {
   width: 180px;
 }
 
-/* line 609, styles.scss */
+/* line 603, styles.scss */
 #guestbook_form .submit {
   display: inline-block;
   margin: 20px 0 0 20px;
 }
 
-/* line 613, styles.scss */
+/* line 607, styles.scss */
 form .placeholder {
   margin-left: 0;
 }
 
-/* line 614, styles.scss */
+/* line 608, styles.scss */
 form .placeholder label {
   position: absolute;
   line-height: 36px;
   margin-left: 15px;
 }
 
-/* line 616, styles.scss */
+/* line 610, styles.scss */
 #guestbook_image {
   display: inline-block;
   vertical-align: top;
   margin-top: 100px;
-  border: 1px solid red;
 }
