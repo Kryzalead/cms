@@ -3,8 +3,9 @@ App::uses('Sanitize', 'Utility');
 
 class PostsController extends AppController{
 
-	protected $alllow_post_type = array('post','page');
+	protected $allow_post_type = array('post','page');
 	protected $allow_post_status = array('all','publish','draft','trash');
+	protected $allow_post_action = array('add','edit');
 
 	/*
 	* Fonction qui affiche la page d'acceuil
@@ -173,7 +174,7 @@ class PostsController extends AppController{
 		// on récupère le type de post
 		$type = !empty($this->request->query['type']) ? $this->request->query['type'] : 'post';
 		
-		if(!in_array($type, $this->alllow_post_type)){
+		if(!in_array($type, $this->allow_post_type)){
 			$this->error("Type d’article invalide");
 			return;
 		}
@@ -427,104 +428,151 @@ class PostsController extends AppController{
 		$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 	}
 
-	/*
-	* Fonction qui permet d'editer un article
-	*/
-	function admin_edit(){
+	function admin_add(){
 
-
+		// récupération du type
 		$type = (!empty($this->request->query['type'])) ? $this->request->query['type'] : 'post';
-		
-		if(!in_array($type, $this->alllow_post_type)){
+		if(!in_array($type,$this->allow_post_type)){
 			$this->error("Type d’article invalide");
 			return;
 		}
 
-		$id = !empty($this->request->query['id']) ? $this->request->query['id'] : 0;
-		if(!is_numeric($id))
-			$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
-		
-		if(!empty($id)){
-			$this->Post->id = $id;
-			$post_type = $this->Post->field('type');
-			if(!empty($post_type)){
-				if($type != $post_type)
-					$this->redirect(array('action'=>'edit','?'=>array('type'=>$post_type,'id'=>$id)));
-			}
-			else{
-				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
-				return;
-			}
-		}
-		
+		// création des variables pour la vue
 		$d['type'] = $type;
-		$d['title_for_layout'] = $type == 'post' ? 'Ajouter un nouvel article' : 'Ajouter une nouvelle page';
-		$d['icon_for_layout'] = $type == 'post' ? 'icone-posts-add.png' : 'icone-pages-add.png';
-		$d['texte_submit'] = 'Publier';
-		
-		if($type == 'post')
-			$this->Post->contain('Term');
-
-		if($this->request->is('post') || $this->request->is('put')) {
-
-			if($this->Post->save($this->request->data)){
-				if(empty($this->request->data['Post']['terms']))
-					if($this->request->data['Post']['type'] == 'post')
-						$this->Post->initCat();
-			
-			$action = $this->request->data['Post']['action'];
-			$type =  $this->request->data['Post']['type'];
-
-			if($action == 'upd')
-				$message = $type == 'post' ? "L'article a bien été modifié" : "La page a bien été modifiée";	
-			elseif($action == 'add')
-				$message = $type == 'post' ? "L'article a bien été publié" : "La page a bien été publiée";
-			
-			$this->Session->setFlash($message,'notif');
-
-			$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
-			}
-			else
-				$this->Session->setFlash('Merci de corriger vos erreurs','notif',array('typeMessage'=>'error'));	
-			
-		}
-		elseif($id){
-			$d['title_for_layout'] = $type == 'post' ? "Modifier l'article" : "Modifier la page";
-			$d['texte_submit'] = 'Mettre à jour';
-			$d['action'] = 'upd';
-
-			$this->Post->id = $id;
-			$post = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status','Post.type'));
-			
-			if(empty($post)){
-				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
-				return;
-			}
-
-			$this->request->data = $post;
+		if($type == 'post'){
+			$d['title_for_layout'] = 'Ajouter un article';
+			$d['icon_for_layout'] = 'icone-posts-add.png';
+			$d['texte_submit'] = 'Publier';
 		}
 		else{
-			$d['action'] = 'add';
-			$last_id = current($this->Post->find('first',array(
-				'fields'=>'MAX(id) AS maxid',
-			)));
-			
-			$this->request->data['Post']['id'] = $last_id['maxid'] + 1;
-
+			$d['title_for_layout'] = 'Ajouter une page';
+			$d['icon_for_layout'] = 'icone-pages-add.png';
+			$d['texte_submit'] = 'Publier';
 		}
 
+		//création de l'id du post
+		$last_id = current($this->Post->find('first',array(
+			'fields'=>'MAX(id) AS maxid',
+		)));
+		$this->request->data['Post']['id'] = $last_id['maxid'] + 1;
+		$this->request->data['Post']['type'] = $type;
+		$this->request->data['Post']['action'] = 'add';
+
+		// si le type est post, on rajoute la taxonomy
 		if($type == 'post')
 			$d['terms'] = $this->Post->getFixedTerms();
 
+		// listes des status
 		$d['list_status'] = array(
 			'publish'=>'Publié',
 			'draft'=>'Brouillon'
 		);
 
 		$d['status_selected'] = 'publish';
+
 		$this->set($d);
+		$this->render('admin_edit');
 	}
 
+	function admin_edit(){
+
+		// si le formulaire a été envoyé
+		if($this->request->is('post') || $this->request->is('put')){
+			
+			// on vérifie l'action demandée
+			if(empty($this->request->data['Post']['action']) || !in_array($this->request->data['Post']['action'],$this->allow_post_action)){
+				$this->redirect($this->referer());
+			}
+			$action = $this->request->data['Post']['action'];
+			
+			// on vérifie si le type est correct
+			if(!in_array($this->request->data['Post']['type'],$this->allow_post_type)){
+				$this->redirect($this->referer());
+			}
+			$type = $this->request->data['Post']['type'];
+			
+			//on enregistre le post
+			if($this->Post->save($this->request->data)){
+				if(empty($this->request->data['Post']['terms']))
+					if($this->request->data['Post']['type'] == 'post')
+						$this->Post->initCat();
+
+				$message = '';
+				switch ($action) {
+					case 'add':
+						$message = ($type == 'post') ? "L'article a bien été publié" : "La page a bien été publiée";
+						break;
+					case 'edit':
+						$message = ($type == 'post') ? "L'article a bien été modifié" : "La page a bien été modifiée";
+						break;
+					default:
+						# code...
+						break;
+				}
+				$this->Session->setFlash($message,"notif");
+				$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
+			}
+			else{
+				$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
+				$post = $this->request->data;
+			}
+		}
+		else{
+			// récupération de l'id
+			if(empty($this->request->query['id']) || $this->request->query['id'] == 0){
+				$this->redirect($this->referer());
+			}
+			$id = $this->request->query['id'];
+			
+			// on vérifie l'action demandée
+			if(empty($this->request->query['action']) || !in_array($this->request->query['action'],$this->allow_post_action)){
+				$this->redirect($this->referer());
+			}
+			$action = $this->request->query['action'];
+
+			// on vérifie qu'on a bien un post à cet id et on récupère son type
+			$this->Post->id = $id;
+			$this->Post->contain('Term');
+			$post = $this->Post->read(array('Post.id','Post.name','Post.content','Post.slug','Post.status','Post.type'));
+			if(empty($post)){
+				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
+				return;
+			}
+		}
+		
+		
+		// on crée les variables pour la vue
+		$post_type = $post['Post']['type'];
+		if($post_type == 'post'){
+			$d['title_for_layout'] = "Modifier l'article";
+			$d['icon_for_layout'] = 'icone-posts-add.png';
+			$d['texte_submit'] = 'Mettre à jour';
+		}
+		else{
+			$d['title_for_layout'] = "Modifier la page";
+			$d['icon_for_layout'] = 'icone-pages-add.png';
+			$d['texte_submit'] = 'Mettre à jour';
+		}
+
+		// si le type est post, on rajoute la taxonomy
+		if($post_type == 'post')
+			$d['terms'] = $this->Post->getFixedTerms();
+		
+		$d['type'] = $post_type;
+		// listes des status
+		$d['list_status'] = array(
+			'publish'=>'Publié',
+			'draft'=>'Brouillon'
+		);
+
+		$d['status_selected'] = 'publish';
+
+		// on envoie les datas au formulaire
+		$this->request->data = $post;
+		$this->request->data['Post']['action'] = $action;
+		$this->set($d);
+	}
+	
 	function admin_tinymce(){
 		
 		$this->layout = 'modal';

@@ -149,6 +149,12 @@ jQuery(function($){
         return false; 
     });
 
+    if($('.notif').length > 0){
+        
+        $('.notif').delay(3000).slideUp('slow');  
+        
+    }
+
     /*
     *   Affichage ou non du select des pages pour le choix de la page d'acceuil
     */
@@ -230,6 +236,15 @@ jQuery(function($){
             });
             div.dialog('open');
         return false;
+    });
+
+     /**
+     * Autohide errors when an input with error is focused
+     * */
+    $('.input.error input,.input textarea,.input select').focus(function(){
+       $(this).parent().removeClass('error'); 
+       $(this).parent().find('.error-message').fadeTo(500,0).slideUp(); 
+       $(this).unbind('focus'); 
     });
 });
 

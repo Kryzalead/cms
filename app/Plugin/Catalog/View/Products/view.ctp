@@ -8,7 +8,7 @@
 					<ul class="miniatures">
 						<?php foreach ($product['Meta']['attachment'] as $k => $v): ?>
 							<li>
-								<?php echo $this->Html->link($this->Html->image($v['thumb']),'/img/'.$v['origin'],array('escape'=>false)); ?>
+								<?php echo $this->Html->link($this->Html->image($v['thumb']),'/img/'.$v['origin'],array('class'=>'product-zoom zoombox zgallery1','escape'=>false,'title'=>$product['Product']['name'])); ?>
 							</li>
 						<?php endforeach ?>
 					</ul>
@@ -65,5 +65,15 @@
 <aside id="image-accessoires">
 	<?php echo $this->Html->link($this->Html->image('accessoires.png'),array('action'=>'index','controller'=>'products','type'=>'accessoire'),array('escape'=>false)); ?>
 </aside>
+<?php echo $this->Html->script('zoombox/zoombox',array('inline'=>false)); ?>
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js">
+		{lang: 'fr'}
+	</script><!-- script google +1 -->
+<?php echo $this->Html->scriptStart(array('inline'=>false)) ?>
+	$(function(){
+		$('a.zoombox').zoombox();
+	});
+<?php echo $this->Html->scriptEnd() ?>
+<?php echo $this->Html->css('zoombox.css') ?>
 
 

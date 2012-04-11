@@ -32,10 +32,6 @@ class Post extends AppModel{
 		'name'	=>	array(
 			'rule'			=>	'notEmpty',
 			'message'		=>	'Le titre ne peut être vide'
-		),
-		'content'=> array(
-			'rule'			=>	'notEmpty',
-			'message'		=>	'Le contenu ne peut être vide'
 		)
 	);
 

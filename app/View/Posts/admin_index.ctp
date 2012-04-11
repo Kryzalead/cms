@@ -2,7 +2,7 @@
 	<?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
 </h1>
-<?php echo $this->Html->link($text_for_add_post,array('action'=>'edit','?'=>array('type'=>$type)),array('class'=>'button button-add')) ?>
+<?php echo $this->Html->link($text_for_add_post,array('action'=>'add','?'=>array('type'=>$type)),array('class'=>'button button-add')) ?>
 <?php if (!empty($search)): ?>
 	<span>Résultats de recherche pour "<?php echo $search ?>"
 <?php endif ?>
@@ -39,17 +39,17 @@
 							<?php if ($v['Post']['status'] == 'trash'): ?>
 								<span><?php echo $v['Post']['name'] ?></span>
 							<?php elseif($v['Post']['status'] == 'draft' && $status != 'draft'): ?>
-								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','?'=>array('type'=>$type,'id'=>$v['Post']['id'])),array('class'=>'upd')) ?>
+								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','?'=>array('id'=>$v['Post']['id'],'action'=>'edit')),array('class'=>'upd')) ?>
 								<span> -- Brouillon</span>
 							<?php else: ?>
-								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','?'=>array('type'=>$type,'id'=>$v['Post']['id'])),array('class'=>'upd')) ?>
+								<?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','?'=>array('id'=>$v['Post']['id'],'action'=>'edit')),array('class'=>'upd')) ?>
 							<?php endif ?>
 							<div class="action_admin">
 								<?php if ($v['Post']['status'] == 'trash'): ?>
 									<?php echo $this->Html->link("Restaurer",array('action'=>'post','?'=>array('action'=>'untrash','id'=>$v['Post']['id'])),array('class'=>'del')); ?>
 									<?php echo $this->Html->link("Supprimer définitivement",array('action'=>'post','?'=>array('action'=>'delete','id'=>$v['Post']['id'],'token'=>$this->Session->read('Security.token')))); ?>
 								<?php else: ?>
-									<?php echo $this->Html->link('Modifier',array('action'=>'edit','?'=>array('type'=>$type,'id'=>$v['Post']['id'])),array('class'=>'upd')) ?> |
+									<?php echo $this->Html->link('Modifier',array('action'=>'edit','?'=>array('id'=>$v['Post']['id'],'action'=>'edit')),array('class'=>'upd')) ?> |
 									<?php echo $this->Html->link("Mettre à la corbeille",array('action'=>'post','?'=>array('action'=>'trash','id'=>$v['Post']['id'])),array('class'=>'del')); ?>
 									<?php if ($v['Post']['status'] == 'draft'): ?>
 										preview
@@ -91,7 +91,7 @@
 				<?php endforeach ?>
 				<?php else: ?>
 					<td></td>
-					<td>Aucun article à afficher</td>
+					<td><?php echo $type == 'post' ? 'Aucun article à afficher' : 'Aucune page à afficher' ?></td>
 					<td></td>
 					<td></td>
 					<td></td>
