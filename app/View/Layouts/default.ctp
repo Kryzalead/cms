@@ -4,19 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <title><?php echo $title_for_layout ?></title>
-  <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <meta name="author" content="Kryzalead" /> 
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <meta name="author" content="Coder In" /> 
   <meta name="description" content="Vente de robes de mariage" />
   <meta name="keywords" content="" />
   <meta name="geo.placename" content="Charente-Maritime, France, 17" />
   <meta name="viewport" content="width=device-width" />
   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/>
   <?php echo $this->Html->css('styles.css') ?>
+  <?php echo $this->Html->css('styles-ie.css') ?>
 </head>
 <body>
-<!-- mettre alert IE -->
+<!--[if lte IE 7]>
+  <link rel="stylesheet" href="css/styles-ie.css" />
+    <div class="alert-ie">
+      <p>
+        <strong>Attention ! </strong> Votre navigateur (Internet Explorer 6 ou 7) présente de sérieuses lacunes en terme de sécurité et de performances, dues à son obsolescence.<br>
+        En conséquence, ce site sera consultable mais de manière moins optimale qu'avec un navigateur récent comme (<a href="http://www.microsoft.com/france/windows/internet-explorer/telecharger-ie9.aspx">Internet Explorer 9</a>, <a href="http://www.mozilla-europe.org/fr/">Firefox 4</a>, <a href="http://www.google.com/chrome?hl=fr">Chrome 10+</a>, <a href="http://www.apple.com/fr/safari/download/">Safari 5</a>)
+      </p>
+    </div>
+<![endif]--> 
   <div class="wrap"><!-- Début wrap -->
     <header role="banner"><!--Début header-->
       <h1><?php echo $this->Html->link($this->Html->image('logo-aux-mariees-de-christele.png',array('width'=>412,'height'=>107,'alt'=>'logo Aux Mariées de Christèle')),'/',array('escape'=>false)); ?></h1>
