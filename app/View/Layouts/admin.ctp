@@ -63,16 +63,27 @@
         #content .notif.error,#content .bloc .notif.error{background-color: #c43c35;background-repeat: repeat-x;background-image: -khtml-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee5f5b), color-stop(100%, #c43c35));background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);background-image: linear-gradient(top, #ee5f5b, #c43c35);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#c43c35', GradientType=0);text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);border-color: #c43c35 #c43c35 #882a25;border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);color: #FFF!important;}
         #content .notif.info{background-color: #339bb9;background-repeat: repeat-x;background-image: -khtml-gradient(linear, left top, left bottom, from(#5bc0de), to(#339bb9));background-image: -moz-linear-gradient(top, #5bc0de, #339bb9);background-image: -ms-linear-gradient(top, #5bc0de, #339bb9);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5bc0de), color-stop(100%, #339bb9));background-image: -webkit-linear-gradient(top, #5bc0de, #339bb9);background-image: -o-linear-gradient(top, #5bc0de, #339bb9);background-image: linear-gradient(top, #5bc0de, #339bb9);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5bc0de', endColorstr='#339bb9', GradientType=0);text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);border-color: #339bb9 #339bb9 #22697d;border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);color:#FFF;}
 
-            #content .error, #content .error label, #content .error input, #content .error-message, #content .error textarea{
-                color: #9D261D !important;
-                border-color: #C87872 !important;
-            }
-            #content .error input, #content .error textarea{
-                background-color: #FAE5E3 !important;
-            }
-            #content .error-message{
-                display: block;
-            }
+            #content .error, #content .error label, #content .error input, #content .error-message, #content .error textarea{color: #9D261D !important;border-color: #C87872 !important;}
+            #content .error input, #content .error textarea{background-color: #FAE5E3 !important;}
+            #content .error-message{display: block;}
+
+            .blocsCentral{width: 70%;display: inline-block;margin-right: 2%;vertical-align: top;margin-top: 25px}
+            #blocsAjoutCote{display: inline-block;width: 19%;vertical-align: top;padding: 5px}
+            #blocsAjoutCote .add_meta{margin-bottom: 15px;width: 280px;background-color: whiteSmoke;border:1px solid #DFDFDF;-moz-box-shadow: inset 0 1px 0 #fff;-webkit-box-shadow: inset 0 1px 0 #fff;box-shadow: inset 0 1px 0 #fff;-webkit-border-radius: 3px;border-radius: 3px;}
+            #blocsAjoutCote .add_meta h3{font-size: 15px;font-weight: normal;padding: 7px 10px;margin: 0;line-height: 1;color: #464646;border-bottom:1px solid #DFDFDF;background-color: #F1F1F1}
+            #blocsAjoutCote .add_meta .inside{line-height: 1.4em;padding: 5px}
+            #blocsAjoutCote .add_meta .inside .submit{margin-top: 10px}
+            #edit_post input#title_form,#edit_post input#slug_form{width: 100%;height: 32px;font-size: 1.7em;}
+            #edit_post textarea{width: 100%}
+            #edit_post .placeholder label {position: absolute;height: 32px;line-height: 32px;margin-left: 15px;color: #BBB;font-size: 1.7em;}
+
+            #blocsAjoutCote #bloc_categorie legend{display: none}
+            #blocsAjoutCote #bloc_categorie .checkbox{height: 20px;line-height: 20px;}
+            #blocsAjoutCote #bloc_categorie .checkbox input{}
+            #blocsAjoutCote #bloc_categorie .checkbox label{margin-left: 5px;}
+
+            #blocsAjoutCote #bloc_prix input{margin-bottom: 5px;width: 50px}
+            #blocsAjoutCote #bloc_prix label{display: inline-block;width: 100px}
         </style>
     </head>
     <body>

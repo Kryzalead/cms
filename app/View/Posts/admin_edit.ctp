@@ -3,44 +3,55 @@
     <?php echo $title_for_layout ?>
 </h1>
 
-<?php echo $this->Form->create('Post',array('action'=>'edit')) ?>
+<?php echo $this->Form->create('Post',array('action'=>'edit','id'=>'edit_post')) ?>
 <div class="blocsCentral">
-	<?php echo $this->Form->input('Post.name',array('label'=>'Titre : ','style'=>'width: 100%')) ?>
+	<?php echo $this->Form->input('Post.name',array('label'=>'Saisissez votre titre ici','id'=>'title_form','div'=>array('class'=>'placeholder'))) ?>
 	<br />
-	<?php echo $this->Form->input('Post.slug',array('label'=>'Url : ','style'=>'width: 100%')) ?>
+	<?php echo $this->Form->input('Post.slug',array('label'=>"Saisissez l'url ici ",'id'=>'slug_form','div'=>array('class'=>'placeholder'))) ?>
 	<br />
 	<?php echo $this->Form->input('Post.id'); ?>
         <?php echo $this->Form->input('Post.user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
 	<?php echo $this->Form->input('Post.type',array('type'=>'hidden')) ?>
     <?php echo $this->Form->input('Post.action',array('label'=>null,'type'=>'hidden')); ?>
-	<?php echo $this->Form->input('Post.content',array('label'=>'Contenu : ','style'=>'width:100%','rows'=>Configure::read('default_post_edit_rows'))) ?>
+	<?php echo $this->Form->input('Post.content',array('label'=>false,'rows'=>Configure::read('default_post_edit_rows'))) ?>
 </div>
 
 <div id="blocsAjoutCote">
-    <div class="bloc_publier_image"><!-- Publier -->
-        <h3>Publier</h3>
-            <div>
-                <p>
-                	<?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
-                <p>
-            </div>
+    <div class="add_meta bloc" id="bloc_post_publier"><!-- Publier -->
+        <h3 class="bloc_titre">Publier</h3>
+        <div class="inside bloc_contenu">
+            <p>
+            	<?php echo $this->Form->input('status',array('label'=>'Etat : ','type'=>'select','options'=>$list_status),$status_selected) ?>
+                <?php echo $this->Form->submit($texte_submit) ?>
+            <p>
+        </div>
     </div>
-
-    <!--
-    <div class="bloc_publier_image" id="bloc_img_une">
-        <h3>Image à la une</h3>
-            <div>
-                <p><?php //echo $this->Html->link("Ajouter une image à la une",array('controller'=>'medias','action'=>'tinymce'),array('id'=>'add-post-thumbnail')); ?></p>
+    <?php if ($type == 'post'): ?>
+        <div class="add_meta bloc" id="bloc_categorie">
+            <h3 class="bloc_titre">Catégorie</h3>
+            <div class="inside bloc_contenu">
+                <p>
+                    <?php echo $this->Form->input('terms',array('label'=>false,'type'=>'select','multiple'=>'checkbox')); ?>
+                <p>
             </div>
-    </div> 
-    -->       
+        </div>
+        <div class="add_meta bloc" id="bloc_tags">
+            <h3 class="bloc_titre">Mots-clefs</h3>
+            <div class="inside bloc_contenu">
+                <p>
+                   <?php echo $this->Taxonomy->input('tag',array('label'=>'Tags : ')) ?>
+                <p>
+            </div>
+        </div>
+    <?php endif ?>
+    <div class="add_meta bloc" id="bloc_img_une">
+        <h3 class="bloc_titre">Image à la une</h3>
+            <div class="inside bloc_contenu">
+                <p><?php echo $this->Html->link("Ajouter une image à la une",array('controller'=>'medias','action'=>'tinymce'),array('id'=>'add-post-thumbnail')); ?></p>
+            </div>
+    </div>       
 </div>
-<!--<div id="overlayer" style="display:none"></div>-->
-<?php if ($type == 'post'): ?>
-    <?php echo $this->Form->input('terms',array('label'=>'Taxonomy','type'=>'select','multiple'=>'checkbox')); ?>
-    <?php echo $this->Taxonomy->input('tag',array('label'=>'Tags : ')) ?>
-<?php endif ?>
-<?php echo $this->Form->end($texte_submit) ?>
+<?php echo $this->Form->end() ?>
 
 <?php echo $this->Html->script('tiny_mce/tiny_mce.js',array('inline'=>false)); ?>
 <?php 
@@ -119,13 +130,5 @@
         // on init l'editeur
         var ed = tinyMCE.activeEditor;
         ed.execCommand('mceInsertContent',false,content);
-    }
-    
-    
-/*
-CKEDITOR.replace('PostContent',{
-filebrowserUploadUrl : '<?php echo $this->Html->url(array('controller'=>'medias','action'=>'tinymce')); ?>'
-});
-*/
-                        
+    }                   
 <?php $this->Html->scriptEnd(); ?>

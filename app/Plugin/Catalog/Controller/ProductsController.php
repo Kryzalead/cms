@@ -3,8 +3,9 @@ App::uses('Sanitize', 'Utility');
 
 class ProductsController extends AppController{
 
-	public $allow_product = array('robe-de-mariee','accessoire');
+	protected $allow_product = array('robe-de-mariee','accessoire');
 	protected $allow_product_status = array('all','publish','draft','trash');
+	protected $allow_product_action = array('add','edit');
 
 	function home(){
 
@@ -542,7 +543,8 @@ class ProductsController extends AppController{
 
 		// si le type est post, on rajoute la taxonomy
 		if($type == 'accessoire')
-			$d['terms'] = $this->Product->getFixedTerms();
+			$d['terms'] = current($this->Product->getFixedTerms());
+
 
 		// listes des status
 		$d['list_status'] = array(
@@ -554,5 +556,109 @@ class ProductsController extends AppController{
 
 		$this->set($d);
 		$this->render('admin_edit');
+	}
+
+	function admin_edit(){
+
+		// si le formulaire a été envoyé
+		if($this->request->is('post') || $this->request->is('put')){
+			
+			// on vérifie l'action demandée
+			if(empty($this->request->data['Post']['action']) || !in_array($this->request->data['Post']['action'],$this->allow_post_action)){
+				$this->redirect($this->referer());
+			}
+			$action = $this->request->data['Post']['action'];
+			
+			// on vérifie si le type est correct
+			if(!in_array($this->request->data['Post']['type'],$this->allow_post_type)){
+				$this->redirect($this->referer());
+			}
+			$type = $this->request->data['Post']['type'];
+			
+			//on enregistre le post
+			if($this->Post->save($this->request->data)){
+				if(empty($this->request->data['Post']['terms']))
+					if($this->request->data['Post']['type'] == 'post')
+						$this->Post->initCat();
+
+				$message = '';
+				switch ($action) {
+					case 'add':
+						$message = ($type == 'post') ? "L'article a bien été publié" : "La page a bien été publiée";
+						break;
+					case 'edit':
+						$message = ($type == 'post') ? "L'article a bien été modifié" : "La page a bien été modifiée";
+						break;
+					default:
+						# code...
+						break;
+				}
+				$this->Session->setFlash($message,"notif");
+				$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
+			}
+			else{
+				$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
+				$post = $this->request->data;
+			}
+		}
+		else{
+			// récupération de l'id
+			if(empty($this->request->query['id']) || $this->request->query['id'] == 0){
+				$this->redirect($this->referer());
+			}
+			$id = $this->request->query['id'];
+			
+			// on vérifie l'action demandée
+			if(empty($this->request->query['action']) || !in_array($this->request->query['action'],$this->allow_product_action)){
+				$this->redirect($this->referer());
+			}
+			$action = $this->request->query['action'];
+
+			// on vérifie qu'on a bien un post à cet id et on récupère son type
+			$this->Product->id = $id;
+			$this->Product->contain(array('Product_meta','Term'));
+			$product = $this->Product->read(array('Product.id','Product.name','Product.description','Product.slug','Product.status','Product.product_type','Product.url_min','Product.price'));
+			if(empty($product)){
+				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
+				return;
+			}
+			foreach ($product['Product_meta'] as $k => $v) {
+				if ($v['meta_key'] == 'product_attachment_metadata')
+					$v['meta_value'] = unserialize($v['meta_value']);
+				$product['Product'][$v['meta_key']] = $v['meta_value'];
+			}
+			$d['product'] = $product;
+		}
+		
+		// on crée les variables pour la vue
+		$post_type = $product['Product']['product_type'];
+		if($post_type == 'robe-de-mariee'){
+			$d['title_for_layout'] = "Modifier la robe";
+			$d['icon_for_layout'] = 'icone-posts-add.png';
+			$d['texte_submit'] = 'Mettre à jour';
+		}
+		else{
+			$d['title_for_layout'] = "Modifier l'accessoire";
+			$d['icon_for_layout'] = 'icone-pages-add.png';
+			$d['texte_submit'] = 'Mettre à jour';
+		}
+
+		// si le type est post, on rajoute la taxonomy
+		if($post_type == 'accessoire')
+			$d['terms'] = $this->Product->getFixedTerms();
+		
+		$d['type'] = $post_type;
+		// listes des status
+		$d['list_status'] = array(
+			'publish'=>'Publié',
+			'draft'=>'Brouillon'
+		);
+
+		$d['status_selected'] = 'publish';
+
+		// on envoie les datas au formulaire
+		$this->request->data = $product;
+		$this->request->data['Product']['action'] = $action;
+		$this->set($d);
 	}
 }
