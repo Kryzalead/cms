@@ -23,8 +23,10 @@
 					<th><?php echo $this->Paginator->sort('Product.name','Titre'); ?></th>
 					<th>Description</th>
 					<th><?php echo $this->Paginator->sort('Product.price','Prix') ?></th>
-					<th>Taille</th>
-					<th>Créateur</th>
+					<?php if ($type == 'robe-de-mariee'): ?>
+						<th>Taille</th>
+						<th>Créateur</th>
+					<?php endif ?>
 				</tr>
 			</thead>
 
@@ -60,17 +62,17 @@
 								<?php if ($v['Product']['status'] == 'trash'): ?>
 									<span><?php echo $v['Product']['name'] ?></span>
 								<?php elseif($v['Product']['status'] == 'draft' && $status != 'draft'): ?>
-									<?php echo $this->Html->link($v['Product']['name'],array('action'=>'edit','?'=>array('type'=>$type,'id'=>$v['Product']['id'])),array('class'=>'upd')) ?>
+									<?php echo $this->Html->link($v['Product']['name'],array('action'=>'edit','?'=>array('id'=>$v['Product']['id'],'action'=>'edit')),array('class'=>'upd')) ?>
 									<span> -- Brouillon</span>
 								<?php else: ?>
-									<?php echo $this->Html->link($v['Product']['name'],array('action'=>'edit','?'=>array('type'=>$type,'id'=>$v['Product']['id'])),array('class'=>'upd')) ?>
+									<?php echo $this->Html->link($v['Product']['name'],array('action'=>'edit','?'=>array('id'=>$v['Product']['id'],'action'=>'edit')),array('class'=>'upd')) ?>
 								<?php endif ?>
 								<div class="action_admin">
 									<?php if ($v['Product']['status'] == 'trash'): ?>
 										<?php echo $this->Html->link("Restaurer",array('action'=>'product','?'=>array('action'=>'untrash','id'=>$v['Product']['id'])),array('class'=>'del')); ?>
 										<?php echo $this->Html->link("Supprimer définitivement",array('action'=>'product','?'=>array('action'=>'delete','id'=>$v['Product']['id'],'token'=>$this->Session->read('Security.token')))); ?>
 									<?php else: ?>
-										<?php echo $this->Html->link('Modifier',array('action'=>'edit','?'=>array('type'=>$type,'id'=>$v['Product']['id'])),array('class'=>'upd')) ?> |
+										<?php echo $this->Html->link('Modifier',array('action'=>'edit','?'=>array('id'=>$v['Product']['id'],'action'=>'edit')),array('class'=>'upd')) ?> |
 										<?php echo $this->Html->link("Mettre à la corbeille",array('action'=>'product','?'=>array('action'=>'trash','id'=>$v['Product']['id'])),array('class'=>'del')); ?>
 										<?php if ($v['Product']['status'] == 'draft'): ?>
 											preview
@@ -82,20 +84,22 @@
 							</td>
 							<td><?php echo $v['Product']['description'] ?></td>
 							<td><?php echo $v['Product']['price'] ?>€</td>
-							<td>
-								<?php if (!empty($v['Taxonomy']['product_taille'])): ?>
-									<?php foreach ($v['Taxonomy']['product_taille'] as $k1 => $v1): ?>
-										<?php echo $this->Html->link($v1['name'],array('action'=>'index','controller'=>'products','?'=>array('type'=>$type,'taille'=>$v1['slug']))); ?>
-									<?php endforeach ?>
-								<?php endif ?>
-							</td>
-							<td>
-								<?php if (!empty($v['Taxonomy']['product_creator'])): ?>
-									<?php foreach ($v['Taxonomy']['product_creator'] as $k1 => $v1): ?>
-										<?php echo $this->Html->link($v1['name'],array('action'=>'index','controller'=>'products','?'=>array('type'=>$type,'createur'=>$v1['slug']))); ?>
-									<?php endforeach ?>
-								<?php endif ?>
-							</td>
+							<?php if ($type == 'robe-de-mariee'): ?>
+								<td>
+									<?php if (!empty($v['Taxonomy']['product_taille'])): ?>
+										<?php foreach ($v['Taxonomy']['product_taille'] as $k1 => $v1): ?>
+											<?php echo $this->Html->link($v1['name'],array('action'=>'index','controller'=>'products','?'=>array('type'=>$type,'taille'=>$v1['slug']))); ?>
+										<?php endforeach ?>
+									<?php endif ?>
+								</td>
+								<td>
+									<?php if (!empty($v['Taxonomy']['product_creator'])): ?>
+										<?php foreach ($v['Taxonomy']['product_creator'] as $k1 => $v1): ?>
+											<?php echo $this->Html->link($v1['name'],array('action'=>'index','controller'=>'products','?'=>array('type'=>$type,'createur'=>$v1['slug']))); ?>
+										<?php endforeach ?>
+									<?php endif ?>
+								</td>	
+							<?php endif ?>
 						</tr>
 					<?php endforeach ?>
 				<?php else: ?>
@@ -105,8 +109,10 @@
 					<td>Aucun produits à afficher</td>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
+					<?php if ($type == 'robe-de-mariee'): ?>
+						<td></td>
+						<td></td>
+					<?php endif ?>
 					</tr>
 				<?php endif ?>
 			</tbody>
@@ -117,8 +123,10 @@
 					<th><?php echo $this->Paginator->sort('Product.name','Titre'); ?></th>
 					<th>Description</th>
 					<th><?php echo $this->Paginator->sort('Product.price','Prix') ?></th>
-					<th>Taille</th>
-					<th>Créateur</th>
+					<?php if ($type == 'robe-de-mariee'): ?>
+						<th>Taille</th>
+						<th>Créateur</th>
+					<?php endif ?>
 				</tr>
 			</tfoot>
 		</table>

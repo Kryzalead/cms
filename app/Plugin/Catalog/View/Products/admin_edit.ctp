@@ -14,16 +14,51 @@
 	<?php echo $this->Form->input('Product.product_type',array('type'=>'hidden')) ?>
     <?php echo $this->Form->input('Product.action',array('label'=>null,'type'=>'hidden')); ?>
 	<?php echo $this->Form->input('Product.description',array('label'=>false,'rows'=>Configure::read('default_post_edit_rows'))) ?>
-	
+    <div class="bloc" id="produit_images">
+        <h3 class="bloc_titre">Autres images</h3>
+        <div class="bloc_contenu">
+            
+        </div>
+    </div>	
 </div>
 <div id="blocsAjoutCote">
     <div class="add_meta bloc" id="bloc_post_publier"><!-- Publier -->
         <h3 class="bloc_titre">Publier</h3>
         <div class="inside bloc_contenu">
             <p>
-                <?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
+                <?php echo $this->Form->input('status',array('label'=>'Etat : ','type'=>'select','options'=>$list_status),$status_selected) ?>
                 <?php echo $this->Form->submit($texte_submit) ?>
             <p>
+        </div>
+    </div>
+    <div class="add_meta bloc" id="bloc_image_une"><!-- Publier -->
+        <h3 class="bloc_titre">Image principale</h3>
+        <div class="inside bloc_contenu">
+            <?php if (!empty($product['Product']['url_min'])): ?>
+                <p class="product_thumb">
+                    <?php 
+                        $dimension = getimagesize ($product['Product']['url_min']); 
+                        $largeur = 200;$hauteur = 200;
+                        if ($dimension[1] > $hauteur OR $dimension[0] > $largeur) { 
+                        // X plus grand que Y 
+                            if ($dimension[1] < $dimension[0]) { 
+                                 $width = $hauteur; 
+                                 $y = floor($width * ($dimension[1]/$dimension[0])); 
+                            } 
+                            // Y plus grand que X 
+                            else{ 
+                                 $height = $largeur; 
+                                 $width = floor($height * ($dimension[0]/$dimension[1])); 
+                            } 
+                        } 
+                        else { 
+                             $width = $dimension[0]; 
+                             $height = $dimension[1]; 
+                        }
+                    echo $this->Html->image($product['Product']['url_min'],array('width'=>$width,'height'=>$height)) ?>
+                </p>
+            <?php endif ?>
+            <?php echo $this->Form->input('Product_url',array('label'=>false,'type'=>'file')); ?>
         </div>
     </div>
     <div class="add_meta bloc" id="bloc_prix"><!-- Publier -->

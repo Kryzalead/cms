@@ -11,11 +11,6 @@ class Product extends CatalogAppModel{
 			'allowEmpty'	=>	true,
 			'message'		=>	"L'url n'est pas valide"
 		),
-		
-		'content'=> array(
-			'rule'			=>	'notEmpty',
-			'message'		=>	'Le contenu ne peut être vide'
-		),
 		'url'=>array(
 			
 		)

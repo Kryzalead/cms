@@ -21,7 +21,7 @@
         <h3 class="bloc_titre">Publier</h3>
         <div class="inside bloc_contenu">
             <p>
-            	<?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
+            	<?php echo $this->Form->input('status',array('label'=>'Etat : ','type'=>'select','options'=>$list_status),$status_selected) ?>
                 <?php echo $this->Form->submit($texte_submit) ?>
             <p>
         </div>
