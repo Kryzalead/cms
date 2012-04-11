@@ -29,6 +29,7 @@
 <?php $id = $post['Post']['slug'] ?>
 <div id="<?php echo $id ?>">
 	<?php echo $post['Post']['content'];?>
+	<div class="cb"></div>
 </div>
 
 <?php if ($post['Post']['type'] == 'post'): ?>
