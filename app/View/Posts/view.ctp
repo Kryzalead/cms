@@ -1,3 +1,6 @@
+<style type="text/css">
+	.toto{width: 150px; height: 100px; display: inline-block;margin-right: 50px; border: 1px solid #000000;}
+</style>
 <?php if ($post['Post']['type'] == 'post'): ?>
 	<div>
 		<span>Posté le </span>

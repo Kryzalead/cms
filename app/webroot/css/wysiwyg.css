@@ -1,3 +1,4 @@
 img.alignLeft{float: left;margin-right: 10px}
 img.alignRight{float: right;margin-left: 10px}
 img.alignCenter{display: block;margin: 0 auto}
+	.toto{width: 150px; height: 100px; display: inline-block;margin-right: 50px; border: 1px solid #000000;}

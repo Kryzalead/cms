@@ -100,22 +100,28 @@ class PostsController extends AppController{
 		}
 		elseif($type == 'page'){
 
-			$post = Cache::read('Page.slug_'.$slug);
-
-			if(empty($post)){
-				$post = $this->Post->find('first',array(
-					'fields'=>array('Post.id','Post.name','Post.slug','Post.type','Post.content','Post.comment_status'),
-					'conditions'=>array('Post.slug'=>$slug,'Post.type'=>'page')
-				));
-
-				if(empty($post))
-					throw new NotFoundException('Erreur 404');
-				else{
-					//Cache::write('Page.slug_'.$slug,$post);
-				}
+			if($slug == 'partenariats'){
+				$this->render('partenariats');
+				$post = array();
 			}
-			
-			$d['title_for_layout'] = ucfirst($post['Post']['slug']).' | '.Configure::read('site_name');			
+			else{
+				$post = Cache::read('Page.slug_'.$slug);
+
+				if(empty($post)){
+					$post = $this->Post->find('first',array(
+						'fields'=>array('Post.id','Post.name','Post.slug','Post.type','Post.content','Post.comment_status'),
+						'conditions'=>array('Post.slug'=>$slug,'Post.type'=>'page')
+					));
+
+					if(empty($post))
+						throw new NotFoundException('Erreur 404');
+					else{
+						//Cache::write('Page.slug_'.$slug,$post);
+					}
+				}
+				
+				$d['title_for_layout'] = ucfirst($post['Post']['slug']).' | '.Configure::read('site_name');
+			}			
 		}
 		else{
 			throw new NotFoundException('Erreur 404');

@@ -15,20 +15,16 @@
   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/>
   <?php echo $this->Html->css('styles.css') ?>
   <style type="text/css">
-    
-    
-
     .catalogue #filtre_produit{height: 20px}
     .blocs #actus{min-height: 500px}
     
     ul#nav_menu li a{color: #fff}
     ul#nav_menu li.sub{position: relative}
-    ul#nav_menu li.sub ul{position: absolute;margin-top: 10px;left: 0;display: none;width: 300px}
+    ul#nav_menu li.sub ul{position: absolute;left: 0;display: none;width: 300px}
     ul#nav_menu li.sub:hover ul{display: block;}
-    ul#nav_menu li.sub ul li{}
+    footer{height: 20px;}
   </style>
 </head>
-  
 <body>
 <!-- mettre alert IE -->
   <div class="wrap"><!-- Début wrap -->
@@ -62,7 +58,7 @@
         <section <?php echo $bg ?>>
           <?php echo $content_for_layout ?>  
         </section>
-          <div class="cb"></div>
+          
           <section id="bandeau"> <!-- Début bandeau -->
             <ul>
               <li class="titre">Aux Mariées de Christèle</li>
@@ -78,7 +74,10 @@
               <li>Dimanche fermé</li>
             </ul>
           </section>
+          <div class="cb"></div>
+
     </div> <!-- Fin contenu -->
+    <footer></footer>
   </div> <!-- Fin wrap -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <?php echo $this->Html->script('script.js'); ?>
