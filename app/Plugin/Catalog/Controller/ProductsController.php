@@ -422,6 +422,7 @@ class ProductsController extends AppController{
 		$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 	}
 
+	/*
 	function admin_edit(){
 
 		$type = (!empty($this->request->query['type'])) ? $this->request->query['type'] : 'robe-de-mariee';
@@ -507,5 +508,51 @@ class ProductsController extends AppController{
 
 		$d['status_selected'] = 'publish';
 		$this->set($d);
+	}
+	*/
+
+	function admin_add(){
+		// récupération du type
+		$type = (!empty($this->request->query['type'])) ? $this->request->query['type'] : 'robe-de-mariee';
+		if(!in_array($type,$this->allow_product)){
+			$this->error("Type de produits invalide");
+			return;
+		}
+
+		// création des variables pour la vue
+		$d['type'] = $type;
+		if($type == 'robe-de-mariee'){
+			$d['title_for_layout'] = 'Ajouter une robe';
+			$d['icon_for_layout'] = 'icone-posts-add.png';
+			$d['texte_submit'] = 'Publier';
+		}
+		else{
+			$d['title_for_layout'] = 'Ajouter un accessoire';
+			$d['icon_for_layout'] = 'icone-pages-add.png';
+			$d['texte_submit'] = 'Publier';
+		}
+
+		//création de l'id du post
+		$last_id = current($this->Product->find('first',array(
+			'fields'=>'MAX(id) AS maxid',
+		)));
+		$this->request->data['Product']['id'] = $last_id['maxid'] + 1;
+		$this->request->data['Product']['product_type'] = $type;
+		$this->request->data['Product']['action'] = 'add';
+
+		// si le type est post, on rajoute la taxonomy
+		if($type == 'accessoire')
+			$d['terms'] = $this->Product->getFixedTerms();
+
+		// listes des status
+		$d['list_status'] = array(
+			'publish'=>'Publié',
+			'draft'=>'Brouillon'
+		);
+
+		$d['status_selected'] = 'publish';
+
+		$this->set($d);
+		$this->render('admin_edit');
 	}
 }
