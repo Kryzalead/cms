@@ -1,68 +1,67 @@
 @import "compass/css3";
-/* ------------ */
-/* =  RESET  */	
-/* ---------- */
+/* ---------------------------------------
+				Reset
+------------------------------------------ */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
 
 
-/* ----------------------- */
-/* =  STYLES DE BASE  */
-/* -------------------- */	
+/* ---------------------------------------
+				Style de base
+------------------------------------------ */	
 body	{background-color:#202021;font-family: Arial, Tahoma, "Trebuchet MS", Helvetica, FreeSans, sans-serif;font-size:1em;-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;font-smoothing:antialiased;margin:0;padding:0;}
 
 @font-face {
-    font-family: 'Honey';
-      src: url('fonts/honey/honey.eot');
-      src: url('fonts/honey/honey.eot?#iefix') format('eot'),
-	    url('fonts/honey/honey.woff') format('woff'),
-	    url('fonts/honey/honey.ttf') format('truetype'),
-	    url('fonts/honey/honey.svg#webfontHBinlNfs') format('svg');
-	    	    font-weight: normal;font-style: normal;} 
+	font-family: 'riesling';
+		src: url('fonts/riesling/riesling.eot');
+		src: url('fonts/riesling/riesling.eot?#iefix') format('embedded-opentype'),
+			url('fonts/riesling/riesling.woff') format('woff'),
+			url('fonts/riesling/riesling.ttf') format('truetype'),
+			url('fonts/riesling/riesling.svg#RieslingRegular') format('svg');
+				font-weight: normal;font-style: normal;}
 
 
-/* ------------------- */
-/* =  PARAGRAPHE  */
-/* ----------------- */
+/* ---------------------------------------
+			Paragraphe
+------------------------------------------ */
 p {padding:0; margin:0}
 
 
-/* ----------- */
-/* =  LIENS  */
-/* --------- */
+/* ---------------------------------------
+			Liens
+------------------------------------------ */
 a {text-decoration:none;outline:none;}
 a:focus, a:active {outline: none;}
 a img {border: none;}
 
 
-/* --------------------- */
-/* =  TYPE EN-LIGNE  */
-/* ------------------- */
+/* ---------------------------------------
+			Types en ligne
+------------------------------------------ */
 span.couleur_bleu {color:#2681D0}
 
 
-/* -------------------- */
-/* =  FRAMEWORKS  */
-/* ------------------ */
+/* ---------------------------------------
+			Frameworks
+------------------------------------------ */
 .arrondi	{@include border-radius(8px);}
-.animer	{@include transition(all, 1s);}
-.formConnexionTextShadow	{@include text-shadow(#FFF,0px,0px,15px);}
+.animer		{@include transition(all, 0.75s);}
 
 
-/* --------------- */
-/* =  WRAPPER  */
-/* ------------- */
+/* ---------------------------------------
+			Wrapper
+------------------------------------------ */
 #wrapper {width:100%;margin:80px auto 0 ;}
 
 #pancarte {background:url('images/login/fait-par-kryzalead.png') 0 0 no-repeat;width:252px;height:195px;margin:220px 0 0 20px;cursor:pointer;display: inline-block;vertical-align: top;}
 #pancarte:hover {background:url('images/login/fait-par-kryzalead-hover.png') 0 0 no-repeat;}
 
-section#formConnexion	{margin:0 auto;color:#999;display: inline-block;vertical-align: top;width:65%;}
-section#formConnexion h1	{text-align:center;padding-bottom:60px;margin:0;}
-section#formConnexion h1 a 	{font:normal 4em 'Honey';color:#679A01;cursor:default;@extend .animer;}
-section#formConnexion h1 a:hover, section#formConnexion h1 a:focus{text-decoration:none;color:#679A01;@extend .formConnexionTextShadow;}
-section#formConnexion p 	{text-align:center;font:normal 0.95em Arial;}
-section#formConnexion a 	{font-weight:bold;color:#2681D0;text-decoration:none;}
-section#formConnexion a:hover{font-weight:bold;color:#679A01;text-decoration:underline;}
+section#form_connexion			{margin:0 auto;color:#999;display: inline-block;vertical-align: top;width:65%;}
+section#form_connexion h1		{text-align:center;padding-bottom:60px;margin:0;}
+section#form_connexion h1 a 	{font:normal 4em 'riesling';color:#679A01;cursor:default;@extend .animer;}
+section#form_connexion h1 a:hover, section#form_connexion h1 a:focus{text-decoration:none;color:#AA4673;text-shadow: 0px 0px 15px #ffffff;filter: dropshadow(color=#ffffff, offx=0, offy=0);}
+section#form_connexion p 		{text-align:center;font:normal 0.95em Arial;}
+section#form_connexion a 		{font-weight:bold;color:#2681D0;text-decoration:none;}
+section#form_connexion a:hover 	{font-weight:bold;color:#679A01;text-decoration:underline;}
 
 #login{width:358px;height:203px;display:block;margin:60px auto 0;background:url('images/login/gmap.jpg') top left repeat;}
 #login label{color:#8C8C8C;font-size:0.9em;display:inline-block;padding: 0 5px 0px 5px;position:relative;}
@@ -79,9 +78,10 @@ input[type=submit]{margin:15px 0 0 200px;background-color:#222;width:95px;height
 input[type=submit]:hover{color:#2681D0;background-color:#333;border:1px solid #202121;}
 
 
-/* ---------------------------- */
-/* =  IE8~7 fix compatibilite  */
-/* --------------------------- */
+
+/* ---------------------------------------
+			IE8~7 fix compatibilite
+------------------------------------------ */
 div.alert-ie		{width:100%;height:80px;margin-bottom:20px;background-color:#111;border-bottom:1px solid #555;}
 div.alert-ie p		{padding:20px;font-size:1em;color:#FFF;text-align:center;} 
 div.alert-ie strong 	{color:#FF4040;}

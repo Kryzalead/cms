@@ -45,8 +45,6 @@ html, body{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size: 0.95em;
 	color: black;
-			line-height:18px;
-
 	background:#D1789F url(images/bg.jpg) top center repeat;
 	-webkit-font-smoothing:antialiased;
 	-moz-font-smoothing:antialiased;
@@ -90,7 +88,7 @@ a img 				{border: none}
 ------------------------------------------ */
 textarea {overflow: auto;}
 input		{cursor: auto;}
-label 	{cursor:text;}
+label 	{cursor: text;}
 
 
 /* ---------------------------------------
@@ -121,12 +119,6 @@ h2 {
 
 h1 a, h1 a:visited, h2 a, h2 a:visited			{text-decoration: none; color: #999;}
 h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus	{text-decoration: none;}
-
-
-/* ---------------------------------------
-				Paragraphe
------------------------------------------- */
-p {margin-bottom: 7px;}
 
 
 /* ---------------------------------------
@@ -177,15 +169,6 @@ $experimental-support-for-svg: true;
 /* ---------------------------------------
 				@Font-face
 ------------------------------------------ */
-@font-face {
-    font-family: 'jenna';
-    src: url('fonts/jenna/jennasue.eot');
-    src: url('fonts/jenna/jennasue.eot?#iefix') format('embedded-opentype'),
-         url('fonts/jenna/jennasue.woff') format('woff'),
-         url('fonts/jenna/jennasue.ttf') format('truetype'),
-         url('fonts/jenna/jennasue.svg#JennaSueRegular') format('svg');
-    		font-weight: normal;font-style: normal;}
-
 @font-face {
 	font-family: 'riesling';
 		src: url('fonts/riesling/riesling.eot');
@@ -241,14 +224,14 @@ header h1 {
 nav#menu {
 	display: inline-block;
 	vertical-align:top;
-	margin:70px 0 0 5px;}
+	margin:70px 0 0 10px;}
 
 nav#menu ul#nav_menu {
 	position: absolute;
 	text-align: left;
+	top:55px;
 	padding: 0;
-	height: 50px;
-	width: 710px;}
+	height: 50px;}
 
 nav#menu ul#nav_menu li {
 	padding: 0;
@@ -273,11 +256,11 @@ nav#menu ul#nav_menu li a{
 	-ms-transition: 0.25s ease-out;
 	font-weight:normal;
 	margin-right:7px;
-	font-size:18px;
+	font-size:19px;
 	font-family:'leckerli';}
 
 nav#menu ul#nav_menu li a:hover {
-	text-shadow: 3px 6px 4px #777777;
+	text-shadow: 0px 6px 4px #777777;
 	filter: dropshadow(color=#777777, offx=3, offy=6);
 	color: #842490;
 	font-weight:normal;
@@ -298,9 +281,7 @@ nav#menu ul#nav_menu li a:hover {
 	width:990px;
 	@include radiusHaut;}
 
-.bg p{
-	color:white;
-	margin:10px 0;}
+.bg p{color:white;}
 
 
 /* --	Bandeau contenu -- */
@@ -317,7 +298,7 @@ nav#menu ul#nav_menu li a:hover {
 	color: white;
 	font: normal 1.6em 'swenson';
 	padding-left: 10px;
-	text-shadow: 1px 1px 5px #222;
+	text-shadow: 0px 1px 5px #222;
 	filter: dropshadow(color=#222, offx=1, offy=1);}
 
 #bandeau ul.horaires {text-align: right;}
@@ -333,8 +314,7 @@ nav#menu ul#nav_menu li a:hover {
 
 
 /* --  Bloc Accueil et blocs -- */
-.bloc #accueil{width: 600px;padding: 10px;}
-.bloc {display: inline-block;}
+.bloc #accueil{width: 600px;padding: 30px 15px 20px;margin:0;}
 
 .blocs {padding:20px;}
 
@@ -463,7 +443,7 @@ aside#image-accessoires img{
 /* ---------------------------------------
 				Partenariats
 ------------------------------------------ */
-section#partenaires {color:#0F0F0F;margin:0 auto;width:970px;}
+#partenariats {color:#0F0F0F;margin:0 auto;border:1px solid red;}
 ul.ligne1, ul.ligne2 {margin:20px 0; display: inline-block;}
 ul.ligne1 li, ul.ligne2 li{display: inline-block;vertical-align:top;width:310px;border-left:1px solid #E3E3E3;padding: 0 3px;text-align:center;}
 ul.ligne1 li:first-child, ul.ligne2 li:first-child{border:0}
