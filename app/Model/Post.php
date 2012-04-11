@@ -85,7 +85,10 @@ class Post extends AppModel{
 			if($this->data['Post']['type'] == 'post')
 				$guid = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'blog/'.$this->data['Post']['slug'].'-'.$id;
 			else
-				$guid = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').$this->data['Post']['slug'].'.html';
+				if ($this->data['Post']['slug'] == 'accueil') 
+					$guid = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/');
+				else
+					$guid = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'page/'.$this->data['Post']['slug'];
 			$this->saveField('guid',$guid);
 		}
 		return true;

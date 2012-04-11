@@ -7,4 +7,5 @@ Router::connect('/catalogue/:type/:slug-:id',array('plugin'=>'catalog','controll
 Router::connect('/admin/catalogue.php',array('plugin'=>'catalog','controller'=>'products','action'=>'index','admin'=>true));
 Router::connect('/admin/catalogue/action.php',array('plugin'=>'catalog','controller'=>'products','action'=>'product','admin'=>true));
 Router::connect('/admin/edit-product.php',array('plugin'=>'catalog','controller'=>'products','action'=>'edit','admin'=>true));
+Router::connect('/admin/product-new.php',array('plugin'=>'catalog','controller'=>'products','action'=>'add','admin'=>true));
  ?>

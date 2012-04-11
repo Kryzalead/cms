@@ -11,8 +11,8 @@
 	<br />
 	<?php echo $this->Form->input('Product.id'); ?>
         <?php echo $this->Form->input('Product.user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
-	<?php echo $this->Form->input('Product.product_type',array('type'=>'hidden','value'=>$type)) ?>
-    <?php echo $this->Form->input('Product.action',array('label'=>null,'type'=>'hidden','value'=>$action)); ?>
+	<?php echo $this->Form->input('Product.product_type',array('type'=>'hidden')) ?>
+    <?php echo $this->Form->input('Product.action',array('label'=>null,'type'=>'hidden')); ?>
 	<?php echo $this->Form->input('Product.description',array('label'=>'Descriptif : ','style'=>'width:100%','rows'=>Configure::read('default_post_edit_rows'))) ?>
 	<?php echo $this->Form->input('Product.price',array('label'=>"Prix de Vente ",'type'=>'text')); ?>
 	<?php echo $this->Form->input('Product.product_buy_price',array('label'=>"Valeur d'Achat ",'type'=>'text')); ?>
@@ -35,6 +35,9 @@
 <div>
     <h3>Autre image du produit</h3>
 </div>
+<?php if ($type == 'accessoire'): ?>
+    <?php echo $this->Form->input('terms',array('label'=>'Taxonomy','type'=>'select')); ?>
+<?php endif ?>
 <div id="overlayer" style="display:none"></div>
 <?php echo $this->Form->end($texte_submit) ?>
 

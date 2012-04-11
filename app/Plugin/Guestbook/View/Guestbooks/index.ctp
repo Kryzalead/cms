@@ -7,14 +7,11 @@
 <?php echo $this->Form->input('Guestbook.content',array('label'=>"Votre message", 'div'=>array('class'=>'placeholder'))); ?>
 <?php echo $this->Form->input('Guestbook.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
 <?php echo $this->Form->end('Ajouter un message') ?>
-<?php if (!empty($guestbooks)): ?>
 </div>
-
 <div id="guestbook_image">
 	<?php echo $this->Html->image('livre-dor.jpg', array('width'=>'480', 'height'=>'229')) ?>
 </div>
-
-
+<?php if (!empty($guestbooks)): ?>
 <div id="guestbook">
 	<?php $terminaison = $totalComments > 1 ? 's' : '' ?>
 	<p><?php echo $totalComments ?> Commentaire<?php echo $terminaison ?></p>

@@ -2,7 +2,7 @@
 	<?php echo $this->Html->image($icon_for_layout,array('width'=>72,'height'=>72)); ?>
 	<?php echo $title_for_layout ?>
 </h1>
-<?php echo $this->Html->link($text_for_add_product,array('action'=>'edit','?'=>array('type'=>$type)),array('class'=>'button button-add')) ?>
+<?php echo $this->Html->link($text_for_add_product,array('action'=>'add','?'=>array('type'=>$type)),array('class'=>'button button-add')) ?>
 <?php if (!empty($search)): ?>
 	<span>Résultats de recherche pour "<?php echo $search ?>"
 <?php endif ?>
