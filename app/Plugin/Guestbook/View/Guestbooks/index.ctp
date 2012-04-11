@@ -1,4 +1,5 @@
 <h1>Laisser nous un petit message</h1>
+
 <div id="guestbook_form">
 <?php echo $this->Form->create('Guestbook') ?>
 <?php echo $this->Form->input('Guestbook.author',array('label'=>"Votre nom", 'div'=>array('class'=>'placeholder'))); ?>
@@ -13,6 +14,7 @@
 	<?php echo $this->Html->image('livre-dor.jpg', array('width'=>'480', 'height'=>'229')) ?>
 </div>
 <?php if (!empty($guestbooks)): ?>
+
 <div id="guestbook">
 	<?php $terminaison = $totalComments > 1 ? 's' : '' ?>
 	<p><?php echo $totalComments ?> Commentaire<?php echo $terminaison ?></p>
