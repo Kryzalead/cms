@@ -8,6 +8,7 @@
 <?php echo $this->Form->input('Guestbook.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
 <?php echo $this->Form->end('Ajouter un message') ?>
 </div>
+
 <div id="guestbook_image">
 	<?php echo $this->Html->image('livre-dor.jpg', array('width'=>'480', 'height'=>'229')) ?>
 </div>
