@@ -542,7 +542,8 @@ class ProductsController extends AppController{
 
 		// si le type est post, on rajoute la taxonomy
 		if($type == 'accessoire')
-			$d['terms'] = $this->Product->getFixedTerms();
+			$d['terms'] = current($this->Product->getFixedTerms());
+
 
 		// listes des status
 		$d['list_status'] = array(

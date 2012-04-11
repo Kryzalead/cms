@@ -3,86 +3,70 @@
     <?php echo $title_for_layout ?>
 </h1>
 
-<?php echo $this->Form->create('Product',array('action'=>'edit','type'=>'file')) ?>
+<?php echo $this->Form->create('Product',array('action'=>'edit','type'=>'file','id'=>'edit_post')) ?>
 <div class="blocsCentral">
-	<?php echo $this->Form->input('Product.name',array('label'=>'Modèle : ','style'=>'width:100%')) ?>
+	<?php echo $this->Form->input('Product.name',array('label'=>'Saisissez le nom du modèle ici : ','id'=>'title_form','div'=>array('class'=>'placeholder'))) ?>
 	<br />
-	<?php echo $this->Form->input('Product.slug',array('label'=>'Url : ','style'=>'width:100%')) ?>
+	<?php echo $this->Form->input('Product.slug',array('label'=>"Saisissez l'url ici ",'id'=>'slug_form','div'=>array('class'=>'placeholder'))) ?>
 	<br />
 	<?php echo $this->Form->input('Product.id'); ?>
-        <?php echo $this->Form->input('Product.user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
+    <?php echo $this->Form->input('Product.user_id',array('label'=>false,'type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))) ?>
 	<?php echo $this->Form->input('Product.product_type',array('type'=>'hidden')) ?>
     <?php echo $this->Form->input('Product.action',array('label'=>null,'type'=>'hidden')); ?>
-	<?php echo $this->Form->input('Product.description',array('label'=>'Descriptif : ','style'=>'width:100%','rows'=>Configure::read('default_post_edit_rows'))) ?>
-	<?php echo $this->Form->input('Product.price',array('label'=>"Prix de Vente ",'type'=>'text')); ?>
-	<?php echo $this->Form->input('Product.product_buy_price',array('label'=>"Valeur d'Achat ",'type'=>'text')); ?>
+	<?php echo $this->Form->input('Product.description',array('label'=>false,'rows'=>Configure::read('default_post_edit_rows'))) ?>
+	
 </div>
-
 <div id="blocsAjoutCote">
-    <div class="bloc_publier_image"><!-- Publier -->
-        <h3>Publier</h3>
-            <div>
+    <div class="add_meta bloc" id="bloc_post_publier"><!-- Publier -->
+        <h3 class="bloc_titre">Publier</h3>
+        <div class="inside bloc_contenu">
+            <p>
+                <?php echo $this->Form->input('status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
+                <?php echo $this->Form->submit($texte_submit) ?>
+            <p>
+        </div>
+    </div>
+    <div class="add_meta bloc" id="bloc_prix"><!-- Publier -->
+        <h3 class="bloc_titre">Prix</h3>
+        <div class="inside bloc_contenu">
+            <p>
+                <?php echo $this->Form->input('Product.price',array('label'=>"Prix de Vente ",'type'=>'text','after'=>' €')); ?>
+                <?php echo $this->Form->input('Product.product_buy_price',array('label'=>"Valeur d'Achat ",'type'=>'text','after'=>' €')); ?>
+            <p>
+        </div>
+    </div>
+    <?php if ($type == 'accessoire'): ?>
+        <div class="add_meta bloc" id="bloc_categorie">
+            <h3 class="bloc_titre">Catégorie</h3>
+            <div class="inside bloc_contenu">
                 <p>
-                	<?php echo $this->Form->input('Product.status',array('label'=>false,'type'=>'select','options'=>$list_status),$status_selected) ?>
+                    <?php echo $this->Form->input('terms',array('label'=>false,'type'=>'select','optgroup'=>false)); ?>
                 <p>
             </div>
-    </div>
-
-    <div class="bloc_publier_image" id="bloc_img_une"><!-- image à la une -->
-        <?php echo $this->Form->input('Product.url',array('label'=>"Image à la une",'type'=>'file')); ?>
-    </div>        
+        </div>
+    <?php endif ?>   
 </div>
-<div>
-    <h3>Autre image du produit</h3>
-</div>
-<?php if ($type == 'accessoire'): ?>
-    <?php echo $this->Form->input('terms',array('label'=>'Taxonomy','type'=>'select')); ?>
-<?php endif ?>
-<div id="overlayer" style="display:none"></div>
-<?php echo $this->Form->end($texte_submit) ?>
-
+<?php echo $this->Form->end() ?>
 <?php echo $this->Html->script('tiny_mce/tiny_mce.js',array('inline'=>false)); ?>
-<?php 
-// tout ce qui sera compris entre ces deux balises, sera envoyé au niveau du body grâce à inline=>false
-
-/* config tinyMCE
- 
- mode : defini le mode, 'textareas' pour tout les textareas
- tehme : défini le theme
- plugins : défini les plugins
-    inlinepopups : affiche des popups pour l'ajout des images
-    paste: gére tous les copier coller
- theme_advanced_buttonsx : défini les boutons de la rangée x
- theme_advanced_toolbar_location : position de la barre d'outil
- theme_advanced_statusbar_location : position de la barre de status
- theme_advanced_resizing: défini si le textarea peut être redimensionné
- paste_remove_styles : spécifie qu'on ne souhaite pas copier le style
- paste_remove_spans : spécifie qu'on ne souhaite pas les span
- paste_strip_class_attributes: signifie qu'on ne souhaite pas copier les class css
- image_explorer: lien vers l'action à appellerlosr du clic sur le bouton
- image_edit: action à appeller losr du clic sur le bouton lors d'une sélection
- relative_urls: met les url en absolue
- content_css: css utilisé par l'editeur
-*/
- ?>
 <?php $this->Html->scriptStart(array('inline'=>false)); ?>
     tinyMCE.init({
         mode                    :   'textareas',
+        language : "fr",
         theme                   :   'advanced',
-        plugins                 :   'inlinepopups,paste,image,lien',
-        theme_advanced_buttons1  : 'bold,italic,underline,|,bullist,numlist,|,justifyleft,justifycenter,justifyright,justifyfull,|,link,unlink,image,|,formatselect,code',
-        theme_advanced_buttons2  : '',
-        theme_advanced_buttons3  : '',
-        theme_advanced_buttons4  : '',
-        theme_advanced_toolbar_location : 'top',
+        plugins                 :   'autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave,visualblocks,inlinepopups,paste,image,lien',
+        theme_advanced_buttons1 :"bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+        theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+        theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+        theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
+        theme_advanced_toolbar_location : "top",
         theme_advanced_statusbar_location : 'bottom',
         theme_advanced_resizing: false,
         paste_remove_styles: true,
         paste_remove_spans: true,
         paste_strip_class_attributes: 'all',
-        image_explorer: '<?php echo $this->Html->url(array('plugin'=>null,'controller'=>'medias','action'=>'tinymce')); ?>',
-        image_edit: '<?php echo $this->Html->url(array('plugin'=>null,'controller'=>'medias','action'=>'tinymce','url')); ?>',
-        lien_explorer: '<?php echo $this->Html->url(array('plugin'=>null,'controller'=>'posts','action'=>'tinymce')) ?>',
+        image_explorer: '<?php echo $this->Html->url(array('controller'=>'medias','action'=>'tinymce')); ?>',
+        image_edit: '<?php echo $this->Html->url(array('controller'=>'medias','action'=>'tinymce','url')); ?>',
+        lien_explorer: '<?php echo $this->Html->url(array('controller'=>'posts','action'=>'tinymce')) ?>',
         relative_urls: false,
         content_css: '<?php echo $this->Html->url('/css/wysiwyg.css') ?>',
         entity_encoding : "raw",
