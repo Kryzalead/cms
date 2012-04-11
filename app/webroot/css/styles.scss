@@ -203,6 +203,15 @@ $experimental-support-for-svg: true;
 		   url('fonts/leckerli/leckerlione.svg#LeckerliOneRegular') format('svg');
 				font-weight: normal;font-style: normal;}
 
+@font-face {
+	font-family: 'swenson';
+		src: url('fonts/swenson/swenson.eot');
+		src: url('fonts/swenson/swenson.eot?#iefix') format('embedded-opentype'),
+		   url('fonts/swenson/swenson.woff') format('woff'),
+		   url('fonts/swenson/swenson.ttf') format('truetype'),
+		   url('fonts/swenson/swenson.svg#SwensonRegular') format('svg');
+					font-weight: normal;font-style: normal;}
+
 
 /* ---------------------------------------
 				Container
@@ -578,20 +587,30 @@ legend {display:hidden;}
 .comment .comment-title .action{float: right}
 .comment .comment-content{padding: 5px}
 
-#GuestbookIndexForm {
-	width:900px;
-	margin:20px 20px 20px;}
+#guestbook {border-top:1px solid #D9D9D9;padding-top:10px;}
 
-#GuestbookIndexForm label {
+#guestbook_form {
+	padding:10px 20px;
+	background-color: #fff;
+	border:none;
 	display: inline-block;
+	width:400px;
+	margin:20px 10px 30px 0;
+	@include contenu;}
+
+#guestbook_form label {
+	display: inline-block;
+	vertical-align:top;
 	vertical-align:top;
 	width:100px;}
 
-#GuestbookIndexForm input[type=text] {width:180px;} 
+#guestbook_form input[type=text] {width:180px;} 
 
-#GuestbookIndexForm .submit {
+#guestbook_form .submit {
 	display: inline-block;
 	margin:20px 0 0 20px;}
 
 form .placeholder {margin-left:0;}
 form .placeholder label {position: absolute;line-height:36px; margin-left:15px;}
+
+#guestbook_image {display: inline-block;vertical-align:top;margin-top:100px;border:1px solid red;}
