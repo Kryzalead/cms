@@ -3,6 +3,8 @@ App::uses('Sanitize', 'Utility');
 
 class ProductsController extends AppController{
 
+	public $components = array('Img');
+
 	protected $allow_product = array('robe-de-mariee','accessoire');
 	protected $allow_product_status = array('all','publish','draft','trash');
 	protected $allow_product_action = array('add','edit');
@@ -130,7 +132,7 @@ class ProductsController extends AppController{
 
 		$type_product = $this->request->params['type'];
 
-		$this->Product->contain(array('Term','Product_meta'));
+		$this->Product->contain(array('Term','Product_meta','Product_attachement'));
 
 		$d['product'] = $this->Product->find('first',array(
 			'fields'=>array('Product.name','Product.slug','Product.description','Product.url','Product.price','Product.product_type','Product.url_min'),
@@ -148,16 +150,6 @@ class ProductsController extends AppController{
 				$d['product']['Meta']['valeur_achat'] = $v['meta_value'];
 			if($v['meta_key'] == 'product_creator_site')
 				$d['product']['Meta']['product_creator_site'] = $v['meta_value'];
-			if($v['meta_key'] == 'product_attachment_metadata'){
-				$product_attachment_metadata = unserialize($v['meta_value']);
-				foreach ($product_attachment_metadata as $k1 => $v1) {
-					$d['product']['Meta']['attachment'][] = array(
-						'name'=>$k1,
-						'origin'=>$v1['origin'],
-						'thumb'=>$v1['thumb']
-					);
-				}
-			}
 		}
 
 		$creator = current($d['product']['Taxonomy']['product_creator']);
@@ -423,95 +415,6 @@ class ProductsController extends AppController{
 		$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 	}
 
-	/*
-	function admin_edit(){
-
-		$type = (!empty($this->request->query['type'])) ? $this->request->query['type'] : 'robe-de-mariee';
-		
-		if(!in_array($type, $this->allow_product)){
-			$this->error("Type de produits invalide");
-			return;
-		}
-
-		$id = !empty($this->request->query['id']) ? $this->request->query['id'] : 0;
-		if(!is_numeric($id))
-			$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
-
-		if(!empty($id)){
-			$this->Product->id = $id;
-			$product_type = $this->Product->field('product_type');
-			if(!empty($product_type)){
-				if($type != $product_type)
-					$this->redirect(array('action'=>'edit','?'=>array('type'=>$product_type,'id'=>$id)));
-			}
-			else{
-				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
-				return;
-			}
-		}
-
-		$d['type'] = $type;
-		$d['title_for_layout'] = $type == 'robe-de-mariee' ? 'Ajouter une nouvelle robe' : 'Ajouter un nouvel accessoire';
-		$d['icon_for_layout'] = $type == 'post' ? 'icone-posts-add.png' : 'icone-pages-add.png';
-		$d['texte_submit'] = 'Publier';
-		
-		$this->Product->contain(array('Product_meta','Term'));
-
-		if($this->request->is('post') || $this->request->is('put')){
-			
-			if($this->Product->save($this->request->data)){
-				$product_id = $this->Product->id;
-				foreach ($this->request->data['Product'] as $k => $v) {
-					if(!empty($v)){
-						if($k == 'product_buy_price'){
-							$product_meta_id = $this->Product->Product_meta->field('id',array('product_id'=>$product_id));
-							$this->Product->Product_meta->id = $product_meta_id ;
-							$this->Product->Product_meta->saveField('meta_value',$v);
-						}
-					}
-				}
-				$this->Session->setFlash("ok","notif");
-				$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
-			}
-			else{
-				$this->Session->setFlash('Merci de corriger vos erreurs','notif',array('typeMessage'=>'error'));	
-			}
-		}
-		elseif($id){
-			$d['title_for_layout'] = $type == 'robe-de-mariee' ? "Modifier la robe" : "Modifier l'accessoire";
-			$d['texte_submit'] = 'Mettre à jour';
-			$d['action'] = 'upd';
-
-			$this->Product->id = $id;
-			$product = $this->Product->read(array('Product.id','Product.name','Product.slug','Product.description','Product.product_type','Product.price'));
-			if(empty($product)){
-				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
-				return;
-			}
-			foreach ($product['Product_meta'] as $k => $v) {
-				$product['Product'][$v['meta_key']] = $v['meta_value'];
-			}
-			$this->request->data = $product;
-		}
-		else{
-			$last_id = current($this->Product->find('first',array(
-				'fields'=>'MAX(id) AS maxid',
-			)));
-			
-			$this->request->data['Product']['id'] = $last_id['maxid'] + 1;
-		}
-		$d['action'] = 'add';
-		
-		$d['list_status'] = array(
-			'publish'=>'Publié',
-			'draft'=>'Brouillon'
-		);
-
-		$d['status_selected'] = 'publish';
-		$this->set($d);
-	}
-	*/
-
 	function admin_add(){
 		// récupération du type
 		$type = (!empty($this->request->query['type'])) ? $this->request->query['type'] : 'robe-de-mariee';
@@ -537,14 +440,24 @@ class ProductsController extends AppController{
 		$last_id = current($this->Product->find('first',array(
 			'fields'=>'MAX(id) AS maxid',
 		)));
+
+		if($this->Session->check('data_form')){
+			$this->request->data = $this->Session->read('data_form');
+			$this->Product->validationErrors = $this->Session->read('data_form_error');
+			$this->Session->delete('data_form');
+			$this->Session->delete('data_form_error');
+		}
 		$this->request->data['Product']['id'] = $last_id['maxid'] + 1;
 		$this->request->data['Product']['product_type'] = $type;
 		$this->request->data['Product']['action'] = 'add';
 
 		// si le type est post, on rajoute la taxonomy
 		if($type == 'accessoire')
-			$d['terms'] = current($this->Product->getFixedTerms());
-
+			$d['terms_product_category'] = current($this->Product->getFixedTerms('product_category'));
+		if($type == 'robe-de-mariee'){
+			$d['terms_product_taille'] = current($this->Product->getFixedTerms('product_taille'));
+			$d['terms_product_creator'] = current($this->Product->getFixedTerms('product_creator'));
+		}
 
 		// listes des status
 		$d['list_status'] = array(
@@ -553,7 +466,7 @@ class ProductsController extends AppController{
 		);
 
 		$d['status_selected'] = 'publish';
-
+		$d['action'] = 'add';
 		$this->set($d);
 		$this->render('admin_edit');
 	}
@@ -564,41 +477,35 @@ class ProductsController extends AppController{
 		if($this->request->is('post') || $this->request->is('put')){
 			
 			// on vérifie l'action demandée
-			if(empty($this->request->data['Post']['action']) || !in_array($this->request->data['Post']['action'],$this->allow_post_action)){
+			if(empty($this->request->data['Product']['action']) || !in_array($this->request->data['Product']['action'],$this->allow_product_action)){
 				$this->redirect($this->referer());
 			}
-			$action = $this->request->data['Post']['action'];
+			$action = $this->request->data['Product']['action'];
 			
 			// on vérifie si le type est correct
-			if(!in_array($this->request->data['Post']['type'],$this->allow_post_type)){
+			if(!in_array($this->request->data['Product']['product_type'],$this->allow_product)){
 				$this->redirect($this->referer());
 			}
-			$type = $this->request->data['Post']['type'];
+			$type = $this->request->data['Product']['product_type'];
 			
-			//on enregistre le post
-			if($this->Post->save($this->request->data)){
-				if(empty($this->request->data['Post']['terms']))
-					if($this->request->data['Post']['type'] == 'post')
-						$this->Post->initCat();
-
-				$message = '';
-				switch ($action) {
-					case 'add':
-						$message = ($type == 'post') ? "L'article a bien été publié" : "La page a bien été publiée";
-						break;
-					case 'edit':
-						$message = ($type == 'post') ? "L'article a bien été modifié" : "La page a bien été modifiée";
-						break;
-					default:
-						# code...
-						break;
-				}
-				$this->Session->setFlash($message,"notif");
-				$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
+			//on enregistre le produit
+			if($this->Product->save($this->request->data)){
+				debug($this->request->data);
+				die();
 			}
 			else{
 				$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
-				$post = $this->request->data;
+				$product = $this->request->data;
+				$this->Session->write('data_form',$this->request->data);
+				$this->Session->write('data_form_error',$this->Product->validationErrors);
+				$product_type = $this->request->data['Product']['product_type'];
+				if ($this->request->data['Product']['action'] == 'add')
+					$this->redirect(array('action'=>'add','?'=>array('type'=>$product_type)));
+				if ($this->request->data['Product']['action'] == 'edit'){
+					$id = $this->request->data['Product_id'];
+					$this->redirect(array('action'=>'edit','?'=>array('id'=>$id,'action'=>'edit')));
+				}
+
 			}
 		}
 		else{
@@ -616,18 +523,17 @@ class ProductsController extends AppController{
 
 			// on vérifie qu'on a bien un post à cet id et on récupère son type
 			$this->Product->id = $id;
-			$this->Product->contain(array('Product_meta','Term'));
+			$this->Product->contain(array('Product_meta','Term','Product_attachement'));
 			$product = $this->Product->read(array('Product.id','Product.name','Product.description','Product.slug','Product.status','Product.product_type','Product.url_min','Product.price'));
 			if(empty($product)){
 				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
 				return;
 			}
 			foreach ($product['Product_meta'] as $k => $v) {
-				if ($v['meta_key'] == 'product_attachment_metadata')
-					$v['meta_value'] = unserialize($v['meta_value']);
 				$product['Product'][$v['meta_key']] = $v['meta_value'];
 			}
 			$d['product'] = $product;
+			$d['action'] = 'edit';
 		}
 		
 		// on crée les variables pour la vue
@@ -636,16 +542,15 @@ class ProductsController extends AppController{
 			$d['title_for_layout'] = "Modifier la robe";
 			$d['icon_for_layout'] = 'icone-posts-add.png';
 			$d['texte_submit'] = 'Mettre à jour';
+			$d['terms_product_taille'] =  current($this->Product->getFixedTerms('product_taille'));
+			$d['terms_product_creator'] = current($this->Product->getFixedTerms('product_creator'));
 		}
 		else{
 			$d['title_for_layout'] = "Modifier l'accessoire";
 			$d['icon_for_layout'] = 'icone-pages-add.png';
 			$d['texte_submit'] = 'Mettre à jour';
+			$d['terms_product_category'] = current($this->Product->getFixedTerms('product_category'));
 		}
-
-		// si le type est post, on rajoute la taxonomy
-		if($post_type == 'accessoire')
-			$d['terms'] = $this->Product->getFixedTerms();
 		
 		$d['type'] = $post_type;
 		// listes des status
@@ -658,7 +563,55 @@ class ProductsController extends AppController{
 
 		// on envoie les datas au formulaire
 		$this->request->data = $product;
+		if($this->Session->check('data_form')){
+			$this->request->data = $this->Session->read('data_form');
+			$this->Product->validationErrors = $this->Session->read('data_form_error');
+			$this->Session->delete('data_form');
+			$this->Session->delete('data_form_error');
+		}
 		$this->request->data['Product']['action'] = $action;
+		
 		$this->set($d);
+	}
+
+	function admin_delattachment(){
+
+		$attachement_id = $this->request->query['attachment_id'];
+		
+		$this->Product->Product_attachement->id = $attachement_id;
+		$product_id = $this->Product->Product_attachement->field('product_id');
+		$this->Product->Product_attachement->delete();
+		$this->redirect(array('action'=>'edit','?'=>array('id'=>$product_id,'action'=>'edit')));
+	}
+
+	function admin_addattachment(){
+		$attachment_name = $this->request->data['Product']['attachment_name'];
+		$attachment_slug = strtolower(Inflector::slug($attachment_name,'-'));
+		$attachment_product_id = $this->request->data['Product']['attachment_product_id'];
+		$attachment_product_slug = $this->request->data['Product']['attachment_product_slug'];
+		$file = $this->request->data['Product']['attachment_file'];
+		
+		if(!file_exists($dir)){
+			mkdir($dir,'0777');
+		}
+		$dir = IMAGES.'catalogue'.DS.$attachment_product_slug;
+		if(!file_exists($dir)){
+			mkdir($dir,'0777');
+			mkdir($dir.DS.'mini','0777');
+		}
+		$file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+		
+		move_uploaded_file($file['tmp_name'], $dir.DS.$attachment_slug.'.'.$file_extension);
+		$this->Product->Product_attachement->save(array(
+			'name'=>$attachment_name,
+			'url'=>'catalogue/'.$attachment_product_slug.'/'.$attachment_slug.'.'.$file_extension,
+			'url_min'=>'catalogue/'.$attachment_product_slug.'/mini/'.$attachment_slug.'.'.$file_extension,
+			'product_id'=>$attachment_product_id
+		));
+		$width = 52;$height = 69;
+		$this->Img->crop($dir.DS.$attachment_slug.'.'.$file_extension,$dir.DS.'mini'.DS.$attachment_slug.'.'.$file_extension,$width,$height);
+		$this->redirect(array('action'=>'edit','?'=>array('id'=>$attachment_product_id,'action'=>'edit')));
+		
+		
 	}
 }

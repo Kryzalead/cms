@@ -10,6 +10,18 @@
         <?php echo $this->Html->css('ok.css') ?>
         <?php echo $this->Html->css('start/jquery-ui.css') ?>
         <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <style type="text/css">
+            #blocsAjoutCote .add_meta .checkbox label {margin-left: 5px;}
+            #blocsAjoutCote .add_meta .checkbox {height: 20px;line-height: 20px;}
+            #blocsAjoutCote #bloc_createur select{width: 200px;padding: 2px}
+            .blocsCentral #produit_images .liste_produits_image li{display: inline-block;position: relative;}
+            .blocsCentral #produit_images .liste_produits_image li .del_thumb{color: red;position: absolute;top: 0;right:0;text-decoration: none}
+
+            #form_upload{display: none}
+            #form_upload label{position: absolute;margin-top: 10px;height: 20px;line-height: 22px;margin-left: 5px}
+            #form_upload input{height: 20px}
+            #form_upload input{margin-top: 10px}
+        </style>
     </head>
     <body>
         <!-- config button -->

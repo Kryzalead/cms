@@ -58,7 +58,7 @@
         <section <?php echo $bg ?>>
           <?php echo $content_for_layout ?>  
         </section>
-          
+          <div class="cb"></div>
           <section id="bandeau"> <!-- Début bandeau -->
             <ul>
               <li class="titre">Aux Mariées de Christèle</li>

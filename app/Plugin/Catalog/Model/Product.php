@@ -15,9 +15,9 @@ class Product extends CatalogAppModel{
 			
 		)
 	);
-	public $actsAs = array('Containable','Taxonomy.taxonomy'=>array('fixed'=>array('product_category')));
+	public $actsAs = array('Containable','Taxonomy.taxonomy'=>array('fixed'=>array('product_category','product_taille','product_creator')));
 
-	public $hasMany = array('Product_meta'=>array('dependent'=>true));
+	public $hasMany = array('Product_meta'=>array('dependent'=>true),'Product_attachement'=>array('dependent'=>true));
 
 	public $recursive = -1;
 }
