@@ -257,6 +257,9 @@ jQuery(function($){
       if(input.val() != ''){
          label.stop().hide(); 
       }
+      input.click(function(){
+        label.stop().hide(); 
+      });
       input.focus(function(){
          if($(this).val() == ''){
               label.stop().fadeTo(500,0.5);  

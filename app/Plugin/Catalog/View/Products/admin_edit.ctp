@@ -14,12 +14,13 @@
 	<?php echo $this->Form->input('Product.product_type',array('type'=>'hidden')) ?>
     <?php echo $this->Form->input('Product.action',array('label'=>null,'type'=>'hidden')); ?>
 	<?php echo $this->Form->input('Product.description',array('label'=>false,'rows'=>Configure::read('default_post_edit_rows'))) ?>
+    <?php if ($action == 'edit'): ?>
     <div class="bloc" id="produit_images">
         <h3 class="bloc_titre">
             Autres images
             <?php echo $this->Html->link("Ajouter une image",array('action'=>'addattachment','controller'=>'products','?'=>array('product_id'=>$product['Product']['id'])),array('id'=>'show_form_attachment')); ?>
         </h3>
-        <div class="bloc_contenu">
+         <div class="bloc_contenu">
              <?php if (!empty($product['Product_attachement'])): ?>
                  <ul class="liste_produits_image">
                      <?php foreach ($product['Product_attachement'] as $k => $v): ?>
@@ -50,7 +51,8 @@
                  </ul>
              <?php endif ?>
         </div>
-    </div>	
+       </div>
+    <?php endif ?>	
 </div>
 <div id="blocsAjoutCote">
     <div class="add_meta bloc" id="bloc_post_publier"><!-- Publier -->
@@ -131,15 +133,17 @@
     <?php endif ?>
 </div>
 <?php echo $this->Form->end() ?>
+<?php if ($action == 'edit'): ?>
+   <div id="form_upload">
+        <?php echo $this->Form->create('Product',array('action'=>'addattachment','type'=>'file')) ?>   
+            <?php echo $this->Form->input('attachment_name',array('label'=>"Nom du fichier",'div'=>array('class'=>'placeholder'))); ?>
+            <?php echo $this->Form->input('attachment_file',array('label'=>false,'type'=>'file')); ?>
+            <?php echo $this->Form->input('attachment_product_id',array('label'=>false,'type'=>'hidden','value'=>$product['Product']['id'])); ?>
+            <?php echo $this->Form->input('attachment_product_slug',array('label'=>false,'type'=>'hidden','value'=>$product['Product']['slug'])); ?>
+        <?php echo $this->Form->end('Envoyer') ?>        
+    </div> 
+<?php endif ?>
 
-<div id="form_upload">
-    <?php echo $this->Form->create('Product',array('action'=>'addattachment','type'=>'file')) ?>   
-        <?php echo $this->Form->input('attachment_name',array('label'=>"Nom du fichier",'div'=>array('class'=>'placeholder'))); ?>
-        <?php echo $this->Form->input('attachment_file',array('label'=>false,'type'=>'file')); ?>
-        <?php echo $this->Form->input('attachment_product_id',array('label'=>false,'type'=>'hidden','value'=>$product['Product']['id'])); ?>
-        <?php echo $this->Form->input('attachment_product_slug',array('label'=>false,'type'=>'hidden','value'=>$product['Product']['slug'])); ?>
-    <?php echo $this->Form->end('Envoyer') ?>        
-</div>
 <?php $this->Html->scriptStart(array('inline'=>false)); ?>
 $('#show_form_attachment').click(function(){
     $('#form_upload').dialog({

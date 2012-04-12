@@ -66,13 +66,34 @@ class TaxonomyBehavior extends ModelBehavior{
 				));
 			}
 		}
+		if(isset($model->data[$model->name]['terms_product_creator'])){
+			$model->deleteTerms('product_creator');
+			$terms = $model->data[$model->name]['terms_product_creator'];
+			foreach ($terms as $term_id) {
+				$model->Term->TermR->create();
+				$model->Term->TermR->save(array(
+					'term_id'=>$term_id,
+					'object'=>$model->name,
+					'object_id'=>$model->id	
+				));
+			}
+		}
 	}
 
-	function deleteTerms($model){
-		$terms = $model->Term->find('list',array(
-			'fields'=>array('Term.id','Term.id'),
-			'conditions'=>array('Term.type'=>$this->settings['fixed'])
-		));
+	function deleteTerms($model,$slug = null){
+		if(!empty($slug)){
+			$terms = $model->Term->find('list',array(
+				'fields'=>array('Term.id','Term.id'),
+				'conditions'=>array('Term.type'=>$slug)
+			));
+		}
+		else{
+			$terms = $model->Term->find('list',array(
+				'fields'=>array('Term.id','Term.id'),
+				'conditions'=>array('Term.type'=>$this->settings['fixed'])
+			));
+		}
+		
 		$model->Term->TermR->deleteAll(array(
 			'object'=>$model->name,
 			'object_id'=>$model->id,
