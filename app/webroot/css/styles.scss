@@ -222,22 +222,17 @@ header h1 {
 				Nav
 ------------------------------------------ */
 ul#nav_menu li a{color: #fff}
-/* -- nous connaitre -- */
-ul#nav_menu li.sub{position: relative}
-ul#nav_menu li.sub ul{position: absolute;left: 0;display: none;width: 320px}
-ul#nav_menu li.sub:hover ul{display: block;}
 
 nav#menu {
+	position: absolute;
 	display: inline-block;
 	vertical-align:top;
-	margin:70px 0 0 10px;}
+	margin:15px 0 0 10px;}
 
 nav#menu ul#nav_menu {
-	position: absolute;
 	text-align: left;
 	top:55px;
-	padding: 0;
-	height: 50px;}
+	padding: 0;}
 
 nav#menu ul#nav_menu li {
 	padding: 0;
@@ -273,6 +268,12 @@ nav#menu ul#nav_menu li a:hover {
 	margin-right:2px;
 	font-size:26px;}
 
+nav#menu ul#nav_menu li ul li{display:block;padding:5px 0 0 10px;}
+
+/* -- nous connaître -- */
+ul#nav_menu li.sub{position: relative}
+ul#nav_menu li.sub ul{position: absolute;left: 0;display: none;width: 250px}
+ul#nav_menu li.sub:hover ul{display: block;}
 
 /* ---------------------------------------
 				Contenu
@@ -394,9 +395,9 @@ aside#image-accessoires img{
 
 .produit_metas {margin-left:10px;}
 .produit_metas span.prix {font-size:1.2em; font-weight:bold;color:#AA4673;margin:10px 0 20px;display: inline-block;}
-.produit_metas p{line-height:12px;text-align:center;}
+.produit_metas p{padding-bottom:4px;text-align:center;}
 
-#catalogue_accessoire {width:950px;margin-top:30px;border-top:1px dotted #c1c1c1;}
+#catalogue_accessoire {width:950px;margin-top:25px;border-top:1px dashed #C1C1C1;}
 
 /* -- blocs catalogue -- */
 .blocs h1 a{color:#000;}
@@ -562,7 +563,7 @@ legend {display:hidden;}
 ------------------------------------------ */
 .mariee{visibility: hidden;}
 
-#guestbook {border-top:1px solid #D9D9D9;padding-top:10px;}
+#guestbook {border-bottom:1px solid #D9D9D9;margin-top:15px;}
 #guestbook_form {
 	padding:10px 20px;
 	background-color: #fff;
@@ -592,25 +593,37 @@ legend {display:hidden;}
 	background-image: url(images/bouton_submit_comment.png);
 	background-repeat:no-repeat;}
 
-#guestbook_form .add_comment input {background-position: 0 top;}
-#guestbook_form .add_comment:hover input{
-	cursor: pointer;
-	background-position:0 bottom;}
+#guestbook_form .add_comment input {background-position:0 top;}
+#guestbook_form .add_comment:hover input{cursor:pointer;background-position:0 bottom;}
 
 form .placeholder {margin-left:0;}
-form .placeholder label {position: absolute; margin-left:15px;}
+form .placeholder label {position:absolute; margin-left:15px;}
 
 #guestbook_image {display: inline-block;vertical-align:top;margin-top:100px;}
 
 /* -- Commentaires -- */
-#guestbook p {font:bold 2.2em 'riesling';}
-.comment {width: 600px;margin:20px 0 5px;}
-.comment #date {display:inline-block;vertical-align:top;color:#998F76;font-weight:bold;width:100px;margin-right:10px;border-right: 1px solid #999;text-align:right;padding-right:15px;}
-.comment #comment_content {display: inline-block;vertical-align:top;border:1px solid red;width:450px;}
+#guestbook p {font:bold 2em 'riesling';}
+.comment {margin:20px 0 10px;}
+.comment #date {display:inline-block;vertical-align:top;width:100px;margin-right:10px;border-right: 2px solid #D9D9D9;text-align:right;padding-right:25px;}
+.comment #comment_content {display: inline-block;vertical-align:top;width:450px;text-align:left;}
+
 .comment .comment-title{padding: 5px;}
 .comment .comment-title .action{float: right;}
-.comment .comment-content{}
+
 span.comment-author{display: block;margin-top:15px;color:#09f;font-weight:bold;}
+
+/* -- date -- */
+span.jour, span.mois, span.annee {color:#998F76;font-weight:bold;}
+span.jour{font-size:2.4em;padding:0;letter-spacing: -2px;}
+span.mois{vertical-align:top;padding:4px 0 0 3px;font-size:1.1em;display:inline-block;}
+span.annee{font-weight:normal;position: absolute;text-align:center;margin:28px 0 0 28px;font-size:.9em;background-color: #eee;width:35px;line-height:13px;}
+span.heure {color:#29537D;font-size:.8em;display: inline-block;vertical-align:top;}
+
+/* -- add_commentaire -- */
+#add_commentaire{margin:0 auto;}
+#add_commentaire h1{margin: 30px auto 10px;}
+#add_commentaire h1 a:hover{color:#AA4673;text-decoration:underline;}
+#add_commentaire h1 img{margin:0 30px 0 180px;display: inline-block;vertical-align:middle;}
 
 /* ---------------------------------------
 					Footer

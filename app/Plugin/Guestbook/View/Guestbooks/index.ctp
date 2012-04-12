@@ -1,23 +1,9 @@
 <h1>Laisser nous un petit message</h1>
 
-<div id="guestbook_form">
-	<?php echo $this->Form->create('Guestbook') ?>
-	<?php echo $this->Form->input('Guestbook.author',array('label'=>"Votre nom", 'div'=>array('class'=>'placeholder'))); ?>
-	<?php echo $this->Form->input('Guestbook.author_email',array('label'=>"Votre email", 'div'=>array('class'=>'placeholder'))); ?>
-	<?php echo $this->Form->input('Guestbook.author_url',array('label'=>"Site Web", 'div'=>array('class'=>'placeholder'))); ?>
-	<?php echo $this->Form->input('Guestbook.content',array('label'=>"Votre message", 'div'=>array('class'=>'placeholder'))); ?>
-	<?php echo $this->Form->input('Guestbook.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
-	<?php echo $this->Form->end(array('label'=>'','div'=>array('class'=>'add_comment'))) ?>
-</div>
-
-<div id="guestbook_image">
-	<?php echo $this->Html->image('livre-dor.jpg', array('width'=>'480', 'height'=>'229')) ?>
-</div>
 <?php if (!empty($guestbooks)): ?>
-
 <div id="guestbook">
 	<?php $terminaison = $totalComments > 1 ? 's' : '' ?>
-	<p><?php echo $totalComments ?> Commentaire<?php echo $terminaison ?></p>
+		<p><?php echo $totalComments ?> Commentaire<?php echo $terminaison ?></p>
 	<?php $i = 0 ?>
 	<?php foreach ($guestbooks as $k => $v): ?>
 		<?php $class = ($i%2 == 0) ? 'paire' : 'nopaire' ?>
@@ -26,11 +12,17 @@
 			<div class="comment-title">
 				<div id="date">
 					<?php 
-					$date = $this->date->format($v['Guestbook']['created'],'special_jd',true); 
-					$num_jour = $date['num_jour'];$mois = $date['mois'];$annee = $date['annee'];$heure = $date['heure'];$minute = $date['min'];
+						$date = $this->date->format($v['Guestbook']['created'],'special_jd',true); 
+						$num_jour = $date['num_jour'];$mois = $date['mois'];$annee = $date['annee'];$heure = $date['heure'];$minute = $date['min'];
 					?>
-					
+					<div class="date">
+						<span class="jour"><?php echo $num_jour ?></span>
+						<span class="mois"><?php echo $mois ?></span>
+						<span class="annee"><?php echo $annee ?></span>
+						<span class="heure"><?php echo $heure ?>:<?php echo $minute ?></span>
+					</div>
 				</div>
+
 				<div id="comment_content">
 					<span class="comment-content"><?php echo nl2br($v['Guestbook']['content']); ?></span>
 						<?php if ($this->Session->read('Auth.User.role') == 'admin' || $this->Session->read('Auth.User.role') == 'superadmin'): ?>
@@ -56,3 +48,20 @@
 	<?php endforeach ?>
 </div>
 <?php endif ?>
+<div class"cb"></div>
+	
+<div id="add_commentaire">
+	<h1><img src="img/comment.png" width="142" height="128"/><a href="#">Ajouter votre commentaire</a></h1>
+	<div id="guestbook_form">
+		<?php echo $this->Form->create('Guestbook') ?>
+		<?php echo $this->Form->input('Guestbook.author',array('label'=>"Votre nom", 'div'=>array('class'=>'placeholder'))); ?>
+		<?php echo $this->Form->input('Guestbook.author_email',array('label'=>"Votre email", 'div'=>array('class'=>'placeholder'))); ?>
+		<?php echo $this->Form->input('Guestbook.author_url',array('label'=>"Site web", 'div'=>array('class'=>'placeholder'))); ?>
+		<?php echo $this->Form->input('Guestbook.content',array('label'=>"Votre message", 'div'=>array('class'=>'placeholder'))); ?>
+		<?php echo $this->Form->input('Guestbook.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
+		<?php echo $this->Form->end(array('label'=>'','div'=>array('class'=>'add_comment'))) ?>
+	</div>
+	<div id="guestbook_image">
+		<?php echo $this->Html->image('livre-dor.jpg', array('width'=>'480', 'height'=>'229')) ?>
+	</div>
+</div>

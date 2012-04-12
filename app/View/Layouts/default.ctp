@@ -41,7 +41,7 @@
               </ul>
             </li>
             <li class="sub">
-              <?php echo $this->Html->link("Nous connaitre",'#'); ?>
+              <?php echo $this->Html->link("Nous connaître",'#'); ?>
               <ul>
                 <li><?php echo $this->Html->link("Contrats",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'contrats')); ?></li>
                 <li><?php echo $this->Html->link("Partenariats",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'partenariats')); ?></li>
