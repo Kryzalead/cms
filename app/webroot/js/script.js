@@ -83,4 +83,8 @@ jQuery(function($){
         $('#show_filter_arrow').addClass('active_arrow');
       }
     });
+
+    $('#show_form_comment').click(function(){
+      $(this).toggleClass('active').parent().next('#guestbook_add').slideToggle(300);
+    })
 });
