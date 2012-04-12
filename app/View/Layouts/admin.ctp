@@ -23,7 +23,7 @@
                         <a href="url(<?php echo Router::url('/css/images/setting_button/bg/vert.gif') ?>)" class="backgroundChanger dark" title="Vert"></a>
                         <a href="url(<?php echo Router::url('/css/images/setting_button/bg/carbon.gif') ?>)" class="backgroundChanger dark" title="Carbon"></a>
                         <a href="url(<?php echo Router::url('/css/images/setting_button/bg/dark-bg.png') ?>)" class="backgroundChanger dark" title="Noir"></a>
-                    <div class="clear"></div>
+                    <div class="cb"></div>
                 </div>
                 <div class="grid3">
                     <div class="titre">Style des blocs</div>
