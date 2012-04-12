@@ -563,15 +563,15 @@ aside#image-accessoires img {
 
 /* line 397, styles.scss */
 .produit_metas p {
-  line-height: 12px;
+  padding-bottom: 4px;
   text-align: center;
 }
 
 /* line 399, styles.scss */
 #catalogue_accessoire {
   width: 950px;
-  margin-top: 30px;
-  border-top: 1px dotted #c1c1c1;
+  margin-top: 25px;
+  border-top: 1px dashed #C1C1C1;
 }
 
 /* -- blocs catalogue -- */
