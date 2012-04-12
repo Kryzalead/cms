@@ -16,6 +16,9 @@
   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/>
   <?php echo $this->Html->css('styles.css') ?>
   <?php echo $this->Html->css('styles-ie.css') ?>
+  <style type="text/css">
+    #guestbook_add{display: none}
+  </style>
 </head>
 <body>
 <!--[if lte IE 8]>

@@ -46,20 +46,23 @@
 	<?php endforeach ?>
 </div>
 <?php endif ?>
-<div class"cb"></div>
+<div class="cb"></div>
 	
 <div id="add_commentaire">
-	<h1><img src="img/comment.png" width="142" height="128"/><a href="#">Ajouter votre commentaire</a></h1>
-	<div id="guestbook_form">
-		<?php echo $this->Form->create('Guestbook') ?>
-		<?php echo $this->Form->input('Guestbook.author',array('label'=>"Votre nom", 'div'=>array('class'=>'placeholder'))); ?>
-		<?php echo $this->Form->input('Guestbook.author_email',array('label'=>"Votre email", 'div'=>array('class'=>'placeholder'))); ?>
-		<?php echo $this->Form->input('Guestbook.author_url',array('label'=>"Site web", 'div'=>array('class'=>'placeholder'))); ?>
-		<?php echo $this->Form->input('Guestbook.content',array('label'=>"Votre message", 'div'=>array('class'=>'placeholder'))); ?>
-		<?php echo $this->Form->input('Guestbook.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
-		<?php echo $this->Form->end(array('label'=>'','div'=>array('class'=>'add_comment'))) ?>
+	<h1><img src="img/comment.png" width="142" height="128"/><?php echo $this->Html->link("Ajouter un commentaire",'#',array('id'=>'show_form_comment')); ?></h1>
+	<div id="guestbook_add">
+		<div id="guestbook_form">
+			<?php echo $this->Form->create('Guestbook') ?>
+			<?php echo $this->Form->input('Guestbook.author',array('label'=>"Votre nom", 'div'=>array('class'=>'placeholder'))); ?>
+			<?php echo $this->Form->input('Guestbook.author_email',array('label'=>"Votre email", 'div'=>array('class'=>'placeholder'))); ?>
+			<?php echo $this->Form->input('Guestbook.author_url',array('label'=>"Site web", 'div'=>array('class'=>'placeholder'))); ?>
+			<?php echo $this->Form->input('Guestbook.content',array('label'=>"Votre message", 'div'=>array('class'=>'placeholder'))); ?>
+			<?php echo $this->Form->input('Guestbook.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
+			<?php echo $this->Form->end(array('label'=>'','div'=>array('class'=>'add_comment'))) ?>
+		</div>
+		<div id="guestbook_image">
+			<?php echo $this->Html->image('livre-dor.jpg', array('width'=>'480', 'height'=>'229')) ?>
+		</div>
 	</div>
-	<div id="guestbook_image">
-		<?php echo $this->Html->image('livre-dor.jpg', array('width'=>'480', 'height'=>'229')) ?>
-	</div>
+	
 </div>

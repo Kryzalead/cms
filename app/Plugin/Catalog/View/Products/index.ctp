@@ -28,20 +28,25 @@
 								<?php echo $v['Product']['name'];?>
 							</figcaption>
 					</figure>
-
-					<div class="produit_metas">
-						<p><?php echo ' Prix : <span class="prix">'.$v['Product']['price'].' €' ?></span></p>
-						<?php if ($type_product == 'robe-de-mariee'): ?>
-							<p>Taille : 
-							<?php foreach ($v['Taxonomy']['product_taille'] as $k => $v1): ?>
-								<?php echo $v1['name'] ?></p>
-							<?php endforeach ?>
-							<p>Créateur :
-							<?php foreach ($v['Taxonomy']['product_creator'] as $k => $v1): ?>
-								<?php echo $v1['name']?></p>
-							<?php endforeach ?>
-						<?php endif ?>	
-					</div>
+					<?php if (!empty($v['Taxonomy'])): ?>
+						<div class="produit_metas">
+							<p><?php echo ' Prix : <span class="prix">'.$v['Product']['price'].' €' ?></span></p>
+							<?php if ($type_product == 'robe-de-mariee'): ?>
+								<?php if (!empty($v['Taxonomy']['product_taille'])): ?>
+									<p>Taille : 
+									<?php foreach ($v['Taxonomy']['product_taille'] as $k => $v1): ?>
+										<?php echo $v1['name'] ?></p>
+									<?php endforeach ?>
+								<?php endif ?>
+								<?php if (!empty($v['Taxonomy']['product_creator'])): ?>
+									<p>Créateur :
+									<?php foreach ($v['Taxonomy']['product_creator'] as $k => $v1): ?>
+										<?php echo $v1['name']?></p>
+									<?php endforeach ?>
+								<?php endif; ?>
+							<?php endif ?>	
+						</div>
+					<?php endif ?>
 				</div>
 			<?php endforeach ?>
 		</nav>

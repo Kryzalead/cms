@@ -21,6 +21,8 @@
             #form_upload label{position: absolute;margin-top: 10px;height: 20px;line-height: 22px;margin-left: 5px}
             #form_upload input{height: 20px}
             #form_upload input{margin-top: 10px}
+
+            #bloc_image_une .product_thumb{text-align: center}
         </style>
     </head>
     <body>
