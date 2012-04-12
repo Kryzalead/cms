@@ -322,7 +322,6 @@ ul#nav_menu li.sub:hover ul{display: block;}
 
 /* --  Bloc Accueil et blocs -- */
 .bloc #accueil{width: 600px;padding: 30px 15px 20px;margin:0;}
-
 .blocs {padding:20px;}
 
 
@@ -604,8 +603,8 @@ form .placeholder label {position:absolute; margin-left:15px;}
 /* -- Commentaires -- */
 #guestbook p {font:bold 2em 'riesling';}
 .comment {margin:20px 0 10px;}
-.comment #date {display:inline-block;vertical-align:top;width:100px;margin-right:10px;border-right: 2px solid #D9D9D9;text-align:right;padding-right:25px;}
-.comment #comment_content {display: inline-block;vertical-align:top;width:450px;text-align:left;}
+.comment .date {display:inline-block;vertical-align:top;width:100px;margin-right:10px;border-right: 2px solid #D9D9D9;text-align:right;padding-right:25px;}
+.comment .comment_content {display: inline-block;vertical-align:top;width:450px;text-align:left;}
 
 .comment .comment-title{padding: 5px;}
 .comment .comment-title .action{float: right;}

@@ -10,7 +10,6 @@
 		<?php $i++; ?>
 		<div class="comment <?php echo $class ?>">
 			<div class="comment-title">
-				<div id="date">
 					<?php 
 						$date = $this->date->format($v['Guestbook']['created'],'special_jd',true); 
 						$num_jour = $date['num_jour'];$mois = $date['mois'];$annee = $date['annee'];$heure = $date['heure'];$minute = $date['min'];
@@ -21,9 +20,8 @@
 						<span class="annee"><?php echo $annee ?></span>
 						<span class="heure"><?php echo $heure ?>:<?php echo $minute ?></span>
 					</div>
-				</div>
 
-				<div id="comment_content">
+				<div class="comment_content">
 					<span class="comment-content"><?php echo nl2br($v['Guestbook']['content']); ?></span>
 						<?php if ($this->Session->read('Auth.User.role') == 'admin' || $this->Session->read('Auth.User.role') == 'superadmin'): ?>
 							<div class="action">
