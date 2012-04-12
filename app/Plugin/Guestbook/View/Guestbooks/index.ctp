@@ -18,11 +18,18 @@
 <div id="guestbook">
 	<?php $terminaison = $totalComments > 1 ? 's' : '' ?>
 	<p><?php echo $totalComments ?> Commentaire<?php echo $terminaison ?></p>
+	<?php $i = 0 ?>
 	<?php foreach ($guestbooks as $k => $v): ?>
-		<div class="comment">
+		<?php $class = ($i%2 == 0) ? 'paire' : 'nopaire' ?>
+		<?php $i++; ?>
+		<div class="comment <?php echo $class ?>">
 			<div class="comment-title">
 				<div id="date">
-					<span class="comment-date">Le <?php echo $this->date->format($v['Guestbook']['created'],'FRS',true)?></span>
+					<?php 
+					$date = $this->date->format($v['Guestbook']['created'],'special_jd',true); 
+					$num_jour = $date['num_jour'];$mois = $date['mois'];$annee = $date['annee'];$heure = $date['heure'];$minute = $date['min'];
+					?>
+					
 				</div>
 				<div id="comment_content">
 					<span class="comment-content"><?php echo nl2br($v['Guestbook']['content']); ?></span>

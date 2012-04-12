@@ -307,6 +307,20 @@ class DateHelper extends AppHelper{
                 case 'URL' :
                     $res = gmdate('Y/m/d',$timestamp);
                     break;
+                case 'special_jd':{
+                    
+                    $res = array(
+                        'num_jour'=>$infosdate['jour'],
+                        'mois'=>$this->sMois[gmdate('n',$timestamp)],
+                        'annee'=>$infosdate['annee']
+                    );
+                    if($showHeure){
+                        $heures = explode(':',$infosdate['heure']);
+                        $res['heure'] =  $heures[0];
+                        $res['min'] = $heures[1];
+                    }
+                    
+                }
             }
         }
         return $res;
