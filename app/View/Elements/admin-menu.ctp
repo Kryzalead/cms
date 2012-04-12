@@ -12,6 +12,15 @@
                 <li>
                     <?php echo $this->Html->link("Accessoires",array('plugin'=>'catalog','action'=>'index','controller'=>'products','?'=>array('type'=>'accessoire'),'admin'=>true)); ?>
                 </li>
+                <li>
+                    <?php echo $this->Html->link("Catégorie",array('plugin'=>'taxonomy','controller'=>'terms','action'=>'edit','?'=>array('type'=>'product_category'),'admin'=>true)); ?>
+                </li>
+                <li>
+                    <?php echo $this->Html->link("Taille",array('plugin'=>'taxonomy','controller'=>'terms','action'=>'edit','?'=>array('type'=>'product_taille'),'admin'=>true)); ?>
+                </li>
+                <li>
+                    <?php echo $this->Html->link("Créateur",array('plugin'=>'taxonomy','controller'=>'terms','action'=>'edit','?'=>array('type'=>'product_creator'),'admin'=>true)); ?>
+                </li>
             </ul>
         </li>
         <li <?php echo (!empty($this->request->query['type']) &&  $this->request->query['type'] == 'page')  ? 'class="current"' : '' ?>>

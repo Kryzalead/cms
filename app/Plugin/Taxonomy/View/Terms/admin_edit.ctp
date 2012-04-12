@@ -3,10 +3,10 @@
 	    <?php echo $this->Html->image('icone-posts-add.png',array('width'=>72,'height'=>72)); ?>
 	    <?php echo $title_for_layout ?>
 	</h1>
-	<div id="contain-left" style="width: 35%;float: left;">
+	<div id="contain-left" class="bloc_gauche">
 		<div>
 			<p><?php echo $text_form ?></p>
-			<div style="margin-top: 20px">
+			<div>
 				<?php echo $this->Form->create('Term') ?>
 				<?php echo $this->Form->input('Term.name',array('label'=>"Nom : ")); ?>
 				<p>Ce nom est utilisé un peu partout sur votre site.</p>
@@ -19,11 +19,11 @@
 			</div>				
 		</div>
 	</div>
-	<div id="contain-right" style="float: left;margin-left: 5%;width: 55%;">
+	<div id="contain-right" class="bloc_droit">
 		<div>
-			<table class="classicTable posts" style="-webkit-border-radius: 3px;border-radius: 3px;border-width: 1px;border-style: solid;display: table;border-spacing: 2px;border-color: gray;margin-top: 10px">
-				<thead style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
-					<tr style="color: #21759B">
+			<table class="liste_table terms">
+				<thead>
+					<tr>
 						<th><?php echo $this->Paginator->sort('Term.name','Nom'); ?></th>
 						<th><?php echo $this->Paginator->sort('Term.slug','Identifiant'); ?></th>
 					</tr>
@@ -44,17 +44,19 @@
 						</tr>
 					<?php endforeach ?>
 				</tbody>
-				<tfoot style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
-					<tr style="color: #21759B">
+				<tfoot>
+					<tr>
 						<th><?php echo $this->Paginator->sort('Term.name','Nom'); ?></th>
 						<th><?php echo $this->Paginator->sort('Term.slug','Identifiant'); ?></th>
 					</tr>
 				</tfoot>
 			</table>
 		</div>
-		<p style="margin-top: 20px">
-			À savoir : supprimer une catégorie ne supprime pas les articles qu’elle contient. Les articles affectés uniquement à la catégorie supprimée seront affectés à celle par défaut  : Non classé.
-		</p>
+		<?php if ($type_term == 'category'): ?>
+			<p style="margin-top: 20px">
+				À savoir : supprimer une catégorie ne supprime pas les articles qu’elle contient. Les articles affectés uniquement à la catégorie supprimée seront affectés à celle par défaut  : Non classé.
+			</p>
+		<?php endif ?>
 	</div>
 </div>
 
