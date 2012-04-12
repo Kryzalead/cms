@@ -112,7 +112,7 @@ class MediasController extends AppController{
 						$dir = IMAGES.date('Y'). DS.date('m');
 						
 						move_uploaded_file($file['tmp_name'], $dir.DS.$file_slug.'.'.$file_extension);
-						if($file_extension != 'png' && $file_extension =! 'PNG'){
+						if($file_extension != 'png' && $file_extension != 'PNG'){
 							$format = array('thumbnail','medium','large'); 
 							foreach ($format as $v) {
 								$height = Configure::read($v.'_size_h');

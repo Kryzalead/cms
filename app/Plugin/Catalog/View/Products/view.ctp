@@ -4,11 +4,11 @@
 		<div class="blanc fiche"> <!-- Début blanc fiche -->
 			<div class="produit-gauche">
 				<?php echo $this->Html->link($this->Html->image($product['Product']['url_min'],array('alt'=>"Photo ".$product['Product']['name'],'class'=>'photos')),$product['Product']['url'],array('title'=>$product['Product']['name'],'class'=>'product-zoom zoombox zgallery1','escape'=>false)); ?>
-				<?php if (!empty($product['Meta']['attachment'])): ?>
+				<?php if (!empty($product['Product_attachement'])): ?>
 					<ul class="miniatures">
-						<?php foreach ($product['Meta']['attachment'] as $k => $v): ?>
+						<?php foreach ($product['Product_attachement'] as $k => $v): ?>
 							<li>
-								<?php echo $this->Html->link($this->Html->image($v['thumb']),'/img/'.$v['origin'],array('class'=>'product-zoom zoombox zgallery1','escape'=>false,'title'=>$product['Product']['name'])); ?>
+								<?php echo $this->Html->link($this->Html->image($v['url_min']),'/img/'.$v['url'],array('class'=>'product-zoom zoombox zgallery1','escape'=>false,'title'=>$v['name'])); ?>
 							</li>
 						<?php endforeach ?>
 					</ul>

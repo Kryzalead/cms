@@ -24,7 +24,14 @@ class TaxonomyBehavior extends ModelBehavior{
 		$this->settings = array_merge($this->_defaults,$options);
 	}
 
-	function getFixedTerms($model){
+	function getFixedTerms($model,$slug){
+		if(!empty($slug)){
+			return $model->Term->find('list',array(
+				'fields'=>array('Term.id','Term.name','Term.type'),
+				'conditions'=>array('Term.type'=>$slug),
+				'order'=>'name ASC'
+			));
+		}
 		return $model->Term->find('list',array(
 			'fields'=>array('Term.id','Term.name','Term.type'),
 			'conditions'=>array('Term.type'=>$this->settings['fixed'])
@@ -34,6 +41,11 @@ class TaxonomyBehavior extends ModelBehavior{
 	function afterFind($model,$data){
 		foreach ($data as $k => $v) {
 			if(!empty($v['Term'])){
+				if($model->name == 'Product'){
+					foreach ($v['Term'] as $k1 => $v1) {
+						$data[$k][$model->name]['terms_'.$v1['type']] = Set::Combine($v['Term'],'{n}.id','{n}.id');
+					}
+				}
 				$data[$k][$model->name]['terms'] = Set::Combine($v['Term'],'{n}.id','{n}.id');
 				$data[$k]['Taxonomy'] = Set::Combine($v['Term'],'{n}.id','{n}','{n}.type');
 			}
