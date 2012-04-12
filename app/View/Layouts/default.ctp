@@ -1,5 +1,8 @@
-<!DOCTYPE html> 
-<html lang="fr"> 
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="ie7 oldie" lang="fr"><![endif]-->
+<!--[if lte IE 9]> <html class="ie9 oldie" lang="fr"><![endif]-->
+<!--[if IE 9]> <html class="ie9 oldie" lang="fr"><![endif]-->
+<!--[if gt IE 9]><!--><html lang="fr"><!--<![endif]-->
  
 <head>
   <meta charset="UTF-8">
@@ -15,7 +18,7 @@
   <?php echo $this->Html->css('styles-ie.css') ?>
 </head>
 <body>
-<!--[if lte IE 7]>
+<!--[if lte IE 8]>
   <link rel="stylesheet" href="css/styles-ie.css" />
     <div class="alert-ie">
       <p>
