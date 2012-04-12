@@ -69,14 +69,39 @@ class TaxonomyBehavior extends ModelBehavior{
 		if(isset($model->data[$model->name]['terms_product_creator'])){
 			$model->deleteTerms('product_creator');
 			$terms = $model->data[$model->name]['terms_product_creator'];
-			foreach ($terms as $term_id) {
+			$model->Term->TermR->create();
+			$model->Term->TermR->save(array(
+				'term_id'=>$terms,
+				'object'=>$model->name,
+				'object_id'=>$model->id	
+			));
+			
+		}
+		if(isset($model->data[$model->name]['terms_product_taille'])){
+			$model->deleteTerms('product_taille');
+			$terms = $model->data[$model->name]['terms_product_taille'];
+			if(!empty($terms)){
 				$model->Term->TermR->create();
-				$model->Term->TermR->save(array(
-					'term_id'=>$term_id,
-					'object'=>$model->name,
-					'object_id'=>$model->id	
-				));
+				foreach ($terms as $term_id) {
+					$model->Term->TermR->create();
+					$model->Term->TermR->save(array(
+						'term_id'=>$term_id,
+						'object'=>$model->name,
+						'object_id'=>$model->id	
+					));
+				}
 			}
+			
+		}
+		if(isset($model->data[$model->name]['terms_product_category'])){
+			$model->deleteTerms('product_category');
+			$terms = $model->data[$model->name]['terms_product_category'];
+			$model->Term->TermR->create();
+			$model->Term->TermR->save(array(
+				'term_id'=>$terms,
+				'object'=>$model->name,
+				'object_id'=>$model->id	
+			));
 		}
 	}
 

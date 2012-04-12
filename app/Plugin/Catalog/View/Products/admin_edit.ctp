@@ -91,7 +91,9 @@
                     echo $this->Html->image($product['Product']['url_min'],array('width'=>$width,'height'=>$height)) ?>
                 </p>
             <?php endif ?>
-            <?php echo $this->Form->input('Product_url',array('label'=>false,'type'=>'file')); ?>
+            <?php if ($action == 'add'): ?>
+                <?php echo $this->Form->input('url',array('label'=>false,'type'=>'file')); ?>
+            <?php endif ?>
         </div>
     </div>
     <div class="add_meta bloc" id="bloc_prix"><!-- Publier -->

@@ -11,8 +11,15 @@ class Product extends CatalogAppModel{
 			'allowEmpty'	=>	true,
 			'message'		=>	"L'url n'est pas valide"
 		),
-		'url'=>array(
-			
+		'price'=>array(
+			'notEmpty'=>array(
+				'rule'=>'notEmpty',
+				'message'=>"Le prix ne peut être vide"
+			),
+			'integer'=>array(
+				'rule'=>'numeric',
+				'message'=>"Le prix doit être de type numéric"
+			)
 		)
 	);
 	public $actsAs = array('Containable','Taxonomy.taxonomy'=>array('fixed'=>array('product_category','product_taille','product_creator')));

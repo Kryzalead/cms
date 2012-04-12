@@ -152,8 +152,11 @@ class ProductsController extends AppController{
 				$d['product']['Meta']['product_creator_site'] = $v['meta_value'];
 		}
 
-		$creator = current($d['product']['Taxonomy']['product_creator']);
-		$d['product']['Meta']['product_creator'] = $creator['name'];
+		if(!empty($d['product']['Taxonomy']['product_creator'])){
+			$creator = current($d['product']['Taxonomy']['product_creator']);
+			$d['product']['Meta']['product_creator'] = $creator['name'];
+		}
+		
 
 		if(!empty($d['product']['Meta']['valeur_achat'])){
 			$temp = $d['product']['Product']['price']/$d['product']['Meta']['valeur_achat'];
@@ -452,11 +455,15 @@ class ProductsController extends AppController{
 		$this->request->data['Product']['action'] = 'add';
 
 		// si le type est post, on rajoute la taxonomy
-		if($type == 'accessoire')
-			$d['terms_product_category'] = current($this->Product->getFixedTerms('product_category'));
+		if($type == 'accessoire'){
+			$d['terms_product_category'] = array('0'=>'Catégorie');
+			$d['terms_product_category'] = array_merge($d['terms_product_category'],current($this->Product->getFixedTerms('product_category')));
+		}
 		if($type == 'robe-de-mariee'){
 			$d['terms_product_taille'] = current($this->Product->getFixedTerms('product_taille'));
-			$d['terms_product_creator'] = current($this->Product->getFixedTerms('product_creator'));
+			$d['terms_product_creator'] = array('0'=>'Créateur');
+			$d['terms_product_creator'] = array_merge($d['terms_product_creator'],current($this->Product->getFixedTerms('product_creator')));
+			
 		}
 
 		// listes des status
@@ -488,10 +495,51 @@ class ProductsController extends AppController{
 			}
 			$type = $this->request->data['Product']['product_type'];
 			
-			//on enregistre le produit
-			if($this->Product->save($this->request->data)){
-				debug($this->request->data);
-				die();
+			if(!empty($this->request->data['Product']['url'])){
+				$file = $this->request->data['Product']['url'];
+				unset($this->request->data['Product']['url']);
+			}
+			$this->Product->set($this->request->data);
+			if($this->Product->validates()){
+				$slug = strtolower(Inflector::slug($this->data['Product']['name'],'-'));
+				if(!empty($file) && $this->request->data['Product']['action'] == 'add'){
+					$dir = IMAGES.'catalogue'.DS.$slug;
+					if(!file_exists($dir)){
+						mkdir($dir,'0777');
+						mkdir($dir.DS.'mini','0777');
+					}
+					$file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+					move_uploaded_file($file['tmp_name'], $dir.DS.$slug.'.'.$file_extension);
+					$width = 300;$height = 484;
+					$this->Img->crop($dir.DS.$slug.'.'.$file_extension,$dir.DS.'mini'.DS.$slug.'.'.$file_extension,$width,$height);
+					$this->request->data['Product']['url'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/catalogue/'.$slug.'/'.$slug.'.jpg';
+					$this->request->data['Product']['url_min'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/catalogue/'.$slug.'/mini/'.$slug.'.jpg';
+				}
+
+				$this->request->data['Product']['slug'] = $slug;
+				$this->Product->save($this->request->data,array('validate'=>false));
+				$product_id = $this->request->data['Product']['id'];
+				if(!empty($this->request->data['Product']['product_buy_price'])){
+					if(is_numeric($this->request->data['Product']['product_buy_price'])){
+						
+						$this->Product->Product_meta->delete(
+							array('product_id'=>$product_id,'meta_key'=>'product_buy_price')
+						);
+						$this->Product->Product_meta->save(array(
+							'meta_key'=>'product_buy_price',
+							'meta_value'=>$this->request->data['Product']['product_buy_price'],
+							'product_id'=>$product_id
+						));
+					}
+				}
+				if ($action == 'add') {
+					$this->Session->setFlash("Le produit a bien été ajouté","notif");
+					$this->redirect(array('action'=>'edit','?'=>array('id'=>$product_id,'action'=>'edit')));
+				}
+				elseif($action == 'edit'){
+					$this->Session->setFlash("Le produit a bien été modifié","notif");
+					$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
+				}
 			}
 			else{
 				$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
@@ -542,14 +590,16 @@ class ProductsController extends AppController{
 			$d['title_for_layout'] = "Modifier la robe";
 			$d['icon_for_layout'] = 'icone-posts-add.png';
 			$d['texte_submit'] = 'Mettre à jour';
-			$d['terms_product_taille'] =  current($this->Product->getFixedTerms('product_taille'));
-			$d['terms_product_creator'] = current($this->Product->getFixedTerms('product_creator'));
+			$d['terms_product_taille'] = current($this->Product->getFixedTerms('product_taille'));
+			$d['terms_product_creator'] = array('0'=>'Créateur');
+			$d['terms_product_creator'] = array_merge($d['terms_product_creator'],current($this->Product->getFixedTerms('product_creator')));
 		}
 		else{
 			$d['title_for_layout'] = "Modifier l'accessoire";
 			$d['icon_for_layout'] = 'icone-pages-add.png';
 			$d['texte_submit'] = 'Mettre à jour';
-			$d['terms_product_category'] = current($this->Product->getFixedTerms('product_category'));
+			$d['terms_product_category'] = array('0'=>'Catégorie');
+			$d['terms_product_category'] = array_merge($d['terms_product_category'],current($this->Product->getFixedTerms('product_category')));
 		}
 		
 		$d['type'] = $post_type;
@@ -591,9 +641,6 @@ class ProductsController extends AppController{
 		$attachment_product_slug = $this->request->data['Product']['attachment_product_slug'];
 		$file = $this->request->data['Product']['attachment_file'];
 		
-		if(!file_exists($dir)){
-			mkdir($dir,'0777');
-		}
 		$dir = IMAGES.'catalogue'.DS.$attachment_product_slug;
 		if(!file_exists($dir)){
 			mkdir($dir,'0777');

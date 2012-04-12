@@ -40,7 +40,7 @@
 						<li>Créateur : 
 							<?php if (!empty($product['Meta']['product_creator_site'])): ?>
 								<?php echo $this->Html->link($product['Meta']['product_creator'],$product['Meta']['product_creator_site'],array('title'=>"Voir le site de ".$product['Meta']['product_creator'])); ?>
-							<?php else: ?>
+							<?php elseif(!empty($product['Meta']['product_creator'])): ?>
 								<?php echo $product['Meta']['product_creator'] ?>
 							<?php endif ?>
 						</li>

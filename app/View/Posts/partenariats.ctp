@@ -1,3 +1,4 @@
+<?php $this->set('title_for_layout','Partenariats | '.Configure::read('site_name')) ?>
 <section id="partenaires"> <!-- Début bloc -->
 <h1>Les partenaires qui nous font confiances</h1>
 	<ul class="ligne1">
