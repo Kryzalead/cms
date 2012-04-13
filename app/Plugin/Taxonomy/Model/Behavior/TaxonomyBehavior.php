@@ -27,7 +27,7 @@ class TaxonomyBehavior extends ModelBehavior{
 	function getFixedTerms($model,$slug){
 		if(!empty($slug)){
 			return $model->Term->find('list',array(
-				'fields'=>array('Term.id','Term.name','Term.type'),
+				'fields'=>array('Term.id','Term.name'),
 				'conditions'=>array('Term.type'=>$slug),
 				'order'=>'name ASC'
 			));
@@ -69,12 +69,15 @@ class TaxonomyBehavior extends ModelBehavior{
 		if(isset($model->data[$model->name]['terms_product_creator'])){
 			$model->deleteTerms('product_creator');
 			$terms = $model->data[$model->name]['terms_product_creator'];
-			$model->Term->TermR->create();
-			$model->Term->TermR->save(array(
-				'term_id'=>$terms,
-				'object'=>$model->name,
-				'object_id'=>$model->id	
-			));
+			if($terms != 0){
+				$model->Term->TermR->create();
+				$model->Term->TermR->save(array(
+					'term_id'=>$terms,
+					'object'=>$model->name,
+					'object_id'=>$model->id	
+				));
+			}
+			
 			
 		}
 		if(isset($model->data[$model->name]['terms_product_taille'])){

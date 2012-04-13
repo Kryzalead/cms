@@ -1,5 +1,4 @@
 <h1>Laisser nous un petit message</h1>
-
 <?php if (!empty($guestbooks)): ?>
 <div id="guestbook">
 	<?php $terminaison = $totalComments > 1 ? 's' : '' ?>
@@ -49,8 +48,13 @@
 <div class="cb"></div>
 	
 <div id="add_commentaire">
-	<h1><img src="img/comment.png" width="142" height="128"/><?php echo $this->Html->link("Ajouter un commentaire",'#',array('id'=>'show_form_comment')); ?></h1>
-	<div id="guestbook_add">
+	<?php $class = ($show_form == 'ok') ? 'active' : ''?>
+	<h1>
+		<img src="img/comment.png" width="142" height="128"/>
+		<?php echo $this->Html->link("Ajouter un commentaire",'#',array('id'=>'show_form_comment','class'=>$class)); ?>
+	</h1>
+	
+	<div id="guestbook_add" <?php echo $class ?>>
 		<div id="guestbook_form">
 			<?php echo $this->Form->create('Guestbook') ?>
 			<?php echo $this->Form->input('Guestbook.author',array('label'=>"Votre nom", 'div'=>array('class'=>'placeholder'))); ?>

@@ -86,5 +86,14 @@ jQuery(function($){
 
     $('#show_form_comment').click(function(){
       $(this).toggleClass('active').parent().next('#guestbook_add').slideToggle(300);
-    })
+    });
+    $('#show_form_comment').each(function(){
+      if($(this).hasClass('active')){
+        $('#guestbook_add').show();
+      }
+    });
+
+    if($('.notif').length > 0){
+      $('.notif').delay(3000).slideUp('slow');    
+    }
 });
