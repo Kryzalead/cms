@@ -19,7 +19,7 @@
 			<span id="strength_text">Indice de sécurité</span>
 			<div id="strength_bar" style="border: 1px solid white; width: 0px;";></div>
 		</div>
-		<?php echo $this->Form->input('User.role',array('label'=>"Role : ")); ?>
+		<?php echo $this->Form->input('User.role',array('label'=>"Rôle : ")); ?>
 		<?php echo $this->Form->input('User.id'); ?>
 	<?php echo $this->Form->end($texte_submit); ?>
 </div>

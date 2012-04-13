@@ -8,11 +8,11 @@
 				<?php echo $this->Form->input('Contact.message',array('label'=>'Votre message','div'=>array('class'=>'placeholder'),'type'=>'textarea','cols'=>3,'rows'=>3)); ?>
 				<?php echo $this->Form->input('Contact.site',array('div'=>false,'label'=>false,'class'=>'mariee')); ?>
 			</fieldset>
-		<?php echo $this->Form->end(array('label'=>'Envoyer','div'=>array('class'=>'envoyer'))) ?>
+		<?php echo $this->Form->end(array('label'=>'','div'=>array('class'=>'envoyer'))) ?>
 
 		<div id="reseauxSociaux">
 			<!--<a href="#"><img class="sociaux" src="images/reseaux_sociaux/twitter.png" alt="twitter"/></a>-->
-			<a href="#"><?php echo $this->Html->image('reseaux_sociaux/facebook.png') ?></a>
+			<a href="#"><?php echo $this->Html->image('reseaux_sociaux/facebook-icone.png', array('width'=>'50', 'height'=>'50', 'alt'=>'facebook')) ?></a>
 		</div>
 	</div><!--formContact-->
 

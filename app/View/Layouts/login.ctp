@@ -25,8 +25,8 @@
                 <?php echo $content_for_layout;?>
         </div>
     </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </body>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <?php echo $this->Html->script('login'); ?>
 </html>
 

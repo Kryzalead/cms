@@ -19,7 +19,6 @@
 						<span class="annee"><?php echo $annee ?></span>
 						<span class="heure"><?php echo $heure ?>:<?php echo $minute ?></span>
 					</div>
-
 				<div class="comment_content">
 					<span class="comment-content"><?php echo nl2br($v['Guestbook']['content']); ?></span>
 						<?php if ($this->Session->read('Auth.User.role') == 'admin' || $this->Session->read('Auth.User.role') == 'superadmin'): ?>
@@ -46,11 +45,11 @@
 </div>
 <?php endif ?>
 <div class="cb"></div>
-	
+
 <div id="add_commentaire">
 	<?php $class = ($show_form == 'ok') ? 'active' : ''?>
 	<h1>
-		<img src="img/comment.png" width="142" height="128"/>
+		<img src="img/comment.png" width="142" height="128" alt="bulles_commentaires"/>
 		<?php echo $this->Html->link("Ajouter un commentaire",'#',array('id'=>'show_form_comment','class'=>$class)); ?>
 	</h1>
 	
@@ -68,5 +67,4 @@
 			<?php echo $this->Html->image('livre-dor.jpg', array('width'=>'480', 'height'=>'229')) ?>
 		</div>
 	</div>
-	
 </div>

@@ -1,13 +1,12 @@
 @import "compass/css3";
-/* ---------------------------------------- */
+/* ----------------------------- */
 /*	Nom : Administration		*/
-/*	Date : 22-02-2012  		*/
-/*        Auteurs: Kryzalead                 	 */
-/* 	Entreprise : www.kryzalead.fr  	*/
-/* 	Edition: style.scss		*/
-/*	Version: 1.0			*/
-/* -------------------------------------- */
-
+/*	Date : 22-02-2012			*/
+/*  Auteurs: Coder In 			*/
+/* 	Entreprise : www.coder-in.fr*/
+/* 	Edition: style.scss 		*/
+/*	Version: 1.01 				*/
+/* ---------------------------- */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -25,8 +24,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-family: inherit;
 	vertical-align: baseline;}
 
+
 /* RESET HTML5 */
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+
 
 /* Général */
 html,
@@ -46,6 +47,7 @@ body {
 
 ol, ul {list-style: none; padding:0;}
 
+
 /* Style défini */
 :focus {outline: 0;}
 * {padding:0; margin:0;}
@@ -58,7 +60,6 @@ table {
 	text-align: left;}
 
 caption, th, td {text-align: left;}
-
 blockquote:before, blockquote:after, q:before, q:after {content: "";}
 blockquote, q {quotes: "" "";}
 
@@ -122,9 +123,9 @@ p {margin-bottom: 7px;}
 				font-weight: normal;font-style: normal;}
 
 
-.cb, .clear{clear: both; width: 100%;}
-.souligner {text-decoration: underline;}
-.relative{position: relative;}
+.cb, .clear {clear: both; width: 100%;}
+.souligner	{text-decoration: underline;}
+.relative	{position: relative;}
 
 
 /* ---------------------------------------
@@ -187,7 +188,13 @@ $none:none;
 
 
 /* ------------------------------------------------------
-			Settings 
+						Style par défault 
+--------------------------------------------------------- */
+
+
+
+/* ------------------------------------------------------
+						Settings 
 --------------------------------------------------------- */
 .settings{
 	background:url(images/setting_button/config_button/bg.gif);
@@ -292,7 +299,6 @@ $none:none;
 	background-image: -ms-linear-gradient(bottom, rgb(49,49,49) 13%, rgb(67,67,67) 57%, rgb(85,85,85) 85%);
 	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.13, rgb(49,49,49)),color-stop(0.57, rgb(67,67,67)),color-stop(0.85, rgb(85,85,85)));
 	@extend .boxOmbre;}
-
 
 #head a{
 	color: #FFF;
@@ -575,8 +581,8 @@ $none:none;
 #sidebar a#menucollapse{color:#AAA; display: block; height:40px; line-height: 40px; text-align: right; padding-right: 10px; text-decoration: none; font-style:italic;}
 #sidebar a span{ color:#AAA; border: 1px solid #AAA; border-radius:20px; width: 17px; height: 17px; display: inline-block; text-align: left; text-indent: 2px; line-height: 16px;background-image: -webkit-linear-gradient(top,rgba(0,0,0,0),rgba(0,0,0,0.2)); }
 
-.collapsed #sidebar{width: 56px; }
-.collapsed #sidebar>ul>li{ position: relative; }
+.collapsed #sidebar{width: 56px;}
+.collapsed #sidebar>ul>li{ position: relative;}
 .collapsed #sidebar>ul>li>a{ width: 52px; overflow: hidden; background-image:none!important; text-indent: 17px; -webkit-transition:0.3s;-moz-transition:0.3s;-o-transition:0.3s;-ms-transition:0.3s;transition:0.3s;}
 .collapsed #sidebar>ul>li:hover>a{ width: 200px;}
 .collapsed #sidebar>ul>li ul{ position: absolute; width: 146px; left:-150px;-webkit-transition:0.5s;-moz-transition:0.3s;-o-transition:0.3s;-ms-transition:0.3s;transition:0.3s; display: block!important;}
@@ -723,23 +729,37 @@ $none:none;
 			bloc_contenu
 ------------------------------------------ */
 #content{
-	margin: 28px 40px 0px 280px;
+	margin: 30px 0 0 260px;
 	color: #6D6D6D;
-	/*padding: 0px 0px 20px;*/
 	font-size: 12px;
 	position: relative;}
-	
+
+#content .button-add{
+	border: 1px solid #BBB;
+	color: #464646;
+	text-decoration: none;
+	font-size: 12px !important;
+	line-height: 13px;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-style: solid;
+	-webkit-border-radius: 11px;
+	border-radius: 11px;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	display: block;
+	width: 100px;
+	text-align: center;
+	margin: 10px 0 15px;}
+
+#content .button-add:hover{color:#000;border-color:#666;text-decoration: none}
+#content input[type="submit"]:hover{color:#000;border-color:#666;}
+#content .list_top_table {margin-top: 20px}
 #content.nosidebar{margin-left: 40px;}
-
 #content a{color: #0A93CC;}
-
-#content a:hover{
-	color: #000;
-	text-decoration: underline;}
-
-#content table {
-	width:100%;}
-
+#content a:hover{color: #000;text-decoration: underline;}
+#content table {width:100%;}
 #content h1{
 	color: #555;
 	font:bold 4em 'riesling';
@@ -808,9 +828,7 @@ $none:none;
 #content .liste_table th{background-color: #F1F1F1;font-size: 14px;height: 36px;line-height: 36px}
 #content .liste_table th a{color: #21759B;text-decoration: none}
 #content .liste_table th a:hover {color: #464646;}
-
 #content .liste_table .colonne_check{width: 30px;text-align: center}
-
 #content .liste_table td {font-size: 12px;padding: 4px 7px 2px;vertical-align: top;}
 #content .liste_table td a:hover {color: #D74E21;}
 #content .liste_table .action_admin {text-align: left;visibility: hidden;margin-top: 10px;}
@@ -834,7 +852,7 @@ $none:none;
 #content .list_top_table li a:hover{color: #ff4b33}
 #content .list_top_table .current{color: #000;font-weight : bold;}
 
-#content .bloc_total_element{float: right;cursor: default;height: 30px;line-height: 30px;font-size: 12px;font-style: italic;margin-right: 10px;color:#555}
+#content .bloc_total_element{border:1px solid red;cursor: default;font-style: italic;text-align:right;margin:10px 0;width:98%;}
 
 #content .comment-post span {background-color: #BBB;display: inline-block;text-align: center;border-radius: 5px;color: #fff;font-weight: bold;cursor: pointer}
 #content .comment-post span.comment-waiting{background-color: #21759B}
@@ -844,6 +862,8 @@ $none:none;
 
 #content .liste_table
 #content .liste_table .colonne_medias .thumb{float: left}
+
+.content {width:98%;margin:20px 5px 0 0;}
 
 /* Notification */
 #content .notif{font-size: 20px;text-align: center;position:fixed;top:-21px;left:0;right:0;z-index:10000;padding: 20px 15px;margin-bottom: 18px;color: #404040;background-color: #eedc94;background-repeat: repeat-x;background-image: -khtml-gradient(linear, left top, left bottom, from(#fceec1), to(#eedc94));background-image: -moz-linear-gradient(top, #fceec1, #eedc94);background-image: -ms-linear-gradient(top, #fceec1, #eedc94);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fceec1), color-stop(100%, #eedc94));background-image: -webkit-linear-gradient(top, #fceec1, #eedc94);background-image: -o-linear-gradient(top, #fceec1, #eedc94);background-image: linear-gradient(top, #fceec1, #eedc94);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fceec1', endColorstr='#eedc94', GradientType=0);text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);border-color: #eedc94 #eedc94 #e4c652;border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);border-width: 1px;border-style: solid;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);}
@@ -859,14 +879,14 @@ $none:none;
 
 
 /* -- Bloc central -- */
-.blocsCentral{width: 70%;display: inline-block;margin-right: 2%;vertical-align: top;margin-top: 25px}
+.blocsCentral{display: inline-block;margin-right: 5px;margin-top: 25px;}
 
-#blocsAjoutCote{display: inline-block;width: 19%;vertical-align: top;padding: 5px}
+#blocsAjoutCote{display: inline-block;vertical-align: top;padding: 5px;}
 #blocsAjoutCote .add_meta{margin-bottom: 15px;width: 280px;background-color: whiteSmoke;border:1px solid #DFDFDF;-moz-box-shadow: inset 0 1px 0 #fff;-webkit-box-shadow: inset 0 1px 0 #fff;box-shadow: inset 0 1px 0 #fff;-webkit-border-radius: 3px;border-radius: 3px;}
 #blocsAjoutCote .add_meta h3{font-size: 15px;font-weight: normal;padding: 7px 10px;margin: 0;line-height: 1;color: #464646;border-bottom:1px solid #DFDFDF;background-color: #F1F1F1}
 #blocsAjoutCote .add_meta .inside{line-height: 1.4em;padding: 5px}
 #blocsAjoutCote .add_meta .inside .submit{margin-top: 10px}
-#edit_post input#title_form,#edit_post input#slug_form{width: 100%;height: 32px;font-size: 1.7em;}
+#edit_post input#title_form, #edit_post input#slug_form{width:98%;height: 32px;font-size: 1.7em;padding-left:13px;}
 #edit_post textarea{width: 100%}
 #edit_post .placeholder label {position: absolute;height: 32px;line-height: 32px;margin-left: 15px;color: #BBB;font-size: 1.7em;}
 
@@ -878,9 +898,22 @@ $none:none;
 #blocsAjoutCote #bloc_prix input{margin-bottom: 5px;width: 50px}
 #blocsAjoutCote #bloc_prix label{display: inline-block;width: 100px}
 
+/* -- Widgets -- */
+#blocsAjoutCote .add_meta .checkbox label {margin-left: 5px;}
+#blocsAjoutCote .add_meta .checkbox {height: 20px;line-height: 20px;}
+#blocsAjoutCote #bloc_createur select{width: 200px;padding: 2px;}
+.blocsCentral #produit_images .liste_produits_image li{display: inline-block;position: relative;}
+.blocsCentral #produit_images .liste_produits_image li .del_thumb{color: red;position: absolute;top: 0;right:0;text-decoration: none}
+
+
 /* ---------------------------------------
 			Content Dashboard
 ------------------------------------------ */
+/* -- Commentaires récents -- */
+#content #dashboard_derniers_commentaires .bloc_contenu{padding:0 10px;}
+#derniers_commentaires .item_commentaire{padding: 5px}
+#derniers_commentaires .non_approuve{background-color: white;}
+
 
 /* -- Dashboard aujourdhui */
 #dashboard_aujourdhui .bloc_contenu thead th{
@@ -899,3 +932,60 @@ $none:none;
 #derniers_commentaires .item_commentaire img {display: inline-block;vertical-align:top;margin-right:5px;}
 #derniers_commentaires .item_commentaire_wrap {display: inline-block;width:320px;}
 #derniers_commentaires .item_commentaire_wrap .item_commentaire_meta{margin-bottom:10px;}
+
+
+/* ---------------------------------------
+				Users
+------------------------------------------ */
+#form_user{margin-top: 10px;}
+#form_user label{display: inline-block;width: 100px;margin-right:10px;text-align:right;}
+#form_user input{margin-top: 5px}
+#form_user #pass_strength_result{margin:15px 0 15px 85px;}
+
+/* ---------------------------------------
+				Options générales
+------------------------------------------ */
+.options_form{padding: 5px;}
+.options_form label{display: inline-block;width: 150px}
+.options_form .input{margin-top: 5px;}
+.options_form .input input{margin-right: 10px;width: 200px;padding: 2px}
+.options_form input[type="submit"]{margin-top: 10px}
+
+/* ---------------------------------------
+				upload 
+------------------------------------------ */
+#form_upload{display: none}
+#form_upload label{position: absolute;margin-top: 10px;height: 20px;line-height: 22px;margin-left: 5px}
+#form_upload input{height: 20px}
+#form_upload input{margin-top: 10px}
+
+/* ---------------------------------------
+				Media 
+------------------------------------------ */
+#form_media{margin-top: 20px}
+#form_media label{display: inline-block;width: 100px}
+#form_media .input{margin-top: 10px}
+#form_media input[type="file"]{margin-left: 100px}
+#form_media input[type="submit"]{margin-left: 100px;margin-top: 10px}
+#form_media p{margin-top: 10px}
+#form_media input#MediaGuid{width: 350px}
+#media_thumb{display: inline-block}
+#media_data{display: inline-block;vertical-align: top}
+
+
+.liste_table .colonne_medias .thumb{display: inline-block;margin-right: 5px}
+.liste_table .colonne_medias .thumb_meta{display: inline-block;vertical-align: top}
+.liste_table .colonne_medias .thumb_meta a{display: block}
+
+/* ---------------------------------------
+				Term 
+------------------------------------------ */
+#form_term label{display: inline-block;width: 60px}
+#form_term input{margin-top: 10px}
+#form_term p{margin-top: 5px}
+
+/* ---------------------------------------
+				Image à la une 
+------------------------------------------ */
+#bloc_image_une .product_thumb{text-align: center}
+

@@ -108,7 +108,7 @@ a:focus, a:active {
 
 /* line 83, styles.scss */
 a:visited {
-  color: white;
+  color: black;
 }
 
 /* line 84, styles.scss */
@@ -134,17 +134,55 @@ label {
   cursor: text;
 }
 
+/* line 92, styles.scss */
+form input[type=text], form textarea {
+  border: none;
+  background: #fff;
+  width: 200px;
+  height: 23px;
+  padding: 0 10px;
+  margin: 5px 0 15px 0;
+  color: #686464;
+  font-size: 1em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0px 0px 10px 0px #222;
+  -moz-box-shadow: inset 0px 0px 10px 0px #222;
+  box-shadow: inset 0px 0px 10px 0px #222;
+}
+
+/* line 108, styles.scss */
+form textarea {
+  font-size: 1.3em;
+  width: 320px;
+  max-width: 360px;
+  max-height: 260px;
+  height: 150px;
+  margin: 0;
+}
+
+/* line 116, styles.scss */
+fieldset {
+  border: 0 none;
+}
+
+/* line 117, styles.scss */
+legend {
+  display: hidden;
+}
+
 /* ---------------------------------------
 				Titres Hx
 ------------------------------------------ */
-/* line 97, styles.scss */
+/* line 123, styles.scss */
 h1, h2 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
   position: relative;
 }
 
-/* line 102, styles.scss */
+/* line 128, styles.scss */
 h1 {
   font: normal 3.5em'riesling';
   color: #000;
@@ -155,7 +193,7 @@ h1 {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 111, styles.scss */
+/* line 137, styles.scss */
 h2 {
   font: normal 1.3em sans-serif;
   padding: 30px 0 20px 30px;
@@ -166,13 +204,13 @@ h2 {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 120, styles.scss */
+/* line 146, styles.scss */
 h1 a, h1 a:visited, h2 a, h2 a:visited {
   text-decoration: none;
   color: #999;
 }
 
-/* line 121, styles.scss */
+/* line 147, styles.scss */
 h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus {
   text-decoration: none;
 }
@@ -180,22 +218,22 @@ h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus {
 /* ---------------------------------------
 					Span
 ------------------------------------------ */
-/* line 127, styles.scss */
+/* line 153, styles.scss */
 .vert {
   color: #9CA436;
 }
 
-/* line 128, styles.scss */
+/* line 154, styles.scss */
 .rose {
   color: #AA4673;
 }
 
-/* line 129, styles.scss */
+/* line 155, styles.scss */
 .gras {
   font-weight: bold;
 }
 
-/* line 130, styles.scss */
+/* line 156, styles.scss */
 .aux_mariees_de_christele {
   font: bold 1.2em 'sans-serif';
   color: #AA4673;
@@ -204,14 +242,14 @@ h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus {
 /* ---------------------------------------
 				Frameworks
 ------------------------------------------ */
-/* line 136, styles.scss */
+/* line 162, styles.scss */
 .boxOmbre {
   -webkit-box-shadow: #222222, 0px, 1px, 5px;
   -moz-box-shadow: #222222, 0px, 1px, 5px;
   box-shadow: #222222, 0px, 1px, 5px;
 }
 
-/* line 137, styles.scss */
+/* line 163, styles.scss */
 .boxRadius {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -253,7 +291,7 @@ h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus {
 /* ---------------------------------------
 				Container
 ------------------------------------------ */
-/* line 203, styles.scss */
+/* line 229, styles.scss */
 .wrap {
   display: block;
   width: 995px;
@@ -263,7 +301,7 @@ h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus {
 /* ---------------------------------------
 				Header
 ------------------------------------------ */
-/* line 212, styles.scss */
+/* line 238, styles.scss */
 header h1 {
   position: relative;
   display: inline-block;
@@ -276,12 +314,12 @@ header h1 {
 /* ---------------------------------------
 				Nav
 ------------------------------------------ */
-/* line 224, styles.scss */
+/* line 250, styles.scss */
 ul#nav_menu li a {
   color: #fff;
 }
 
-/* line 226, styles.scss */
+/* line 252, styles.scss */
 nav#menu {
   position: absolute;
   display: inline-block;
@@ -289,21 +327,21 @@ nav#menu {
   margin: 15px 0 0 10px;
 }
 
-/* line 232, styles.scss */
+/* line 258, styles.scss */
 nav#menu ul#nav_menu {
   text-align: left;
   top: 55px;
   padding: 0;
 }
 
-/* line 237, styles.scss */
+/* line 263, styles.scss */
 nav#menu ul#nav_menu li {
   padding: 0;
   margin: 0;
   display: inline;
 }
 
-/* line 242, styles.scss */
+/* line 268, styles.scss */
 nav#menu ul#nav_menu li a {
   text-shadow: 2px 2px 3px #333;
   -moz-transition: color 0.25s;
@@ -326,7 +364,7 @@ nav#menu ul#nav_menu li a {
   font-family: 'leckerli';
 }
 
-/* line 263, styles.scss */
+/* line 289, styles.scss */
 nav#menu ul#nav_menu li a:hover {
   text-shadow: 0px 6px 4px #777777;
   filter: dropshadow(color=#777777, offx=3, offy=6);
@@ -336,19 +374,19 @@ nav#menu ul#nav_menu li a:hover {
   font-size: 26px;
 }
 
-/* line 271, styles.scss */
+/* line 297, styles.scss */
 nav#menu ul#nav_menu li ul li {
   display: block;
   padding: 5px 0 0 10px;
 }
 
 /* -- nous connaître -- */
-/* line 274, styles.scss */
+/* line 300, styles.scss */
 ul#nav_menu li.sub {
   position: relative;
 }
 
-/* line 275, styles.scss */
+/* line 301, styles.scss */
 ul#nav_menu li.sub ul {
   position: absolute;
   left: 0;
@@ -356,7 +394,7 @@ ul#nav_menu li.sub ul {
   width: 250px;
 }
 
-/* line 276, styles.scss */
+/* line 302, styles.scss */
 ul#nav_menu li.sub:hover ul {
   display: block;
 }
@@ -364,7 +402,7 @@ ul#nav_menu li.sub:hover ul {
 /* ---------------------------------------
 				Contenu
 ------------------------------------------ */
-/* line 281, styles.scss */
+/* line 308, styles.scss */
 #contenu {
   width: 990px;
   background-color: #eee;
@@ -378,7 +416,102 @@ ul#nav_menu li.sub:hover ul {
   box-shadow: 2px 4px 15px #222222;
 }
 
-/* line 286, styles.scss */
+/* line 313, styles.scss */
+#contenu .error, #content .error label, #content .error input, #content .error-message, #content .error textarea {
+  color: #9D261D !important;
+  border-color: #C87872 !important;
+}
+
+/* line 314, styles.scss */
+#contenu .error input, #content .error textarea {
+  background-color: #FAE5E3 !important;
+}
+
+/* line 315, styles.scss */
+#contenu .error-message {
+  display: block;
+}
+
+/* -- Notification -- */
+/* line 318, styles.scss */
+#contenu .notif {
+  font-size: 20px;
+  text-align: center;
+  padding: 20px 15px;
+  margin-bottom: 18px;
+  color: #404040;
+  background-color: #eedc94;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#fceec1), to(#eedc94));
+  background-image: -moz-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -ms-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fceec1), color-stop(100%, #eedc94));
+  background-image: -webkit-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -o-linear-gradient(top, #fceec1, #eedc94);
+  background-image: linear-gradient(top, #fceec1, #eedc94);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fceec1', endColorstr='#eedc94', GradientType=0);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-color: #eedc94 #eedc94 #e4c652;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-width: 1px;
+  border-style: solid;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* line 347, styles.scss */
+#contenu .content .notif {
+  margin-bottom: 10px;
+}
+
+/* line 349, styles.scss */
+#contenu .notif strong {
+  font-weight: bold;
+  color: inherit;
+}
+
+/* line 353, styles.scss */
+#contenu .notif.success {
+  background-color: #57a957;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#62c462), to(#57a957));
+  background-image: -moz-linear-gradient(top, #62c462, #57a957);
+  background-image: -ms-linear-gradient(top, #62c462, #57a957);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #62c462), color-stop(100%, #57a957));
+  background-image: -webkit-linear-gradient(top, #62c462, #57a957);
+  background-image: -o-linear-gradient(top, #62c462, #57a957);
+  background-image: linear-gradient(top, #62c462, #57a957);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#57a957', GradientType=0);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-color: #57a957 #57a957 #3d773d;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFF;
+}
+
+/* line 369, styles.scss */
+#contenu .notif.error, #content .bloc .notif.error {
+  background-color: #c43c35;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
+  background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
+  background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee5f5b), color-stop(100%, #c43c35));
+  background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
+  background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
+  background-image: linear-gradient(top, #ee5f5b, #c43c35);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#c43c35', GradientType=0);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-color: #c43c35 #c43c35 #882a25;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFF!important;
+}
+
+/* line 385, styles.scss */
 .bg {
   background: #555555 url(images/bg-contenu.jpg) 270px 0 no-repeat;
   width: 990px;
@@ -389,13 +522,13 @@ ul#nav_menu li.sub:hover ul {
   border-radius: 15px 15px 0px 0px / 15px 15px 0px 0px;
 }
 
-/* line 291, styles.scss */
+/* line 390, styles.scss */
 .bg p {
   color: white;
 }
 
 /* --	Bandeau contenu -- */
-/* line 295, styles.scss */
+/* line 394, styles.scss */
 #bandeau {
   border-top: 1px dashed #999;
   width: 990px;
@@ -404,30 +537,30 @@ ul#nav_menu li.sub:hover ul {
   display: block;
 }
 
-/* line 302, styles.scss */
+/* line 401, styles.scss */
 #bandeau ul {
   display: inline-block;
   vertical-align: top;
   color: white;
   font: normal 1.6em 'swenson';
-  padding-left: 10px;
+  padding: 3px 0 0 10px;
   text-shadow: 0px 1px 5px #222;
   filter: dropshadow(color=#222222, offx=1, offy=1);
 }
 
-/* line 311, styles.scss */
+/* line 410, styles.scss */
 #bandeau ul.horaires {
   text-align: right;
 }
 
-/* line 312, styles.scss */
+/* line 411, styles.scss */
 #bandeau li.titre {
   font-weight: bold;
   font-size: 1.4em;
   padding-bottom: 15px;
 }
 
-/* line 317, styles.scss */
+/* line 416, styles.scss */
 #bandeau img {
   display: inline-block;
   vertical-align: top;
@@ -435,29 +568,29 @@ ul#nav_menu li.sub:hover ul {
 }
 
 /* --  Bloc Accueil et blocs -- */
-/* line 324, styles.scss */
+/* line 423, styles.scss */
 .bloc #accueil {
   width: 600px;
   padding: 30px 15px 20px;
   margin: 0;
 }
 
-/* line 325, styles.scss */
+/* line 424, styles.scss */
 .blocs {
   padding: 20px;
 }
 
 /* -- Image accessoires -- */
-/* line 329, styles.scss */
+/* line 428, styles.scss */
 aside#image-accessoires {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  top: 220px;
-  left: 20px;
+  top: 170px;
+  left: 60px;
 }
 
-/* line 336, styles.scss */
+/* line 435, styles.scss */
 aside#image-accessoires img {
   width: 313px;
   height: 282px;
@@ -466,18 +599,21 @@ aside#image-accessoires img {
 /* ---------------------------------------
 				catalogue
 ------------------------------------------ */
-/* line 344, styles.scss */
+/* line 443, styles.scss */
 .produit {
   display: inline-block;
   vertical-align: top;
+  width: 200px;
+  height: 310px;
+  margin-bottom: 10px;
 }
 
-/* line 345, styles.scss */
+/* line 444, styles.scss */
 .catalogue #filtre_produit {
   height: 20px;
 }
 
-/* line 346, styles.scss */
+/* line 445, styles.scss */
 .catalogue {
   position: relative;
   display: inline-block;
@@ -485,7 +621,7 @@ aside#image-accessoires img {
   margin: 0 auto;
 }
 
-/* line 352, styles.scss */
+/* line 451, styles.scss */
 .catalogue h1.titre_produit {
   display: block;
   vertical-align: top;
@@ -494,7 +630,7 @@ aside#image-accessoires img {
   padding: 10px 0 20px 30px;
 }
 
-/* line 359, styles.scss */
+/* line 458, styles.scss */
 .catalogue figure {
   position: relative;
   display: inline-block;
@@ -502,25 +638,25 @@ aside#image-accessoires img {
   margin: 0;
 }
 
-/* line 365, styles.scss */
+/* line 464, styles.scss */
 .catalogue figure img {
   border: 1px solid white;
   padding: 3px;
   margin: 10px;
 }
 
-/* line 370, styles.scss */
+/* line 469, styles.scss */
 .catalogue nav {
   margin-left: 15px;
 }
 
-/* line 372, styles.scss */
+/* line 471, styles.scss */
 .catalogue nav figure:hover figcaption {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 376, styles.scss */
+/* line 475, styles.scss */
 .catalogue figcaption {
   background-color: #fff;
   color: black;
@@ -530,7 +666,7 @@ aside#image-accessoires img {
   bottom: 14px;
 }
 
-/* line 384, styles.scss */
+/* line 483, styles.scss */
 .catalogue img {
   display: block;
   margin: 10px 0;
@@ -545,16 +681,19 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 390, styles.scss */
+/* line 489, styles.scss */
 .catalogue img:hover {
   opacity: 0.8;
   -moz-opacity: 0.8;
   filter: alpha(opacity=8);
 }
 
-/* line 395, styles.scss */
-.produit p{margin-left: 50px}
-/* line 396, styles.scss */
+/* line 494, styles.scss */
+.produit p {
+  margin-left: 50px;
+}
+
+/* line 495, styles.scss */
 .produit span.prix {
   font-size: 1.2em;
   font-weight: bold;
@@ -563,7 +702,7 @@ aside#image-accessoires img {
   display: inline-block;
 }
 
-/* line 399, styles.scss */
+/* line 497, styles.scss */
 #catalogue_accessoire {
   width: 950px;
   margin-top: 25px;
@@ -571,23 +710,23 @@ aside#image-accessoires img {
 }
 
 /* -- blocs catalogue -- */
-/* line 402, styles.scss */
+/* line 500, styles.scss */
 .blocs h1 a {
   color: #000;
 }
 
 /* -- Recapitulatif produits -- */
-/* line 406, styles.scss */
+/* line 504, styles.scss */
 #filtre_produit {
   margin: 20px 10px;
 }
 
-/* line 407, styles.scss */
+/* line 505, styles.scss */
 #filtre_produit .input select {
   float: left;
 }
 
-/* line 409, styles.scss */
+/* line 507, styles.scss */
 .toggle {
   display: inline-block;
   background: url("images/white-arrow.png") 1px -63px no-repeat;
@@ -595,42 +734,34 @@ aside#image-accessoires img {
   height: 18px;
 }
 
-/* line 415, styles.scss */
+/* line 513, styles.scss */
 #show_filter .active_arrow {
   background-position: 0 -15px;
 }
 
 /* ---------------------------------------
-				Actulités
------------------------------------------- */
-/* line 420, styles.scss */
-.blocs #actus {
-  min-height: 500px;
-}
-
-/* ---------------------------------------
 				Fiche produits
 ------------------------------------------ */
-/* line 426, styles.scss */
+/* line 519, styles.scss */
 .fiche h4 {
   margin-left: 0;
 }
 
-/* line 427, styles.scss */
+/* line 520, styles.scss */
 .produit-gauche {
   width: 300px;
   float: left;
   padding: 0;
 }
 
-/* line 428, styles.scss */
+/* line 521, styles.scss */
 .produit-droit {
   width: 225px;
   float: left;
   padding-left: 25px;
 }
 
-/* line 429, styles.scss */
+/* line 522, styles.scss */
 .fiche .photos {
   border: 3px solid #DBE5E8;
   -webkit-border-radius: 0px;
@@ -643,7 +774,7 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 430, styles.scss */
+/* line 523, styles.scss */
 .fiche .prix {
   display: block;
   float: none;
@@ -657,7 +788,7 @@ aside#image-accessoires img {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 431, styles.scss */
+/* line 524, styles.scss */
 .fiche .ancien-prix {
   font-weight: bold;
   text-decoration: line-through;
@@ -667,19 +798,19 @@ aside#image-accessoires img {
   font-size: 1.1em;
 }
 
-/* line 432, styles.scss */
+/* line 525, styles.scss */
 .fiche .description {
   border-bottom: 1px solid #D9D9D9;
   padding-bottom: 11px;
   margin-bottom: 7px;
 }
 
-/* line 433, styles.scss */
+/* line 526, styles.scss */
 .fiche .description li {
   line-height: 18px;
 }
 
-/* line 434, styles.scss */
+/* line 527, styles.scss */
 .fiche .titre {
   font-size: 1.2em;
   font-weight: bold;
@@ -688,20 +819,20 @@ aside#image-accessoires img {
   text-decoration: underline;
 }
 
-/* line 435, styles.scss */
+/* line 528, styles.scss */
 .fiche .promo {
   border-bottom: 1px solid #D9D9D9;
   padding: 3px 0 20px;
 }
 
-/* line 436, styles.scss */
+/* line 529, styles.scss */
 .fiche .miniatures, .fiche .miniatures li {
   background: none;
   padding: 0;
   margin: 0;
 }
 
-/* line 437, styles.scss */
+/* line 530, styles.scss */
 .fiche .miniatures li a {
   float: left;
   border: 2px solid #D9D9D9;
@@ -717,7 +848,7 @@ aside#image-accessoires img {
   box-shadow: 1px 1px 14px #555555;
 }
 
-/* line 438, styles.scss */
+/* line 531, styles.scss */
 .fiche .miniatures li a:hover {
   border-color: #AA4673;
   /*+opacity:80%;*/
@@ -727,17 +858,17 @@ aside#image-accessoires img {
   opacity: 0.8;
 }
 
-/* line 439, styles.scss */
+/* line 532, styles.scss */
 .fiche .tags a {
   text-decoration: underline;
 }
 
-/* line 440, styles.scss */
+/* line 533, styles.scss */
 .produit-partage a {
   text-decoration: none;
 }
 
-/* line 441, styles.scss */
+/* line 534, styles.scss */
 .produit-partage a:hover {
   opacity: 0.7;
   -moz-opacity: 0.7;
@@ -745,12 +876,12 @@ aside#image-accessoires img {
 }
 
 /* gallerie */
-/* line 445, styles.scss */
+/* line 538, styles.scss */
 .gallerie {
   overflow: none;
 }
 
-/* line 446, styles.scss */
+/* line 539, styles.scss */
 .gallerie h4 {
   line-height: 18px;
   padding: 20px 0 5px;
@@ -764,34 +895,34 @@ aside#image-accessoires img {
   text-shadow: 1px 1px 2px #999;
 }
 
-/* line 447, styles.scss */
+/* line 540, styles.scss */
 .gallerie h4 a {
   text-decoration: none;
 }
 
-/* line 448, styles.scss */
+/* line 541, styles.scss */
 .gallerie a {
   color: #444;
 }
 
-/* line 449, styles.scss */
+/* line 542, styles.scss */
 .gallerie a:hover {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 450, styles.scss */
+/* line 543, styles.scss */
 .gallerie p {
   padding: 5px 0;
 }
 
-/* line 451, styles.scss */
+/* line 544, styles.scss */
 .gallerie .blanc {
   background: #FFF;
   margin: 20px;
 }
 
-/* line 452, styles.scss */
+/* line 545, styles.scss */
 .gallerie .blanc h4 {
   font: bold 2.1em 'riesling';
 }
@@ -799,20 +930,20 @@ aside#image-accessoires img {
 /* ---------------------------------------
 				Partenariats
 ------------------------------------------ */
-/* line 458, styles.scss */
+/* line 551, styles.scss */
 #partenariats {
   color: #0F0F0F;
   margin: 0 auto;
   border: 1px solid red;
 }
 
-/* line 459, styles.scss */
+/* line 552, styles.scss */
 ul.ligne1, ul.ligne2 {
   margin: 20px 0;
   display: inline-block;
 }
 
-/* line 460, styles.scss */
+/* line 553, styles.scss */
 ul.ligne1 li, ul.ligne2 li {
   display: inline-block;
   vertical-align: top;
@@ -822,43 +953,61 @@ ul.ligne1 li, ul.ligne2 li {
   text-align: center;
 }
 
-/* line 461, styles.scss */
+/* line 554, styles.scss */
 ul.ligne1 li:first-child, ul.ligne2 li:first-child {
   border: 0;
 }
 
-/* line 462, styles.scss */
+/* line 555, styles.scss */
 ul.ligne1 li ul li, ul.ligne2 li ul li {
   padding: 0;
   margin: 3px 0;
   border: none;
 }
 
-/* line 463, styles.scss */
+/* line 556, styles.scss */
 ul.ligne1 li h3, ul.ligne2 li h3 {
   margin-bottom: 15px;
   font: bold 2.2em 'riesling';
 }
 
-/* line 464, styles.scss */
+/* line 557, styles.scss */
 ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {
   padding-top: 15px;
 }
 
-/* line 465, styles.scss */
+/* line 558, styles.scss */
 ul.ligne2 li#dernier {
   border-right: 1px solid #E3E3E3;
 }
 
-/* line 466, styles.scss */
+/* line 559, styles.scss */
 ul.ligne2 li#avant_dernier {
   border: none;
 }
 
 /* ---------------------------------------
+				Contrat
+------------------------------------------ */
+/* line 564, styles.scss */
+#contrats {
+  padding: 10px;
+}
+
+/* line 565, styles.scss */
+#contrats h1 {
+  margin-bottom: 10px;
+}
+
+/* line 566, styles.scss */
+#contrats p {
+  line-height: 22px;
+}
+
+/* ---------------------------------------
 				Contact
 ------------------------------------------ */
-/* line 472, styles.scss */
+/* line 572, styles.scss */
 #formContact {
   position: relative;
   display: inline-block;
@@ -867,7 +1016,23 @@ ul.ligne2 li#avant_dernier {
   padding: 0;
 }
 
-/* line 479, styles.scss */
+/* line 579, styles.scss */
+#formContact label {
+  line-height: 32px;
+  padding-left: 15px;
+}
+
+/* line 580, styles.scss */
+#formContact input {
+  padding-left: 27px;
+}
+
+/* line 581, styles.scss */
+#formContact textarea {
+  padding-left: 29px;
+}
+
+/* line 582, styles.scss */
 #formContact legend {
   font: normal 4em 'riesling';
   text-align: left;
@@ -875,89 +1040,52 @@ ul.ligne2 li#avant_dernier {
   padding: 40px 0 40px 30px;
 }
 
-/* line 485, styles.scss */
+/* line 588, styles.scss */
 #formContact .mariee {
   visibility: hidden;
   position: absolute;
 }
 
-/* line 489, styles.scss */
+/* line 592, styles.scss */
 form.formulaire {
   width: 360px;
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 494, styles.scss */
-form input[type=text], form textarea {
-  border: none;
-  background: #fff;
-  width: 200px;
-  height: 23px;
-  padding: 0 10px;
-  margin: 5px 0 15px 0;
-  color: #686464;
-  font-size: 1em;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: inset 0px 0px 10px 0px #222;
-  -moz-box-shadow: inset 0px 0px 10px 0px #222;
-  box-shadow: inset 0px 0px 10px 0px #222;
-}
-
-/* line 510, styles.scss */
-form textarea {
-  font-size: 1.3em;
-  width: 330px;
-  max-width: 380px;
-  max-height: 260px;
-  height: 150px;
-  margin: 0;
-}
-
-/* line 518, styles.scss */
-fieldset {
-  border: 0 none;
-}
-
-/* line 519, styles.scss */
-legend {
-  display: hidden;
-}
-
-/* line 521, styles.scss */
+/* line 597, styles.scss */
 .envoyer input {
-  margin: 10px 0 0 230px;
-  width: 120px;
-  height: 35px;
+  margin: 10px 0;
   border: none;
-  padding: 0;
+  width: 350px;
+  height: 39px;
+  display: block;
+  background-image: url(images/bouton_submit_comment.png);
+  background-repeat: no-repeat;
+}
+
+/* line 606, styles.scss */
+.envoyer:hover input {
   cursor: pointer;
-  background: url("images/bouton_submit.png") top left no-repeat;
+  background-position: 0 bottom;
 }
 
 /*adresse-sociaux*/
-/* line 531, styles.scss */
+/* line 609, styles.scss */
 #reseauxSociaux {
   color: #878383;
   font-size: 1.3em;
   margin-left: 15px;
 }
 
-/* line 536, styles.scss */
+/* line 614, styles.scss */
 #reseauxSociaux a {
   display: inline-block;
   vertical-align: top;
   margin: 10px 40px 0 0;
 }
 
-/* line 541, styles.scss */
-#reseauxSociaux a img {
-  width: 150px;
-}
-
-/* line 542, styles.scss */
+/* line 619, styles.scss */
 #reseauxSociaux a:hover img {
   opacity: 0.8;
   -moz-opacity: 0.8;
@@ -965,7 +1093,7 @@ legend {
 }
 
 /* -- planGoogle -- */
-/* line 550, styles.scss */
+/* line 627, styles.scss */
 #plan_google {
   display: inline-block;
   vertical-align: top;
@@ -986,28 +1114,33 @@ legend {
 /* ---------------------------------------
 					Guestbook
 ------------------------------------------ */
-/* line 563, styles.scss */
+/* line 640, styles.scss */
 .mariee {
   visibility: hidden;
 }
 
-/* line 565, styles.scss */
+/* line 642, styles.scss */
 #guestbook {
   border-bottom: 1px solid #D9D9D9;
   margin-top: 15px;
+  text-align: center;
 }
 
-/* line 566, styles.scss */
+/* line 643, styles.scss */
+#guestbook p {
+  font: bold 2em 'riesling';
+}
+
+/* line 644, styles.scss */
 #guestbook_form {
   padding: 10px 20px;
   border-right: 1px solid #d9d9d9;
-  border-top: 1px solid #d9d9d9;
   display: inline-block;
-  padding: 10px 50px 0 0;
-  margin: 30px 0 30px 20px;
+  padding: 10px 40px 0 0;
+  margin: 30px 0 20px 20px;
 }
 
-/* line 574, styles.scss */
+/* line 651, styles.scss */
 #guestbook_form label {
   display: inline-block;
   vertical-align: top;
@@ -1015,40 +1148,51 @@ legend {
   padding: 9px 0 0 12px;
 }
 
-/* line 580, styles.scss */
+/* line 657, styles.scss */
+#guestbook .paire {
+  margin-left: 150px;
+  background-color: white;
+}
+
+/* line 658, styles.scss */
+#guestbook .paire .annee {
+  background-color: white;
+}
+
+/* line 660, styles.scss */
 #guestbook_form input[type=text] {
   width: 180px;
   padding-left: 24px;
 }
 
-/* line 582, styles.scss */
-#GuestbookAuthor, #GuestbookAuthorEmail, #GuestbookAuthorUrl, #GuestbookContent {
+/* line 662, styles.scss */
+#GuestbookAuthor, #GuestbookAuthorEmail, #GuestbookAuthorUrl, #GuestbookContent, #ContactMessage, #ContactEmail, #ContactName {
   background-image: url(images/c-icons.png);
   background-repeat: no-repeat;
 }
 
-/* line 583, styles.scss */
-#GuestbookAuthor {
+/* line 663, styles.scss */
+#GuestbookAuthor, #ContactName {
   background-position: 7px 4px;
 }
 
-/* line 584, styles.scss */
-#GuestbookAuthorEmail {
+/* line 664, styles.scss */
+#GuestbookAuthorEmail, #ContactEmail {
   background-position: 7px -22px;
 }
 
-/* line 585, styles.scss */
+/* line 665, styles.scss */
 #GuestbookAuthorUrl {
   background-position: 7px -48px;
 }
 
-/* line 586, styles.scss */
-#GuestbookContent {
+/* line 666, styles.scss */
+#GuestbookContent, #ContactMessage {
   background-position: 7px -75px;
-  padding: 6px 0 0 26px;
+  padding: 6px 0 0 20px;
 }
 
-/* line 588, styles.scss */
+/* line 668, styles.scss */
 #guestbook_form .add_comment input, #guestbook_form .add_comment:hover input {
   border: none;
   width: 350px;
@@ -1058,29 +1202,34 @@ legend {
   background-repeat: no-repeat;
 }
 
-/* line 596, styles.scss */
+/* line 676, styles.scss */
 #guestbook_form .add_comment input {
   background-position: 0 top;
 }
 
-/* line 597, styles.scss */
+/* line 677, styles.scss */
 #guestbook_form .add_comment:hover input {
   cursor: pointer;
   background-position: 0 bottom;
 }
 
-/* line 599, styles.scss */
+/* line 679, styles.scss */
+#guestbook_add {
+  display: none;
+}
+
+/* line 681, styles.scss */
 form .placeholder {
   margin-left: 0;
 }
 
-/* line 600, styles.scss */
+/* line 682, styles.scss */
 form .placeholder label {
   position: absolute;
   margin-left: 15px;
 }
 
-/* line 602, styles.scss */
+/* line 684, styles.scss */
 #guestbook_image {
   display: inline-block;
   vertical-align: top;
@@ -1088,17 +1237,12 @@ form .placeholder label {
 }
 
 /* -- Commentaires -- */
-/* line 605, styles.scss */
-#guestbook p {
-  font: bold 2em 'riesling';
-}
-
-/* line 606, styles.scss */
+/* line 687, styles.scss */
 .comment {
   margin: 20px 0 10px;
 }
 
-/* line 607, styles.scss */
+/* line 688, styles.scss */
 .comment .date {
   display: inline-block;
   vertical-align: top;
@@ -1109,7 +1253,7 @@ form .placeholder label {
   padding-right: 25px;
 }
 
-/* line 608, styles.scss */
+/* line 689, styles.scss */
 .comment .comment_content {
   display: inline-block;
   vertical-align: top;
@@ -1117,17 +1261,24 @@ form .placeholder label {
   text-align: left;
 }
 
-/* line 609, styles.scss */
+/* line 690, styles.scss */
 .comment .comment-title {
   padding: 5px;
 }
 
-/* line 610, styles.scss */
+/* line 691, styles.scss */
 .comment .comment-title .action {
   float: right;
 }
 
-/* line 612, styles.scss */
+/* line 692, styles.scss */
+.comment cite a {
+  font-size: .9em;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* line 694, styles.scss */
 span.comment-author {
   display: block;
   margin-top: 15px;
@@ -1136,20 +1287,20 @@ span.comment-author {
 }
 
 /* -- date -- */
-/* line 615, styles.scss */
+/* line 697, styles.scss */
 span.jour, span.mois, span.annee {
   color: #998F76;
   font-weight: bold;
 }
 
-/* line 616, styles.scss */
+/* line 698, styles.scss */
 span.jour {
   font-size: 2.4em;
   padding: 0;
   letter-spacing: -2px;
 }
 
-/* line 617, styles.scss */
+/* line 699, styles.scss */
 span.mois {
   vertical-align: top;
   padding: 4px 0 0 3px;
@@ -1157,7 +1308,7 @@ span.mois {
   display: inline-block;
 }
 
-/* line 618, styles.scss */
+/* line 700, styles.scss */
 span.annee {
   font-weight: normal;
   position: absolute;
@@ -1169,7 +1320,7 @@ span.annee {
   line-height: 13px;
 }
 
-/* line 619, styles.scss */
+/* line 701, styles.scss */
 span.heure {
   color: #29537D;
   font-size: .8em;
@@ -1178,33 +1329,136 @@ span.heure {
 }
 
 /* -- add_commentaire -- */
-/* line 622, styles.scss */
+/* line 704, styles.scss */
 #add_commentaire {
   margin: 0 auto;
 }
 
-/* line 623, styles.scss */
+/* line 705, styles.scss */
 #add_commentaire h1 {
   margin: 30px auto 10px;
 }
 
-/* line 624, styles.scss */
+/* line 706, styles.scss */
 #add_commentaire h1 a:hover {
   color: #AA4673;
   text-decoration: underline;
 }
 
-/* line 625, styles.scss */
+/* line 707, styles.scss */
 #add_commentaire h1 img {
   margin: 0 30px 0 180px;
   display: inline-block;
   vertical-align: middle;
 }
 
+/* line 709, styles.scss */
+#pagination {
+  margin-top: 10px;
+}
+
+/* line 710, styles.scss */
+#pagination ul li {
+  display: inline-block;
+  color: blue;
+  margin-left: 10px;
+  border: 1px solid #AA4673;
+  background-color: #D1789F;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+}
+
+/* line 711, styles.scss */
+#pagination ul li.current {
+  color: white;
+  text-decoration: underline;
+}
+
 /* ---------------------------------------
-					Footer
+						Actualités
 ------------------------------------------ */
-/* line 631, styles.scss */
+/* line 716, styles.scss */
+#actus {
+  min-height: 500px;
+}
+
+/* line 717, styles.scss */
+#actus .article {
+  width: 80%;
+  margin: 20px auto;
+  background: white;
+  border-bottom: 1px solid #D9D9D9;
+  padding: 15px 20px;
+}
+
+/* line 718, styles.scss */
+#actus .article img {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+}
+
+/* line 719, styles.scss */
+#actus .article img.image_fleche_suite {
+  margin: 2px 5px 0 0;
+}
+
+/* line 720, styles.scss */
+#actus .article h2.titre_article {
+  display: inline-block;
+  vertical-align: top;
+  margin: 15px 0 0 20px;
+}
+
+/* line 721, styles.scss */
+#actus .article h2.titre_article a {
+  color: black;
+}
+
+/* line 722, styles.scss */
+#actus .article .titre_article {
+  padding: 10px;
+  height: 10px;
+  line-height: 10px;
+  font-size: 20px;
+  color: #D1789F;
+}
+
+/* line 723, styles.scss */
+#actus .article .meta_article {
+  display: inline-block;
+  margin: 5px 30px 0;
+  font-size: .9em;
+}
+
+/* line 724, styles.scss */
+#actus .article .contenu_article {
+  padding: 30px 0 25px;
+  text-align: justify;
+}
+
+/* line 725, styles.scss */
+#actus .article p, .taxo_article {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* line 726, styles.scss */
+#actus .article .taxo_article {
+  padding-left: 30px;
+}
+
+/* line 727, styles.scss */
+#actus .article p a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------
+						Footer
+------------------------------------------ */
+/* line 732, styles.scss */
 footer {
   margin: 0 auto;
   width: 100%;
@@ -1214,12 +1468,12 @@ footer {
   font-size: .9em;
 }
 
-/* line 632, styles.scss */
+/* line 733, styles.scss */
 footer a, footer a:visited, footer a:link {
   color: #747474;
 }
 
-/* line 633, styles.scss */
+/* line 734, styles.scss */
 footer a:hover {
   text-decoration: underline;
   color: #444;
