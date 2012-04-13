@@ -199,34 +199,6 @@ class OptionsController extends AppController{
         $this->render('admin_edit');
     }
 
-    function admin_discussions(){
-        $d['title_for_layout'] = 'Options des discussions';
-        $d['action'] = 'discussion';
-
-        if($this->request->is('post') || $this->request->is('put')){
-            $this->request->data['Option']['default_comment_status'] = (!empty($this->request->data['Option']['default_comment_status'])) ? 'open' : 'close';
-            foreach ($this->request->data['Option'] as $k => $v) {
-                $option_id = $this->Option->field('id',array('name'=>$k));
-                $this->Option->id = $option_id;
-                $this->Option->saveField('value',$v);
-            }
-            Cache::delete('config_site');
-            $this->Session->setFlash("Les modifications ont bien été prises en compte","notif");
-            $this->redirect(array('action'=>'admin_discussions'));
-        }
-
-        $fields = array(
-            'default_comment_status'
-        );
-
-        foreach ($fields as $name) {
-            $this->request->data['Option'][$name] = Configure::read($name);
-        }
-
-        $this->set($d);
-        $this->render('admin_edit');
-    }
-
     function superadmin_agence(){
 
         $d['title_for_layout'] = 'Administration des BOSS';

@@ -1,25 +1,25 @@
 <div id="actus">
 	<?php if (!empty($posts)): ?>
 		<?php foreach($posts as $k => $v):?>
-			<div class="hentry">
-				<h2 class="entry-title"><?php echo $this->Html->link($v['Post']['name'],$v['Post']['link'],array('title'=>$v['Post']['name'])); ?></h2>
-				<div class="entry-meta">
+			<div class="article" id="post-<?php echo $v['Post']['id'];?>">
+				<h2 class="titre_article"><?php echo $this->Html->link($v['Post']['name'],$v['Post']['link'],array('title'=>$v['Post']['name'])); ?></h2>
+				<div class="meta_article">
 					<span>Posté le </span>
-					<span class="entry-date"><?php echo $this->date->format($v['Post']['created'],'FRS') ?></span>
+					<span class="date_article"><?php echo $this->date->format($v['Post']['created'],'FRS') ?></span>
 					<span>par</span>
-					<span class="entry-author"><?php echo $v['User']['username'] ?></span>
+					<span class="auteur_article"><?php echo $v['User']['username'] ?></span>
 				</div>
-				<div class="entry-content">
-					<p><?php  echo $this->Text->truncate($v['Post']['content'],600,array('exact'=>false,'html'=>true));?></p>
+				<div class="contenu_article">
+					<?php  echo $this->Text->truncate($v['Post']['content'],600,array('exact'=>false,'html'=>true));?>
 				</div>
 				<p><?php echo $this->Html->link("Voir la suite",$v['Post']['link']); ?></p>	
 				<?php if(!empty($v['Taxonomy'])): ?>
-				<div class="entry-utility">
-					<span class="cat-links">
+				<div class="taxo_article">
+					<span class="cat_article">
 					<?php if (!empty($v['Taxonomy']['category'])): ?>
 						<span><strong>Categories : </strong></span>
 						<?php foreach ($v['Taxonomy']['category'] as $k1 => $v1): ?>
-							<span class="entry-category">
+							<span class="category_article">
 								<?php echo $this->Html->link($v1['name'],array('plugin'=>false,'controller'=>'posts','action'=>'viewterm','type'=>'category','slug'=>$v1['slug'])); ?>
 							</span>
 						<?php endforeach ?>
@@ -28,21 +28,11 @@
 						<span> | </span>
 						<span><strong>Tags : </strong></span>
 						<?php foreach ($v['Taxonomy']['tag'] as $k1 => $v1): ?>
-							<span class="entry-category">
+							<span class="tags_article">
 								<?php echo $this->Html->link($v1['name'],array('plugin'=>false,'controller'=>'posts','action'=>'viewterm','type'=>'tag','slug'=>$v1['slug'])); ?>
 							</span>
 						<?php endforeach ?>				
 					<?php endif; ?>	 					
-					</span>
-					<span>
-						<?php 
-						$count = $v['Post']['comment_count'];
-						if($count > 0){
-							$terminaison = ($count>1) ? 's' : '';
-							$v['Post']['link']['#'] = 'comments';
-							echo $this->Html->link($count." commentaire".$terminaison,$v['Post']['link'],array('title'=>"Voir le".$terminaison." commentaire".$terminaison)); 
-						}
-						?>
 					</span>
 				</div>
 				<?php endif; ?>		

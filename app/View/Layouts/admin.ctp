@@ -27,6 +27,21 @@
             #form_term label{display: inline-block;width: 60px}
             #form_term input{margin-top: 10px}
             #form_term p{margin-top: 5px}
+            
+            #content #dashboard_derniers_commentaires .bloc_contenu{padding: 0px}
+            #derniers_commentaires .item_commentaire{padding: 5px}
+            #derniers_commentaires .non_approuve{background-color: lightYellow}
+
+            #form_user{margin-top: 10px}
+            #form_user label{display: inline-block;width: 150px}
+            #form_user input{margin-top: 5px}
+            #form_user #pass_strength_result{margin-left: 150px;margin-top: 5px;margin-bottom: 5px}
+
+            .options_form{padding: 5px}
+            .options_form label{display: inline-block;width: 150px}
+            .options_form .input{margin-top: 5px;}
+            .options_form .input input{margin-right: 10px;width: 200px;padding: 2px}
+            .options_form input[type="submit"]{margin-top: 10px}
         </style>
     </head>
     <body>

@@ -15,9 +15,9 @@
 </div>
 <?php echo $this->Form->create('User',array('url'=>array('controller'=>'users','action'=>'doaction'))) ?>
 	<?php echo $this->element('admin-action-groupees',array('list'=>$list_action)) ?>
-	<table class="classicTable posts" style="-webkit-border-radius: 3px;border-radius: 3px;border-width: 1px;border-style: solid;display: table;border-color: gray;margin-top: 10px">
-		<thead style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
-			<tr style="color: #21759B">
+	<table class="liste_table users">
+		<thead>
+			<tr>
 				<th><input type="checkbox" class="checkall"></th>
 				<th><?php echo $this->Paginator->sort('User.username','Identifiant'); ?></th>
 				<th>Nom</th>
@@ -27,7 +27,7 @@
 				<th>Articles</th>
 			</tr>
 		</thead>
-		<tbody style="color: gray;">
+		<tbody>
 			<?php if (!empty($users)): ?>
 				<?php foreach ($users as $k => $v):?>
 				<tr id="post_<?php echo $v['User']['id'] ?>">
@@ -73,8 +73,8 @@
 				<td></td>
 			<?php endif ?>
 		</tbody>
-		<tfoot style="background-color: #F1F1F1;border-top-color: white;border-bottom-color: #DFDFDF">
-			<tr style="color: #21759B">
+		<tfoot>
+			<tr>
 				<th><input type="checkbox" class="checkall"></th>
 				<th><?php echo $this->Paginator->sort('User.username','Identifiant'); ?></th>
 				<th>Nom</th>

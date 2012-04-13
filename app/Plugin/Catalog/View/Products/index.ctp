@@ -31,7 +31,6 @@
 					<p><?php echo $v['Product']['prix'] == 0 ? 'Non communiqué' : 'Prix : <span class="prix">'.$v['Product']['prix'].' €</span>' ?></p>
 					<?php if (!empty($v['Taxonomy'])): ?>
 						<div class="produit_metas">
-							
 							<?php if ($type_product == 'robe-de-mariee'): ?>
 								<?php if (!empty($v['Taxonomy']['product_taille'])): ?>
 									<p>Taille : 

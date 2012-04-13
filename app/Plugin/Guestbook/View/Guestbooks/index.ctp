@@ -7,7 +7,7 @@
 	<?php foreach ($guestbooks as $k => $v): ?>
 		<?php $class = ($i%2 == 0) ? 'paire' : 'nopaire' ?>
 		<?php $i++; ?>
-		<div class="comment <?php echo $class ?>">
+		<div class="comment <?php echo $class ?>" id="comment-<?php echo $v['Guestbook']['id'];?>">
 			<div class="comment-title">
 					<?php 
 						$date = $this->date->format($v['Guestbook']['created'],'special_jd',true); 

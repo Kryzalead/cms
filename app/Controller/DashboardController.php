@@ -50,41 +50,54 @@ class DashboardController extends AppController{
 			)
 		));
 
-		$this->loadModel('Comment');
-		$count = $this->Comment->find('all',array(
-			'fields'=>array('Comment.approved','COUNT(Comment.id) AS total'),
-			'group'=>'Comment.approved'
+		
+		$this->loadModel('Guestbook');
+		$count = $this->Guestbook->find('all',array(
+			'fields'=>array('Guestbook.approved','COUNT(Guestbook.id) AS total'),
+			'group'=>'Guestbook.approved'
 		));
 		
 		
-		$d['totalWaiting'] = $d['totalApproved'] = $d['totalSpam'] = $d['totalTrash'] = 0;
+		$d['totalWaiting'] = $d['totalApproved'] = $d['totalSpam'] = 0;
 		foreach ($count as $k => $v) {
-			if($v['Comment']['approved'] == '0')
+			if($v['Guestbook']['approved'] == '0')
 				$d['totalWaiting'] =  $v[0]['total'];
-			if($v['Comment']['approved'] == '1')
+			if($v['Guestbook']['approved'] == '1')
 				$d['totalApproved'] =  $v[0]['total'];
-			if($v['Comment']['approved'] == 'spam')
-				$d['totalSpam'] =  $v[0]['total'];
-			if($v['Comment']['approved'] == 'trash')
-				$d['totalTrash'] =  $v[0]['total'];	
 		}
 
-		$d['totalComments'] =  $d['totalApproved'] + $d['totalWaiting'] + $d['totalSpam'];
+		$d['totalComments'] =  $d['totalApproved'] + $d['totalWaiting'];
 
+		$d['last_comments'] = $this->Guestbook->find('all',array(
+			'fields'=>array('Guestbook.id','Guestbook.author','Guestbook.approved','Guestbook.created','Guestbook.content'),
+			'conditions'=>array('Guestbook.approved'=>array(0,1)),
+			'limit'=>4,
+			'order'=>array('Guestbook.id'=>'DESC')
+		));
 		
-		$this->Comment->contain(array(
-			'Post'=>array(
-				'fields'=>array('Post.id','Post.name')
-			)
+		$this->loadModel('Product');
+		$count = $this->Product->find('all',array(
+			'fields'	=>	array('Product.product_type','COUNT(Product.id) AS total'),
+			'conditions'=>array(
+				'OR'=>array(
+					array(
+						'Product.product_type'=>'robe-de-mariee'
+					),
+					array(
+						'Product.product_type'=>'accessoire'
+					)
+				),
+				'Product.status'=>'publish'
+			),
+			'group'		=>	'Product.product_type'
 		));
-
-		$d['last_comments'] = $this->Comment->find('all',array(
-			'fields'=>array('Comment.id','Comment.author','Comment.approved','Comment.created','Comment.content'),
-			'conditions'=>array('Comment.approved'=>array(0,1)),
-			'limit'=>5,
-			'order'=>array('Comment.id'=>'DESC')
-		));
-
+		
+		foreach ($count as $k => $v) {
+			$d['total'.ucfirst($v['Product']['product_type'])] = $v[0]['total'];
+			if($v['Product']['product_type'] == 'robe-de-mariee')
+				$d['totalRobe'] = $d['total'.ucfirst($v['Product']['product_type'])];
+		}
+		
 		$this->set($d);
 	}
 }

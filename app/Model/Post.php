@@ -19,8 +19,6 @@ class Post extends AppModel{
         )    
     );
 
-    public $hasMany = array('Menu_post'=>array('dependent'=>true),'Comment'=>array('dependent'=>true));
-
 	public $recursive = -1;
 	
 	public $validate = array(

@@ -108,6 +108,30 @@
   à  tester , je pense que c'est mal, par contre dans le layout ça ne fonctionne pas, à toi de voir da,s la css
 */
 aside#image-accessoires{top: 100}
+
+/* page contrats */
+#contrats{padding: 10px}
+#contrats h1{margin-bottom: 10px}
+#contrats p{line-height: 22px}
+
+/* message livre d'or, à toi de voir si ça te plait ;) */
+#guestbook{text-align: center;}
+#guestbook .paire{margin-left: 100px}
+
+/*  page actualité à revoir lol*/ 
+#actus{}
+#actus .article{width: 80%;margin: 0 auto;margin-top: 20px;background: white;-moz-border-radius: 5px;border-radius: 5px;}
+#actus .article .titre_article{padding: 0px;padding:10px; height: 10px;line-height: 10px;font-size: 20px;background-color: gray;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #D1789F;}
+
+#actus .article .contenu_article{padding: 20px}
+
+/* form contact */
+#formContact label{line-height: 30px}
+
+/* catalogue : réglage des cas au nom des créateurs trop long
+ je leur est carré une width fixe et une height aussi, + un margin-bottom
+ */
+.produit{width: 200px;height: 310px;margin-bottom: 10px}
   </style>
 </head>
 <body>
@@ -122,7 +146,7 @@ aside#image-accessoires{top: 100}
 <![endif]--> 
   <div class="wrap"><!-- Début wrap -->
     <header role="banner"><!--Début header-->
-      <h1><?php echo $this->Html->link($this->Html->image('logo-aux-mariees-de-christele.png',array('width'=>412,'height'=>107,'alt'=>'logo Aux Mariées de Christèle')),'/',array('escape'=>false)); ?></h1>
+      <h1><?php echo $this->Html->link($this->Html->image('logo-aux-mariees-de-christele.png',array('width'=>412,'height'=>107,'alt'=>'logo Aux Mariées de Christèle','id'=>'logo')),'/',array('escape'=>false)); ?></h1>
         <nav id="menu" role="navigation"><!-- Début nav -->
           <ul id="nav_menu">
             <li><?php echo $this->Html->link("Accueil",'/'); ?></li>
@@ -171,7 +195,7 @@ aside#image-accessoires{top: 100}
           <div class="cb"></div>
     </div> <!-- Fin contenu -->
       <footer>
-          <p>&copy; 2012 Coder In &middot; <a href="http://www.coder-in.fr/mentions.html">mentions légales</a> &middot; <a href="#">plan du site</a> &middot; <a href="#logo">haut de page</a></p>
+          <p>&copy; 2012 Coder In &middot; <?php echo $this->Html->link("mentions légales",array('plugin'=>false,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'mentions-legales')); ?> &middot;<?php echo $this->Html->link("plan du site",array('plugin'=>false,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'plan-site'));?> &middot; <a href="#logo">haut de page</a></p>
       </footer>
   </div> <!-- Fin wrap -->
 

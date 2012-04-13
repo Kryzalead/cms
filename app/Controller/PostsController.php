@@ -76,11 +76,7 @@ class PostsController extends AppController{
 				'User'=>array(
 					'fields'=>array('User.username')
 				),
-				'Term',
-				'Comment'=>array(
-					'fields'=>array('Comment.id','Comment.author','Comment.author_email','Comment.author_url','Comment.created','Comment.content'),
-					'conditions'=>array('Comment.approved'=>1)
-				)
+				'Term'
 			));
 
 			$post = $this->Post->find('first',array(

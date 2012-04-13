@@ -111,7 +111,7 @@
                <p>Aujourd'hui</p>
             </div>
             <div class="bloc_contenu">
-					<div class="bloc_gauche">
+				<div class="bloc_gauche">
                     <table>
                         <thead>
                             <tr>
@@ -150,7 +150,7 @@
                     <table class="no_paire">
                         <thead>
                             <tr>
-                                <th colspan="2"><em>Commentaires</em></th>
+                                <th colspan="2"><em>Livre d'or</em></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -178,21 +178,11 @@
 	                             	</td>
 	                             <td class="neutral">En attente</td>
 	                         </tr>
-	                         <tr>
-	                             <td>
-	                             		<h4><?php echo $totalSpam ?></h4>
-	                             	</td>
-	                             <td class="bad">
-	                                 <?php $terminaison = ($totalSpam > 1) ? 's' : '' ?>
-	                                 Indésirable<?php echo $terminaison ?>
-	                             </td>
-	                         </tr>
                         </tbody>
                     </table>
-			</div>
-				</div>	
-        	</div>
-
+				</div>
+			</div>	
+        </div>
         <div id="dashboard_derniers_brouillons" class="bloc">
             <div class="bloc_titre">
                <p>Brouillons récents</p>
@@ -204,8 +194,7 @@
                         <li class="item_brouillon">
                             <?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts',$v['Post']['id'])); ?>
                             <span class="date"><?php echo $this->date->format($v['Post']['created'],'FRS') ?></span>
-                            
-                                <?php  echo $this->Text->truncate($v['Post']['content'],200,array('exact'=>false,'html'=>true));?>
+                            <?php  echo $this->Text->truncate($v['Post']['content'],200,array('exact'=>false,'html'=>true));?>
                         </li>
                     <?php endforeach ?>
                     </ul>
@@ -216,8 +205,6 @@
                 <?php endif ?>
             </div>
         </div>
-    </div>
-    <div class="bloc_droit">
         <div id="dashboard_derniers_commentaires" class="bloc">
             <div class="bloc_titre">
                <p>Commentaires récents</p>
@@ -226,13 +213,13 @@
                 <?php if (!empty($last_comments)): ?>
                 	<div id="derniers_commentaires">
              			<?php foreach ($last_comments as $k => $v): ?>
-								<?php $class = $v['Comment']['approved'] == 0  ? 'non_approuve' : ''?>
+								<?php $class = $v['Guestbook']['approved'] == 0  ? 'non_approuve' : ''?>
 								<div class=" item_commentaire <?php echo $class ?>">
-									<?php echo $this->Html->image('anonymous.png',array('width'=>65,'height'=>65)) ?>
 									<div class="item_commentaire_wrap">
-										<h4 class="item_commentaire_meta"><cite class="item_commentaire_auteur"><?php echo $v['Comment']['author'] ?></cite> sur <?php echo $this->Html->link($v['Post']['name'],array('action'=>'edit','controller'=>'posts','?'=>array('type'=>'post','id'=>$v['Post']['id']))); ?>
-										<?php echo (!empty($style)) ? '[en attente]' : '' ?></h4>
-										<blockquote><p><?php echo $v['Comment']['content'] ?></p></blockquote>
+										<h4 class="item_commentaire_meta"><cite class="item_commentaire_auteur"><?php echo $v['Guestbook']['author'] ?></cite>
+										<?php echo (!empty($class)) ? '[en attente]' : '' ?></h4>
+										<blockquote><p><?php echo $v['Guestbook']['content'] ?></p></blockquote>
+										<?php echo $this->Html->link("Voir le commentaire",array('plugin'=>'guestbook','action'=>'index','controller'=>'guestbooks','admin'=>false,'#'=>$v['Guestbook']['id']),array('target'=>'_blank')); ?>
 									</div>
 								</div>
 							<?php endforeach ?>
@@ -241,6 +228,74 @@
                     <p>Aucun commentaires</p>
                 <?php endif ?>
             </div>
+        </div>
+    </div>
+    <div class="bloc_droit">
+        <div id="dashboard_aujourdhui" class="bloc">
+            <div class="bloc_titre">
+               <p>Mes catalogues</p>
+            </div>
+            <div class="bloc_contenu">
+				<div class="bloc_gauche">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2">Robes de mariées</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><h4><?php echo $totalRobe ?></h4></td>
+                                <td>
+                                    <?php $terminaison = ($totalRobe > 1) ? 's' : '' ?>
+                                    Robe<?php echo $terminaison ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h4><?php echo $totalProduct_creator ?></h4></td>
+                                <td>
+                                    <?php $terminaison = ($totalProduct_creator > 1) ? 's' : '' ?>
+                                    Créateur<?php echo $terminaison ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h4><?php echo $totalProduct_taille ?></h4></td>
+                                <?php $terminaison = ($totalProduct_taille > 1) ? 's' : '' ?>
+                                <td>Taille<?php echo $terminaison ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bloc_droit">
+                    <table class="no_paire">
+                        <thead>
+                            <tr>
+                                <th colspan="2"><em>Accessoires</em></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+	                         <tr>
+	                             <td>
+	                             	<h4><?php echo $totalAccessoire ?></h4>
+	                             </td>
+	                             <td>
+	                                 <?php $terminaison = ($totalAccessoire > 1) ? 's' : '' ?>
+	                                 Accessoire<?php echo $terminaison ?>
+	                             </td>
+	                         </tr>
+	                         <tr>
+	                             <td>
+	                           		<h4><?php echo $totalProduct_category ?></h4>
+	                           	</td>
+	                             <td>
+	                                 <?php $terminaison = ($totalProduct_category > 1) ? 's' : '' ?>
+	                                 Catégorie<?php echo $terminaison ?>
+	                             </td>
+	                         </tr>
+                        </tbody>
+                    </table>
+				</div>
+			</div>	
         </div>
         <div class="cb"></div>
     </div>
