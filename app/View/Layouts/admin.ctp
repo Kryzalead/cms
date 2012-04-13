@@ -23,6 +23,10 @@
             #form_upload input{margin-top: 10px}
 
             #bloc_image_une .product_thumb{text-align: center}
+
+            #form_term label{display: inline-block;width: 60px}
+            #form_term input{margin-top: 10px}
+            #form_term p{margin-top: 5px}
         </style>
     </head>
     <body>

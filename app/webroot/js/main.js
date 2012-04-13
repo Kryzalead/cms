@@ -144,11 +144,6 @@ jQuery(function($){
     /**
      * Hide notification when close button is pressed
     **/
-    $('.notif .close').click(function(){
-        $(this).parent().fadeTo(500,0).slideUp(); 
-        return false; 
-    });
-
     if($('.notif').length > 0){
         
         $('.notif').delay(3000).slideUp('slow');  

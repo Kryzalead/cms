@@ -6,6 +6,7 @@ class GuestbooksController extends GuestbookAppController {
 	function index(){
 
 		$d['title_for_layout'] = "Livre d'or | ".Configure::read('site_name');
+		$d['show_form'] = 'no';
 		if($this->request->is('post')){
 
 			if(!empty($this->request->data['Guestbook']['site'])){
@@ -22,6 +23,7 @@ class GuestbooksController extends GuestbookAppController {
 			}
 			else{
 				$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
+				$d['show_form'] = 'ok';
 			}
 		}
 

@@ -100,8 +100,8 @@
         <h3 class="bloc_titre">Prix</h3>
         <div class="inside bloc_contenu">
             <p>
-                <?php echo $this->Form->input('Product.price',array('label'=>"Prix de Vente ",'type'=>'text','after'=>' €')); ?>
-                <?php echo $this->Form->input('Product.product_buy_price',array('label'=>"Valeur d'Achat ",'type'=>'text','after'=>' €')); ?>
+                <?php echo $this->Form->input('Product.prix',array('label'=>"Prix de Vente ",'type'=>'text','after'=>' €')); ?>
+                <?php echo $this->Form->input('Product.product_buy_prix',array('label'=>"Valeur d'Achat ",'type'=>'text','after'=>' €')); ?>
             <p>
         </div>
     </div>
@@ -109,9 +109,7 @@
         <div class="add_meta bloc" id="bloc_categorie">
             <h3 class="bloc_titre">Catégorie</h3>
             <div class="inside bloc_contenu">
-                <p>
-                    <?php echo $this->Form->input('terms_product_category',array('label'=>false,'type'=>'select','options'=>$terms_product_category)); ?>
-                <p>
+                <?php echo $this->Form->input('terms_product_category',array('label'=>false,'type'=>'select','options'=>$terms_product_category)); ?>
             </div>
         </div>
     <?php endif ?>
@@ -119,17 +117,13 @@
        <div class="add_meta bloc" id="bloc_taille">
             <h3 class="bloc_titre">Taille</h3>
             <div class="inside bloc_contenu">
-                <p>
-                    <?php echo $this->Form->input('terms_product_taille',array('label'=>false,'type'=>'select','multiple'=>'checkbox','options'=>$terms_product_taille)); ?>
-                <p>
+                <?php echo $this->Form->input('terms_product_taille',array('label'=>false,'type'=>'select','multiple'=>'checkbox','options'=>$terms_product_taille)); ?>
             </div>
         </div>
         <div class="add_meta bloc" id="bloc_createur">
             <h3 class="bloc_titre">Créateur</h3>
             <div class="inside bloc_contenu">
-                <p>
-                    <?php echo $this->Form->input('terms_product_creator',array('label'=>false,'type'=>'select','options'=>$terms_product_creator)); ?>
-                <p>
+                <?php echo $this->Form->input('terms_product_creator',array('label'=>false,'type'=>'select','options'=>$terms_product_creator)); ?>
             </div>
         </div>   
     <?php endif ?>

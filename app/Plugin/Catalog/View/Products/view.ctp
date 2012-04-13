@@ -1,9 +1,29 @@
 <section class="bloc">
-	<h1>Modèle <?php echo $product['Product']['name'] ?></h1>
+	<h1><?php echo $product['Product']['product_type'] == 'robe-de-mariee' ? 'Modèle' : ''?> <?php echo $product['Product']['name'] ?></h1>
 	<div class="gallerie"> <!-- Début gallerie -->
 		<div class="blanc fiche"> <!-- Début blanc fiche -->
 			<div class="produit-gauche">
-				<?php echo $this->Html->link($this->Html->image($product['Product']['url_min'],array('alt'=>"Photo ".$product['Product']['name'],'class'=>'photos')),$product['Product']['url'],array('title'=>$product['Product']['name'],'class'=>'product-zoom zoombox zgallery1','escape'=>false)); ?>
+				<?php 
+					$dimension = getimagesize ($product['Product']['url']); 
+					$largeur = 375;$hauteur = 275;
+					if ($dimension[1] > $hauteur OR $dimension[0] > $largeur) { 
+					// X plus grand que Y 
+						if ($dimension[1] < $dimension[0]) { 
+						     $width = $hauteur; 
+						     $height = floor($width * ($dimension[1]/$dimension[0])); 
+						} 
+						// Y plus grand que X 
+						else{ 
+						     $height = $largeur; 
+						     $width = floor($height * ($dimension[0]/$dimension[1])); 
+						} 
+					} 
+					else { 
+					     $width = $dimension[0]; 
+					     $height = $dimension[1]; 
+					} 
+				?>
+				<?php echo $this->Html->link($this->Html->image($product['Product']['url'],array('width'=>$width,'height'=>$height,'alt'=>"Photo ".$product['Product']['name'],'class'=>'photos')),$product['Product']['url'],array('title'=>$product['Product']['name'],'class'=>'product-zoom zoombox zgallery1','escape'=>false)); ?>
 				<?php if (!empty($product['Product_attachement'])): ?>
 					<ul class="miniatures">
 						<?php foreach ($product['Product_attachement'] as $k => $v): ?>
@@ -26,7 +46,10 @@
 				</div> <!-- Fin Produit-partage -->
 			</div>
 			<div class="produit-droit"><!-- Début produit-droit -->
-				<p class="prix"><?php echo $product['Product']['price'] ?> €</p>
+				<?php if ($product['Product']['prix'] != 0): ?>
+					<p class="prix"><?php echo $product['Product']['prix']?> €</p>
+				<?php endif ?>
+				
 				<?php if (!empty($product['Meta']['valeur_achat'])): ?>
 					<p class="ancien-prix"><?php echo $product['Meta']['valeur_achat'] ?> €</p>
 					<span class="currency" style="display:none;">EUR</span>
@@ -37,26 +60,31 @@
 				<div class="description"> <!-- Début description -->
 					<ul>
 						<li class="titre">Modèle</li>
-						<li>Créateur : 
-							<?php if (!empty($product['Meta']['product_creator_site'])): ?>
-								<?php echo $this->Html->link($product['Meta']['product_creator'],$product['Meta']['product_creator_site'],array('title'=>"Voir le site de ".$product['Meta']['product_creator'])); ?>
-							<?php elseif(!empty($product['Meta']['product_creator'])): ?>
-								<?php echo $product['Meta']['product_creator'] ?>
-							<?php endif ?>
-						</li>
-						<li>Nom de la robe : <?php echo $product['Product']['name'] ?></li>
+						<?php if (!empty($product['Meta']['product_creator_site'])): ?>
+							<li>Créateur : 
+							<?php echo $this->Html->link($product['Meta']['product_creator'],$product['Meta']['product_creator_site'],array('title'=>"Voir le site de ".$product['Meta']['product_creator'])); ?>
+						<?php elseif(!empty($product['Meta']['product_creator'])): ?>
+							<li>Créateur : 
+							<?php echo $product['Meta']['product_creator'] ?>
+							</li>
+						<?php endif ?>
+						<li><?php echo $product['Product']['product_type'] == 'robe-de-mariee'  ? 'Nom de la robe : ' : 'Accessoire : ';?><?php echo $product['Product']['name'] ?></li>
 					</ul>
+					<?php if (!empty($product['Product']['description'])): ?>
 					<ul>
+						
 						<li class="titre">Description</li>
 						<li><?php echo $product['Product']['description'] ?></li>
 						<?php if (!empty($product['Taxonomy']['product_taille'])): ?>
 							<li><span class="gras">Taille :</span> 
+								<?php sort($product['Taxonomy']['product_taille']) ?>
 								<?php foreach ($product['Taxonomy']['product_taille'] as $k => $v): ?>
 									<?php echo $v['name'].' '; ?>
 								<?php endforeach ?>
 							</li>
 						<?php endif ?>
 					</ul>
+					<?php endif ?>
 				</div>
 			</div><!-- Fin produit-droit -->
 		</div>

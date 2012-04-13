@@ -8,7 +8,6 @@ class ProductsController extends AppController{
 	protected $allow_product = array('robe-de-mariee','accessoire');
 	protected $allow_product_status = array('all','publish','draft','trash');
 	protected $allow_product_action = array('add','edit');
-
 	function home(){
 
 		$d['title_for_layout'] = 'Catalogue | '.Configure::read('site_name');
@@ -16,7 +15,7 @@ class ProductsController extends AppController{
 		$this->Product->contain('Term');
 
 		$d['robes'] = $this->Product->find('all',array(
-			'fields'=>array('Product.id','Product.name','Product.price','Product.url','Product.slug','Product.product_type'),
+			'fields'=>array('Product.id','Product.name','Product.prix','Product.url','Product.slug','Product.product_type'),
 			'conditions'=>array('product_type'=>'robe-de-mariee','status'=>'publish'),
 			'limit'=>4,
 			'order'=>'rand()'
@@ -40,13 +39,13 @@ class ProductsController extends AppController{
 			throw new NotFoundException("Page introuvable");
 
 		$conditions = array('Product.product_type'=>$type_products,'Product.status'=>'publish');
-
+		$this->request->params['named']['page'] = $this->params['page'];
+		
 		if(!empty($this->request->params['slug'])){
 			$d['show_filter'] = true;
 			$this->paginate = array(
-				'fields'=>array('Product.id','Product.name','Product.slug','Product.url','Product.price'),
+				'fields'=>array('Product.id','Product.name','Product.slug','Product.url','Product.prix'),
 				'conditions'=>$conditions,
-				'limit'=>8,
 				'joins'=>array(
 					array(
 						'table' => 'term_relationships', 
@@ -63,13 +62,15 @@ class ProductsController extends AppController{
 							'Term.slug' => $this->request->params['slug']
 						)
 					)
-				)
+				),
+				'order'=>array('created DESC')
 			);	
 		}
 		else{
 			$this->paginate = array(
 				'conditions'=>$conditions,
-				'limit'=>8
+				'limit'=>8,
+				'order'=>array('created DESC')
 			);
 		}	
 
@@ -135,8 +136,8 @@ class ProductsController extends AppController{
 		$this->Product->contain(array('Term','Product_meta','Product_attachement'));
 
 		$d['product'] = $this->Product->find('first',array(
-			'fields'=>array('Product.name','Product.slug','Product.description','Product.url','Product.price','Product.product_type','Product.url_min'),
-			'conditions'=>array('Product.id'=>$id,'Product.product_type'=>$type_product)
+			'fields'=>array('Product.name','Product.slug','Product.description','Product.url','Product.prix','Product.product_type','Product.url_min'),
+			'conditions'=>array('Product.id'=>$id,'Product.product_type'=>$type_product,'Product.status'=>'publish')
 		));
 
 		if(empty($d['product']))
@@ -146,8 +147,11 @@ class ProductsController extends AppController{
 			$this->redirect(array('plugin'=>'catalog','controller'=>'products','action'=>'view','type'=>$type_product,'slug'=>$d['product']['Product']['slug'],'id'=>$id));
 		
 		foreach ($d['product']['Product_meta'] as $k => $v) {
-			if($v['meta_key'] == 'product_buy_price')
-				$d['product']['Meta']['valeur_achat'] = $v['meta_value'];
+			if($v['meta_key'] == 'product_buy_prix'){
+				if($d['product']['Product']['prix'] != 0)
+					$d['product']['Meta']['valeur_achat'] = $v['meta_value'];
+			}
+				
 			if($v['meta_key'] == 'product_creator_site')
 				$d['product']['Meta']['product_creator_site'] = $v['meta_value'];
 		}
@@ -159,7 +163,7 @@ class ProductsController extends AppController{
 		
 
 		if(!empty($d['product']['Meta']['valeur_achat'])){
-			$temp = $d['product']['Product']['price']/$d['product']['Meta']['valeur_achat'];
+			$temp = $d['product']['Product']['prix']/$d['product']['Meta']['valeur_achat'];
 			$temp2 = $temp-1;
 			$pourcent = ceil($temp2*100);
 			$d['product']['Meta']['reduction'] = $pourcent;
@@ -240,7 +244,7 @@ class ProductsController extends AppController{
 				}
 
 				$this->paginate = array(
-					'fields'=>array('Product.id','Product.slug','Product.name','Product.description','Product.price','Product.status','Product.created','Product.url_min','Product.product_type'),
+					'fields'=>array('Product.id','Product.slug','Product.name','Product.description','Product.prix','Product.status','Product.created','Product.url_min','Product.product_type'),
 					'conditions'=>$conditions,
 					'joins'=>array(
 						array(
@@ -259,7 +263,8 @@ class ProductsController extends AppController{
 							)
 						)
 					),
-					'order'=>'Product.created'
+					'order'=>'Product.name',
+					'limit'=>Configure::read('elements_per_page')
 				);
 			}
 		}
@@ -274,9 +279,10 @@ class ProductsController extends AppController{
 				$conditions = array_merge($conditions,array('Product.status <>'=>'trash'));
 
 			$this->paginate = array(
-				'fields'=>array('Product.id','Product.slug','Product.name','Product.description','Product.price','Product.status','Product.created','Product.url_min','Product.product_type'),
+				'fields'=>array('Product.id','Product.slug','Product.name','Product.description','Product.prix','Product.status','Product.created','Product.url_min','Product.product_type'),
 				'conditions'=>$conditions,
-				'order'=>'Product.created'
+				'order'=>'Product.name',
+				'limit'=>Configure::read('elements_per_page')
 			);
 		}
 		
@@ -457,12 +463,18 @@ class ProductsController extends AppController{
 		// si le type est post, on rajoute la taxonomy
 		if($type == 'accessoire'){
 			$d['terms_product_category'] = array('0'=>'Catégorie');
-			$d['terms_product_category'] = array_merge($d['terms_product_category'],current($this->Product->getFixedTerms('product_category')));
+			$terms_product_category = $this->Product->getFixedTerms('product_category');
+			foreach ($terms_product_category as $k => $v) {
+				$d['terms_product_category'][$k] = $v;
+			}
 		}
 		if($type == 'robe-de-mariee'){
-			$d['terms_product_taille'] = current($this->Product->getFixedTerms('product_taille'));
+			$d['terms_product_taille'] = $this->Product->getFixedTerms('product_taille');
+			$terms_product_creator = $this->Product->getFixedTerms('product_creator');
 			$d['terms_product_creator'] = array('0'=>'Créateur');
-			$d['terms_product_creator'] = array_merge($d['terms_product_creator'],current($this->Product->getFixedTerms('product_creator')));
+			foreach ($terms_product_creator as $k => $v) {
+				$d['terms_product_creator'][$k] = $v;
+			}
 			
 		}
 
@@ -510,7 +522,7 @@ class ProductsController extends AppController{
 					}
 					$file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 					move_uploaded_file($file['tmp_name'], $dir.DS.$slug.'.'.$file_extension);
-					$width = 300;$height = 484;
+					$width = 350;$height = 263;
 					$this->Img->crop($dir.DS.$slug.'.'.$file_extension,$dir.DS.'mini'.DS.$slug.'.'.$file_extension,$width,$height);
 					$this->request->data['Product']['url'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/catalogue/'.$slug.'/'.$slug.'.jpg';
 					$this->request->data['Product']['url_min'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/catalogue/'.$slug.'/mini/'.$slug.'.jpg';
@@ -519,15 +531,15 @@ class ProductsController extends AppController{
 				$this->request->data['Product']['slug'] = $slug;
 				$this->Product->save($this->request->data,array('validate'=>false));
 				$product_id = $this->request->data['Product']['id'];
-				if(!empty($this->request->data['Product']['product_buy_price'])){
-					if(is_numeric($this->request->data['Product']['product_buy_price'])){
+				if(!empty($this->request->data['Product']['product_buy_prix'])){
+					if(is_numeric($this->request->data['Product']['product_buy_prix'])){
 						
 						$this->Product->Product_meta->delete(
-							array('product_id'=>$product_id,'meta_key'=>'product_buy_price')
+							array('product_id'=>$product_id,'meta_key'=>'product_buy_prix')
 						);
 						$this->Product->Product_meta->save(array(
-							'meta_key'=>'product_buy_price',
-							'meta_value'=>$this->request->data['Product']['product_buy_price'],
+							'meta_key'=>'product_buy_prix',
+							'meta_value'=>$this->request->data['Product']['product_buy_prix'],
 							'product_id'=>$product_id
 						));
 					}
@@ -572,7 +584,7 @@ class ProductsController extends AppController{
 			// on vérifie qu'on a bien un post à cet id et on récupère son type
 			$this->Product->id = $id;
 			$this->Product->contain(array('Product_meta','Term','Product_attachement'));
-			$product = $this->Product->read(array('Product.id','Product.name','Product.description','Product.slug','Product.status','Product.product_type','Product.url_min','Product.price'));
+			$product = $this->Product->read(array('Product.id','Product.name','Product.description','Product.slug','Product.status','Product.product_type','Product.url_min','Product.prix'));
 			if(empty($product)){
 				$this->error("Vous tentez de modifier un contenu qui n’existe pas. Peut-être a-t-il été supprimé ?");
 				return;
@@ -590,16 +602,22 @@ class ProductsController extends AppController{
 			$d['title_for_layout'] = "Modifier la robe";
 			$d['icon_for_layout'] = 'icone-posts-add.png';
 			$d['texte_submit'] = 'Mettre à jour';
-			$d['terms_product_taille'] = current($this->Product->getFixedTerms('product_taille'));
+			$d['terms_product_taille'] = $this->Product->getFixedTerms('product_taille');
+			$terms_product_creator = $this->Product->getFixedTerms('product_creator');
 			$d['terms_product_creator'] = array('0'=>'Créateur');
-			$d['terms_product_creator'] = array_merge($d['terms_product_creator'],current($this->Product->getFixedTerms('product_creator')));
+			foreach ($terms_product_creator as $k => $v) {
+				$d['terms_product_creator'][$k] = $v;
+			}
 		}
 		else{
 			$d['title_for_layout'] = "Modifier l'accessoire";
 			$d['icon_for_layout'] = 'icone-pages-add.png';
 			$d['texte_submit'] = 'Mettre à jour';
 			$d['terms_product_category'] = array('0'=>'Catégorie');
-			$d['terms_product_category'] = array_merge($d['terms_product_category'],current($this->Product->getFixedTerms('product_category')));
+			$terms_product_category = $this->Product->getFixedTerms('product_category');
+			foreach ($terms_product_category as $k => $v) {
+				$d['terms_product_category'][$k] = $v;
+			}
 		}
 		
 		$d['type'] = $post_type;

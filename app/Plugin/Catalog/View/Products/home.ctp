@@ -12,12 +12,22 @@
 					</figure>
 
 				<div class="produit_metas">
-					<p><?php echo 'Prix : <span class="prix">'.$v['Product']['price'].' €' ?></span></p>
-					<?php foreach ($v['Taxonomy'] as $k1 => $v1) {
-						foreach ($v1 as $k2 => $v2) {
-							echo $v2['type'] == 'product_taille' ? '<p>Taille : ' : '<p>Créateur : ';
-							echo $v2['name'].'</p>';
-						}} ?>
+					<p><?php echo $v['Product']['prix'] == 0 ? 'Non communiqué' : 'Prix : <span class="prix">'.$v['Product']['prix'].' €</span>' ?></p>
+					<?php if (!empty($v['Taxonomy']['product_taille'])): ?>
+						<p>Taille :
+						<?php sort($v['Taxonomy']['product_taille']) ?> 
+						<?php foreach ($v['Taxonomy']['product_taille'] as $k => $v1): ?>
+							<?php echo $v1['name'] ?>
+						<?php endforeach ?>
+						</p>
+					<?php endif ?>
+					<?php if (!empty($v['Taxonomy']['product_creator'])): ?>
+						<p>Créateur :
+						<?php foreach ($v['Taxonomy']['product_creator'] as $k => $v1): ?>
+							<?php echo $v1['name']?>
+						<?php endforeach ?>
+						</p>
+					<?php endif; ?>
 				</div>
 			</div>
 		<?php endforeach ?>
@@ -38,7 +48,7 @@
 				</figure>
 
 				<div class="produit_metas">
-					<p><?php echo ' Prix : <span class="prix">'.$v['Product']['price'].' €' ?></span></p>
+					<p><?php echo ' Prix : <span class="prix">'.$v['Product']['prix'].' €' ?></span></p>
 				</div>
 			</div>
 		<?php endforeach ?>

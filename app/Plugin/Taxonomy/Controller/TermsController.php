@@ -81,13 +81,14 @@ class TermsController extends TaxonomyAppController{
 	function admin_edit(){
 
 		$term = $this->request->query['type'];
-		$term_id = $this->request->query['id'];
+		$term_id = (!empty($this->request->query['id'])) ? $this->request->query['id'] : '' ;
 		
-		$count = $this->Term->find('count',array(
+		$count = $this->Term->find('all',array(
+			'fields'=>array('id'),
 			'conditions'=>array('Term.type'=>$term)
 		));
 
-		if($count == 0){
+		if(empty($count)){
 			$this->error("La Taximonie demandée est invalide");
 			return;
 		}
@@ -104,6 +105,39 @@ class TermsController extends TaxonomyAppController{
 					$d['text_for_submit'] = 'Ajouter une catégorie';	
 				}
 				break;
+			case 'product_category':
+				$d['title_for_layout'] = 'Catégories accessoires';
+				if($term_id){
+					$d['text_form'] = "Modifier une catégorie d'accessoire";
+					$d['text_for_submit'] = 'Mettre à jour';
+				}
+				else{
+					$d['text_form'] = "Ajouter une catégorie d'accessoire";
+					$d['text_for_submit'] = 'Ajouter une catégorie';	
+				}
+				break;
+			case 'product_taille':
+				$d['title_for_layout'] = 'Tailles';
+				if($term_id){
+					$d['text_form'] = 'Modifier une taille';
+					$d['text_for_submit'] = 'Mettre à jour';
+				}
+				else{
+					$d['text_form'] = 'Ajouter une taille';
+					$d['text_for_submit'] = 'Ajouter une taille';	
+				}
+				break;
+			case 'product_creator':
+				$d['title_for_layout'] = 'Créateurs';
+				if($term_id){
+					$d['text_form'] = 'Modifier un créateur';
+					$d['text_for_submit'] = 'Mettre à jour';
+				}
+				else{
+					$d['text_form'] = 'Ajouter un créateur';
+					$d['text_for_submit'] = 'Ajouter un créateur';	
+				}
+				break;
 			default:
 				# code...
 				break;
@@ -117,6 +151,24 @@ class TermsController extends TaxonomyAppController{
 							$message = 'La catégorie a bien été modifiée';
 						else
 							$message = 'La catégorie a bien été crée';	
+						break;
+					case 'product_category':
+						if($term_id)
+							$message = 'La catégorie accessoire a bien été modifiée';
+						else
+							$message = 'La catégorie accessoire a bien été crée';	
+						break;
+					case 'product_taille':
+						if($term_id)
+							$message = 'La taille a bien été modifiée';
+						else
+							$message = 'La taille a bien été crée';	
+						break;
+					case 'product_creator':
+						if($term_id)
+							$message = 'Le créateur a bien été modifié';
+						else
+							$message = 'Le créateur a bien été crée';	
 						break;
 					default:
 						# code...
@@ -143,12 +195,16 @@ class TermsController extends TaxonomyAppController{
 			$this->Term->id = $term_id;
 			$this->request->data = $this->Term->read();
 		}
+
 		$this->paginate = array(
 			'fields'=>array('Term.id','Term.name','Term.slug','Term.type'),
-			'conditions'=>array('Term.type'=>$term)
+			'conditions'=>array('Term.type'=>$term),
+			'order'=>'slug ASC'
 		);
+		
 		$d['list_term'] = $this->Paginate('Term');
 		$d['type_term'] = $term;
+		
 		$this->set($d);
 		
 	}

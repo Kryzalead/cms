@@ -553,23 +553,14 @@ aside#image-accessoires img {
 }
 
 /* line 395, styles.scss */
-.produit_metas {
-  margin-left: 10px;
-}
-
+.produit p{margin-left: 50px}
 /* line 396, styles.scss */
-.produit_metas span.prix {
+.produit span.prix {
   font-size: 1.2em;
   font-weight: bold;
   color: #AA4673;
-  margin: 10px 0 20px;
+  margin: 5px 0 2px;
   display: inline-block;
-}
-
-/* line 397, styles.scss */
-.produit_metas p {
-  padding-bottom: 4px;
-  text-align: center;
 }
 
 /* line 399, styles.scss */

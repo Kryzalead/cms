@@ -28,21 +28,25 @@
 								<?php echo $v['Product']['name'];?>
 							</figcaption>
 					</figure>
+					<p><?php echo $v['Product']['prix'] == 0 ? 'Non communiqué' : 'Prix : <span class="prix">'.$v['Product']['prix'].' €</span>' ?></p>
 					<?php if (!empty($v['Taxonomy'])): ?>
 						<div class="produit_metas">
-							<p><?php echo ' Prix : <span class="prix">'.$v['Product']['price'].' €' ?></span></p>
+							
 							<?php if ($type_product == 'robe-de-mariee'): ?>
 								<?php if (!empty($v['Taxonomy']['product_taille'])): ?>
 									<p>Taille : 
+									<?php sort($v['Taxonomy']['product_taille']) ?>
 									<?php foreach ($v['Taxonomy']['product_taille'] as $k => $v1): ?>
-										<?php echo $v1['name'] ?></p>
+										<?php echo $v1['name'] ?>
 									<?php endforeach ?>
+									</p>
 								<?php endif ?>
 								<?php if (!empty($v['Taxonomy']['product_creator'])): ?>
 									<p>Créateur :
 									<?php foreach ($v['Taxonomy']['product_creator'] as $k => $v1): ?>
-										<?php echo $v1['name']?></p>
+										<?php echo $v1['name']?>
 									<?php endforeach ?>
+									</p>
 								<?php endif; ?>
 							<?php endif ?>	
 						</div>
@@ -54,4 +58,10 @@
 		Aucun produit
 	<?php endif ?>
 </div>
-<?php echo $this->Paginator->numbers() ?>
+<div id="pagination">
+	<ul>
+		<?php $this->Paginator->options(array('url'=>array('controller'=>'products','action'=>'index','type'=>$type_product,'page'=>$this->params['page']))) ; ?>
+		<?php echo $this->Paginator->numbers(array('separator'=>false,'tag'=>'li')) ?>
+	</ul>
+</div>
+
