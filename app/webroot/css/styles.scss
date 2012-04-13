@@ -564,10 +564,11 @@ legend {display:hidden;}
 #guestbook {border-bottom:1px solid #D9D9D9;margin-top:15px;}
 #guestbook_form {
 	padding:10px 20px;
-	background-color: #fff;
-	border:2px dashed black;
+	border-right:1px solid #d9d9d9;
+	border-top:1px solid #d9d9d9;
 	display: inline-block;
-	margin:30px 10px 30px 20px;}
+	padding:10px 50px 0 0;
+	margin:30px 0 30px 20px;}
 
 #guestbook_form label {
 	display: inline-block;
@@ -604,7 +605,6 @@ form .placeholder label {position:absolute; margin-left:15px;}
 .comment {margin:20px 0 10px;}
 .comment .date {display:inline-block;vertical-align:top;width:100px;margin-right:10px;border-right: 2px solid #D9D9D9;text-align:right;padding-right:25px;}
 .comment .comment_content {display: inline-block;vertical-align:top;width:450px;text-align:left;}
-
 .comment .comment-title{padding: 5px;}
 .comment .comment-title .action{float: right;}
 
@@ -614,7 +614,7 @@ span.comment-author{display: block;margin-top:15px;color:#09f;font-weight:bold;}
 span.jour, span.mois, span.annee {color:#998F76;font-weight:bold;}
 span.jour{font-size:2.4em;padding:0;letter-spacing: -2px;}
 span.mois{vertical-align:top;padding:4px 0 0 3px;font-size:1.1em;display:inline-block;}
-span.annee{font-weight:normal;position: absolute;text-align:center;margin:28px 0 0 28px;font-size:.9em;background-color: #eee;width:35px;line-height:13px;}
+span.annee{font-weight:normal;position: absolute;text-align:center;margin:30px 0 0 29px;font-size:.9em;background-color: #eee;width:35px;line-height:13px;}
 span.heure {color:#29537D;font-size:.8em;display: inline-block;vertical-align:top;}
 
 /* -- add_commentaire -- */
