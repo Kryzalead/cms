@@ -4,9 +4,12 @@
 	#sidemenu a{color: #21759B;;background-color: #F9F9F9;border-color: #F9F9F9;border-bottom-color: #DFDFDF;padding: 0 7px;display: block;float: left;line-height: 28px;border-top-width: 1px;border-top-style: solid;border-bottom-width: 1px;border-bottom-style: solid;text-decoration: none}
 	#sidemenu a:hover{color: #D54E21}
 	#sidemenu a.current {background-color: white;border-color: #DFDFDF #DFDFDF white;color: #D54E21;font-weight: normal;padding-left: 6px;padding-right: 6px;-webkit-border-top-left-radius: 3px;-webkit-border-top-right-radius: 3px;border-top-left-radius: 3px;border-top-right-radius: 3px;border-width: 1px;border-style: solid;}
-	#content .radio input{opacity: 1;
-	-moz-opacity: 1;
-	filter:alpha(opacity=1);}
+	#form_media{margin-top: 20px}
+    #form_media label{display: inline-block;width: 100px}
+    #form_media .input{margin-top: 10px}
+    #form_media input[type="file"]{margin-left: 100px}
+    #form_media input[type="submit"]{margin-left: 100px;margin-top: 10px}
+    #form_media p{margin-top: 10px}
 </style>
 
 <?php if ($this->request->action == 'admin_tinymce'): ?>
@@ -42,7 +45,7 @@
 <?php endif; ?>			
 
 <?php if ($action == 'add'): ?>
-	<div style="margin-top: 20px;">
+	<div id="form_media">
 		<?php echo $this->Form->create('Media',array('type'=>'file')) ?>
 			<?php echo $this->Form->input('name',array('label'=>"Nom du média")); ?>
 			<?php echo $this->Form->input('file',array('label'=>false,'type'=>'file')); ?>
@@ -56,8 +59,8 @@
 		</p>
 	</div>
 <?php elseif($action == 'upd'): ?>
-	<div>
-		<div style="float:left;margin-right: 20px">
+	<div id="media-<?php echo $media['Media']['id'] ?>">
+		<div id="media_thumb">
 			<?php 
 			$dimension = getimagesize ($media['Media']['guid']); 
 			$ratio = $dimension[1]/$dimension[0];
@@ -84,7 +87,7 @@
 			?>
 			<?php echo $this->Html->image($media['Media']['guid'],array('width'=>$width,'height'=>$height,'alt'=>$media['Media']['alt'],'title'=>$media['Media']['name'])); ?>
 		</div>
-		<div style="float: left">
+		<div id="media_data">
 			<p><span style="color: #000">Nom du fichier :</span><?php echo $media['Media']['name']; ?></p>
 			<p><span style="color: #000">Type du fichier :</span><?php echo $media['Media']['mime_type'] ?></p>
 			<p><span style="color: #000">Date de mise en ligne :</span><?php echo $this->date->format($media['Media']['created'],'FR') ?></p>
@@ -92,18 +95,18 @@
 		</div>
 	</div>
 	<div style="clear: both"></div>
-		<div style="margin-top: 20px;">
-			<?php echo $this->Form->create('Media') ?>
-				<?php echo $this->Form->input('Media.name',array('label'=>'Titre : <span style="color:red">*</span>')); ?> <br>
-				<?php echo $this->Form->input('Media.alt',array('label'=>'Texte alternatif : ')); ?> <br>
-				<?php echo $this->Form->input('Media.content',array('label'=>'Description : ','rows'=>3)); ?> <br>
-				<?php echo $this->Form->input('Media.guid',array('label'=>'Emplacement web du fichier','readonly'=>'readonly','style'=>'width:300px')); ?>
-				<?php echo $this->Form->input('Media.id'); ?>
-				<?php echo $this->Form->input('Media.user_id',array('type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))); ?>
-			<?php echo $this->Form->end('Mettre à jour'); ?>
-		</div>
+	<div id="form_media">
+		<?php echo $this->Form->create('Media') ?>
+			<?php echo $this->Form->input('Media.name',array('label'=>'Titre : <span style="color:red">*</span>')); ?> <br>
+			<?php echo $this->Form->input('Media.alt',array('label'=>'Texte alternatif : ')); ?> <br>
+			<?php echo $this->Form->input('Media.content',array('label'=>'Description : ','rows'=>3)); ?> <br>
+			<?php echo $this->Form->input('Media.guid',array('label'=>'Emplacement web du fichier','readonly'=>'readonly')); ?>
+			<?php echo $this->Form->input('Media.id'); ?>
+			<?php echo $this->Form->input('Media.user_id',array('type'=>'hidden','value'=>$this->Session->read('Auth.User.id'))); ?>
+		<?php echo $this->Form->end('Mettre à jour'); ?>
+	</div>
 <?php elseif($action == 'url'): ?>
-	<div style="margin-top: 20px;">
+	<div id="form_media">
 		<h3>Insérer un média depuis un autre site</h3>
 		<?php echo $this->Form->create('Media') ?>
 			<?php echo $this->Form->input('Media.src',array('label'=>"Adresse web : ")); ?>
@@ -113,6 +116,5 @@
 			<?php echo $this->Form->input('class',array('legend'=>"Alignement : ",'options'=>$alignement,'type'=>'radio')); ?>
 		<?php echo $this->Form->end('Insérer') ?>
 	</div>
-		
 <?php endif ?>
 

@@ -14,9 +14,6 @@
 	.toggle_action_media{text-align: right;height: 20px;line-height:20px}
 
 	.media_tinymce .media_form{border: 1px solid #DFDFDF;display: none;padding: 20px}
-	#content .media_tinymce .media_form .radio input{width: auto;opacity: 1;
-	-moz-opacity: 1;
-	filter:alpha(opacity=1);}
 </style>
 <?php if ($this->request->action == 'admin_tinymce'): ?>
 	<div id="upload_tinymce">
@@ -101,15 +98,15 @@
 								
 								?>
 								<?php echo $this->Html->image($v['Media']['guid'],array('title'=>$v['Media']['name'],'alt'=>$alt,'width'=>$width,'height'=>$height)) ?>
-							</div>
-							div
+						</div>
+						<div class="thumb_meta">
 							<?php echo $this->Html->link($v['Media']['name'],array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id']))); ?>
 							<?php echo strtoupper(substr($v['Media']['thumbnail'],-3,3));?>
-							<div class="action_admin">
-								<?php echo $this->Html->link("Modifier",array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id'])),array('class'=>'upd')); ?> |
-								<?php echo $this->Html->link("Supprimer définitivement",array('controller'=>'medias','action'=>'delete','?'=>array('id'=>$v['Media']['id'],'token'=>$this->Session->read('Security.token'))),array('class'=>'del'),'Voulez vous vraiment supprimer ce contenu ?'); ?>
-							</div>
-						
+						</div>
+						<div class="action_admin">
+							<?php echo $this->Html->link("Modifier",array('action'=>'edit','?'=>array('attachment_id'=>$v['Media']['id'])),array('class'=>'upd')); ?> |
+							<?php echo $this->Html->link("Supprimer définitivement",array('controller'=>'medias','action'=>'delete','?'=>array('id'=>$v['Media']['id'],'token'=>$this->Session->read('Security.token'))),array('class'=>'del'),'Voulez vous vraiment supprimer ce contenu ?'); ?>
+						</div>
 					</td>
 					<td><?php echo $v['User']['username'] ?></td>
 					<td><?php echo $this->date->format($v['Media']['created'],'FR') ?></td>

@@ -75,7 +75,7 @@ class DashboardController extends AppController{
 			'order'=>array('Guestbook.id'=>'DESC')
 		));
 		
-		$this->loadModel('Product');
+		$this->loadModel('Catalog.Product');
 		$count = $this->Product->find('all',array(
 			'fields'	=>	array('Product.product_type','COUNT(Product.id) AS total'),
 			'conditions'=>array(

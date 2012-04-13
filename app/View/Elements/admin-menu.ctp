@@ -4,7 +4,7 @@
             <?php echo $this->Html->link($this->Html->image('icone-home.png',array('height'=>25,'width'=>25)) . 'Tableau de bord',array('plugin'=>null,'action'=>'index','controller'=>'dashboard','admin'=>true),array('escape'=>false)); ?>
         </li>
         <li <?php echo ($currentController == 'products') ? 'class="current"' : ''?>>
-            <?php echo $this->Html->link($this->Html->image('icone-home.png',array('height'=>25,'width'=>25)).' Catalogue',array('plugin'=>'catalog','action'=>'index','controller'=>'products','admin'=>true),array('escape'=>false)); ?>
+            <?php echo $this->Html->link($this->Html->image('icone-produits.png',array('height'=>25,'width'=>25)).' Catalogue',array('plugin'=>'catalog','action'=>'index','controller'=>'products','admin'=>true),array('escape'=>false)); ?>
             <ul>
                 <li>
                     <?php echo $this->Html->link("Robe de Mariées",array('plugin'=>'catalog','action'=>'index','controller'=>'products','?'=>array('type'=>'robe-de-mariee'),'admin'=>true)); ?>

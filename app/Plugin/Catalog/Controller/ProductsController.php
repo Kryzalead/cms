@@ -200,7 +200,7 @@ class ProductsController extends AppController{
 		$d['icon_for_layout'] = ($type == 'robe-de-mariee') ? 'icone-robe.png' : 'icone-accessoire.png';
 		$d['text_for_add_product'] = ($type == 'robe-de-mariee') ? 'Ajouter une robe' : 'Ajouter un accessoire';
 		$d['text_for_submit_search'] = ($type == 'robe-de-mariee') ? 'Rechercher dans les robes' : 'Rechercher dans les accessoires';
-
+		$d['icon_for_layout'] = 'icone-produits.png';
 		$d['data_for_top_table'] = array(
 			'action'=>'index',
 			'params'=>array('type'=>$type),
@@ -436,12 +436,12 @@ class ProductsController extends AppController{
 		$d['type'] = $type;
 		if($type == 'robe-de-mariee'){
 			$d['title_for_layout'] = 'Ajouter une robe';
-			$d['icon_for_layout'] = 'icone-posts-add.png';
+			$d['icon_for_layout'] = 'icone-produits.png';
 			$d['texte_submit'] = 'Publier';
 		}
 		else{
 			$d['title_for_layout'] = 'Ajouter un accessoire';
-			$d['icon_for_layout'] = 'icone-pages-add.png';
+			$d['icon_for_layout'] = 'icone-produits.png';
 			$d['texte_submit'] = 'Publier';
 		}
 
@@ -511,46 +511,62 @@ class ProductsController extends AppController{
 				$file = $this->request->data['Product']['url'];
 				unset($this->request->data['Product']['url']);
 			}
-			$this->Product->set($this->request->data);
-			if($this->Product->validates()){
-				$slug = strtolower(Inflector::slug($this->data['Product']['name'],'-'));
-				if(!empty($file) && $this->request->data['Product']['action'] == 'add'){
-					$dir = IMAGES.'catalogue'.DS.$slug;
-					if(!file_exists($dir)){
-						mkdir($dir,'0777');
-						mkdir($dir.DS.'mini','0777');
+			if($action == 'add' && !empty($file['name'])){
+				$this->Product->set($this->request->data);
+				if($this->Product->validates()){
+					$slug = strtolower(Inflector::slug($this->data['Product']['name'],'-'));
+					if(!empty($file) && $this->request->data['Product']['action'] == 'add'){
+						$dir = IMAGES.'catalogue'.DS.$slug;
+						if(!file_exists($dir)){
+							mkdir($dir,'0777');
+							mkdir($dir.DS.'mini','0777');
+						}
+						$file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+						move_uploaded_file($file['tmp_name'], $dir.DS.$slug.'.'.$file_extension);
+						$width = 350;$height = 263;
+						$this->Img->crop($dir.DS.$slug.'.'.$file_extension,$dir.DS.'mini'.DS.$slug.'.'.$file_extension,$width,$height);
+						$this->request->data['Product']['url'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/catalogue/'.$slug.'/'.$slug.'.jpg';
+						$this->request->data['Product']['url_min'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/catalogue/'.$slug.'/mini/'.$slug.'.jpg';
 					}
-					$file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-					move_uploaded_file($file['tmp_name'], $dir.DS.$slug.'.'.$file_extension);
-					$width = 350;$height = 263;
-					$this->Img->crop($dir.DS.$slug.'.'.$file_extension,$dir.DS.'mini'.DS.$slug.'.'.$file_extension,$width,$height);
-					$this->request->data['Product']['url'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/catalogue/'.$slug.'/'.$slug.'.jpg';
-					$this->request->data['Product']['url_min'] = 'http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/catalogue/'.$slug.'/mini/'.$slug.'.jpg';
-				}
 
-				$this->request->data['Product']['slug'] = $slug;
-				$this->Product->save($this->request->data,array('validate'=>false));
-				$product_id = $this->request->data['Product']['id'];
-				if(!empty($this->request->data['Product']['product_buy_prix'])){
-					if(is_numeric($this->request->data['Product']['product_buy_prix'])){
-						
-						$this->Product->Product_meta->delete(
-							array('product_id'=>$product_id,'meta_key'=>'product_buy_prix')
-						);
-						$this->Product->Product_meta->save(array(
-							'meta_key'=>'product_buy_prix',
-							'meta_value'=>$this->request->data['Product']['product_buy_prix'],
-							'product_id'=>$product_id
-						));
+					$this->request->data['Product']['slug'] = $slug;
+					$this->Product->save($this->request->data,array('validate'=>false));
+					$product_id = $this->request->data['Product']['id'];
+					if(!empty($this->request->data['Product']['product_buy_prix'])){
+						if(is_numeric($this->request->data['Product']['product_buy_prix'])){
+							
+							$this->Product->Product_meta->delete(
+								array('product_id'=>$product_id,'meta_key'=>'product_buy_prix')
+							);
+							$this->Product->Product_meta->save(array(
+								'meta_key'=>'product_buy_prix',
+								'meta_value'=>$this->request->data['Product']['product_buy_prix'],
+								'product_id'=>$product_id
+							));
+						}
+					}
+					if ($action == 'add') {
+						$this->Session->setFlash("Le produit a bien été ajouté","notif");
+						$this->redirect(array('action'=>'edit','?'=>array('id'=>$product_id,'action'=>'edit')));
+					}
+					elseif($action == 'edit'){
+						$this->Session->setFlash("Le produit a bien été modifié","notif");
+						$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
 					}
 				}
-				if ($action == 'add') {
-					$this->Session->setFlash("Le produit a bien été ajouté","notif");
-					$this->redirect(array('action'=>'edit','?'=>array('id'=>$product_id,'action'=>'edit')));
-				}
-				elseif($action == 'edit'){
-					$this->Session->setFlash("Le produit a bien été modifié","notif");
-					$this->redirect(array('action'=>'index','?'=>array('type'=>$type)));
+				else{
+					$this->Session->setFlash("Merci de corriger vos informations","notif",array('typeMessage'=>'error'));
+					$product = $this->request->data;
+					$this->Session->write('data_form',$this->request->data);
+					$this->Session->write('data_form_error',$this->Product->validationErrors);
+					$product_type = $this->request->data['Product']['product_type'];
+					if ($this->request->data['Product']['action'] == 'add')
+						$this->redirect(array('action'=>'add','?'=>array('type'=>$product_type)));
+					if ($this->request->data['Product']['action'] == 'edit'){
+						$id = $this->request->data['Product_id'];
+						$this->redirect(array('action'=>'edit','?'=>array('id'=>$id,'action'=>'edit')));
+					}
+
 				}
 			}
 			else{
@@ -559,14 +575,9 @@ class ProductsController extends AppController{
 				$this->Session->write('data_form',$this->request->data);
 				$this->Session->write('data_form_error',$this->Product->validationErrors);
 				$product_type = $this->request->data['Product']['product_type'];
-				if ($this->request->data['Product']['action'] == 'add')
-					$this->redirect(array('action'=>'add','?'=>array('type'=>$product_type)));
-				if ($this->request->data['Product']['action'] == 'edit'){
-					$id = $this->request->data['Product_id'];
-					$this->redirect(array('action'=>'edit','?'=>array('id'=>$id,'action'=>'edit')));
-				}
-
+				$this->redirect(array('action'=>'add','?'=>array('type'=>$product_type)));
 			}
+			
 		}
 		else{
 			// récupération de l'id
@@ -600,7 +611,7 @@ class ProductsController extends AppController{
 		$post_type = $product['Product']['product_type'];
 		if($post_type == 'robe-de-mariee'){
 			$d['title_for_layout'] = "Modifier la robe";
-			$d['icon_for_layout'] = 'icone-posts-add.png';
+			$d['icon_for_layout'] = 'icone-produits.png';
 			$d['texte_submit'] = 'Mettre à jour';
 			$d['terms_product_taille'] = $this->Product->getFixedTerms('product_taille');
 			$terms_product_creator = $this->Product->getFixedTerms('product_creator');
@@ -611,7 +622,7 @@ class ProductsController extends AppController{
 		}
 		else{
 			$d['title_for_layout'] = "Modifier l'accessoire";
-			$d['icon_for_layout'] = 'icone-pages-add.png';
+			$d['icon_for_layout'] = 'icone-produits.png';
 			$d['texte_submit'] = 'Mettre à jour';
 			$d['terms_product_category'] = array('0'=>'Catégorie');
 			$terms_product_category = $this->Product->getFixedTerms('product_category');
@@ -658,25 +669,27 @@ class ProductsController extends AppController{
 		$attachment_product_id = $this->request->data['Product']['attachment_product_id'];
 		$attachment_product_slug = $this->request->data['Product']['attachment_product_slug'];
 		$file = $this->request->data['Product']['attachment_file'];
-		
-		$dir = IMAGES.'catalogue'.DS.$attachment_product_slug;
-		if(!file_exists($dir)){
-			mkdir($dir,'0777');
-			mkdir($dir.DS.'mini','0777');
+		if(!empty($file['name'])){
+			$dir = IMAGES.'catalogue'.DS.$attachment_product_slug;
+			if(!file_exists($dir)){
+				mkdir($dir,'0777');
+				mkdir($dir.DS.'mini','0777');
+			}
+			$file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+			
+			move_uploaded_file($file['tmp_name'], $dir.DS.$attachment_slug.'.'.$file_extension);
+			$this->Product->Product_attachement->save(array(
+				'name'=>$attachment_name,
+				'url'=>'catalogue/'.$attachment_product_slug.'/'.$attachment_slug.'.'.$file_extension,
+				'url_min'=>'catalogue/'.$attachment_product_slug.'/mini/'.$attachment_slug.'.'.$file_extension,
+				'product_id'=>$attachment_product_id
+			));
+			$width = 52;$height = 69;
+			$this->Img->crop($dir.DS.$attachment_slug.'.'.$file_extension,$dir.DS.'mini'.DS.$attachment_slug.'.'.$file_extension,$width,$height);
+			$this->redirect(array('action'=>'edit','?'=>array('id'=>$attachment_product_id,'action'=>'edit')));
 		}
-		$file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-		
-		move_uploaded_file($file['tmp_name'], $dir.DS.$attachment_slug.'.'.$file_extension);
-		$this->Product->Product_attachement->save(array(
-			'name'=>$attachment_name,
-			'url'=>'catalogue/'.$attachment_product_slug.'/'.$attachment_slug.'.'.$file_extension,
-			'url_min'=>'catalogue/'.$attachment_product_slug.'/mini/'.$attachment_slug.'.'.$file_extension,
-			'product_id'=>$attachment_product_id
-		));
-		$width = 52;$height = 69;
-		$this->Img->crop($dir.DS.$attachment_slug.'.'.$file_extension,$dir.DS.'mini'.DS.$attachment_slug.'.'.$file_extension,$width,$height);
-		$this->redirect(array('action'=>'edit','?'=>array('id'=>$attachment_product_id,'action'=>'edit')));
-		
-		
+		else{
+			$this->redirect(array('action'=>'edit','?'=>array('id'=>$attachment_product_id,'action'=>'edit')));
+		}
 	}
 }

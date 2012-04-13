@@ -42,6 +42,44 @@
             .options_form .input{margin-top: 5px;}
             .options_form .input input{margin-right: 10px;width: 200px;padding: 2px}
             .options_form input[type="submit"]{margin-top: 10px}
+
+            #content .button-add{
+                border: 1px solid #BBB;
+                color: #464646;
+                text-decoration: none;
+                font-size: 12px!important;
+                line-height: 13px;
+                padding: 5px 10px;
+                cursor: pointer;
+                border-width: 1px;
+                border-style: solid;
+                -webkit-border-radius: 11px;
+                border-radius: 11px;
+                -moz-box-sizing: content-box;
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+                display: block;
+                width: 100px;
+                text-align: center;
+                margin-top: 10px
+            }
+            #content .button-add:hover{color:#000;border-color:#666;text-decoration: none}
+            #content input[type="submit"]:hover{color:#000;border-color:#666;}
+            #content .list_top_table {margin-top: 20px}
+
+            .liste_table .colonne_medias .thumb{display: inline-block;margin-right: 5px}
+            .liste_table .colonne_medias .thumb_meta{display: inline-block;vertical-align: top}
+            .liste_table .colonne_medias .thumb_meta a{display: block}
+
+            #form_media{margin-top: 20px}
+            #form_media label{display: inline-block;width: 100px}
+            #form_media .input{margin-top: 10px}
+            #form_media input[type="file"]{margin-left: 100px}
+            #form_media input[type="submit"]{margin-left: 100px;margin-top: 10px}
+            #form_media p{margin-top: 10px}
+            #form_media input#MediaGuid{width: 350px}
+            #media_thumb{display: inline-block}
+            #media_data{display: inline-block;vertical-align: top}
         </style>
     </head>
     <body>
