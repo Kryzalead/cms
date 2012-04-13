@@ -1009,13 +1009,14 @@ legend {
 /* line 566, styles.scss */
 #guestbook_form {
   padding: 10px 20px;
-  background-color: #fff;
-  border: 2px dashed black;
+  border-right: 1px solid #d9d9d9;
+  border-top: 1px solid #d9d9d9;
   display: inline-block;
-  margin: 30px 10px 30px 20px;
+  padding: 10px 50px 0 0;
+  margin: 30px 0 30px 20px;
 }
 
-/* line 573, styles.scss */
+/* line 574, styles.scss */
 #guestbook_form label {
   display: inline-block;
   vertical-align: top;
@@ -1023,40 +1024,40 @@ legend {
   padding: 9px 0 0 12px;
 }
 
-/* line 579, styles.scss */
+/* line 580, styles.scss */
 #guestbook_form input[type=text] {
   width: 180px;
   padding-left: 24px;
 }
 
-/* line 581, styles.scss */
+/* line 582, styles.scss */
 #GuestbookAuthor, #GuestbookAuthorEmail, #GuestbookAuthorUrl, #GuestbookContent {
   background-image: url(images/c-icons.png);
   background-repeat: no-repeat;
 }
 
-/* line 582, styles.scss */
+/* line 583, styles.scss */
 #GuestbookAuthor {
   background-position: 7px 4px;
 }
 
-/* line 583, styles.scss */
+/* line 584, styles.scss */
 #GuestbookAuthorEmail {
   background-position: 7px -22px;
 }
 
-/* line 584, styles.scss */
+/* line 585, styles.scss */
 #GuestbookAuthorUrl {
   background-position: 7px -48px;
 }
 
-/* line 585, styles.scss */
+/* line 586, styles.scss */
 #GuestbookContent {
   background-position: 7px -75px;
   padding: 6px 0 0 26px;
 }
 
-/* line 587, styles.scss */
+/* line 588, styles.scss */
 #guestbook_form .add_comment input, #guestbook_form .add_comment:hover input {
   border: none;
   width: 350px;
@@ -1066,29 +1067,29 @@ legend {
   background-repeat: no-repeat;
 }
 
-/* line 595, styles.scss */
+/* line 596, styles.scss */
 #guestbook_form .add_comment input {
   background-position: 0 top;
 }
 
-/* line 596, styles.scss */
+/* line 597, styles.scss */
 #guestbook_form .add_comment:hover input {
   cursor: pointer;
   background-position: 0 bottom;
 }
 
-/* line 598, styles.scss */
+/* line 599, styles.scss */
 form .placeholder {
   margin-left: 0;
 }
 
-/* line 599, styles.scss */
+/* line 600, styles.scss */
 form .placeholder label {
   position: absolute;
   margin-left: 15px;
 }
 
-/* line 601, styles.scss */
+/* line 602, styles.scss */
 #guestbook_image {
   display: inline-block;
   vertical-align: top;
@@ -1096,17 +1097,17 @@ form .placeholder label {
 }
 
 /* -- Commentaires -- */
-/* line 604, styles.scss */
+/* line 605, styles.scss */
 #guestbook p {
   font: bold 2em 'riesling';
 }
 
-/* line 605, styles.scss */
+/* line 606, styles.scss */
 .comment {
   margin: 20px 0 10px;
 }
 
-/* line 606, styles.scss */
+/* line 607, styles.scss */
 .comment .date {
   display: inline-block;
   vertical-align: top;
@@ -1117,7 +1118,7 @@ form .placeholder label {
   padding-right: 25px;
 }
 
-/* line 607, styles.scss */
+/* line 608, styles.scss */
 .comment .comment_content {
   display: inline-block;
   vertical-align: top;
@@ -1170,7 +1171,7 @@ span.annee {
   font-weight: normal;
   position: absolute;
   text-align: center;
-  margin: 28px 0 0 28px;
+  margin: 30px 0 0 29px;
   font-size: .9em;
   background-color: #eee;
   width: 35px;

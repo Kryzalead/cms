@@ -130,11 +130,12 @@ p {margin-bottom: 7px;}
 /* ---------------------------------------
 			Frameworks
 ------------------------------------------ */
-.checkerBoxOmbre{@include box-shadow(#444,0px,2px,10px);}
-.checkerBoxOmbre{@include box-shadow(#D2D2D2,0px,0px,10px);}
-.contentRadiusHaut{@include border-radius (9px 9px 0px 0px,9px 9px 0px 0px)};
-.aideRadiusBas{@include border-radius (0px 0px 9px 9px,0px 0px 9px 9px)};
-.aideRadiusBasBouton{@include border-radius (0px 0px 3px 3px, 0px 0px 3px 3px)};
+.checkerBoxOmbre{@include box-shadow(#444 0px 2px 10px);}
+.checkerBoxOmbre{@include box-shadow(#D2D2D2 0px 0px 10px);}
+.contentRadiusHaut{@include border-radius (9px 9px 0px 0px,9px 9px 0px 0px);}
+.aideRadiusBas{@include border-radius (0px 0px 9px 9px,0px 0px 9px 9px);}
+.aideRadiusBasBouton{@include border-radius (0px 0px 3px 3px, 0px 0px 3px 3px);}
+.boxOmbre{@include box-shadow(#222 2px 2px 10px);}
 
 /* -- Default -- */
 $default-box-shadow-h-offset:0px;
@@ -291,6 +292,7 @@ $none:none;
 	background-image: -ms-linear-gradient(bottom, rgb(49,49,49) 13%, rgb(67,67,67) 57%, rgb(85,85,85) 85%);
 	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.13, rgb(49,49,49)),color-stop(0.57, rgb(67,67,67)),color-stop(0.85, rgb(85,85,85)));
 	@extend .boxOmbre;}
+
 
 #head a{
 	color: #FFF;
