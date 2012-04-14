@@ -2,7 +2,7 @@
 	<?php if (!empty($posts)): ?>
 		<?php foreach($posts as $k => $v):?>
 			<div class="article" id="post-<?php echo $v['Post']['id'];?>">
-				<img src="img/comment.png" width=80 height=80 alt="actualité" />
+				<img src="img/actualite.png" width=90 height=90 alt="actualité" />
 					<h2 class="titre_article"><?php echo $this->Html->link($v['Post']['name'],$v['Post']['link'],array('title'=>$v['Post']['name'])); ?></h2>
 						<div class="meta_article">
 							<span>Posté le</span>

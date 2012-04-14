@@ -60,7 +60,7 @@
           <?php echo $content_for_layout ?>  
         </section>
           <div class="cb"></div>
-          <section id="bandeau"> <!-- Début bandeau -->
+          <section id="bandeau"><!-- Début bandeau -->
             <ul>
               <li class="titre">Aux Mariées de Christèle</li>
               <li>15a, rte de Faillant</li>
@@ -70,20 +70,19 @@
             <?php echo $this->Html->image('etiquette.png',array('width'=>197,'height'=>86,'alt'=>"Étiquette fabrication 100% française")) ?>
             <ul class="horaires">
               <li class="titre">Horaires</li>
-              <li>Mardi au vendredi: 14h à19h</li>
-              <li>Samedi et lundi: sur rendez-vous</li>
+              <li>Mardi au Vendredi: 14h à 19h</li>
+              <li>Samedi et Lundi: sur rendez-vous</li>
               <li>Dimanche fermé</li>
             </ul>
           </section>
           <div class="cb"></div>
-    </div> <!-- Fin contenu -->
+    </div><!-- Fin contenu -->
       <footer>
           <p>&copy; 2012 Coder In &middot; <?php echo $this->Html->link("mentions légales",array('plugin'=>false,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'mentions-legales')); ?> &middot;<?php echo $this->Html->link("plan du site",array('plugin'=>false,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'plan-site'));?> &middot; <a href="#logo">haut de page</a></p>
       </footer>
   </div> <!-- Fin wrap -->
-
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <?php echo $this->Html->script('script.js'); ?>
-    <?php echo $scripts_for_layout; ?>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<?php echo $this->Html->script('script.js'); ?>
+		<?php echo $scripts_for_layout; ?>
 </body>
 </html>

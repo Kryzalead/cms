@@ -65,7 +65,7 @@ hr {
 	float:none !important;
 	height:0 !important;}
 
-ol, ul, li {list-style:none;line-height:22px;}
+ol, ul, li {list-style:none;line-height:.9;}
 
 .alignLeft{float: left}
 
@@ -78,7 +78,7 @@ a, p a {
 	color: black;
 	outline: 0;}
 
-a:hover 				{outline: 0;}
+a:hover 			{outline: 0;}
 a:focus, a:active	{outline: 0;}
 a:visited			{color: black;}
 a img 				{border: none}
@@ -143,7 +143,7 @@ h2 {
 	-o-text-shadow:1px 1px 2px #999;
 	text-shadow:1px 1px 2px #999;}
 
-h1 a, h1 a:visited, h2 a, h2 a:visited				{text-decoration: none; color: #999;}
+h1 a, h1 a:visited, h2 a, h2 a:visited			{text-decoration: none; color: #999;}
 h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus	{text-decoration: none;}
 
 
@@ -548,15 +548,18 @@ aside#image-accessoires img{
 /* ---------------------------------------
 				Partenariats
 ------------------------------------------ */
-#partenariats {color:#0F0F0F;margin:0 auto;border:1px solid red;}
-ul.ligne1, ul.ligne2 {margin:20px 0; display: inline-block;}
-ul.ligne1 li, ul.ligne2 li{display: inline-block;vertical-align:top;width:310px;border-left:1px solid #E3E3E3;padding: 0 3px;text-align:center;}
-ul.ligne1 li:first-child, ul.ligne2 li:first-child{border:0}
-ul.ligne1 li ul li, ul.ligne2 li ul li{padding:0;margin:3px 0;border:none;}
-ul.ligne1 li h3, ul.ligne2 li h3{margin-bottom:15px;font:bold 2.2em 'riesling'}
-ul.ligne1 ul li.site_web, ul.ligne2 ul li.site_web {padding-top:15px;}
-ul.ligne2 li#dernier{border-right:1px solid #E3E3E3;}
-ul.ligne2 li#avant_dernier{border:none;}
+ul.cartes_gauche{margin:20px 10px 0 0; display:inline-block;width:630px;}
+ul.cartes_gauche li, ul.cartes_droite li{display: inline-block;vertical-align:top;width:310px;border-left:1px solid #E3E3E3;text-align:center;margin-bottom:20px;}
+ul.cartes_gauche li:first-child, ul.cartes_droite:first-child{border:0}
+ul.cartes_gauche li ul li, ul.cartes_droite li ul li{margin:3px 0;border:none;}
+ul.cartes_gauche li h3, ul.cartes_droite h3{margin:10px 0 15px;font:bold 2.2em 'riesling'}
+ul.cartes_gauche ul li.site_web{padding-top:10px}
+ul.cartes_gauche ul li.site_web a:hover{color:#AA4673;text-decoration:underline;}
+ul.cartes_gauche li.bordure_droite{border-left:none;}
+
+
+ul.cartes_droite{margin:20px 0; display: inline-block;vertical-align:top;width:300px;}
+
 
 /* ---------------------------------------
 				Contrat
@@ -715,13 +718,13 @@ span.heure {color:#29537D;font-size:.8em;display: inline-block;vertical-align:to
 ------------------------------------------ */
 #actus{min-height: 500px}
 #actus .article{width: 80%;margin: 20px auto;background: white;border-bottom:1px solid #D9D9D9;padding:15px 20px;}
-#actus .article img{display: inline-block;vertical-align:top;float:left;}
+#actus .article img{display: inline-block;vertical-align:top;float:left;margin-right:15px;}
 #actus .article img.image_fleche_suite{margin:2px 5px 0 0;}
-#actus .article h2.titre_article{display: inline-block;vertical-align:top;margin:15px 0 0 20px;}
+#actus .article h2.titre_article{display:block;vertical-align:top;}
 #actus .article h2.titre_article a{color:black;}
 #actus .article .titre_article{padding:10px; height: 10px;line-height: 10px;font-size: 20px;color: #D1789F;}
-#actus .article .meta_article{display:inline-block;margin:5px 30px 0;font-size:.9em;}
-#actus .article .contenu_article{padding:30px 0 25px;text-align:justify;}
+#actus .article .meta_article{display:inline-block;margin-top:5px;font-size:.9em;}
+#actus .article .contenu_article {margin:30px 0 25px;text-align:justify;}
 #actus .article p, .taxo_article {display: inline-block;vertical-align:top;}
 #actus .article .taxo_article {padding-left:30px;}
 #actus .article p a:hover{text-decoration:underline;}
