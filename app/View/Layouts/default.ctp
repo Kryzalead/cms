@@ -16,6 +16,16 @@
   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/>
   <?php echo $this->Html->css('styles.css') ?>
   <?php echo $this->Html->css('styles-ie.css') ?>
+  <style type="text/css">
+  strong{font-weight: bold}
+  #contenu .blocs li{line-height: 22px;list-style-type: disc;margin-left:50px}
+  #contenu .blocs a{color: blue;}
+  #contenu .blocs a:hover{color: blue;text-decoration: underline}
+  #contenu .blocs{line-height: 22px}
+  #contenu #partenaires li{margin-left: 0px}
+  #contenu #pagination ul li{margin-left: 5px}
+  #no-actu{margin-top: 20px}
+  </style>
 </head>
 <body>
 <!--[if lte IE 8]>
@@ -41,7 +51,7 @@
               </ul>
             </li>
             <li class="sub">
-              <?php echo $this->Html->link("Nous connaître",'#'); ?>
+              <?php echo $this->Html->link("Nous connaître",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'nous-connaitre')); ?>
               <ul>
                 <li><?php echo $this->Html->link("Contrats",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'contrats')); ?></li>
                 <li><?php echo $this->Html->link("Partenariats",array('plugin'=>null,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'partenariats')); ?></li>
