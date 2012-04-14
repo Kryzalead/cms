@@ -1116,13 +1116,14 @@ p {
 ------------------------------------------ */
 /* line 731, ok.scss */
 #content {
+  width: 70%;
   margin: 30px 0 0 260px;
   color: #6D6D6D;
   font-size: 12px;
   position: relative;
 }
 
-/* line 737, ok.scss */
+/* line 738, ok.scss */
 #content .button-add {
   border: 1px solid #BBB;
   color: #464646;
@@ -1143,46 +1144,46 @@ p {
   margin: 10px 0 15px;
 }
 
-/* line 756, ok.scss */
+/* line 757, ok.scss */
 #content .button-add:hover {
   color: #000;
   border-color: #666;
   text-decoration: none;
 }
 
-/* line 757, ok.scss */
+/* line 758, ok.scss */
 #content input[type="submit"]:hover {
   color: #000;
   border-color: #666;
 }
 
-/* line 758, ok.scss */
+/* line 759, ok.scss */
 #content .list_top_table {
   margin-top: 20px;
 }
 
-/* line 759, ok.scss */
+/* line 760, ok.scss */
 #content.nosidebar {
   margin-left: 40px;
 }
 
-/* line 760, ok.scss */
+/* line 761, ok.scss */
 #content a {
   color: #0A93CC;
 }
 
-/* line 761, ok.scss */
+/* line 762, ok.scss */
 #content a:hover {
   color: #000;
   text-decoration: underline;
 }
 
-/* line 762, ok.scss */
+/* line 763, ok.scss */
 #content table {
   width: 100%;
 }
 
-/* line 763, ok.scss */
+/* line 764, ok.scss */
 #content h1 {
   color: #555;
   font: bold 4em 'riesling';
@@ -1191,23 +1192,23 @@ p {
   text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0, rgba(0, 0, 0, 0.2) 2px 2px 0, rgba(0, 0, 0, 0.2) 3px 3px 0;
 }
 
-/* line 770, ok.scss */
+/* line 771, ok.scss */
 #content h1 a {
   color: inherit;
 }
 
-/* line 771, ok.scss */
+/* line 772, ok.scss */
 #content h1 span {
   font-size: 16px;
 }
 
-/* line 772, ok.scss */
+/* line 773, ok.scss */
 #content h1 img {
   vertical-align: top;
   margin-right: 10px;
 }
 
-/* line 773, ok.scss */
+/* line 774, ok.scss */
 #content .bloc {
   position: relative;
   margin: 20px 0 0;
@@ -1241,12 +1242,12 @@ p {
   /* IE6-8 fallback on horizontal radient */
 }
 
-/* line 790, ok.scss */
+/* line 791, ok.scss */
 #content .bloc .bloc_contenu {
   padding: 10px;
 }
 
-/* line 791, ok.scss */
+/* line 792, ok.scss */
 #content .bloc_gauche, #content .bloc_droit {
   width: 45%;
   display: inline-block;
@@ -1254,18 +1255,18 @@ p {
   float: left !important;
 }
 
-/* line 797, ok.scss */
+/* line 798, ok.scss */
 #content .bloc_gauche {
   margin-right: 20px;
 }
 
-/* line 798, ok.scss */
+/* line 799, ok.scss */
 #content .bloc_droit {
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 799, ok.scss */
+/* line 800, ok.scss */
 #content .bloc .bloc_titre {
   height: 35px;
   background: url(images/setting_button/blocs_titles/bloctitle.png);
@@ -1276,7 +1277,7 @@ p {
   color: #E6E6E6;
 }
 
-/* line 809, ok.scss */
+/* line 810, ok.scss */
 #content .bloc .bloc_titre .toggle {
   display: block;
   height: 18px;
@@ -1287,27 +1288,27 @@ p {
   right: 10px;
 }
 
-/* line 818, ok.scss */
+/* line 819, ok.scss */
 #content .bloc .bloc_titre .toggle.hide {
   background-position: top right;
 }
 
-/* line 819, ok.scss */
+/* line 820, ok.scss */
 #content .good {
   color: #6F9106;
 }
 
-/* line 820, ok.scss */
+/* line 821, ok.scss */
 #content .neutral {
   color: #FF7400;
 }
 
-/* line 821, ok.scss */
+/* line 822, ok.scss */
 #content .bad {
   color: #C21C1C;
 }
 
-/* line 824, ok.scss */
+/* line 825, ok.scss */
 #content input[type="submit"] {
   border: 1px solid #BBB;
   color: #464646;
@@ -1325,7 +1326,7 @@ p {
   box-sizing: content-box;
 }
 
-/* line 826, ok.scss */
+/* line 827, ok.scss */
 #content .liste_table {
   color: #333;
   margin-top: 5px;
@@ -1333,7 +1334,7 @@ p {
   background-color: #F9F9F9;
 }
 
-/* line 827, ok.scss */
+/* line 828, ok.scss */
 #content .liste_table th, #content .liste_table td {
   border-top: 1px solid white;
   border-bottom: 1px solid #DFDFDF;
@@ -1342,7 +1343,7 @@ p {
   vertical-align: top;
 }
 
-/* line 828, ok.scss */
+/* line 829, ok.scss */
 #content .liste_table th {
   background-color: #F1F1F1;
   font-size: 14px;
@@ -1350,125 +1351,125 @@ p {
   line-height: 36px;
 }
 
-/* line 829, ok.scss */
+/* line 830, ok.scss */
 #content .liste_table th a {
   color: #21759B;
   text-decoration: none;
 }
 
-/* line 830, ok.scss */
+/* line 831, ok.scss */
 #content .liste_table th a:hover {
   color: #464646;
 }
 
-/* line 831, ok.scss */
+/* line 832, ok.scss */
 #content .liste_table .colonne_check {
   width: 30px;
   text-align: center;
 }
 
-/* line 832, ok.scss */
+/* line 833, ok.scss */
 #content .liste_table td {
   font-size: 12px;
   padding: 4px 7px 2px;
   vertical-align: top;
 }
 
-/* line 833, ok.scss */
+/* line 834, ok.scss */
 #content .liste_table td a:hover {
   color: #D74E21;
 }
 
-/* line 834, ok.scss */
+/* line 835, ok.scss */
 #content .liste_table .action_admin {
   text-align: left;
   visibility: hidden;
   margin-top: 10px;
 }
 
-/* line 835, ok.scss */
+/* line 836, ok.scss */
 #content .liste_table .action_admin a {
   font-size: 0.9em;
 }
 
-/* line 836, ok.scss */
+/* line 837, ok.scss */
 #content .liste_table .action_admin a.upd {
   color: #257EA8;
 }
 
-/* line 837, ok.scss */
+/* line 838, ok.scss */
 #content .liste_table .action_admin a.upd:hover {
   color: #D74E21;
 }
 
-/* line 838, ok.scss */
+/* line 839, ok.scss */
 #content .liste_table .action_admin a.del {
   color: #BC0B0B;
 }
 
-/* line 839, ok.scss */
+/* line 840, ok.scss */
 #content .liste_table .action_admin a.del:hover {
   color: #FF0000;
 }
 
-/* line 840, ok.scss */
+/* line 841, ok.scss */
 #content .liste_table tr:hover {
   background-color: #fff;
 }
 
-/* line 841, ok.scss */
+/* line 842, ok.scss */
 #content .liste_table tr:hover .action_admin {
   visibility: visible;
 }
 
-/* line 843, ok.scss */
+/* line 844, ok.scss */
 #content .action_groupees {
   margin-top: 10px;
 }
 
-/* line 844, ok.scss */
+/* line 845, ok.scss */
 #content .action_groupees div {
   display: inline-block;
 }
 
-/* line 845, ok.scss */
+/* line 846, ok.scss */
 #content .action_groupees select {
   padding: 2px;
   height: 2em;
 }
 
-/* line 847, ok.scss */
+/* line 848, ok.scss */
 #content .search_box {
   float: right;
 }
 
-/* line 848, ok.scss */
+/* line 849, ok.scss */
 #content .search_box .submit {
   display: inline-block;
 }
 
-/* line 850, ok.scss */
+/* line 851, ok.scss */
 #content .list_top_table {
   margin-top: 5px;
 }
 
-/* line 851, ok.scss */
+/* line 852, ok.scss */
 #content .list_top_table li {
   display: inline-block;
 }
 
-/* line 852, ok.scss */
+/* line 853, ok.scss */
 #content .list_top_table li a:hover {
   color: #ff4b33;
 }
 
-/* line 853, ok.scss */
+/* line 854, ok.scss */
 #content .list_top_table .current {
   color: #000;
   font-weight: bold;
 }
 
-/* line 855, ok.scss */
+/* line 856, ok.scss */
 #content .bloc_total_element {
   border: 1px solid red;
   cursor: default;
@@ -1478,7 +1479,7 @@ p {
   width: 98%;
 }
 
-/* line 857, ok.scss */
+/* line 858, ok.scss */
 #content .comment-post span {
   background-color: #BBB;
   display: inline-block;
@@ -1489,17 +1490,17 @@ p {
   cursor: pointer;
 }
 
-/* line 858, ok.scss */
+/* line 859, ok.scss */
 #content .comment-post span.comment-waiting {
   background-color: #21759B;
 }
 
-/* line 859, ok.scss */
+/* line 860, ok.scss */
 #content .comment-post span:hover {
   background-color: #D74E21;
 }
 
-/* line 860, ok.scss */
+/* line 861, ok.scss */
 #content .comment-post span a {
   text-decoration: none;
   color: #fff;
@@ -1509,25 +1510,25 @@ p {
   line-height: 1.4em;
 }
 
-/* line 861, ok.scss */
+/* line 862, ok.scss */
 #content .comment-post span a:hover {
   color: #fff;
 }
 
-/* line 864, ok.scss */
+/* line 865, ok.scss */
 #content .liste_table
 #content .liste_table .colonne_medias .thumb {
   float: left;
 }
 
-/* line 866, ok.scss */
+/* line 867, ok.scss */
 .content {
   width: 98%;
   margin: 20px 5px 0 0;
 }
 
 /* Notification */
-/* line 869, ok.scss */
+/* line 870, ok.scss */
 #content .notif {
   font-size: 20px;
   text-align: center;
@@ -1563,18 +1564,18 @@ p {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-/* line 870, ok.scss */
+/* line 871, ok.scss */
 #content .content .notif {
   margin-bottom: 10px;
 }
 
-/* line 871, ok.scss */
+/* line 872, ok.scss */
 #content .notif strong {
   font-weight: bold;
   color: inherit;
 }
 
-/* line 872, ok.scss */
+/* line 873, ok.scss */
 #content .notif.success {
   background-color: #57a957;
   background-repeat: repeat-x;
@@ -1592,7 +1593,7 @@ p {
   color: #FFF;
 }
 
-/* line 873, ok.scss */
+/* line 874, ok.scss */
 #content .notif.error, #content .bloc .notif.error {
   background-color: #c43c35;
   background-repeat: repeat-x;
@@ -1610,7 +1611,7 @@ p {
   color: #FFF!important;
 }
 
-/* line 874, ok.scss */
+/* line 875, ok.scss */
 #content .notif.info {
   background-color: #339bb9;
   background-repeat: repeat-x;
@@ -1628,38 +1629,39 @@ p {
   color: #FFF;
 }
 
-/* line 876, ok.scss */
+/* line 877, ok.scss */
 #content .error, #content .error label, #content .error input, #content .error-message, #content .error textarea {
   color: #9D261D !important;
   border-color: #C87872 !important;
 }
 
-/* line 877, ok.scss */
+/* line 878, ok.scss */
 #content .error input, #content .error textarea {
   background-color: #FAE5E3 !important;
 }
 
-/* line 878, ok.scss */
+/* line 879, ok.scss */
 #content .error-message {
   display: block;
 }
 
 /* -- Bloc central -- */
-/* line 882, ok.scss */
+/* line 883, ok.scss */
 .blocsCentral {
   display: inline-block;
   margin-right: 5px;
   margin-top: 25px;
 }
 
-/* line 884, ok.scss */
+/* line 885, ok.scss */
 #blocsAjoutCote {
   display: inline-block;
   vertical-align: top;
   padding: 5px;
+  width: 29%;
 }
 
-/* line 885, ok.scss */
+/* line 886, ok.scss */
 #blocsAjoutCote .add_meta {
   margin-bottom: 15px;
   width: 280px;
@@ -1672,7 +1674,7 @@ p {
   border-radius: 3px;
 }
 
-/* line 886, ok.scss */
+/* line 887, ok.scss */
 #blocsAjoutCote .add_meta h3 {
   font-size: 15px;
   font-weight: normal;
@@ -1684,18 +1686,18 @@ p {
   background-color: #F1F1F1;
 }
 
-/* line 887, ok.scss */
+/* line 888, ok.scss */
 #blocsAjoutCote .add_meta .inside {
   line-height: 1.4em;
   padding: 5px;
 }
 
-/* line 888, ok.scss */
+/* line 889, ok.scss */
 #blocsAjoutCote .add_meta .inside .submit {
   margin-top: 10px;
 }
 
-/* line 889, ok.scss */
+/* line 890, ok.scss */
 #edit_post input#title_form, #edit_post input#slug_form {
   width: 98%;
   height: 32px;
@@ -1703,12 +1705,12 @@ p {
   padding-left: 13px;
 }
 
-/* line 890, ok.scss */
+/* line 891, ok.scss */
 #edit_post textarea {
   width: 100%;
 }
 
-/* line 891, ok.scss */
+/* line 892, ok.scss */
 #edit_post .placeholder label {
   position: absolute;
   height: 32px;
@@ -1718,59 +1720,59 @@ p {
   font-size: 1.7em;
 }
 
-/* line 893, ok.scss */
+/* line 894, ok.scss */
 #blocsAjoutCote #bloc_categorie legend {
   display: none;
 }
 
-/* line 894, ok.scss */
+/* line 895, ok.scss */
 #blocsAjoutCote #bloc_categorie .checkbox {
   height: 20px;
   line-height: 20px;
 }
 
-/* line 896, ok.scss */
+/* line 897, ok.scss */
 #blocsAjoutCote #bloc_categorie .checkbox label {
   margin-left: 5px;
 }
 
-/* line 898, ok.scss */
+/* line 899, ok.scss */
 #blocsAjoutCote #bloc_prix input {
   margin-bottom: 5px;
   width: 50px;
 }
 
-/* line 899, ok.scss */
+/* line 900, ok.scss */
 #blocsAjoutCote #bloc_prix label {
   display: inline-block;
   width: 100px;
 }
 
 /* -- Widgets -- */
-/* line 902, ok.scss */
+/* line 903, ok.scss */
 #blocsAjoutCote .add_meta .checkbox label {
   margin-left: 5px;
 }
 
-/* line 903, ok.scss */
+/* line 904, ok.scss */
 #blocsAjoutCote .add_meta .checkbox {
   height: 20px;
   line-height: 20px;
 }
 
-/* line 904, ok.scss */
+/* line 905, ok.scss */
 #blocsAjoutCote #bloc_createur select {
   width: 200px;
   padding: 2px;
 }
 
-/* line 905, ok.scss */
+/* line 906, ok.scss */
 .blocsCentral #produit_images .liste_produits_image li {
   display: inline-block;
   position: relative;
 }
 
-/* line 906, ok.scss */
+/* line 907, ok.scss */
 .blocsCentral #produit_images .liste_produits_image li .del_thumb {
   color: red;
   position: absolute;
@@ -1783,77 +1785,77 @@ p {
 			Content Dashboard
 ------------------------------------------ */
 /* -- Commentaires récents -- */
-/* line 913, ok.scss */
+/* line 914, ok.scss */
 #content #dashboard_derniers_commentaires .bloc_contenu {
   padding: 0 10px;
 }
 
-/* line 914, ok.scss */
+/* line 915, ok.scss */
 #derniers_commentaires .item_commentaire {
   padding: 5px;
 }
 
-/* line 915, ok.scss */
+/* line 916, ok.scss */
 #derniers_commentaires .non_approuve {
   background-color: white;
 }
 
 /* -- Dashboard aujourdhui */
-/* line 919, ok.scss */
+/* line 920, ok.scss */
 #dashboard_aujourdhui .bloc_contenu thead th {
   padding-bottom: 10px;
   font: italic 1.2em sans-serif;
   color: #888;
 }
 
-/* line 924, ok.scss */
+/* line 925, ok.scss */
 #dashboard_aujourdhui .bloc_contenu tbody td {
   padding-top: 15px;
 }
 
-/* line 925, ok.scss */
+/* line 926, ok.scss */
 #dashboard_aujourdhui .bloc_contenu tbody tr td {
   padding: 10px 0;
   border-top: 1px solid #DADADA;
 }
 
-/* line 926, ok.scss */
+/* line 927, ok.scss */
 #dashboard_aujourdhui .bloc_contenu tbody tr:hover td {
   border-top: 1px solid #BABABA;
   cursor: default;
 }
 
-/* line 927, ok.scss */
+/* line 928, ok.scss */
 #dashboard_aujourdhui .bloc_contenu tbody h4 {
   color: #404040;
   font-size: 1.8em;
 }
 
-/* line 930, ok.scss */
+/* line 931, ok.scss */
 #derniers_commentaires .item_commentaire {
   padding: 10px 0;
   border-bottom: 1px solid #DADADA;
 }
 
-/* line 931, ok.scss */
+/* line 932, ok.scss */
 #derniers_commentaires .item_commentaire:hover {
   border-bottom: 1px solid #BABABA;
 }
 
-/* line 932, ok.scss */
+/* line 933, ok.scss */
 #derniers_commentaires .item_commentaire img {
   display: inline-block;
   vertical-align: top;
   margin-right: 5px;
 }
 
-/* line 933, ok.scss */
+/* line 934, ok.scss */
 #derniers_commentaires .item_commentaire_wrap {
   display: inline-block;
   width: 320px;
 }
 
-/* line 934, ok.scss */
+/* line 935, ok.scss */
 #derniers_commentaires .item_commentaire_wrap .item_commentaire_meta {
   margin-bottom: 10px;
 }
@@ -1861,12 +1863,12 @@ p {
 /* ---------------------------------------
 				Users
 ------------------------------------------ */
-/* line 940, ok.scss */
+/* line 941, ok.scss */
 #form_user {
   margin-top: 10px;
 }
 
-/* line 941, ok.scss */
+/* line 942, ok.scss */
 #form_user label {
   display: inline-block;
   width: 100px;
@@ -1874,12 +1876,12 @@ p {
   text-align: right;
 }
 
-/* line 942, ok.scss */
+/* line 943, ok.scss */
 #form_user input {
   margin-top: 5px;
 }
 
-/* line 943, ok.scss */
+/* line 944, ok.scss */
 #form_user #pass_strength_result {
   margin: 15px 0 15px 85px;
 }
@@ -1887,30 +1889,30 @@ p {
 /* ---------------------------------------
 				Options générales
 ------------------------------------------ */
-/* line 948, ok.scss */
+/* line 949, ok.scss */
 .options_form {
   padding: 5px;
 }
 
-/* line 949, ok.scss */
+/* line 950, ok.scss */
 .options_form label {
   display: inline-block;
   width: 150px;
 }
 
-/* line 950, ok.scss */
+/* line 951, ok.scss */
 .options_form .input {
   margin-top: 5px;
 }
 
-/* line 951, ok.scss */
+/* line 952, ok.scss */
 .options_form .input input {
   margin-right: 10px;
   width: 200px;
   padding: 2px;
 }
 
-/* line 952, ok.scss */
+/* line 953, ok.scss */
 .options_form input[type="submit"] {
   margin-top: 10px;
 }
@@ -1918,12 +1920,12 @@ p {
 /* ---------------------------------------
 				upload 
 ------------------------------------------ */
-/* line 957, ok.scss */
+/* line 958, ok.scss */
 #form_upload {
   display: none;
 }
 
-/* line 958, ok.scss */
+/* line 959, ok.scss */
 #form_upload label {
   position: absolute;
   margin-top: 10px;
@@ -1932,12 +1934,12 @@ p {
   margin-left: 5px;
 }
 
-/* line 959, ok.scss */
+/* line 960, ok.scss */
 #form_upload input {
   height: 20px;
 }
 
-/* line 960, ok.scss */
+/* line 961, ok.scss */
 #form_upload input {
   margin-top: 10px;
 }
@@ -1945,67 +1947,67 @@ p {
 /* ---------------------------------------
 				Media 
 ------------------------------------------ */
-/* line 965, ok.scss */
+/* line 966, ok.scss */
 #form_media {
   margin-top: 20px;
 }
 
-/* line 966, ok.scss */
+/* line 967, ok.scss */
 #form_media label {
   display: inline-block;
   width: 100px;
 }
 
-/* line 967, ok.scss */
+/* line 968, ok.scss */
 #form_media .input {
   margin-top: 10px;
 }
 
-/* line 968, ok.scss */
+/* line 969, ok.scss */
 #form_media input[type="file"] {
   margin-left: 100px;
 }
 
-/* line 969, ok.scss */
+/* line 970, ok.scss */
 #form_media input[type="submit"] {
   margin-left: 100px;
   margin-top: 10px;
 }
 
-/* line 970, ok.scss */
+/* line 971, ok.scss */
 #form_media p {
   margin-top: 10px;
 }
 
-/* line 971, ok.scss */
+/* line 972, ok.scss */
 #form_media input#MediaGuid {
   width: 350px;
 }
 
-/* line 972, ok.scss */
+/* line 973, ok.scss */
 #media_thumb {
   display: inline-block;
 }
 
-/* line 973, ok.scss */
+/* line 974, ok.scss */
 #media_data {
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 976, ok.scss */
+/* line 977, ok.scss */
 .liste_table .colonne_medias .thumb {
   display: inline-block;
   margin-right: 5px;
 }
 
-/* line 977, ok.scss */
+/* line 978, ok.scss */
 .liste_table .colonne_medias .thumb_meta {
   display: inline-block;
   vertical-align: top;
 }
 
-/* line 978, ok.scss */
+/* line 979, ok.scss */
 .liste_table .colonne_medias .thumb_meta a {
   display: block;
 }
@@ -2013,18 +2015,18 @@ p {
 /* ---------------------------------------
 				Term 
 ------------------------------------------ */
-/* line 983, ok.scss */
+/* line 984, ok.scss */
 #form_term label {
   display: inline-block;
   width: 60px;
 }
 
-/* line 984, ok.scss */
+/* line 985, ok.scss */
 #form_term input {
   margin-top: 10px;
 }
 
-/* line 985, ok.scss */
+/* line 986, ok.scss */
 #form_term p {
   margin-top: 5px;
 }
@@ -2032,7 +2034,7 @@ p {
 /* ---------------------------------------
 				Image à la une 
 ------------------------------------------ */
-/* line 990, ok.scss */
+/* line 991, ok.scss */
 #bloc_image_une .product_thumb {
   text-align: center;
 }
