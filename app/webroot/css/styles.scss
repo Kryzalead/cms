@@ -66,6 +66,7 @@ hr {
 	height:0 !important;}
 
 ol, ul, li {list-style:none;line-height:.9;}
+strong{font-weight: bold;}
 
 .alignLeft{float: left}
 
@@ -86,8 +87,8 @@ a img 				{border: none}
 /* ---------------------------------------
 				Form
 ------------------------------------------ */
-textarea {overflow: auto;}
-input		{cursor: auto;}
+textarea{overflow: auto;}
+input	{cursor: auto;}
 label 	{cursor: text;}
 form input[type=text], form textarea {
 	border:none;
@@ -143,7 +144,7 @@ h2 {
 	-o-text-shadow:1px 1px 2px #999;
 	text-shadow:1px 1px 2px #999;}
 
-h1 a, h1 a:visited, h2 a, h2 a:visited			{text-decoration: none; color: #999;}
+h1 a, h1 a:visited, h2 a, h2 a:visited			{text-decoration: none; color: #444;}
 h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus	{text-decoration: none;}
 
 
@@ -310,6 +311,14 @@ ul#nav_menu li.sub:hover ul{display: block;}
 	background-color:#eee;
 	@include contenu;}
 
+#contenu .blocs li{line-height: 22px;list-style-type: disc;margin-left:50px}
+#contenu .blocs a{color: #AA4673;}
+#contenu .blocs a:hover{color: #000;text-decoration: underline}
+#contenu .blocs{line-height: 22px}
+#contenu #partenaires li{margin-left: 0px}
+#contenu #pagination ul li{margin-left: 5px}
+#no-actu{margin-top: 20px}
+
 #contenu .error, #content .error label, #content .error input, #content .error-message, #content .error textarea {color: #9D261D !important;border-color: #C87872 !important;}
 #contenu .error input, #content .error textarea {background-color: #FAE5E3 !important;}
 #contenu .error-message {display: block;}
@@ -448,7 +457,7 @@ aside#image-accessoires img{
 	width: 970px;
 	margin: 0 auto;}
 
-.catalogue h1.titre_produit {
+.catalogue h1.titre_produit{
 	display: block;
 	vertical-align: top;
 	color:#000;
@@ -497,7 +506,7 @@ aside#image-accessoires img{
 #catalogue_accessoire {width:950px;margin-top:25px;border-top:1px dashed #C1C1C1;}
 
 /* -- blocs catalogue -- */
-.blocs h1 a{color:#000;}
+#contenu .blocs h1 a{color:#000;}
 
 
 /* -- Recapitulatif produits -- */
@@ -530,8 +539,7 @@ aside#image-accessoires img{
 .fiche .miniatures li a{ float:left; border:2px solid #D9D9D9; height:69px; margin:10px 7px 0 0; @include images}
 .fiche .miniatures li a:hover{ border-color:#AA4673; /*+opacity:80%;*/ filter:alpha(opacity=80); -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -moz-opacity:0.8; opacity:0.8; }
 .fiche .tags a{text-decoration:underline;}
-.produit-partage a{ text-decoration:none; }
-.produit-partage a:hover{ opacity: 0.7;-moz-opacity: 0.7;filter:alpha(opacity=7); }
+#contenu .produit-partage a:hover{text-decoration:none;opacity: 0.7;-moz-opacity: 0.7;filter:alpha(opacity=7);}
 
 
 /* gallerie */

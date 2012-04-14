@@ -72,7 +72,6 @@
 					</ul>
 					<?php if (!empty($product['Product']['description'])): ?>
 					<ul>
-						
 						<li class="titre">Description</li>
 						<li><?php echo $product['Product']['description'] ?></li>
 						<?php if (!empty($product['Taxonomy']['product_taille'])): ?>

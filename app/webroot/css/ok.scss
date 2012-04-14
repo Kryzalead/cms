@@ -338,11 +338,9 @@ $none:none;
 	overflow: auto;}
 
 #screen-meta .screen-reader-text {visibility: hidden;}
-#screen-meta-links {margin: 0 24px 0 0;}
 
-/* screen options and help tabs revert */
 #screen-meta {
-	display: block; /* display: none; */
+	display: block;
 	position: relative;
 	margin: 0 15px 0 5px;
 	border-width: 0 1px 1px;
@@ -357,6 +355,7 @@ $none:none;
 
 #bouton_options_ecran, #contextual-help-link-wrap {@extend .aideRadiusBasBouton;}
 
+#screen-meta-links {margin: 0 80px 0 0;}
 #screen-meta-links a.show-settings {
 	text-decoration: none;
 	z-index: 1;
@@ -729,7 +728,6 @@ $none:none;
 			bloc_contenu
 ------------------------------------------ */
 #content{
-	width:70%;
 	margin: 30px 0 0 260px;
 	color: #6D6D6D;
 	font-size: 12px;
@@ -853,13 +851,13 @@ $none:none;
 #content .list_top_table li a:hover{color: #ff4b33}
 #content .list_top_table .current{color: #000;font-weight : bold;}
 
-#content .bloc_total_element{border:1px solid red;cursor: default;font-style: italic;text-align:right;margin:10px 0;width:98%;}
+#content .bloc_total_element{cursor: default;font-style: italic;text-align:right;margin:10px 0;width:98%;}
 
 #content .comment-post span {background-color: #BBB;display: inline-block;text-align: center;border-radius: 5px;color: #fff;font-weight: bold;cursor: pointer}
 #content .comment-post span.comment-waiting{background-color: #21759B}
 #content .comment-post span:hover{background-color: #D74E21}
 #content .comment-post span a{text-decoration: none;color: #fff;display: block;padding: 0 6px;height: 1.4em;line-height:1.4em;}
-#content .comment-post span a:hover{color: #fff}
+#content .comment-post span a:hover{color:#fff}
 
 #content .liste_table
 #content .liste_table .colonne_medias .thumb{float: left}
@@ -882,10 +880,10 @@ $none:none;
 /* -- Bloc central -- */
 .blocsCentral{display: inline-block;margin-right: 5px;margin-top: 25px;}
 
-#blocsAjoutCote{display: inline-block;vertical-align: top;padding: 5px;width:29%;}
-#blocsAjoutCote .add_meta{margin-bottom: 15px;width: 280px;background-color: whiteSmoke;border:1px solid #DFDFDF;-moz-box-shadow: inset 0 1px 0 #fff;-webkit-box-shadow: inset 0 1px 0 #fff;box-shadow: inset 0 1px 0 #fff;-webkit-border-radius: 3px;border-radius: 3px;}
+#blocsAjoutCote{display: inline-block;vertical-align: top;padding: 5px;}
+#blocsAjoutCote .add_meta{margin-bottom: 15px;width: 280px;border:1px solid #DFDFDF;-moz-box-shadow: inset 0 1px 0 #fff;-webkit-box-shadow: inset 0 1px 0 #fff;box-shadow: inset 0 1px 0 #fff;-webkit-border-radius: 3px;border-radius: 3px;}
 #blocsAjoutCote .add_meta h3{font-size: 15px;font-weight: normal;padding: 7px 10px;margin: 0;line-height: 1;color: #464646;border-bottom:1px solid #DFDFDF;background-color: #F1F1F1}
-#blocsAjoutCote .add_meta .inside{line-height: 1.4em;padding: 5px}
+#blocsAjoutCote .add_meta .inside{line-height: 1.4em;padding: 5px;}
 #blocsAjoutCote .add_meta .inside .submit{margin-top: 10px}
 #edit_post input#title_form, #edit_post input#slug_form{width:98%;height: 32px;font-size: 1.7em;padding-left:13px;}
 #edit_post textarea{width: 100%}
@@ -924,7 +922,7 @@ $none:none;
 
 #dashboard_aujourdhui .bloc_contenu tbody td{padding-top:15px;}
 #dashboard_aujourdhui .bloc_contenu tbody tr td{padding:10px 0;border-top:1px solid #DADADA;}
-#dashboard_aujourdhui .bloc_contenu tbody tr:hover td{border-top: 1px solid #BABABA;cursor:default;}
+#dashboard_aujourdhui .bloc_contenu tbody tr:hover td{border-top: 1px solid #BABABA;cursor:default;background-color:#e9e9e9;}
 #dashboard_aujourdhui .bloc_contenu tbody h4{color: #404040; font-size: 1.8em;}
 
 
@@ -933,6 +931,7 @@ $none:none;
 #derniers_commentaires .item_commentaire img {display: inline-block;vertical-align:top;margin-right:5px;}
 #derniers_commentaires .item_commentaire_wrap {display: inline-block;width:320px;}
 #derniers_commentaires .item_commentaire_wrap .item_commentaire_meta{margin-bottom:10px;}
+#derniers_commentaires .item_commentaire:hover{background-color:#e9e9e9;}
 
 
 /* ---------------------------------------

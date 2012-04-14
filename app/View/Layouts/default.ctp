@@ -16,16 +16,6 @@
   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/>
   <?php echo $this->Html->css('styles.css') ?>
   <?php echo $this->Html->css('styles-ie.css') ?>
-  <style type="text/css">
-  strong{font-weight: bold}
-  #contenu .blocs li{line-height: 22px;list-style-type: disc;margin-left:50px}
-  #contenu .blocs a{color: blue;}
-  #contenu .blocs a:hover{color: blue;text-decoration: underline}
-  #contenu .blocs{line-height: 22px}
-  #contenu #partenaires li{margin-left: 0px}
-  #contenu #pagination ul li{margin-left: 5px}
-  #no-actu{margin-top: 20px}
-  </style>
 </head>
 <body>
 <!--[if lte IE 8]>
@@ -88,7 +78,7 @@
           <div class="cb"></div>
     </div><!-- Fin contenu -->
       <footer>
-          <p>&copy; 2012 Coder In &middot; <?php echo $this->Html->link("mentions légales",array('plugin'=>false,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'mentions-legales')); ?> &middot;<?php echo $this->Html->link("plan du site",array('plugin'=>false,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'plan-site'));?> &middot; <a href="#logo">haut de page</a></p>
+          <p>&copy; 2012 Coder In &middot; <?php echo $this->Html->link("Mentions Légales",array('plugin'=>false,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'mentions-legales')); ?> &middot;<?php echo $this->Html->link("Plan du site",array('plugin'=>false,'action'=>'view','controller'=>'posts','type'=>'page','slug'=>'plan-site'));?> &middot; <a href="#logo">Haut de page</a></p>
       </footer>
   </div> <!-- Fin wrap -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
