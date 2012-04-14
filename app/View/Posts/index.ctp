@@ -45,6 +45,9 @@
 		 ?>
 		<?php echo $this->Paginator->numbers() ?>
 	<?php else: ?>
-		<p id="no-actu">Aucune actualité pour le moment<?php echo $this->Html->image('actualités.jpg') ?></p>
+		<div id="no-actu">
+			<h1>Aucune actualité pour le moment</h1>
+			<?php echo $this->Html->image('actualite-robe.png') ?>
+		</div>
 	<?php endif ?>
 </div>

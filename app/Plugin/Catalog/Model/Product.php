@@ -17,7 +17,7 @@ class Product extends CatalogAppModel{
 			'message'=>"Le prix doit être de type numéric"
 		)
 	);
-	public $actsAs = array('Containable','Taxonomy.taxonomy'=>array('fixed'=>array('product_category','product_taille','product_creator')));
+	public $actsAs = array('Containable','Taxonomy.Taxonomy'=>array('fixed'=>array('product_category','product_taille','product_creator')));
 
 	public $hasMany = array('Product_meta'=>array('dependent'=>true),'Product_attachement'=>array('dependent'=>true));
 

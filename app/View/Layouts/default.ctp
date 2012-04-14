@@ -24,7 +24,10 @@
   #contenu .blocs{line-height: 22px}
   #contenu #partenaires li{margin-left: 0px}
   #contenu #pagination ul li{margin-left: 5px}
-  #no-actu{margin-top: 20px}
+  #no-actu{margin-top: 20px;text-align: center}
+
+  #contenu .blocs .gallerie ul li{list-style-type: none;margin-left: 0px}
+  #contenu .blocs .produit-partage a:hover{text-decoration: none}
   </style>
 </head>
 <body>
