@@ -457,6 +457,7 @@ ul#nav_menu li.sub:hover ul {
 /* line 320, styles.scss */
 #no-actu {
   margin-top: 20px;
+  text-align: center;
 }
 
 /* line 322, styles.scss */
@@ -964,6 +965,12 @@ aside#image-accessoires img {
 /* line 553, styles.scss */
 .gallerie .blanc h4 {
   font: bold 2.1em 'riesling';
+}
+
+/* line 554, styles.scss */
+#contenu .blocs .gallerie ul li {
+  list-style-type: none;
+  margin-left: 0px;
 }
 
 /* ---------------------------------------

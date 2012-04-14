@@ -49,7 +49,7 @@ class ProductsController extends AppController{
 				'joins'=>array(
 					array(
 						'table' => 'term_relationships', 
-						'alias' => 'termR', 
+						'alias' => 'TermR', 
 						'type' => 'inner',  
 						'conditions'=> array('TermR.object_id = Product.id')
 					),

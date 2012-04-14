@@ -1,10 +1,10 @@
-<section class="bloc">
+
 	<h1><?php echo $product['Product']['product_type'] == 'robe-de-mariee' ? 'Modèle' : ''?> <?php echo $product['Product']['name'] ?></h1>
 	<div class="gallerie"> <!-- Début gallerie -->
 		<div class="blanc fiche"> <!-- Début blanc fiche -->
 			<div class="produit-gauche">
 				<?php 
-					$dimension = getimagesize ($product['Product']['url']); 
+					$dimension = getimagesize ('http://'.$_SERVER['HTTP_HOST'].Router::url('/').'img/'.$product['Product']['url']); 
 					$largeur = 375;$hauteur = 275;
 					if ($dimension[1] > $hauteur OR $dimension[0] > $largeur) { 
 					// X plus grand que Y 
@@ -23,7 +23,7 @@
 					     $height = $dimension[1]; 
 					} 
 				?>
-				<?php echo $this->Html->link($this->Html->image($product['Product']['url'],array('width'=>$width,'height'=>$height,'alt'=>"Photo ".$product['Product']['name'],'class'=>'photos')),$product['Product']['url'],array('title'=>$product['Product']['name'],'class'=>'product-zoom zoombox zgallery1','escape'=>false)); ?>
+				<?php echo $this->Html->link($this->Html->image($product['Product']['url'],array('width'=>$width,'height'=>$height,'alt'=>"Photo ".$product['Product']['name'],'class'=>'photos')),'/img/'.$product['Product']['url'],array('title'=>$product['Product']['name'],'class'=>'product-zoom zoombox zgallery1','escape'=>false)); ?>
 				<?php if (!empty($product['Product_attachement'])): ?>
 					<ul class="miniatures">
 						<?php foreach ($product['Product_attachement'] as $k => $v): ?>
@@ -88,7 +88,7 @@
 			</div><!-- Fin produit-droit -->
 		</div>
 	</div><!-- Fin gallerie -->
-</section>
+
 <aside id="image-accessoires">
 	<?php echo $this->Html->link($this->Html->image('accessoires.png'),array('action'=>'index','controller'=>'products','type'=>'accessoire'),array('escape'=>false)); ?>
 </aside>

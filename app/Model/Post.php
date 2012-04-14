@@ -1,7 +1,7 @@
 <?php
 class Post extends AppModel{
 	
-	public $actsAs = array('Containable','Taxonomy.taxonomy'=>array('fixed'=>array('category'),'dynamic'=>array('tag')));
+	public $actsAs = array('Containable','Taxonomy.Taxonomy'=>array('fixed'=>array('category'),'dynamic'=>array('tag')));
 	
 	public $belongsTo = array(
         'User',

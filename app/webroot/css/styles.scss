@@ -317,7 +317,7 @@ ul#nav_menu li.sub:hover ul{display: block;}
 #contenu .blocs{line-height: 22px}
 #contenu #partenaires li{margin-left: 0px}
 #contenu #pagination ul li{margin-left: 5px}
-#no-actu{margin-top: 20px}
+#no-actu{margin-top: 20px;text-align: center}
 
 #contenu .error, #content .error label, #content .error input, #content .error-message, #content .error textarea {color: #9D261D !important;border-color: #C87872 !important;}
 #contenu .error input, #content .error textarea {background-color: #FAE5E3 !important;}
@@ -551,7 +551,7 @@ aside#image-accessoires img{
 .gallerie p{ padding:5px 0; }
 .gallerie .blanc{ background:#FFF; margin:20px;}
 .gallerie .blanc h4{ font:bold 2.1em 'riesling'; }
-
+#contenu .blocs .gallerie ul li{list-style-type: none;margin-left: 0px}
 
 /* ---------------------------------------
 				Partenariats
